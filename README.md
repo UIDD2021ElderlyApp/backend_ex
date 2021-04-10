@@ -45,7 +45,7 @@ sed -i "s#${search}#${replace}#gi" $filename
 # Ask the user for their name
 echo enter a port you like:
 read varname
-search='30087'
+search='3000'
 filename='./bin/www'
 sed -i "s#${search}#${varname}#gi" $filename
 npm install
