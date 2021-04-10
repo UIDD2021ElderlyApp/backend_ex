@@ -1,8 +1,10 @@
-# backend_ex
-後端範例架構
+---
+title: 本組後端測試架構
+lang: zh-tw
+tags: uidd
+---
 
-## 目錄
-[TOC]
+# 本組後端測試架構
 
 ## 使用...
 
@@ -118,7 +120,4 @@ https://ithelp.ithome.com.tw/articles/10189263
 - luffy以後會提供有配置好存取權限的帳號
 
 ---
-
-###### 原始檔案
-
-https://hackmd.io/@andythebreaker/HkuN-eGHu
+{%hackmd B145hRQ2U %}
