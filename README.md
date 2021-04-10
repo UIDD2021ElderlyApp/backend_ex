@@ -6,6 +6,9 @@ tags: uidd
 
 # 本組後端測試架構
 
+[![hackmd-github-sync-badge](https://hackmd.io/MljZQswSSpWniVF3iMY_cQ/badge)](https://hackmd.io/MljZQswSSpWniVF3iMY_cQ)
+
+
 ## 使用...
 
     - luffy
