@@ -2,16 +2,16 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
-    console.log("=====================");
-  res.render('pixi_test_html', { title: 'pixi_test_page' });
+    console.log("opened a page (with out auth.)");
+    res.render('pixi_test_html', { title: 'pixi_test_page' });
 });
 
 function ensureAuthenticated(req, res, next) {
-  /*by pass login*/
+    /*by pass login*/
     //if (req.isAuthenticated()) {
     return next();
- // }
-  //res.redirect('/users/login');
+    // }
+    //res.redirect('/users/login');
 }
 
 module.exports = router;

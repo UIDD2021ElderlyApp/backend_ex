@@ -45,7 +45,7 @@ sed -i "s#${search}#${replace}#gi" $filename
 # Ask the user for their name
 echo enter a port you like:
 read varname
-search='30087'
+search='3000'
 filename='./bin/www'
 sed -i "s#${search}#${varname}#gi" $filename
 npm install
@@ -121,6 +121,27 @@ https://ithelp.ithome.com.tw/articles/10189263
 
 - 存取權限未配置
 - luffy以後會提供有配置好存取權限的帳號
+
+## 常見錯誤
+
+![](https://i.imgur.com/4BBXCxO.png)
+
+![](https://i.imgur.com/hy1EnR1.png)
+
+![](https://i.imgur.com/gq9nw3S.png)
+
+### 解法
+
+請查看專案根目錄中如下檔案
+
+![](https://i.imgur.com/Rf9OqvK.png)
+
+並將該檔案中資料庫路徑更正(參考上方`.sh`程式碼)
+
+須更正的東東如下
+
+![](https://i.imgur.com/YxSFzbf.png)
+
 
 ---
 {%hackmd B145hRQ2U %}

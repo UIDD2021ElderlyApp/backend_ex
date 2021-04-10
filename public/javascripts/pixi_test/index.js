@@ -29,6 +29,6 @@ app.ticker.add(function (delta) {
     // delta is 1 if running at 100% performance
     // creates frame-independent transformation
     bunny2.rotation += 0.5 * delta;
-    bunny2 = PIXI.Sprite.fromImage('bear.png')
+    bunny2 = PIXI.Sprite.fromImage('https://raw.githubusercontent.com/andythebreaker/pixibear2/master/bear.png')
     //bunny2 = PIXI.Sprite.fromImage('bunny.png')
 });

@@ -1,11 +1,7 @@
-doctype html
 extends layout
 
-head
-  meta(charset='utf-8')
-  title Hello World
+block content
+  div#ThisIsAIdForYouToAppend
   script(src='https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.7.1/pixi.min.js')
+  script(type='text/javascript' src='javascripts/pixi_test/index.js')
 
-div#ThisIsAIdForYouToAppend
-
-script(type='text/javascript' src='pixi_test/index.js')
