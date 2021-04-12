@@ -41,7 +41,7 @@ rm package-lock.json
 rsync -r . ..
 cd ..
 search='mongodb://localhost:27017/nodeauth'
-replace='mongodb://帳:密@140.116.132.223:27017/petdatabase_dev/nodeauth'
+replace='mongodb://帳:密@140.116.132.223:27017/petdatabase_dev'
 filename='./models/user.js'
 sed -i "s#${search}#${replace}#gi" $filename
 # Ask the user for their name
