@@ -23,6 +23,8 @@ tags: uidd
 2. `vi backend_setup.sh`
 3. paste these code
 
+#### 诶那個帳密請帶入自己的帳密ㄋㄟ，不要傻傻的
+
 ```bash=
 #!/bin/bash
 cd ~
@@ -39,7 +41,7 @@ rm package-lock.json
 rsync -r . ..
 cd ..
 search='mongodb://localhost:27017/nodeauth'
-replace='mongodb://140.116.132.223:27017/nodeauth'
+replace='mongodb://帳:密@140.116.132.223:27017/petdatabase_dev/nodeauth'
 filename='./models/user.js'
 sed -i "s#${search}#${replace}#gi" $filename
 # Ask the user for their name
