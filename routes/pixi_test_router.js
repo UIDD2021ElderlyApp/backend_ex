@@ -6,9 +6,9 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     res.render('pixi_test_html', { title: 'pixi_test_page' });
 });
 
-router.get('/scss_tset', ensureAuthenticated, function (req, res, next) {
+router.get('/scss_test', ensureAuthenticated, function (req, res, next) {
     console.log("opened a page (with out auth.)");
-    res.render('pixi_test_html', { title: 'scss_test_page' });
+    res.render('scss_test_page', { title: 'scss_test_page' });
 });
 
 function ensureAuthenticated(req, res, next) {
