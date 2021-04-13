@@ -10,6 +10,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bcrypt = require('bcryptjs');
 //const handlebars = require('express-handlebars');
+const sassMiddleware = require('node-sass-middleware')
 
 //---
 var bodyParser = require('body-parser');
@@ -43,6 +44,14 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(
+  sassMiddleware({
+    src: path.join(__dirname, 'scss'),
+    dest: path.join(__dirname, 'public'),
+    debug: true,
+    outputStyle: 'compressed',
+  })
+);//其中 app.use(express.static(‘public’)) 一定要在 app.use(sassMiddleware… 之後，否則會無法進行編譯
 app.use(express.static(path.join(__dirname, 'public')));
 
 //---
