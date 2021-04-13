@@ -16,6 +16,7 @@
     "express-session": "*",
     "express-validator": "*",
     "express-handlebars": "*",
+    "node-sass-middleware": "*",
     "http-errors": "~1.6.3",
     "is-empty": "^1.2.0",
     "is-equal": "^1.6.1",
