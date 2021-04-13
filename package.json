@@ -15,6 +15,7 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
+    "express-handlebars": "*",
     "http-errors": "~1.6.3",
     "is-empty": "^1.2.0",
     "is-equal": "^1.6.1",
