@@ -31,7 +31,6 @@ var db = mongoose.connection;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var selectanimalOBJ = require('./routes/selectanimal');
 var pixi_test_router = require('./routes/pixi_test_router');
 
 var app = express();
@@ -104,8 +103,8 @@ app.get('*', function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/selectanimal', selectanimalOBJ);
 app.use('/pixi_test_page', pixi_test_router);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
