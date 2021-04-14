@@ -1,0 +1,76 @@
+FORMAT: 1A
+HOST: http://luffy.ee.ncku.edu.tw:30087/api/v1
+
+# oldPetApi
+
+## login [/users/login]
+
+
+### login [POST]
+description is none error (error msg : by apier)
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+
+## register [/users/register]
+
+
+### register [POST]
+description is none error (error msg : by apier)
+
++ Request (application/json)
+
++ Response 201 (application/json)
+
+
+## logout [/users/logout]
+
+
+### logout [GET]
+description is none error (error msg : by apier)
+
++ Response 201 (application/json)
+
+
+## index [/]
+
+
+### index [GET]
+description is none error (error msg : by apier)
+
++ Response 201 (application/json)
+
+### 新增一筆TODO [POST]
+
+用來新增一筆TODO
+
++ Request (application/json)
+
+        {
+            "title": "記得要買牛奶"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /api/todo/4
+
+    + Body
+
+            {
+                "id": 4,
+                "title": "記得要買牛奶"
+            }
+            
++ Response 400 (application/json)
+
+    驗證失敗
+
+    + Body
+    
+            {
+                "erroMessage": "title是必填欄位"
+            }
