@@ -15,8 +15,6 @@
     "express-messages": "*",
     "express-session": "*",
     "express-validator": "*",
-    "express-handlebars": "*",
-    "node-sass-middleware": "*",
     "http-errors": "~1.6.3",
     "is-empty": "^1.2.0",
     "is-equal": "^1.6.1",
@@ -30,7 +28,8 @@
     "passport": "*",
     "passport-http": "*",
     "passport-local": "*",
-    "serve-favicon": "^2.5.0"
+    "serve-favicon": "^2.5.0",
+    "tableify": "^1.1.0"
   },
   "devDependencies": {
     "html-loader": "^2.1.2",

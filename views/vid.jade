@@ -1,0 +1,40 @@
+extends layout
+
+block content
+ h2.page-header dataup
+ p data up stuff
+ if errors
+  each error, i in errors
+   div.alert.alert-danger #{i}_have_error_cuz_#{error}
+
+ div#ifwhat
+ form(method='post', action='/vid/list', enctype='application/x-www-form-urlencoded')
+  .form-group
+   input.btn.btn-primary(type='submit', name='submit', value='go')
+ form(method='post', action='/vid/add', enctype='application/x-www-form-urlencoded')
+  .form-group
+   label vidindex
+   input.form-control(name='vidindex', type='text', placeholder='text')
+  .form-group
+   label vidtitle   
+   input.form-control(name='vidtitle', type='text', placeholder='text')
+  .form-group
+   label vidlocalurl
+   input.form-control(name='vidlocalurl', type='text', placeholder='text')
+  .form-group   
+   label vidhash
+   input.form-control(name='vidhash', type='text', placeholder='text')
+  .form-group   
+   label vidgoogleurl
+   input.form-control(name='vidgoogleurl', type='text', placeholder='text')
+  .form-group   
+   label viddescription
+   input.form-control(name='viddescription', type='text', placeholder='text')
+  .form-group   
+   label vidclass
+   input.form-control(name='vidclass', type='text', placeholder='text')
+  .form-group   
+   label vidsee
+   input.form-control(name='vidsee', type='text', placeholder='text')
+  .form-group
+   input.btn.btn-primary(type='submit', name='submit', value='go')

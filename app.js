@@ -29,7 +29,7 @@ var db = mongoose.connection;
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var pixi_test_router = require('./routes/pixi_test_router');
+var selectanimalOBJ = require('./routes/vid');
 
 var app = express();
 
@@ -53,7 +53,23 @@ app.use(session({
 // Passport
 app.use(passport.initialize());
 app.use(passport.session());
+// validator
+/*app.use(legacy({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
 
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));*///驗證器
 app.post(
   '/user',
   // username must be an email
@@ -93,7 +109,7 @@ app.get('*', function (req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/pixi_test_page', pixi_test_router);
+app.use('/vid', selectanimalOBJ);
 
 
 // catch 404 and forward to error handler

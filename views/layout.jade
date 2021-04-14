@@ -17,6 +17,8 @@ html
             if user
               li.nav-item(class=(title == 'Members' ? 'active' : ''))
                 a.nav-link(href='/') Members
+              li.nav-item(class=(title == 'vidadd' ? 'active' : ''))
+                a.nav-link(href='/vid/add') vidadd
             if !user
               li.nav-item(class=(title == 'Register' ? 'active' : ''))
                 a.nav-link(href='/users/register') Register
@@ -33,5 +35,3 @@ html
       h3.display_none user?_#{user}
     script(src='https://code.jquery.com/jquery-1.12.4.min.js')
     script(src='/javascripts/bootstrap.js')
-    .container
-      block content2
