@@ -19,9 +19,7 @@
     //     console.log(response+"->logout")
     //   })
 
-    document.getElementById('logout').addEventListener('click',function(){
-      FB.logout()
-    })
+ 
 
     function statusChangeCallback(response) {
 
@@ -41,6 +39,12 @@
         document.getElementById('status').innerHTML = 'Please log into Facebook.'
       }
     }
+
+    document.getElementById('logout').addEventListener('click',function(){
+      FB.logout(function (response) {
+        checkLoginState(response)
+      })
+    })
 
     // Step 3
     function checkLoginState() {
