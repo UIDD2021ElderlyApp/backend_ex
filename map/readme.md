@@ -4,6 +4,6 @@ https://luffy.ee.ncku.edu.tw/~magicrhyno/01/map.html
 <h1>map2</h1>
 https://luffy.ee.ncku.edu.tw/~magicrhyno/01/map2.html
 
--------------------------------------------------------------------------------------4/30
-<h1>45:can customize icon image</h1>
-<h1>57:show current coordinate</h1>
+<h1>add some new function in map2</h1>
+<u1>45:can customize icon image</u1>
+<u1>57:show current coordinate</u1>
