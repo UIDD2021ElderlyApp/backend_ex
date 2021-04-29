@@ -1,28 +1,79 @@
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+<html>
+
+<head>
+    <form>
+        <ul id="info"></ul>
+    </form>
+
+</head>
+
+<body>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
 <style>
-    html, body{
+    html,
+    body {
         width: 100%;
-        height: 100%;
+        height: 95%;
     }
-    #map{
+
+    #map {
         width: 100%;
         height: 100%;
     }
 </style>
 <div id="map"></div>
-<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+ <!-- Make sure you put this AFTER Leaflet's CSS -->
+ <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
 
 <script>
     var map;
+    var radius;
+    function initMap() {
 
-    map = L.map('map').setView([25.363, 131.044], 5);
+       // map = new L.map('map').setView([lat,lng], 15);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
-	maxZoom: 10,
-}).addTo(map);
+    }
 
-var marker = L.marker([23.363, 121]);
-marker.addTo(map);
+    map = L.map('map').setView([22.5,120.5], 5);
+    map.locate({setView: true, maxZoom: 18});
+    
+    var customIcon = L.icon({
+    iconUrl: '63.png',
+    iconSize:     [150, 99], // size of the icon
+    iconAnchor:   [100, 20], // point of the icon which will correspond to marker's location
+    popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+});
+    function onLocationFound(e) {
+    var radius = e.accuracy;
+    //L.marker([51.5, -0.09], {icon: greenIcon}).addTo(map);
+    L.marker(e.latlng, {icon: customIcon}).addTo(map)
+        .bindPopup("You might be " + radius + " meters from this point").openPopup();
+
+    L.circle(e.latlng, radius).addTo(map);
+        document.getElementById('info').innerHTML = `you are at ${e.latlng} with accuracy ${e.accuracy} m!`
+}
+
+map.on('locationfound', onLocationFound);
+
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
+        maxZoom: 19,
+    }).addTo(map);
+
+    var marker = L.marker([22.9998, 120.215]);
+    marker.bindPopup("<b>NCKU</b><br>the BEST University in south Taiwan").openPopup();
+    marker.addTo(map);
 
 </script>
+</body>
+
+<script src='./loc2.js'></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+
+</html>
