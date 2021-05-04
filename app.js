@@ -30,6 +30,11 @@ var db = mongoose.connection;
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var selectanimalOBJ = require('./routes/selectanimal');
+/*----------------------------------------------------*/
+var socialRouter = require('./routes/social');
+var rewardRouter = require('./routes/reward');
+var missionRouter = require('./routes/mission');
+/*----------------------------------------------------*/
 
 var app = express();
 
@@ -110,6 +115,14 @@ app.get('*', function (req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/selectanimal', selectanimalOBJ);
+
+////////////////////////////////////////////////////
+
+app.use('/social', socialRouter);
+app.use('/reward', rewardRouter);
+app.use('/mission', missionRouter);
+
+///////////////////////////////////////////////////////
 
 
 // catch 404 and forward to error handler
