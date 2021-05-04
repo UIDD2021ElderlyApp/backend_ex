@@ -1,7 +1,7 @@
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-mongoose.connect('mongodb://andythebreaker:iuhihcuw@140.116.132.223:27017/petdatabase_dev', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+mongoose.connect('mongodb://eryz:uyhihsgnest@140.116.132.223:27017/petdatabase_dev', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 var db = mongoose.connection;
 
 //User Schema
