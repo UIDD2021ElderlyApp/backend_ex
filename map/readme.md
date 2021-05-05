@@ -7,5 +7,5 @@ https://luffy.ee.ncku.edu.tw/~magicrhyno/map/map2.html
 <h1>add some new function in map2  </h1>
 45:can customize icon image
 
-57:show current coordinate  
+83:show current coordinate  
 
