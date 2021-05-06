@@ -9,6 +9,9 @@ var PoopSchema = mongoose.Schema({
         type: Date,
         index: true
     },
+    token: {
+        type: String
+    },
     title: {
         type: String
     },
@@ -53,10 +56,10 @@ module.exports.createPoop = function (newPoop, callback) {
     newPoop.save(callback);
 }
 
-module.exports.setPoopComment = function (Id, time, text, user_id, callback) {
+module.exports.setPoopComment = function (Id, time, text, token, callback) {
     console.log("------->setPoopComment");
     var query = { _id: Id };
-    var comment = JSON.stringify({ user_id: user_id, time: time, text: text })
+    var comment = JSON.stringify({ token: token, time: time, text: text })
     Poop.findOne(query, function (err, postget) {
         postget.comment.push(comment);
         postget.save(callback);

@@ -17,6 +17,7 @@ router.get('/', function (req, res, next) {
         console.log(Keepget1);
         let content = {};
         content["id"] = Keepget1._id;
+        content["token"] = Keepget1.token;
         content["time"] = Keepget1.time;
         content["title"] = Keepget1.title;
         content["text"] = Keepget1.text;
@@ -27,6 +28,7 @@ router.get('/', function (req, res, next) {
             console.log(Keepget2);
             let content = {};
             content["id"] = Keepget2._id;
+            content["token"] = Keepget2.token;
             content["time"] = Keepget2.time;
             content["title"] = Keepget2.title;
             content["text"] = Keepget2.text;
@@ -37,6 +39,7 @@ router.get('/', function (req, res, next) {
                 console.log(Keepget3);
                 let content = {};
                 content["id"] = Keepget3._id;
+                content["token"] = Keepget3.token;
                 content["time"] = Keepget3.time;
                 content["title"] = Keepget3.title;
                 content["text"] = Keepget3.text;
@@ -51,10 +54,12 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
     var keep = JSON.parse(req.body.keep)
     var time = keep.time;
+    var token = keep.token;
     var title = keep.title;
     var text = keep.text;
 
     console.log(time);
+    console.log(token);
     console.log(title);
     console.log(text);
 
@@ -73,6 +78,7 @@ router.post('/', function (req, res, next) {
     } else {
         var newKeep = new Keep({
             time: time,
+            token: token,
             title: title,
             text: text,
         });
