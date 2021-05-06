@@ -6,16 +6,16 @@ var out = require('../models/out');
 
 router.post('/create', function(req, res){
     var outdoor = JSON.parse(req.body.outdoor)
-    var user_id = outdoor.user_id;
+    var token = outdoor.token;
     //var path_distance = req.body.path_distance;
 
-    console.log(user_id);
+    console.log(token);
     //console.log(path_distance);
     var error_msg_res = {};
     // error detection !!!
-    if(empty(user_id))
+    if(empty(token))
     {
-        error_msg_res["user_id"] = "empty";
+        error_msg_res["token"] = "empty";
     }
     /*
     if(empty(path_distance))
@@ -35,7 +35,7 @@ router.post('/create', function(req, res){
     else
     {
         var newout = new out({
-            user_id: user_id,
+            token: token,
             path_distance: 0
             //path_distance: path_distance
         });
@@ -48,7 +48,7 @@ router.post('/create', function(req, res){
 });
 
 router.get('/', function (req, res, next) {
-    out.getoutByuser_id(req.body.outdoor, function (err, outget) {
+    out.getoutBytoken(req.body.outdoor, function (err, outget) {
         if (err) throw err;
         console.log(outget);
         var content = {};
