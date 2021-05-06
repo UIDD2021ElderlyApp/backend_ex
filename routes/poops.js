@@ -100,7 +100,7 @@ router.post('/', function (req, res, next) {
             if (err) throw err;
             console.log(newPoop);
             //pooptime.push(newPoop.time)
-            pooptime.time.push(newPoop.time)
+            pooptime.time.unshift(newPoop.time)
             let newpooptime = JSON.stringify(pooptime, null, '\t')
             fs.writeFile(`${__dirname}/poops.json`, newpooptime, (err) =>{
                 if(err) throw err

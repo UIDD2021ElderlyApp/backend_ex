@@ -34,6 +34,8 @@ var selectanimalOBJ = require('./routes/selectanimal');
 var socialRouter = require('./routes/social');
 var rewardRouter = require('./routes/reward');
 var missionRouter = require('./routes/mission');
+var keepRouter = require('./routes/keeps');
+var poopRouter = require('./routes/poops');
 /*----------------------------------------------------*/
 
 var app = express();
@@ -121,6 +123,8 @@ app.use('/selectanimal', selectanimalOBJ);
 app.use('/social', socialRouter);
 app.use('/reward', rewardRouter);
 app.use('/mission', missionRouter);
+app.use('/keep', keepRouter);
+app.use('/poop', poopRouter);
 
 ///////////////////////////////////////////////////////
 

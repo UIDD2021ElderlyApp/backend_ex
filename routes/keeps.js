@@ -80,7 +80,7 @@ router.post('/', function (req, res, next) {
             if (err) throw err;
             console.log(newKeep);
             //keeptime.push(newKeep.time)
-            keeptime.time.push(newKeep.time)
+            keeptime.time.unshift(newKeep.time)
             let newkeeptime = JSON.stringify(keeptime, null, '\t')
             fs.writeFile(`${__dirname}/keeps.json`, newkeeptime, (err) =>{
                 if(err) throw err
