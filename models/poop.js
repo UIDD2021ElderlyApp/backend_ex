@@ -9,9 +9,6 @@ var PoopSchema = mongoose.Schema({
         type: Date,
         index: true
     },
-    user_id: {
-        type: String
-    },
     title: {
         type: String
     },

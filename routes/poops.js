@@ -35,7 +35,6 @@ router.get('/', function (req, res, next) {
         console.log(Poopget1);
         let content = {};
         content["id"] = Poopget1._id;
-        content["user_id"] = Poopget1.user_id;
         content["time"] = Poopget1.time;
         content["title"] = Poopget1.title;
         content["text"] = Poopget1.text;
@@ -48,7 +47,6 @@ router.get('/', function (req, res, next) {
             console.log(Poopget2);
             let content = {};
             content["id"] = Poopget2._id;
-            content["user_id"] = Poopget2.user_id;
             content["time"] = Poopget2.time;
             content["title"] = Poopget2.title;
             content["text"] = Poopget2.text;
@@ -61,7 +59,6 @@ router.get('/', function (req, res, next) {
                 console.log(Poopget3);
                 let content = {};
                 content["id"] = Poopget3._id;
-                content["user_id"] = Poopget3.user_id;
                 content["time"] = Poopget3.time;
                 content["title"] = Poopget3.title;
                 content["text"] = Poopget3.text;
@@ -78,7 +75,6 @@ router.get('/', function (req, res, next) {
 router.post('/', upload.single('imagefile'), function (req, res, next) {
     var poop = JSON.parse(req.body.poop)
     var time = poop.time;
-    var user_id = poop.user_id;
     var title = poop.title;
     var text = poop.text;
     var img = poop.imgid;
@@ -103,7 +99,6 @@ router.post('/', upload.single('imagefile'), function (req, res, next) {
     } else {
         var newPoop = new Poop({
             time: time,
-            user_id: user_id,
             title: title,
             text: text,
             img: img,
