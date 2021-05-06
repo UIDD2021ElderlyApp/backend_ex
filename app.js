@@ -120,11 +120,11 @@ app.use('/selectanimal', selectanimalOBJ);
 
 ////////////////////////////////////////////////////
 
-app.use('/social', socialRouter);
-app.use('/reward', rewardRouter);
-app.use('/mission', missionRouter);
-app.use('/keep', keepRouter);
-app.use('/poop', poopRouter);
+app.use('/app/social', socialRouter);
+app.use('/app/reward', rewardRouter);
+app.use('/app/mission', missionRouter);
+app.use('/app/keep', keepRouter);
+app.use('/app/poop', poopRouter);
 
 ///////////////////////////////////////////////////////
 
