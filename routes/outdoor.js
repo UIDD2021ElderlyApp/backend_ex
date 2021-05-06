@@ -4,26 +4,25 @@ var empty = require('is-empty');
 
 var out = require('../models/out');
 
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
+router.post('/create', function(req, res){
+    var outdoor = JSON.parse(req.body.outdoor)
+    var user_id = outdoor.user_id;
+    //var path_distance = req.body.path_distance;
 
-router.get('/outdoor', function(req, res){
-    var token = req.body.token;
-    var path_distance = req.body.path_distance;
-
-    console.log(token);
-    console.log(path_distance);
+    console.log(user_id);
+    //console.log(path_distance);
     var error_msg_res = {};
     // error detection !!!
-    if(empty(token))
+    if(empty(user_id))
     {
-        error_msg_res["token"] = "empty";
+        error_msg_res["user_id"] = "empty";
     }
+    /*
     if(empty(path_distance))
     {
         error_msg_res["path_distance"] = "empty";
     }
+    */
 
     console.log(error_msg_res);
 
@@ -35,10 +34,10 @@ router.get('/outdoor', function(req, res){
     }
     else
     {
-        res.status(200);
         var newout = new out({
-            token: token,
-            path_distance: path_distance
+            user_id: user_id,
+            path_distance: 0
+            //path_distance: path_distance
         });
         out.createout(newout, function(err, newout){
             if(err) throw err;
@@ -48,25 +47,27 @@ router.get('/outdoor', function(req, res){
     }
 });
 
-router.put('/outdoor', function(req, res){
+router.get('/', function (req, res, next) {
+    out.getoutByuser_id(req.body.outdoor, function (err, outget) {
+        if (err) throw err;
+        console.log(outget);
+        var content = {};
+        content["path_distance"] = outget.path_distance;
+        res.status(200).send(JSON.stringify(content));
+    });
+});
+
+router.post('/', function(req, res){
+    out.postout(req.body.outdoor, function(err){
+        res.status(200).send();
+    });
+});
+
+router.put('/', function(req, res){
     out.setout(req.body.outdoor, function(err){
         res.status(200).send();
     });
 });
 
-
-router.post('/view', function (req, res, next) {
-    out.getoutById(req.body.Id, function (err, outget) {
-        if (err) throw err;
-        if (!outget) {
-            return done(null, false, { message: 'Unknown Post' });
-        }
-        console.log(outget);
-        var content = {};
-        content["path_distance"] = outget.path_distance;
-        res.status(200).send(content);
-    });
-
-});
 
 module.exports = router;

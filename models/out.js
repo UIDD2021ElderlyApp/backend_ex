@@ -5,10 +5,10 @@ var db = mongoose.connection;
 
 //Post Schema
 var outSchema = mongoose.Schema({
-    token: {
+    user_id: {
         type: String
     },
-    path_length: {
+    path_distance: {
         type: Number
     }
 });
@@ -23,14 +23,24 @@ module.exports.getoutById = function (id, callback) {
     console.log(callback);
 }
 
+module.exports.getoutByuser_id = function (outdoor, callback) {
+    console.log("------->getout1");
+    var outdoor2 = JSON.parse(outdoor);
+    console.log(outdoor2);
+    var query = { user_id: outdoor2.user_id };
+    console.log("------->getout2");
+    out.findOne(query, callback);
+    console.log(callback);
+}
+
 module.exports.postout = function (outdoor, callback) {
     console.log("------->setout");
-    var outdoor2=JSON.parse(outdoor);
+    var outdoor2 = JSON.parse(outdoor);
     console.log(outdoor2);
-    var query = { token: outdoor2.token };
+    var query = { user_id: outdoor2.user_id };
     console.log("------->setout2");
-    out.findOne(query, function(err, outdoorget){
-        outdoorget.path_length = outdoor2.path_length+outdoorget.path_length;
+    out.findOne(query, function (err, outdoorget) {
+        outdoorget.path_distance = outdoor2.path_distance + outdoorget.path_distance;
         outdoorget.save(callback);
     });
     console.log(callback);
@@ -38,12 +48,12 @@ module.exports.postout = function (outdoor, callback) {
 
 module.exports.setout = function (outdoor, callback) {
     console.log("------->setout3");
-    var outdoor2=JSON.parse(outdoor);
+    var outdoor2 = JSON.parse(outdoor);
     console.log(outdoor2);
-    var query = { token: outdoor2.token };
+    var query = { user_id: outdoor2.user_id };
     console.log("------->setout4");
-    out.findOne(query, function(err, outdoorget){
-        outdoorget.path_length = outdoor2.path_length;
+    out.findOne(query, function (err, outdoorget) {
+        outdoorget.path_distance = outdoor2.path_distance;
         outdoorget.save(callback);
     });
     console.log(callback);
