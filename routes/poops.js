@@ -2,7 +2,24 @@ var express = require('express');
 var router = express.Router();
 var empty = require('is-empty');
 var multer = require('multer');
-var upload = multer({ dest: './uploads' });
+var upload = multer({
+    dest: './uploads_poop_img',
+    /*
+    limit: {
+        // 限制上傳檔案的大小為 5MB
+        fileSize: 5000000
+    },
+    fileFilter(req, file, cb) {
+        // 建立篩選條件＆邏輯判斷
+        // 只接受三種圖片格式
+        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            cb(new Error('Please upload an image'))
+        }
+        // 若接受該檔案，呼叫 cb() 並帶入 true
+        cb(null, true)
+    }
+    */
+});
 var Poop = require('../models/poop');
 const { NotExtended } = require('http-errors');
 
@@ -11,13 +28,14 @@ var fs = require('fs')
 var pooptime = JSON.parse(fs.readFileSync(`${__dirname}/poops.json`))
 
 //get 3
-router.get('/', upload.single('image'), function (req, res, next) {
+router.get('/', function (req, res, next) {
     var poop3 = []
     Poop.getPoopByPooptime(pooptime.time[0], function (err, Poopget1) {
         if (err) throw err;
         console.log(Poopget1);
         let content = {};
-        content["id"] = Poopget1.Id;
+        content["id"] = Poopget1._id;
+        content["user_id"] = Poopget1.user_id;
         content["time"] = Poopget1.time;
         content["title"] = Poopget1.title;
         content["text"] = Poopget1.text;
@@ -29,7 +47,8 @@ router.get('/', upload.single('image'), function (req, res, next) {
             if (err) throw err;
             console.log(Poopget2);
             let content = {};
-            content["id"] = Poopget2.Id;
+            content["id"] = Poopget2._id;
+            content["user_id"] = Poopget2.user_id;
             content["time"] = Poopget2.time;
             content["title"] = Poopget2.title;
             content["text"] = Poopget2.text;
@@ -41,7 +60,8 @@ router.get('/', upload.single('image'), function (req, res, next) {
                 if (err) throw err;
                 console.log(Poopget3);
                 let content = {};
-                content["id"] = Poopget3.Id;
+                content["id"] = Poopget3._id;
+                content["user_id"] = Poopget3.user_id;
                 content["time"] = Poopget3.time;
                 content["title"] = Poopget3.title;
                 content["text"] = Poopget3.text;
@@ -55,9 +75,10 @@ router.get('/', upload.single('image'), function (req, res, next) {
 
 });
 
-router.post('/', function (req, res, next) {
+router.post('/', upload.single('imagefile'), function (req, res, next) {
     var poop = JSON.parse(req.body.poop)
     var time = poop.time;
+    var user_id = poop.user_id;
     var title = poop.title;
     var text = poop.text;
     var img = poop.imgid;
@@ -73,15 +94,6 @@ router.post('/', function (req, res, next) {
         error_msg_res["time"] = "empty";
     }
 
-    /*
-    if (req.file) {
-        console.log('Uploading image...');
-        var image = req.file.img.id;
-    }else{
-        var image = 'default.jpg';
-    }
-    */
-
     console.log(error_msg_res);
     if (!empty(error_msg_res)) {
         //res.status(400).json(error_msg_res);
@@ -91,6 +103,7 @@ router.post('/', function (req, res, next) {
     } else {
         var newPoop = new Poop({
             time: time,
+            user_id: user_id,
             title: title,
             text: text,
             img: img,
@@ -102,8 +115,8 @@ router.post('/', function (req, res, next) {
             //pooptime.push(newPoop.time)
             pooptime.time.unshift(newPoop.time)
             let newpooptime = JSON.stringify(pooptime, null, '\t')
-            fs.writeFile(`${__dirname}/poops.json`, newpooptime, (err) =>{
-                if(err) throw err
+            fs.writeFile(`${__dirname}/poops.json`, newpooptime, (err) => {
+                if (err) throw err
                 var id = {};
                 id["id"] = newPoop._id;
                 res.status(200).send(JSON.stringify(id));
