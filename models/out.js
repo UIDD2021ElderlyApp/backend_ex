@@ -5,9 +5,6 @@ var db = mongoose.connection;
 
 //Post Schema
 var outSchema = mongoose.Schema({
-    token: {
-        type: String
-    },
     path_distance: {
         type: Number
     }
@@ -23,21 +20,11 @@ module.exports.getoutById = function (id, callback) {
     console.log(callback);
 }
 
-module.exports.getoutBytoken = function (outdoor, callback) {
-    console.log("------->getout1");
-    var outdoor2 = JSON.parse(outdoor);
-    console.log(outdoor2);
-    var query = { token: outdoor2.token };
-    console.log("------->getout2");
-    out.findOne(query, callback);
-    console.log(callback);
-}
-
 module.exports.postout = function (outdoor, callback) {
     console.log("------->setout");
     var outdoor2 = JSON.parse(outdoor);
     console.log(outdoor2);
-    var query = { token: outdoor2.token };
+    var query = { Id: outdoor2.Id };
     console.log("------->setout2");
     out.findOne(query, function (err, outdoorget) {
         outdoorget.path_distance = outdoor2.path_distance + outdoorget.path_distance;
@@ -50,7 +37,7 @@ module.exports.setout = function (outdoor, callback) {
     console.log("------->setout3");
     var outdoor2 = JSON.parse(outdoor);
     console.log(outdoor2);
-    var query = { token: outdoor2.token };
+    var query = { Id: outdoor2.Id };
     console.log("------->setout4");
     out.findOne(query, function (err, outdoorget) {
         outdoorget.path_distance = outdoor2.path_distance;

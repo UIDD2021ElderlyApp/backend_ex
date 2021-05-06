@@ -9,9 +9,6 @@ var KeepSchema = mongoose.Schema({
         type: Date,
         index: true
     },
-    token: {
-        type: String
-    },
     title: {
         type: String
     },

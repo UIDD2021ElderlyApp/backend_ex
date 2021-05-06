@@ -35,7 +35,6 @@ router.get('/', function (req, res, next) {
         console.log(Poopget1);
         let content = {};
         content["id"] = Poopget1._id;
-        content["token"] = Poopget1.token;
         content["time"] = Poopget1.time;
         content["title"] = Poopget1.title;
         content["text"] = Poopget1.text;
@@ -48,7 +47,6 @@ router.get('/', function (req, res, next) {
             console.log(Poopget2);
             let content = {};
             content["id"] = Poopget2._id;
-            content["token"] = Poopget2.token;
             content["time"] = Poopget2.time;
             content["title"] = Poopget2.title;
             content["text"] = Poopget2.text;
@@ -61,7 +59,6 @@ router.get('/', function (req, res, next) {
                 console.log(Poopget3);
                 let content = {};
                 content["id"] = Poopget3._id;
-                content["token"] = Poopget3.token;
                 content["time"] = Poopget3.time;
                 content["title"] = Poopget3.title;
                 content["text"] = Poopget3.text;
@@ -78,7 +75,6 @@ router.get('/', function (req, res, next) {
 router.post('/', upload.single('imagefile'), function (req, res, next) {
     var poop = JSON.parse(req.body.poop)
     var time = poop.time;
-    var token = poop.token;
     var title = poop.title;
     var text = poop.text;
     var img = poop.imgid;
@@ -103,7 +99,6 @@ router.post('/', upload.single('imagefile'), function (req, res, next) {
     } else {
         var newPoop = new Poop({
             time: time,
-            token: token,
             title: title,
             text: text,
             img: img,
@@ -132,7 +127,7 @@ router.post('/', upload.single('imagefile'), function (req, res, next) {
 
 router.post('/comment', function (req, res, next) {
     var comment = JSON.parse(req.body.comment);
-    Poop.setPoopComment(comment.id, comment.time, comment.text, comment.token, function (err) {
+    Poop.setPoopComment(comment.id, comment.time, comment.text, comment.user_id, function (err) {
         res.status(200).send();
     });
 })
