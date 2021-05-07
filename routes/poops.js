@@ -4,21 +4,6 @@ var empty = require('is-empty');
 var multer = require('multer');
 var upload = multer({
     dest: './uploads_poop_img',
-    /*
-    limit: {
-        // 限制上傳檔案的大小為 5MB
-        fileSize: 5000000
-    },
-    fileFilter(req, file, cb) {
-        // 建立篩選條件＆邏輯判斷
-        // 只接受三種圖片格式
-        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
-            cb(new Error('Please upload an image'))
-        }
-        // 若接受該檔案，呼叫 cb() 並帶入 true
-        cb(null, true)
-    }
-    */
 });
 var Poop = require('../models/poop');
 const { NotExtended } = require('http-errors');
@@ -72,8 +57,8 @@ router.get('/', function (req, res, next) {
 
 });
 
-router.post('/', upload.single('imagefile'), function (req, res, next) {
-    var poop = JSON.parse(req.body.poop)
+router.post('/', function (req, res, next) {
+    var poop = JSON.parse(req.body)
     var time = poop.time;
     var title = poop.title;
     var text = poop.text;
@@ -127,7 +112,7 @@ router.post('/', upload.single('imagefile'), function (req, res, next) {
 
 router.post('/comment', function (req, res, next) {
     var comment = JSON.parse(req.body.comment);
-    Poop.setPoopComment(comment.id, comment.time, comment.text, comment.user_id, function (err) {
+    Poop.setPoopComment(comment.id, comment.time, comment.text, comment.user_name, function (err) {
         res.status(200).send();
     });
 })
