@@ -9,6 +9,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
+        console.log("====================================");
+        console.log(req.user);
         return next();
     }
     res.redirect('/users/login');
