@@ -137,7 +137,8 @@ router.post('/login',
   passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: 'Invalid username or password' }),
   function (req, res) {
     req.flash('success', 'You are now logged in');
-    res.redirect('/');
+    //res.redirect('/');
+    res.redirect('/app/sel');
   });
 
 router.get('/logout', function (req, res) {
