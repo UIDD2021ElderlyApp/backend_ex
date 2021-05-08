@@ -1,7 +1,7 @@
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
-var db = mongoose.connection;
+//mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+//var db = mongoose.connection;
 
 //Poop Schema
 var PoopSchema = mongoose.Schema({
@@ -53,7 +53,7 @@ module.exports.createPoop = function (newPoop, callback) {
     newPoop.save(callback);
 }
 
-module.exports.setPoopComment = function (Id, time, text, user_id, callback) {
+module.exports.setPoopComment = function (Id, time, text, callback) {
     console.log("------->setPoopComment");
     var query = { _id: Id };
     var comment = JSON.stringify({ user_name: user_name, time: time, text: text })

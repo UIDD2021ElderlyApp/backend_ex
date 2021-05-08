@@ -1,7 +1,7 @@
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
-var db = mongoose.connection;
+//mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+//var db = mongoose.connection;
 
 //Post Schema
 var outSchema = mongoose.Schema({
