@@ -12,9 +12,13 @@ tags: uidd
 
 ## TODO list
 
-- [ ] 貼文、keep:當資料庫中不足3則貼文時，後端程式會掛掉
+- [ ] keep刪除時的作動，會造成後端程式碼crash
 > 錯誤如下
 ![](https://i.imgur.com/iCcPiYc.png)
+
+- [ ] 捲動更新，當內容物太少，無法捲動時，無法更新
+> 錯誤如下
+![](https://i.imgur.com/rQqLVCr.png)
 
 ---
 
