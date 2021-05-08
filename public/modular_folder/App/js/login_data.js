@@ -72,6 +72,9 @@ function login_button_click() {
             if (DEF_DEBUG) {
                 console.log(objects_returned_by_the_server);
             }
+            var re = /\/users\/login/gi;
+            var newstr = window.location.href.replace(re, objects_returned_by_the_server);
+            window.location.href = newstr;
         })
     }
 
