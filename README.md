@@ -8,6 +8,19 @@ tags: uidd
 
 [![hackmd-github-sync-badge](https://hackmd.io/MljZQswSSpWniVF3iMY_cQ/badge)](https://hackmd.io/MljZQswSSpWniVF3iMY_cQ)
 
+---
+
+## TODO list
+
+- [ ] 貼文、keep:當資料庫中不足3則貼文時，後端程式會掛掉
+> 錯誤如下
+![](https://i.imgur.com/iCcPiYc.png)
+
+---
+
+## 以下的東西是之前的...留著給大家參考
+
+---
 
 ## 使用...
 
