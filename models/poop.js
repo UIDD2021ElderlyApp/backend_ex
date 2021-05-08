@@ -56,12 +56,14 @@ module.exports.createPoop = function (newPoop, callback) {
 module.exports.setPoopComment = function (Id, time, text, callback) {
     console.log("------->setPoopComment");
     var query = { _id: Id };
-    var comment = JSON.stringify({ user_name: user_name, time: time, text: text })
+    console.log("var comment = JSON.stringify({ user_name: user_name, time: time, text: text });");
+    var comment = JSON.stringify({ user_name: "user_name", time: time, text: text });
     Poop.findOne(query, function (err, postget) {
         postget.comment.push(comment);
-        postget.save(callback);
+        postget.save();
     });
-    console.log(callback);
+    console.log("module.exports.setPoopComment ");
+    callback();
 }
 
 /*

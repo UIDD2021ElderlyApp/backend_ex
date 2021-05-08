@@ -112,10 +112,11 @@ router.post('/', function (req, res, next) {
 });
 
 router.post('/comment', function (req, res, next) {
-    var comment = JSON.parse(req.body);
     console.log("comment===>");
-    console.log(comment);
+    console.log(req.body);
+    var comment = req.body;
     Poop.setPoopComment(comment.id, comment.time, comment.text, function (err) {
+        if (err) { console.log(err); }
         res.status(200).send(JSON.stringify(err));
     });
 })
