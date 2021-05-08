@@ -11,8 +11,11 @@ var keeptime = JSON.parse(fs.readFileSync(`${__dirname}/keeps.json`))
 
 //get 3
 router.get('/', function (req, res, next) {
+    console.log("check_point_1");
     var keep3 = [];
+    console.log("check_point_2");
     Keep.getKeepByKeeptime(keeptime.time[0], function (err, Keepget1) {
+        console.log("check_point_3");
         if (err) throw err;
         console.log(Keepget1);
         let content = {};
@@ -50,6 +53,7 @@ router.get('/', function (req, res, next) {
 
 router.post('/', function (req, res, next) {
     var keep = req.body;
+    console.log("router.post('/', function (req, res, next)  ");
     console.log(keep);
     var time = keep.time;
     var title = keep.title;
