@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf8">
+    <title>login</title>
+    <link href="login.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <div id="loading_logo">
+        <img src="../image/loading.svg">
+    </div>
+    <div id="login_page">
+        <!-- width="71.43%" -->
+        <img src="../image/logo.svg" style="position:relative; height:30vh; top: 0%;">
+        <div style="position:relative;top:-1vh; height:2.5vh; font-size:2.5vh; font-weight: bold; color:#ffffff;">創建帳號</div>
+        <div id="gray_block">
+            <div class="login_bar">
+                <img src="../image/login_bar.svg">
+                <input type="text" name="user_name" placeholder="名稱" onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'" />
+            </div>
+            <div class="login_bar">
+                <img src="../image/login_bar.svg">
+                <input type="text" name="account" placeholder="帳號" onfocus="this.placeholder = ''" onblur="this.placeholder = '帳號'" />
+            </div>
+            <div class="login_bar">
+                <img src="../image/login_bar.svg">
+                <input type="text" name="password" placeholder="密碼" onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'" />
+            </div>
+            <div class="login_bar">
+                <img src="../image/login_bar.svg">
+                <input type="text" name="password_confirm" placeholder="再輸入一次密碼" onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'" />
+            </div>
+            <div class="login_bar">
+                <!-- value="" -->
+                <button id="login_button">
+                    <img src="../image/login_button.svg" width="100%" z-index="3">
+                </button>
+            </div>
+        </div>
+        <div id="community_login">
+            <!-- <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge"></fb:login-button> -->
+            <div id="fb_login" onclick="checkLoginState();"><img src="../image/facebook_login.svg" height="100%"></div>
+            <!-- Change FB login button (great TT):
+        https://stackoverflow.com/questions/9810335/how-to-change-facebook-login-button-with-my-custom-image -->
+            <div id="line_login" onclick=""><img src="../image/line_login.svg" height="100%"></div>
+        </div>
+    </div>
+    <div id="status"></div>
+    <button id="logout">log_out</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+    <script src="login.js"></script>
+    <script>
+        // Facebook
+        const myAppId = '224423852774215'
+        const myClientId = '104741108422999'
+
+        function statusChangeCallback(response) {
+
+            console.log('statusChangeCallback')
+            console.log(response)
+
+            if (response.status === 'connected') {
+                // Logged into your app and Facebook.
+                testAPI()
+            } else if (response.status === 'not_authorized') {
+                // The person is logged into Facebook, but not your app.
+                document.getElementById('status').innerHTML = 'Please log into this app.'
+            } else {
+                // The person is not logged into Facebook, so we're not sure if
+                // they are logged into this app or not.
+                document.getElementById('status').innerHTML = 'Please log into Facebook.'
+            }
+        }
+
+        document.getElementById('logout').addEventListener('click', function() {
+            FB.logout(function(response) {
+                checkLoginState(response)
+            })
+        })
+
+        function checkLoginState() {
+
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response)
+            })
+        }
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: myAppId,
+                cookie: true, // enable cookies to allow the server to access
+                // the session
+                version: 'v3.3', // use graph api version 3.3
+                xfbml: true, // parse social plugins on this page
+            })
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response)
+            })
+        }
+
+        // Load the SDK asynchronously
+        ;
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0]
+            if (d.getElementById(id)) return
+            js = d.createElement(s)
+            js.id = id
+            js.src = '//connect.facebook.net/en_US/sdk.js'
+            fjs.parentNode.insertBefore(js, fjs)
+        }(document, 'script', 'facebook-jssdk'))
+
+
+        function testAPI() {
+            console.log('Welcome!  Fetching your information.... ')
+            FB.api('/me', 'GET', {
+                "fields": "name,birthday,email,hometown"
+            }, function(response) {
+                console.log(`Successful login for: ${response.id}`)
+                console.log(`Successful login for: ${response.name}`)
+                console.log(`Successful login for: ${response.email}`)
+                document.getElementById('status').innerHTML = `Thanks for logging in, ${response.name}!`
+            })
+            FB.api('/me/?fields=picture', 'GET', {}, function(response) {
+                console.log(response.picture.data.url)
+                    // document.getElementById("pic").src = response.picture.data.url
+            })
+        }
+    </script>
+
+</body>
+
+</html>
