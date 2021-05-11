@@ -1,109 +1,197 @@
 <html>
 
 <head>
-    <form>
-        <ul id="info"></ul>
-    </form>
+    <link href="map2.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-    crossorigin=""/>
-<style>
-    html,
-    body {
-        width: 100%;
-        height: 95%;
-    }
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <style>
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
 
-    #map {
-        width: 100%;
-        height: 100%;
-    }
-</style>
-<div id="map"></div>
- <!-- Make sure you put this AFTER Leaflet's CSS -->
- <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-   crossorigin=""></script>
-
-<script>
-    var map;
-    var radius;
-    var now=L.marker;   
-    //now.addTo(map);
+        #map {
+            top: 0vh;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+    <button>
+        <div id="btn">
+            <img src="./map2.png">
+        </div>
+    </button>
+    <div id="hungun">
 
 
-    function initMap() {
+        <form>
+            <bl id="info"></bl>
+            <bl id="info2"></bl>
+            <bl id="info3"></bl>
 
-       // map = new L.map('map').setView([lat,lng], 15);
+        </form>
+    </div>
+    <div id="map">
 
-    }
-
-    map = L.map('map').setView([22.5,120.5], 5);
-    map.locate({setView: true,watch:true,enableHighAccuracy:true, maxZoom: 18});
-    var customIcon  = L.icon({
-    iconUrl: '63.png',
-    iconSize:     [150, 100], // size of the icon
-    iconAnchor:   [100, 20], // point of the icon which will correspond to marker's location
-    popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
-});
+    </div>
 
 
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
 
-//     function onLocationFound(e) {
-//     var radius = e.accuracy;
-//      now(e.latlng, {icon: customIcon}).addTo(map)
-//          .bindPopup("You might be " + radius + " meters from this point").openPopup();
-    
-
-//     L.circle(e.latlng, radius).addTo(map);
-//         document.getElementById('info').innerHTML = `you are at ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
-// }
-var gpsMarker = null;
-var gpsCircleMarker;
-
-function onLocationFound(e) {
-  var radius = e.accuracy / 2;
-  var popupContent = "You are within " + radius + " meters from this point";
-
-  if (gpsMarker == null) {
-    gpsMarker = L.marker(e.latlng, {icon: customIcon}).addTo(map);
-    gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
-    gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
-    }
-  else {
-   gpsMarker.getPopup().setContent(popupContent);   
-   gpsMarker.setLatLng(e.latlng);
-   gpsCircleMarker.setLatLng(e.latlng);
-   gpsCircleMarker.setRadius(radius);
-  }
-  document.getElementById('info').innerHTML = `you are att ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
-}
-function onLocationError(e) {
-    alert(e.message);
-}
-
-map.on('locationerror', onLocationError);
-
-map.on('locationfound', onLocationFound);
+    <script language="JavaScript">
+        function ShowTime() {
+            if (document.getElementById("info").hidden === false)
+                var NowDate = new Date();
+            var s = NowDate.getSeconds();
+            document.getElementById('info2').innerHTML = s + 's';
+            //setTimeout('ShowTime()', 1000);//decide max time
+        }
+    </script>
 
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
-        maxZoom: 19,
-    }).addTo(map);
+    <script>
+        var NowDate;
+        var s;
+        // var map;
+        // var radius;
 
-    var marker = L.marker([22.9998, 120.215]);
-    marker.bindPopup("<b>NCKU</b><br>the BEST University in south Taiwan").openPopup();
-    marker.addTo(map);
 
-</script>
+
+        map = L.map('map').setView([22.5, 120.5], 15);//construct map
+        map.locate({ setView: true, watch: true, enableHighAccuracy: true });
+        map.removeControl(map.zoomControl);
+        L.control.scale({ imperial: false }).addTo(map);
+        L.control.zoom({
+
+            position: 'topright',
+
+            //zoomInTitle: 'increase',
+            //zoomOutTitle: 'decrese'
+        }).addTo(map);
+
+
+        var customIcon = L.icon({
+            iconUrl: '65.png',
+            iconSize: [150, 150], // size of the icon
+            iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
+            popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
+        });
+
+
+        var gpsMarker = null;
+        var gpsCircleMarker;
+
+        function onLocationFound(e) {
+            console.log(e)
+            var radius = e.accuracy / 2;
+            var popupContent = "You are within " + radius + " meters from this point";
+
+            if (gpsMarker == null) {
+                gpsMarker = L.marker(e.latlng, { icon: customIcon }).addTo(map);
+                gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
+                gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
+            }
+            else {
+                gpsMarker.getPopup().setContent(popupContent);
+                gpsMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setRadius(radius);
+            }
+            document.getElementById('info').innerHTML = `you are at ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
+
+
+            ShowTime()
+
+
+            var marker = L.marker(L.latLng(22.9998, 120.215));
+            marker.bindPopup("<b>NCKU</b><br>the BEST University in south Taiwan").openPopup();
+            marker.addTo(map);
+
+            console.log(e.latlng)
+            console.log(marker._latlng)
+            // var latlng = L.latLng(40, 112);
+            // var _distance = L.GeometryUtil.distance(map, from, to);
+
+            // var d2 = latlng.distanceTo(L.latLng(44, 115));
+
+            // let dis = e.distanceTo(marker.LatLng);
+
+            //document.getElementById('info3').innerHTML =_distance;
+
+            //var dis = e.distanceTo(marker.latLng);
+            //document.getElementById('info3').innerHTML = e.latlng.distanceTo(marker._latlng);
+            //distance2= e.latlng.distanceTo(marker._latlng);
+            if (last != current) {
+                last = e.latlng
+            }
+            current = e.latlng;
+            distance2 = last.distanceTo(current);
+            last = current;
+            console.log(distance2)
+
+            distance1 += distance2;
+        }
+        var current;
+        var last;
+
+        var distance1;
+        var distance2;
+
+        setTimeout(function () {
+            distance1 = 0;
+            distance2 = 0;
+            currrent = NaN;
+            last = NaN;
+        }, 0)
+
+        setInterval(function () {
+            console.log(distance1)
+            console.log(distance2)
+            console.log(last)
+            console.log("hhh")
+            console.log(current)
+            document.getElementById('info3').innerHTML = distance1;
+
+
+
+
+        }, 2000);
+
+        function onLocationError(e) {
+            alert(e.message);
+        }
+
+
+
+        map.on('locationerror', onLocationError);
+
+        map.on('locationfound', onLocationFound);
+
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
+            maxZoom: 19,
+        }).addTo(map);
+
+
+
+
+    </script>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js"></script>
 
 
 </html>
