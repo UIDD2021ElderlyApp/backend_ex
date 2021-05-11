@@ -1,16 +1,113 @@
 extends layout
 
-block content
- h2.page-header Login
- p Please login below
- if errors
-  each error, i in errors
-   div.alert.alert-danger #{error.msg}
- form(method='post', action='/users/login')
-  .form-group   
-   label Username
-   input.form-control(name='username', type='text', placeholder='Enter username')
-  .form-group   
-   label Password
-   input.form-control(name='password', type='password', placeholder='Enter password')
-  input.btn.btn-primary(type='submit', name='submit', value='Login')
+block content_head
+    meta(charset='utf8')
+    title login
+    link(href='../modular_folder/login/login.css' rel='stylesheet' type='text/css')
+
+block content_body
+    #loading_logo
+      img(src='../modular_folder/login/image/loading.svg')
+    #login_page
+      // width="71.43%"
+      img(src='../modular_folder/login/image/logo.svg' style='position:relative; height:30vh; top: 0%;')
+      div(style='position:relative;top:-1vh; height:2.5vh; font-size:2.5vh; font-weight: bold; color:#ffffff;') 創建帳號
+      #gray_block
+        .login_bar
+          img(src='../modular_folder/login/image/login_bar.svg')
+          input(type='text' name='user_name' placeholder='名稱' onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'")
+        .login_bar
+          img(src='../modular_folder/login/image/login_bar.svg')
+          input(type='text' name='account' placeholder='帳號' onfocus="this.placeholder = ''" onblur="this.placeholder = '帳號'")
+        .login_bar
+          img(src='../modular_folder/login/image/login_bar.svg')
+          input(type='text' name='password' placeholder='密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'")
+        .login_bar
+          img(src='../modular_folder/login/image/login_bar.svg')
+          input(type='text' name='password_confirm' placeholder='再輸入一次密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'")
+        .login_bar
+          // value=""
+          button#login_button
+            img(src='../modular_folder/login/image/login_button.svg' width='100%' z-index='3')
+      #community_login
+        // <fb:login-button scope="public_profile,email" onlogin="checkLoginState();" size="xlarge"></fb:login-button>
+        #fb_login(onclick='checkLoginState();')
+          img(src='../modular_folder/login/image/facebook_login.svg' height='100%')
+        //
+          Change FB login button (great TT):
+          https://stackoverflow.com/questions/9810335/how-to-change-facebook-login-button-with-my-custom-image
+        #line_login(onclick='')
+          img(src='../modular_folder/login/image/line_login.svg' height='100%')
+    #status
+    button#logout log_out
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js')
+    script(src='../modular_folder/login/login.js')
+    script(src='../modular_folder/login/login_data.js')
+    script.
+      // Facebook
+      const myAppId = '224423852774215'
+      const myClientId = '104741108422999'
+      function statusChangeCallback(response) {
+      console.log('statusChangeCallback')
+      console.log(response)
+      if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI()
+      } else if (response.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      document.getElementById('status').innerHTML = 'Please log into this app.'
+      } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      document.getElementById('status').innerHTML = 'Please log into Facebook.'
+      }
+      }
+      document.getElementById('logout').addEventListener('click', function() {
+      FB.logout(function(response) {
+      checkLoginState(response)
+      })
+      })
+      function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+      statusChangeCallback(response)
+      })
+      }
+      window.fbAsyncInit = function() {
+      FB.init({
+      appId: myAppId,
+      cookie: true, // enable cookies to allow the server to access
+      // the session
+      version: 'v3.3', // use graph api version 3.3
+      xfbml: true, // parse social plugins on this page
+      })
+      FB.getLoginStatus(function(response) {
+      statusChangeCallback(response)
+      })
+      }
+      // Load the SDK asynchronously
+      ;
+      (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0]
+      if (d.getElementById(id)) return
+      js = d.createElement(s)
+      js.id = id
+      js.src = '//connect.facebook.net/en_US/sdk.js'
+      fjs.parentNode.insertBefore(js, fjs)
+      }(document, 'script', 'facebook-jssdk'))
+      function testAPI() {
+      console.log('Welcome!  Fetching your information.... ')
+      FB.api('/me', 'GET', {
+      "fields": "name,birthday,email,hometown"
+      }, function(response) {
+      console.log(`Successful login for: ${response.id}`)
+      console.log(`Successful login for: ${response.name}`)
+      console.log(`Successful login for: ${response.email}`)
+      document.getElementById('status').innerHTML = `Thanks for logging in, ${response.name}!`
+      })
+      FB.api('/me/?fields=picture', 'GET', {}, function(response) {
+      console.log(response.picture.data.url)
+      // document.getElementById("pic").src = response.picture.data.url
+      })
+      }

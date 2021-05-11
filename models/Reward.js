@@ -1,7 +1,7 @@
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
-var db = mongoose.connection;
+//mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+//var db = mongoose.connection;
 
 //Post Schema
 var RewardSchema = mongoose.Schema({
@@ -29,19 +29,32 @@ module.exports.getRewardById = function (id, callback) {
     console.log(callback);
 }
 
-module.exports.setReward = function (reward, callback) {
-    console.log("------->setReward");
-    var reward2=JSON.parse(reward);
-    console.log(reward2);
-    var query = { token: reward2.token };
-    console.log("------->setReward2");
-    Reward.findOne(query, function(err, rewardget){
-        rewardget.exp = reward2.exp;
-        rewardget.food = reward2.food;
-        rewardget.dessert = reward2.dessert;
-        rewardget.save(callback);
-    });
+module.exports.getRewardByUserId = function (userId_you_want_to_find, callback) {//it is a 16 int, from FB!
+    console.log("module.exports.getRewardByUserId(userId_you_want_to_find) = function (id, callback) {");
+    console.log(userId_you_want_to_find);
+    Reward.find(
+        { "user_id": userId_you_want_to_find }//需要處裡多餘一個的使用者id
+        , callback);
     console.log(callback);
+}
+
+module.exports.setReward = function (userId_you_want_to_find, exp, food, dessert, callback) {
+    console.log("module.exports.getRewardByUserId(userId_you_want_to_find) = function (id, callback) {");
+    console.log(userId_you_want_to_find);
+    Reward.find(
+        { "user_id": userId_you_want_to_find }//這裡有錯誤
+        , function (err, rewardget) {
+            if (err) {
+                console.log(err);
+                callback(-1);
+            } else {
+                rewardget[0].exp = exp;
+                rewardget[0].food = food;
+                rewardget[0].dessert = dessert;
+                rewardget[0].save();
+            }
+        });
+    callback(0);
 }
 
 module.exports.createReward = function (newReward, callback) {

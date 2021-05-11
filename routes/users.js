@@ -23,6 +23,7 @@ router.get('/register', function (req, res, next) {
 
 //加入login routing
 router.get('/login', function (req, res, next) {
+  console.log("router.get('/login', function (req, res, next) {");
   res.render('login', { title: 'Login' });
 });
 
@@ -135,8 +136,8 @@ passport.deserializeUser(function (id, done) {
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: 'Invalid username or password' }),
   function (req, res) {
-    req.flash('success', 'You are now logged in');
-    res.redirect('/');
+    
+    res.status(200).send("/app/sel");
   });
 
 router.get('/logout', function (req, res) {

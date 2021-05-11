@@ -11,8 +11,11 @@ var keeptime = JSON.parse(fs.readFileSync(`${__dirname}/keeps.json`))
 
 //get 3
 router.get('/', function (req, res, next) {
-    var keep3 = []
+    console.log("check_point_1");
+    var keep3 = [];
+    console.log("check_point_2");
     Keep.getKeepByKeeptime(keeptime.time[0], function (err, Keepget1) {
+        console.log("check_point_3");
         if (err) throw err;
         console.log(Keepget1);
         let content = {};
@@ -20,7 +23,7 @@ router.get('/', function (req, res, next) {
         content["time"] = Keepget1.time;
         content["title"] = Keepget1.title;
         content["text"] = Keepget1.text;
-        keep3.push(content)
+        keep3.push(content);
 
         Keep.getKeepByKeeptime(keeptime.time[1], function (err, Keepget2) {
             if (err) throw err;
@@ -30,10 +33,10 @@ router.get('/', function (req, res, next) {
             content["time"] = Keepget2.time;
             content["title"] = Keepget2.title;
             content["text"] = Keepget2.text;
-            keep3.push(content)
-            
+            keep3.push(content);
+
             Keep.getKeepByKeeptime(keeptime.time[2], function (err, Keepget3) {
-                if (err) throw err;
+                if (err) { console.log(err)};
                 console.log(Keepget3);
                 let content = {};
                 content["id"] = Keepget3._id;
@@ -49,7 +52,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    var keep = JSON.parse(req.body.keep)
+    var keep = req.body;
+    console.log("router.post('/', function (req, res, next)  ");
+    console.log(keep);
     var time = keep.time;
     var title = keep.title;
     var text = keep.text;
@@ -82,8 +87,8 @@ router.post('/', function (req, res, next) {
             //keeptime.push(newKeep.time)
             keeptime.time.unshift(newKeep.time)
             let newkeeptime = JSON.stringify(keeptime, null, '\t')
-            fs.writeFile(`${__dirname}/keeps.json`, newkeeptime, (err) =>{
-                if(err) throw err
+            fs.writeFile(`${__dirname}/keeps.json`, newkeeptime, (err) => {
+                if (err) throw err
                 var id = {};
                 id["id"] = newKeep._id;
                 res.status(200).send(JSON.stringify(id));
@@ -97,9 +102,10 @@ router.post('/', function (req, res, next) {
     }
 });
 
-router.delete('/', function (req, res, next) {
-    var keep = JSON.parse(req.body.keep)
-    Keep.deleteKeepByKeepId(keep.id, function (err) {
+router.post('/del', function (req, res, next) {
+    var keepid = req.body.id
+    Keep.deleteKeepByKeepId(keepid, function (err) {
+        if (err) { console.log(err); }
         res.status(200).send();
     });
 });

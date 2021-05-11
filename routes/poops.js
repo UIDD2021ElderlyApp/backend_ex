@@ -58,7 +58,8 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-    var poop = JSON.parse(req.body)
+    console.log(req.body);
+    var poop = req.body;
     var time = poop.time;
     var title = poop.title;
     var text = poop.text;
@@ -111,9 +112,12 @@ router.post('/', function (req, res, next) {
 });
 
 router.post('/comment', function (req, res, next) {
-    var comment = JSON.parse(req.body.comment);
-    Poop.setPoopComment(comment.id, comment.time, comment.text, comment.user_name, function (err) {
-        res.status(200).send();
+    console.log("comment===>");
+    console.log(req.body);
+    var comment = req.body;
+    Poop.setPoopComment(comment.id, comment.time, comment.text, function (err) {
+        if (err) { console.log(err); }
+        res.status(200).send(JSON.stringify(err));
     });
 })
 

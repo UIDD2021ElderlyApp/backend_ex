@@ -1,0 +1,132 @@
+extends layout
+
+block content_head
+    meta(charset='utf8')
+    title post
+    link(href='../modular_folder/tspoop/post.css' rel='stylesheet' type='text/css')
+    
+block content_body
+    header
+      .dont_show_this_in_published_client
+        #field_battle_title_see 7.發文(檢視)
+        #STAT_no_articles_here_or_stolen_by_aliens no_articles_here_or_stolen_by_aliens?undefine
+        // do not remove me <3
+        #main_poop_see(style='overflow-y: scroll')
+      .dont_show_this_in_published_client
+        #field_battle_title 7.發文
+        #usr_inp_img_num -1
+        #usr_inp_send_success post_success?undefine
+        // 等待這裡變yes再跳離發文頁面
+        input#usr_inp_title(type='text' name='poop_title')
+        // textarea name="poop_text" id="usr_inp_txt" rows="5" cols="60">edit text box ...</textarea
+        //
+          div id="usr_inp_post_btn" style="height: 30px; width: 30px; background-color: rgb(221, 185, 139);">發文按鈕
+          </div
+    button#exit_button
+      img(src='../modular_folder/tspoop/image/exit_button.svg' width='100%' z-index='3')
+    #upper_windows
+      #new_post
+        button#usr_inp_post_btn.new_post_button 新增貼文
+        input#usr_inp_txt(type='text' name='new_post_text' placeholder='打字打在這...' onfocus="this.placeholder = ''" onblur="this.placeholder = '打字打在這...'")
+      #browse_post
+        // one post
+        .post
+          .original
+            .poster_block
+              .poster_photo
+                img(src='../modular_folder/tspoop/image/test.svg')
+              .post_detail
+                .poster_name XXX
+                .post_time OO OO OO
+            .post_text
+              | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              br
+              | aaaaaaaaaaaaaa
+              br
+              | aaaaaaaa
+              br
+              | aaaaaaaaaa
+              br
+              | aaaaaaa
+            .post_photo
+              img(src='../modular_folder/tspoop/image/test2.svg')
+            .new_comment
+              button.new_comment_button 新增留言
+              input(type='text' name='new_comment_text' placeholder='打字打在這...' onfocus="this.placeholder = ''" onblur="this.placeholder = '打字打在這...'")
+              button.post_comment_button 發佈
+          .comment_group
+            .comments
+              .commenter_block
+                .commenter_photo
+                  img(src='../modular_folder/tspoop/image/test.svg')
+                div
+                  .commenter_name XXX
+                  .comment_time OO OO OO
+              .comment_text
+                | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                br
+                | bbb
+                br
+                | b
+                |                             b
+            // one comment, one div
+            .comments
+              .commenter_block
+                .commenter_photo
+                  img(src='../modular_folder/tspoop/image/test.svg')
+                div
+                  .commenter_name XXX
+                  .comment_time OO OO OO
+              .comment_text
+                | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                br
+                | bbb
+                br
+                | b
+                |                             b
+        .post_poop
+          .original
+            .poster_block
+              .poster_photo
+                img(src='../modular_folder/tspoop/image/test.svg')
+              .post_detail
+                .poster_name XXX
+                .post_time OO OO OO
+            .post_text
+              | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+              br
+              | aaaaaaaaaaaaaa
+              br
+              | aaaaaaaa
+              br
+              | aaaaaaaaaa
+              br
+              | aaaaaaa
+            .post_photo
+              img(src='../modular_folder/tspoop/image/test2.svg')
+            .new_comment
+              button.new_comment_button 新增留言
+              input#usr_inp_comment_txt(type='text' name='new_comment_text' placeholder='打字打在這...' onfocus="this.placeholder = ''" onblur="this.placeholder = '打字打在這...'")
+              button.post_comment_button 發佈
+          .comment_group
+            .comments
+              .commenter_block
+                .commenter_photo
+                  img(src='../modular_folder/tspoop/image/test.svg')
+                div
+                  .commenter_name XXX
+                  .comment_time OO OO OO
+              .comment_text
+                | bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb
+                br
+                | bbb
+                br
+                | b
+                |                             b
+    footer
+      .a_bunch_of_js
+        // js
+        // jquery
+        script(src='https://code.jquery.com/jquery-2.1.1.min.js')
+        script(src='../modular_folder/tspoop/index_poop.js')
+        script(src='../modular_folder/tspoop/index_poop_see.js')

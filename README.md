@@ -8,6 +8,34 @@ tags: uidd
 
 [![hackmd-github-sync-badge](https://hackmd.io/MljZQswSSpWniVF3iMY_cQ/badge)](https://hackmd.io/MljZQswSSpWniVF3iMY_cQ)
 
+---
+
+## TODO list
+
+- [ ] keep刪除時的作動，會造成後端程式碼crash
+> 錯誤如下
+![](https://i.imgur.com/iCcPiYc.png)
+
+- [ ] 捲動更新，當內容物太少，無法捲動時，無法更新
+> 錯誤如下
+![](https://i.imgur.com/rQqLVCr.png)
+
+- [ ] 把發文時間記在硬碟中，看是要把那個記錄檔變成隱藏檔，還是要用其他方法去紀錄<<<這是一個次級的錯誤，不用改只要會動也沒關係>>>
+> code:
+```javascript=
+fs.writeFile(`${__dirname}/poops.json`, newpooptime, (err) => {
+                if (err) throw err
+                var id = {};
+                id["id"] = newPoop._id;
+                res.status(200).send(JSON.stringify(id));
+            })
+```
+
+---
+
+## 以下的東西是之前的...留著給大家參考
+
+---
 
 ## 使用...
 

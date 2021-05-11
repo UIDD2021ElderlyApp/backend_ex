@@ -5,6 +5,7 @@
  */
 
 var app = require('../app');
+var apps = require('../app');
 var debug = require('debug')('pixitest:server');
 var http = require('http');
 
@@ -14,12 +15,28 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '30087');
 app.set('port', port);
+var ports = normalizePort(process.env.PORT || '38443');
+apps.set('port', ports);
 
 /**
  * Create HTTP server.
  */
 
 var server = http.createServer(app);
+
+
+//=========================================
+var fs = require('fs')
+var privateKey  = fs.readFileSync("/home/yichung/ssl/private.key");
+var certificate = fs.readFileSync("/home/yichung/ssl/certificate.crt");
+var credentials = { key: privateKey, cert: certificate};
+var https = require('https');
+var httpsServer = https.createServer(credentials ,app);
+httpsServer.listen(ports);
+httpsServer.on('error', onError);
+httpsServer.on('listening', onListening);
+//=========================================
+
 
 /**
  * Listen on provided port, on all network interfaces.

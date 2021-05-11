@@ -1,0 +1,40 @@
+extends layout
+
+block content_head
+    meta(charset='utf8')
+    meta(name='viewport' content='width=device-width, initial-scale=1')
+    title Choose
+    // Link Swiper's CSS
+    link(rel='stylesheet' href='https://unpkg.com/swiper/swiper-bundle.min.css')
+    title choose
+    link(href='../modular_folder/choose/choose.css' rel='stylesheet' type='text/css')
+
+block content_body
+    //.vsc-initialized
+    #choose_text 請選擇您夥伴!
+    // Swiper
+    // background color : 0--1/3--1/2--2/3--1
+    // C4E3A1--ACDCD7--9ED8F5--B0DFD0--F2ED82
+    .swiper-container.mySwiper.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events
+      #swiper-wrapper-10777a12e54cdc93f.swiper-wrapper(aria-live='polite' style='transition-duration: 0ms; transform: translate3d(-100%, 0px, 0px);')
+        .swiper-slide.swiper-slide-prev(role='group' aria-label='1/3' style='width:100%; height:100%; background:linear-gradient(to right, #C4E3A1, #ACDCD7);')
+          img(src='../modular_folder/choose/image/choose_animal1.svg')
+        .swiper-slide.swiper-slide-active(role='group' aria-label='2/3' style='width:100%; height:100%; background:linear-gradient(90deg, #ACDCD7 0%, #ACDCD7 1%, #9ED8F5 50%, #9ED8F5 51%, #B0DFD0 99%, #B0DFD0 100%);')
+          img(src='../modular_folder/choose/image/choose_animal2.svg')
+        .swiper-slide.swiper-slide-next(role='group' aria-label='3/3' style='width:100%; height:100%; background:linear-gradient(to right, #B0DFD0, #F2ED82);')
+          img(src='../modular_folder/choose/image/choose_animal3.svg')
+      //
+        <div class="swiper-pagination swiper-pagination-bullets">
+        <span class="swiper-pagination-bullet"></span>
+        <span class="swiper-pagination-bullet"></span>
+        <span class="swiper-pagination-bullet"></span>
+        </div>
+      span.swiper-notification(aria-live='assertive' aria-atomic='true')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script.
+        jQuery(function dom_ready(dom_ready_params) {
+        document.getElementsByTagName("body")[0].classList.add("vsc-initialized");
+        });
+    // Swiper JS
+    script(src='https://unpkg.com/swiper/swiper-bundle.min.js')
+    script(src='../modular_folder/choose/choose.js')
