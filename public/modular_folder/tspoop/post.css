@@ -1,0 +1,285 @@
+body {
+    position: absolute;
+    background-position: center top;
+    background-size: 100% auto;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #90CD91;
+}
+
+#exit_button {
+    z-index: 3;
+    position: absolute;
+    width: 7vh;
+    height: 7vh;
+    top: 1vh;
+    left: 1vw;
+    background-color: transparent;
+    border: none;
+    padding: 0%;
+}
+
+#upper_windows {
+    z-index: 2;
+    position: absolute;
+    padding: 3vh;
+    margin: 3vh;
+    /* w & h not include margin, padding */
+    height: 88vh;
+    width: calc(100vw - 12vh);
+    background-color: white;
+    /*container*/
+    display: flex;
+    /* 由上到下排列 */
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#new_post {
+    /* background-color: antiquewhite; */
+    position: relative;
+    width: 100%;
+    height: 18%;
+    padding: 1% 0%;
+    /* text-align: center; */
+    /* w & h relay on: content, padding, border, no margin */
+    /* box-sizing: border-box; */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.new_post_button {
+    height: 5vh;
+    width: 18vh;
+    font-size: 3vh;
+    font-weight: bold;
+    background-color: #ffffff;
+    border-width: 0.1vh;
+    border-radius: 2vh;
+    box-shadow: #3f3f3f 0.2vh 0.2vh;
+}
+
+#new_post input[type=text] {
+    background-color: #e5e2e2;
+    /* float: right; */
+    /*搜尋欄邊框*/
+    border-width: 0;
+    border-radius: 3vh;
+    box-shadow: rgb(44, 44, 44) 0.4vh 0.4vh 1vh 0px inset, rgb(255 255 255 / 50%) -3px -3px 6px 1px inset;
+    /* 調整閃爍游標位置 */
+    padding: 0% 1vh;
+    position: relative;
+    top: 1vw;
+    font-size: 3vh;
+    /*滑鼠閃爍游標顏色*/
+    color: #494949;
+    /* padding */
+    width: calc(100% - 2vh);
+    /*打字時無邊框*/
+    outline: 0;
+    /* 讓排列內容物填滿剩下空間 */
+    flex-grow: 1;
+}
+
+#browse_post {
+    /* background-color: rgb(112, 90, 60); */
+    position: relative;
+    width: 100%;
+    height: 75%;
+    padding: 1% 0%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#browse_post::-webkit-scrollbar {
+    width: 1vw;
+    background-color: transparent;
+}
+
+#browse_post::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#browse_post::-webkit-scrollbar-thumb {
+    background-color: #aed1af;
+    border-radius: 1vw;
+}
+
+
+/****************************/
+
+.post {
+    position: relative;
+    width: 100%;
+    padding: 1vh 0%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.original {
+    position: relative;
+    background-color: #ffffff;
+    width: calc(100% - 2vh);
+    /* for box-shadow */
+    margin-right: 2vh;
+    margin-bottom: 2vh;
+    padding: 1vh 0%;
+    border-radius: 3vh;
+    box-shadow: rgba(0, 0, 0, 0.15) 1vh 1vh 2vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.poster_block {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+}
+
+.poster_photo {
+    position: relative;
+    width: 8vh;
+    height: 100%;
+    margin-right: 1vh;
+    /* background: url("image/test.svg");
+    background-repeat: no-repeat;
+    background-size: contain; */
+}
+
+.poster_photo img {
+    width: 100%;
+}
+
+.poster_name {
+    font-size: 3vh;
+    font-weight: bold;
+    margin-top: 2vh;
+    color: #000000;
+}
+
+.post_time {
+    font-size: 2vh;
+    color: #313131;
+}
+
+.post_text {
+    margin: 1vh;
+    font-size: 2vh;
+    color: #313131;
+    /* 讓英數字不會超出容器 */
+    word-wrap: break-word;
+}
+
+.post_photo {
+    position: relative;
+    margin: 1vh;
+    width: 98%;
+}
+
+.post_photo img {
+    width: 100%;
+}
+
+.new_comment {
+    display: flex;
+    flex-direction: column;
+}
+
+.new_comment_button {
+    position: relative;
+    height: 3vh;
+    width: 11vh;
+    margin-left: 1vh;
+    font-size: 2vh;
+    font-weight: bold;
+    background-color: #ffffff;
+    border-width: 0.1vh;
+    border-radius: 1vh;
+    box-shadow: #3f3f3f 0.1vh 0.1vh;
+}
+
+.new_comment input[type=text] {
+    background-color: #e5e2e2;
+    border-width: 0;
+    border-radius: 2vh;
+    padding: 0% 1vh;
+    margin: 1vh;
+    box-shadow: rgb(44, 44, 44) 0.4vh 0.4vh 1vh 0px inset, rgb(255 255 255 / 50%) -3px -3px 6px 1px inset;
+    position: relative;
+    font-size: 2vh;
+    color: #494949;
+    width: calc(100% - 4vh);
+    height: 5vh;
+    outline: 0;
+}
+
+.post_comment_button {
+    position: relative;
+    height: 3vh;
+    width: 11vh;
+    margin-right: 1vh;
+    /* !!!!!!!!!!!!!!!! */
+    align-self: flex-end;
+    font-size: 2vh;
+    font-weight: bold;
+    background-color: #CCFF66;
+    border-width: 0.1vh;
+    border-radius: 1vh;
+    box-shadow: #3f4e20 0.1vh 0.1vh;
+}
+
+.comments {
+    position: relative;
+    background-color: #ffffff;
+    width: calc(100% - 2vh);
+    margin-right: 2vh;
+    margin-bottom: 2vh;
+    padding: 1vh 0%;
+    border-radius: 3vh;
+    box-shadow: rgba(0, 0, 0, 0.15) 1vh 1vh 2vh;
+}
+
+.commenter_block {
+    width: 100%;
+    height: 8vh;
+    display: flex;
+}
+
+.commenter_photo {
+    position: relative;
+    width: 8vh;
+    height: 100%;
+    margin-right: 1vh;
+}
+
+.commenter_photo img {
+    width: 100%;
+}
+
+.commenter_name {
+    font-size: 3vh;
+    font-weight: bold;
+    margin-top: 2vh;
+    color: #000000;
+}
+
+.comment_time {
+    font-size: 2vh;
+    color: #313131;
+}
+
+.comment_text {
+    margin: 1vh;
+    font-size: 2vh;
+    color: #313131;
+    word-wrap: break-word;
+}

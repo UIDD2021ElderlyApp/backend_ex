@@ -31,6 +31,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var selectanimalOBJ = require('./routes/selectanimal');
 var reward_pure_txt_no_gui_OBJ=require('./routes/reward_pure_txt_no_gui');
+var tspoop=require('./routes/tspoop');
+
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
 var rewardRouter = require('./routes/reward');
@@ -120,6 +122,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/app/sel', selectanimalOBJ);
 app.use('/pure_txt_no_gui/reward', reward_pure_txt_no_gui_OBJ);
+app.use('/ts/poop', tspoop);
+
 
 ////////////////////////////////////////////////////
 
