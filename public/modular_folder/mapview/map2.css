@@ -1,0 +1,29 @@
+#hungun{
+    background-image: url("./map3.png");
+    z-index: 10;
+
+    position: absolute;
+    margin: 0;
+    padding: 3vh 3vw 0 3vw;
+    top: 0px;
+    width: 94vw;
+    height: 20vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: space-between;
+}
+
+#btn{
+    z-index: 13;
+    position: absolute;
+    width: 7vh;
+    height: 7vh;
+    top: 1vh;
+    left: 1vw;
+    background-color: transparent;
+    border: none;
+    padding: 0%;
+}
+
+}
