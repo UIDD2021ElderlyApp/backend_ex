@@ -1,0 +1,142 @@
+body {
+    position: absolute;
+    background-position: center top;
+    background-size: 100% auto;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #90CD91;
+    overflow: hidden;
+}
+
+#top_bar {
+    z-index: 2;
+    position: absolute;
+    margin: 0;
+    padding: 3vh 3vw 0 3vw;
+    top: 0px;
+    width: 94vw;
+    height: 20vw;
+    background-image: url("image/home_topbar.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: space-between;
+}
+
+#user_photo {
+    position: relative;
+    width: 12vh;
+    height: 12vh;
+    /* margin: 0 2vw 0 0; */
+    border: 0.2vh #90CD91 solid;
+    box-shadow: #3f3f3f 0.4vh 0.4vh 0.5vh;
+    background-color: #ffffff;
+}
+
+#user_photo img {
+    width: 100%;
+}
+
+#pet_name {
+    position: relative;
+    font-size: 3vh;
+    font-weight: bold;
+    /* margin-right: 10vw; */
+}
+
+#level {
+    position: relative;
+    height: 4vh;
+    font-size: 3vh;
+    font-weight: bold;
+    display: flex;
+    align-items: center
+}
+
+#level_bar {
+    position: relative;
+    width: 25vw;
+    height: 2vh;
+    margin-left: 2vh;
+    border: 0.2vh #90CD91 solid;
+    border-radius: 2vh;
+    box-shadow: #3f3f3f 0.4vh 0.4vh 0.5vh;
+    background-color: white;
+    display: flex;
+    align-items: center
+}
+
+#level_value {
+    position: relative;
+    width: 1vw;
+    height: 1vh;
+    left: 0px;
+    border-radius: 1vh;
+    background-color: #4b6d4b;
+}
+
+#back {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    bottom: calc(10vw + 5vh);
+}
+
+#pet {
+    z-index: 3;
+    position: absolute;
+    width: 40%;
+    /*************/
+    left: 15%;
+    bottom: 15%;
+}
+
+#bed_block {
+    z-index: 2;
+    position: absolute;
+    width: 25%;
+    right: 5%;
+    bottom: 20%;
+    text-align: center;
+}
+
+#sleep_button {
+    height: 5vh;
+    width: 10vh;
+    margin-bottom: 1vh;
+    font-size: 3vh;
+    font-weight: bold;
+    background-color: #f7E354;
+    border-radius: 2vh;
+}
+
+#menu {
+    z-index: 2;
+    position: absolute;
+    bottom: 0px;
+    width: 90vw;
+    height: calc(10vw + 5vh);
+    padding: 1vh 5vw;
+    background-color: #D8E480;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button {
+    position: relative;
+    width: 12vw;
+    font-size: 4vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.button button {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    padding: 0%;
+}

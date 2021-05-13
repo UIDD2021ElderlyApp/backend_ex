@@ -1,0 +1,51 @@
+extends layout
+
+block content_head
+    meta(charset='utf8')
+    title home
+    link(href='../modular_folder/home/home.css' rel='stylesheet' type='text/css')
+    
+block content_body
+    #top_bar
+      #user_photo
+        img(src='../modular_folder/home/image/test.svg')
+      #pet_name 小白
+      #level
+        div 等級: 
+        #level_bar
+          #level_value
+    #back
+      img(src='../modular_folder/home/image/home_back.svg' width='100%')
+    #pet
+      img(src='../modular_folder/home/image/home_pet1.svg' width='100%')
+    #bed_block
+      button#sleep_button 睡覺
+      img(src='../modular_folder/home/image/home_bed.svg' width='100%')
+    #menu
+      .button.button1
+        button#setting
+          img(src='../modular_folder/home/image/home_button1.svg' width='100%' z-index='3')
+        div 設定
+      .button.button2
+        button#feed
+          img(src='../modular_folder/home/image/home_button2.svg' width='100%' z-index='3')
+        div 餵食
+      .button.button3
+        button#stroll
+          img(src='../modular_folder/home/image/home_button3.svg' width='100%' z-index='3')
+        div 散步
+      .button.button4
+        button#record
+          img(src='../modular_folder/home/image/home_button4.svg' width='100%' z-index='3')
+        div 記事
+      .button.button5
+        button#mission
+          img(src='../modular_folder/home/image/home_button5.svg' width='100%' z-index='3')
+        div 任務
+      .button.button6
+        button#social
+          img(src='../modular_folder/home/image/home_button6.svg' width='100%' z-index='3')
+        div 社交
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+    script(src='../modular_folder/home/home.js')
