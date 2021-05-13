@@ -1,15 +1,14 @@
-extends layout
-
-block content_head
+html
+  head
     link(href='../modular_folder/mapview/map2.css' rel='stylesheet' type='text/css')
-    
-block content_body
+  body
     link(rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==' crossorigin='')
     style.
       html,
       body {
       width: 100%;
       height: 100%;
+      font-size: 50px;
       }
       #map {
       top: 0vh;
@@ -34,7 +33,7 @@ block content_body
       if (document.getElementById("info").hidden === false)
       var NowDate = new Date();
       var s = NowDate.getSeconds();
-      document.getElementById('info2').innerHTML = s + 's';
+      //document.getElementById('info2').innerHTML = s + 's';
       //setTimeout('ShowTime()', 1000);//decide max time
       }
     script.
@@ -74,7 +73,7 @@ block content_body
       gpsCircleMarker.setLatLng(e.latlng);
       gpsCircleMarker.setRadius(radius);
       }
-      document.getElementById('info').innerHTML = `you are at ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
+      //document.getElementById('info').innerHTML = `you are at ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
       ShowTime()
       var marker = L.marker(L.latLng(22.9998, 120.215));
       marker.bindPopup("<b>NCKU</b><br>the BEST University in south Taiwan").openPopup();
@@ -114,7 +113,7 @@ block content_body
       console.log(last)
       console.log("hhh")
       console.log(current)
-      document.getElementById('info3').innerHTML = distance1;
+      document.getElementById('info3').innerHTML ='======>'+ distance1;
       }, 2000);
       function onLocationError(e) {
       alert(e.message);
