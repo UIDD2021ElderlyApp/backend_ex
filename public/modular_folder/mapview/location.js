@@ -18,3 +18,9 @@ function initMap() {
     });
 }
 
+$("#exit_button").click(function() {
+    console.log("btn");
+    var re = /\/ts\/mapview/gi;
+    var newstr = window.location.href.replace(re, "/ts/home");
+    window.location.href = newstr;
+});
