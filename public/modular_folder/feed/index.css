@@ -1,0 +1,162 @@
+.bodyClass {
+    overflow-y: visible !important;
+    position: absolute !important;
+    background-position: center top !important;
+    background-size: 100% auto !important;
+    height: 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #90CD91 !important;
+}
+
+#exit_button {
+    z-index: 3;
+    position: absolute;
+    width: 7vh;
+    height: 7vh;
+    top: 1vh;
+    left: 1vw;
+    background-color: transparent;
+    border: none;
+    padding: 0%;
+}
+
+#upper_windows {
+    z-index: 2;
+    position: absolute;
+    padding: 3vh;
+    margin: 3vh;
+    height: 88vh;
+    width: calc(100vw - 12vh);
+    background-color: #FAFAEB;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-sizing: initial !important;
+}
+
+
+/* ??? wtf ??? */
+
+.papapa {
+    border-radius: 40%;
+    border-color: #61913D;
+    height: 2.5vh;
+    width: 22vh;
+    box-shadow: #000000 0.2vh 0.2vh 0.2vh 0.2vh;
+}
+
+.container_progress_bar {
+    position: absolute;
+    right: 25%;
+    width: calc(100%*0.35);
+    text-align: center;
+}
+
+.container_progress_bar .progress_run {
+    margin: 0 auto;
+    width: 400px;
+}
+
+.progress_run {
+    padding: 7px 0px 7px 0px;
+    background: rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px rgba(255, 255, 255, 0.08);
+    box-shadow: #918C82 0.2vh 0.2vh 0.2vh 0.2vh;
+    border-radius: 20px;
+    border-color: #61913D;
+    border-width: 4px;
+    border-style: solid;
+}
+
+.progress-bar_run {
+    height: 16px;
+    border-radius: 20px;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    background-image: -moz-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    background-image: -o-linear-gradient(top, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+    -webkit-transition: 0.4s linear;
+    -moz-transition: 0.4s linear;
+    -o-transition: 0.4s linear;
+    transition: 0.4s linear;
+    -webkit-transition-property: width, background-color;
+    -moz-transition-property: width, background-color;
+    -o-transition-property: width, background-color;
+    transition-property: width, background-color;
+    -webkit-box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.25), inset 0 1px rgba(255, 255, 255, 0.1);
+}
+
+#five:checked~.progress_run>.progress-bar_run {
+    width: 5%;
+    background-color: #f63a0f;
+}
+
+#twentyfive:checked~.progress_run>.progress-bar_run {
+    width: 25%;
+    background-color: #f27011;
+}
+
+#fifty:checked~.progress_run>.progress-bar_run {
+    width: 50%;
+    background-color: #f2b01e;
+}
+
+#seventyfive:checked~.progress_run>.progress-bar_run {
+    width: 75%;
+    background-color: #f2d31b;
+}
+
+#onehundred:checked~.progress_run>.progress-bar_run {
+    width: 100%;
+    background-color: #86e01e;
+}
+
+.radio_run {
+    display: none;
+}
+
+.label_progress_bar {
+    display: inline-block;
+    margin: 0 5px 20px;
+    padding: 3px 8px;
+    color: #aaa;
+    text-shadow: 0 1px black;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.radio_run:checked+.label_progress_bar {
+    color: white;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+#level_block {
+    display: flex;
+    font-size: 3vh;
+    font-weight: bold;
+    padding: 5% 14%;
+    text-align: center;
+    margin-top: 5%;
+}
+
+#button_block {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    margin-top: 5%;
+}
+
+.feed_button {
+    height: 8vh;
+    width: 20vh;
+    font-size: 3vh;
+    font-weight: bold;
+    letter-spacing: 0.7vh;
+    border-width: 0.1vh;
+    border-radius: 3vh;
+    box-shadow: #3f4e20 0.2vh 0.4vh;
+}

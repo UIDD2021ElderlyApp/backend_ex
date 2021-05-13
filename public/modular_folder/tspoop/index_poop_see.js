@@ -264,4 +264,10 @@ jQuery(function dom_ready(dom_ready_params) {
 
     init();
     scrolledToBottom();
+
+    $("#exit_button").click(function() {
+        var re = /\/ts\/poop/gi;
+        var newstr = window.location.href.replace(re, "/ts/home");
+        window.location.href = newstr;
+    });
 });

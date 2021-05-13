@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf8">
+    <title>feed</title>
+    <link href="index.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="bodyClass">
+    <button id="exit_button">
+        <img src="image/exit_button.svg" width="100%" z-index="3">
+    </button>
+    <div id="upper_windows">
+        <img src="./image/animal1.svg" height="35%" style="margin-top: 30%;">
+        <div id="level_block">
+            <div>等級:</div>
+            <div class="container_progress_bar">
+                <input type="radio" class="radio_run progress_bar_control_button_this_can_t_be_seen" name="progress" value="five" id="five">
+                <label for="five" class="label_progress_bar progress_bar_control_button_this_can_t_be_seen">5%</label>
+
+                <input type="radio" class="radio_run progress_bar_control_button_this_can_t_be_seen" name="progress" value="twentyfive" id="twentyfive" checked>
+                <label for="twentyfive" class="label_progress_bar progress_bar_control_button_this_can_t_be_seen">25%</label>
+
+                <input type="radio" class="radio_run progress_bar_control_button_this_can_t_be_seen" name="progress" value="fifty" id="fifty">
+                <label for="fifty" class="label_progress_bar progress_bar_control_button_this_can_t_be_seen">50%</label>
+
+                <input type="radio" class="radio_run progress_bar_control_button_this_can_t_be_seen" name="progress" value="seventyfive" id="seventyfive">
+                <label for="seventyfive" class="label_progress_bar progress_bar_control_button_this_can_t_be_seen">75%</label>
+
+                <input type="radio" class="radio_run progress_bar_control_button_this_can_t_be_seen" name="progress" value="onehundred" id="onehundred">
+                <label for="onehundred" class="label_progress_bar progress_bar_control_button_this_can_t_be_seen">100%</label>
+
+                <div class="progress_run">
+                    <div class="progress-bar_run"></div>
+
+                </div>
+            </div>
+        </div>
+        <div id="button_block">
+            <button class="meal_button feed_button" style="background-color:#BEE471;">吃飯</button>
+            <button class="dessert_button feed_button" style="background-color:#F7F775;">點心</button>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="index.js"></script>
+</body>

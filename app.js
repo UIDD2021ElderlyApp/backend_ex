@@ -33,6 +33,8 @@ var selectanimalOBJ = require('./routes/selectanimal');
 var reward_pure_txt_no_gui_OBJ = require('./routes/reward_pure_txt_no_gui');
 var tspoop = require('./routes/tspoop');
 var mapview = require('./routes/mapview');
+var tshome = require('./routes/tshome');
+var tsfeed = require('./routes/tsfeed');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -125,6 +127,8 @@ app.use('/app/sel', selectanimalOBJ);
 app.use('/pure_txt_no_gui/reward', reward_pure_txt_no_gui_OBJ);
 app.use('/ts/poop', tspoop);
 app.use('/ts/mapview', mapview);
+app.use('/ts/home', tshome);
+app.use('/ts/feed', tsfeed);
 
 ////////////////////////////////////////////////////
 
