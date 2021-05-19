@@ -5,9 +5,6 @@ var mongoose = require('mongoose');
 
 //Post Schema
 var RewardSchema = mongoose.Schema({
-    token: {
-        type: String
-    },
     exp: {
         type: Number
     },
@@ -21,13 +18,6 @@ var RewardSchema = mongoose.Schema({
 
 //export Reward schema
 var Reward = module.exports = mongoose.model('Reward', RewardSchema);
-
-//passport
-module.exports.getRewardById = function (id, callback) {
-    console.log("------->findRewardById");
-    Reward.findById(id, callback);
-    console.log(callback);
-}
 
 module.exports.getRewardByUserId = function (userId_you_want_to_find, callback) {//it is a 16 int, from FB!
     console.log("module.exports.getRewardByUserId(userId_you_want_to_find) = function (id, callback) {");
