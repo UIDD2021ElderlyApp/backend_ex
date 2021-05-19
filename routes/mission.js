@@ -2,26 +2,18 @@ var express = require('express');
 var router = express.Router();
 var empty = require('is-empty');
 
-var Mission = require('../models/miss');
+var glob_user_obj;
 
-router.get('/', function (req, res, next) {
-    res.send('respond with a resource');
-});
+var Mission = require('../models/mission');
 
-router.get('/mission', function(req, res){
-    var token = req.body.token;
+router.get('/', function(req, res){
     var type = req.body.type;
     var goal = req.body.goal;
 
-    console.log(token);
     console.log(type);
     console.log(goal);
     var error_msg_res = {};
     // error detection !!!
-    if(empty(token))
-    {
-        error_msg_res["token"] = "empty";
-    }
     if(empty(type))
     {
         error_msg_res["type"] = "empty";
@@ -43,7 +35,6 @@ router.get('/mission', function(req, res){
     {
         res.status(200);
         var newMission = new Mission({
-            token: token,
             type: type,
             goal: goal
         });
@@ -53,6 +44,11 @@ router.get('/mission', function(req, res){
         });
         res.status(200).send();
     }
+});
+
+router.put('/control/walk', function(req, res){
+    var dist = req.body.goal;
+    Mission.setMission(glob_user_obj.username, dist)
 });
 
 router.put('/mission', function(req, res){
