@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 
 //Post Schema
 var RewardSchema = mongoose.Schema({
+    user_id: {
+        type: Number
+    },
     exp: {
         type: Number
     },
