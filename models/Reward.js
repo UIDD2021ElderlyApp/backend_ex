@@ -5,9 +5,6 @@ var mongoose = require('mongoose');
 
 //Post Schema
 var RewardSchema = mongoose.Schema({
-    token: {
-        type: String
-    },
     exp: {
         type: Number
     },
