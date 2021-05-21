@@ -66,7 +66,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         var content = {};
         content["exp"] = Rewardget[0].exp;
         content["food"] = Rewardget[0].food;
-        content["dessert"] = Rewardget[0].dessert; if (DEF_DEBUG) {
+        content["dessert"] = Rewardget[0].dessert; 
+        if (DEF_DEBUG) {
             console.log(JSON.stringify(content));
         }
         res.status(200).send(JSON.stringify(content));
