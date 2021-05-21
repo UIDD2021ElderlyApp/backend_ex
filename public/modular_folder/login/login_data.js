@@ -1,5 +1,9 @@
+
 var DEF_DEBUG = true;
 var GLOBAL_url = "/users/login";
+require.config({
+    paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
+});
 
 function login_button_click() {
     var is_this_a_login_Q = true;
@@ -81,20 +85,13 @@ function login_button_click() {
 
 }
 
-function Beautify_the_login_button() {
-    var comments = document.createElement("img");
-    comments.src = '../modular_folder/login/image/facebook_login.svg';
-    comments.id="Hitmeyouidiot"
-    document.getElementById("fb_login").appendChild(comments);
-    document.getElementById("Hitmeyouidiot").style.heigth = "100%";
-    document.getElementById("Hitmeyouidiot").addEventListener("click", function () {
-        console.log("Hitmeyouidiot");
-        document.getElementById("fb_login").click();
-    });
-}
-
-
 jQuery(function dom_ready(dom_ready_params) {
-    //Beautify_the_login_button();
     document.getElementById("login_button").addEventListener("click", login_button_click);
+    require(["bcrypt"], function (bcrypt) {
+        bcrypt.hash(newUser.password, salt, function (err, hash) {
+            // Store hash in your password DB.
+            newUser.password = hash;
+            newUser.save(callback);
+        });
+    });
 });
