@@ -29,7 +29,7 @@
     "passport-http": "*",
     "passport-local": "*",
     "serve-favicon": "^2.5.0",
-    "crypto-random-string": "*"
+    "randomstring": "*"
   },
   "devDependencies": {
     "html-loader": "^2.1.2",
