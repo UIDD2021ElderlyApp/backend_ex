@@ -4,7 +4,7 @@ var empty = require('is-empty');
 
 var glob_user_obj;
 
-var Mission = require('../models/mission');
+var Mission = require('../models/Mission');
 
 router.get('/', function(req, res){
     var type = req.body.type;
