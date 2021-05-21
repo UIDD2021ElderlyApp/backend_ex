@@ -7,6 +7,7 @@ var Isemail = require('isemail');
 var isEqual = require('is-equal');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var cryptoRandomString = require('crypto-random-string');
 
 //import Data Model
 var User = require('../models/user');
@@ -24,7 +25,8 @@ router.get('/register', function (req, res, next) {
 //加入login routing
 router.get('/login', function (req, res, next) {
   console.log("router.get('/login', function (req, res, next) {");
-  res.render('login', { title: 'Login' });
+  res.render('login', { successes: 'PPPPPPPPPPPPPPPPP'});
+  // ,title: 'wwwwwwwwwwogin'
 });
 
 //POST request to register

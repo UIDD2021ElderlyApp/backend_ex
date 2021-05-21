@@ -9,6 +9,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bcrypt = require('bcryptjs');
+//var flash        = require('req-flash');
 
 //---
 var bodyParser = require('body-parser');
@@ -35,6 +36,7 @@ var tspoop = require('./routes/tspoop');
 var mapview = require('./routes/mapview');
 var tshome = require('./routes/tshome');
 var tsfeed = require('./routes/tsfeed');
+var timedoutdoorlock = require('./routes/timedoutdoorlock');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -56,6 +58,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+//app.use(flash());
 
 //---
 // Handle Sessions
@@ -129,6 +132,7 @@ app.use('/ts/poop', tspoop);
 app.use('/ts/mapview', mapview);
 app.use('/ts/home', tshome);
 app.use('/ts/feed', tsfeed);
+app.use('/timedoutdoorlock', timedoutdoorlock);
 
 ////////////////////////////////////////////////////
 
