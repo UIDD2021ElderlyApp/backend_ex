@@ -57,6 +57,9 @@ block content_body
       const myAppId = '224423852774215'
       const myClientId = '104741108422999'
       window.fbAsyncInit = function() {
+      require.config({
+      paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
+      });
       FB.init({
       appId  : myAppId,
       cookie : true,    // enable cookies to allow the server to access the session
@@ -76,6 +79,13 @@ block content_body
       console.log(`Successful login for: ${response.name}`)
       console.log(`Successful login for: ${response.email}`)
       document.getElementById('status').innerHTML = `Thanks for logging in, ${response.name}!`
+      require(["bcrypt"], function (bcrypt) {
+      bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash("newUser.password", "salt", function (err, hash) {
+      console.log(hash);
+      });
+      });
+      });
       })
       }
       function statusChangeCallback(response,wantto_popup) {
