@@ -7,9 +7,12 @@ var Isemail = require('isemail');
 var isEqual = require('is-equal');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var randomstring = require("randomstring");
 
 //import Data Model
 var User = require('../models/user');
+
+var loginpageloadtimeoutverification = require('../models/loginpageloadtimeoutverification');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -22,9 +25,32 @@ router.get('/register', function (req, res, next) {
 });
 
 //加入login routing
-router.get('/login', function (req, res, next) {
-  console.log("router.get('/login', function (req, res, next) {");
-  res.render('login', { title: 'Login' });
+router.get('/login', function routergetlogin(req, res, next) {
+  var resok = true;
+  var randomstringgenerate100 = randomstring.generate(100);
+  var randomstringgenerate100tomongodb = new loginpageloadtimeoutverification({
+    time: Date(),
+    randomstringgenerate100: randomstringgenerate100
+  });
+  loginpageloadtimeoutverification.getloginpageloadtimeoutverification(randomstringgenerate100, function (err, randomstringgenerate100get) {
+    if (err) {
+      console.log(err);
+      throw err;
+    }
+    console.log(randomstringgenerate100get);
+    if (randomstringgenerate100get.length === 0) {
+      loginpageloadtimeoutverification.createloginpageloadtimeoutverification(randomstringgenerate100tomongodb, function (err, randomstringgenerate100tomongodb) {
+        if (err) throw err;
+        console.log(randomstringgenerate100tomongodb);
+      });
+    } else {
+      console.log("-----------------------------\nA serious conflict of random variables has occurred\n-----------------------------\n");
+      resok = false;
+      routergetlogin(req, res, next);
+    }
+    //content["exp"] = Rewardget[0].exp;
+  });
+  if (resok) { res.render('login', { successes: randomstringgenerate100 }); }
 });
 
 //POST request to register
@@ -136,7 +162,7 @@ passport.deserializeUser(function (id, done) {
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: 'Invalid username or password' }),
   function (req, res) {
-    
+
     res.status(200).send("/app/sel");
   });
 

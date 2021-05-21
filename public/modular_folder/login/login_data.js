@@ -1,5 +1,9 @@
+
 var DEF_DEBUG = true;
 var GLOBAL_url = "/users/login";
+/*require.config({
+    paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
+});*/
 
 function login_button_click() {
     var is_this_a_login_Q = true;
@@ -67,7 +71,7 @@ function login_button_click() {
     if (is_this_a_login_Q) {
         $.post(GLOBAL_url, {
             username: acct,
-            password:pasw
+            password: pasw
         }, (objects_returned_by_the_server) => {
             if (DEF_DEBUG) {
                 console.log(objects_returned_by_the_server);
@@ -81,8 +85,11 @@ function login_button_click() {
 
 }
 
-
-
 jQuery(function dom_ready(dom_ready_params) {
     document.getElementById("login_button").addEventListener("click", login_button_click);
+    /*require(["bcrypt"], function (bcrypt) {
+        bcrypt.genSalt(10, function (err, salt) {
+            console.log(salt);
+        });
+    });*/
 });
