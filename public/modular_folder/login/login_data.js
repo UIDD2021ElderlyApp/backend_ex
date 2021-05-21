@@ -95,6 +95,6 @@ function Beautify_the_login_button() {
 
 
 jQuery(function dom_ready(dom_ready_params) {
-    Beautify_the_login_button();
+    //Beautify_the_login_button();
     document.getElementById("login_button").addEventListener("click", login_button_click);
 });
