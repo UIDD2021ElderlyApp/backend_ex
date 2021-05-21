@@ -67,7 +67,7 @@ function login_button_click() {
     if (is_this_a_login_Q) {
         $.post(GLOBAL_url, {
             username: acct,
-            password:pasw
+            password: pasw
         }, (objects_returned_by_the_server) => {
             if (DEF_DEBUG) {
                 console.log(objects_returned_by_the_server);
@@ -81,8 +81,20 @@ function login_button_click() {
 
 }
 
+function Beautify_the_login_button() {
+    var comments = document.createElement("img");
+    comments.src = '../modular_folder/login/image/facebook_login.svg';
+    comments.id="Hitmeyouidiot"
+    document.getElementById("fb_login").appendChild(comments);
+    document.getElementById("Hitmeyouidiot").style.heigth = "100%";
+    document.getElementById("Hitmeyouidiot").addEventListener("click", function () {
+        console.log("Hitmeyouidiot");
+        document.getElementById("fb_login").click();
+    });
+}
 
 
 jQuery(function dom_ready(dom_ready_params) {
+    Beautify_the_login_button();
     document.getElementById("login_button").addEventListener("click", login_button_click);
 });
