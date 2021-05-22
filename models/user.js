@@ -9,7 +9,7 @@ console.log(student);
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-var stringmongooseconnect="mongodb://"+String(student.account)+":"+String(student.password)+"@140.116.132.223:27017/petdatabase_dev"
+var stringmongooseconnect = "mongodb://" + String(student.account) + ":" + String(student.password) + "@140.116.132.223:27017/petdatabase_dev"
 mongoose.connect(stringmongooseconnect, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 var db = mongoose.connection;
 
@@ -38,13 +38,11 @@ var User = module.exports = mongoose.model('User', UserSchema);
 
 //passport
 module.exports.getUserById = function (id, callback) {
-console.log("------->findById");
     User.findById(id, callback);
     console.log(callback);
 }
 
 module.exports.getUserByUsername = function (username, callback) {
-    console.log("------->getUserByUsername");
     var query = { username: username };
     User.findOne(query, callback);
     console.log(callback);
@@ -67,4 +65,18 @@ module.exports.createUser = function (newUser, callback) {
             newUser.save(callback);
         });
     });
+};
+
+module.exports.findOrCreate = function (newUser, callback) {
+    console.log(newUser);
+    User.getUserByUsername(newUser.username, function (UsergetUserByUsernamenewUserusername) {
+        console.log(UsergetUserByUsernamenewUserusername);
+        if (!UsergetUserByUsernamenewUserusername) {
+            User.createUser(newUser, function (UsercreateUsernewUser) {
+                User.getUserByUsername(newUser.username,callback);
+            })
+        } else {
+            User.getUserByUsername(newUser.username,callback);
+        }
+    })
 };

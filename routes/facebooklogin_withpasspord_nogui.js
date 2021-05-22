@@ -5,7 +5,7 @@ var passport = require('../config/passport');
 
 //Introduce library------------------------------------------------------------------
 
-router.get('/facebook', passport.authenticate('facebook'));
+router.get('/facebook', passport.authenticate('facebook'/*, { scope: ['profileUrl', 'emails' ] }*/));
 
 router.get('/facebook/callback',
     passport.authenticate('facebook', {
