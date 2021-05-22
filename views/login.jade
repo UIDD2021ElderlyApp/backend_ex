@@ -30,13 +30,7 @@ block content_body
           button#login_button
             img(src='../modular_folder/login/image/login_button.svg' width='100%' z-index='3')
       #community_login
-        img#fb_login(href="#" onclick="fb_login(true);" src="../modular_folder/login/image/facebook_login.svg" border="0" alt="" height="100%")
-        //fb:login-button#fb_login(scope="public_profile,email" onlogin="checkLoginState();")
-        //#fb_login(onclick='checkLoginState();')
-        //  img(src='../modular_folder/login/image/facebook_login.svg' height='100%')
-        //
-          Change FB login button (great TT):
-          https://stackoverflow.com/questions/9810335/how-to-change-facebook-login-button-with-my-custom-image
+        img#fb_login(href="/auth/facebook" src="../modular_folder/login/image/facebook_login.svg" border="0" alt="" height="100%")
         #line_login(onclick='')
           img(src='../modular_folder/login/image/line_login.svg' height='100%')
     #status
@@ -53,86 +47,3 @@ block content_body
     script(src='https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js')
     script(src='../modular_folder/login/login.js')
     script(src='../modular_folder/login/login_data.js')
-    script.
-      const myAppId = '224423852774215'
-      const myClientId = '104741108422999'
-      window.fbAsyncInit = function() {
-      require.config({
-      paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
-      });
-      FB.init({
-      appId  : myAppId,
-      cookie : true,    // enable cookies to allow the server to access the session
-      version: 'v10.0', // use graph api version v10.0
-      xfbml  : false,    // parse social plugins on this page
-      })
-      fb_login(false);
-      }
-      // Here we run a very simple test of the Graph API after login is
-      // successful.  See statusChangeCallback() for when this call is made.
-      function testAPI() {
-      console.log('Welcome!  Fetching your information.... ')
-      FB.api('/me', 'GET', {
-      "fields": "name,birthday,email,hometown"
-      }, function(response) {
-      console.log(`Successful login for: ${response.id}`)
-      console.log(`Successful login for: ${response.name}`)
-      console.log(`Successful login for: ${response.email}`)
-      document.getElementById('status').innerHTML = `Thanks for logging in, ${response.name}!`
-      require(["bcrypt"], function (bcrypt) {
-      bcrypt.genSalt(10, function (err, salt) {
-      bcrypt.hash("newUser.password", "salt", function (err, hash) {
-      console.log(hash);
-      });
-      });
-      });
-      })
-      }
-      function statusChangeCallback(response,wantto_popup) {
-      console.log('statusChangeCallback')
-      console.log(response)
-      if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      testAPI();
-      FB.api('/me/?fields=picture', 'GET', {}, function (response) {
-      console.log(response.picture.data.url)
-      document.getElementById("picture").src = response.picture.data.url
-      })
-      } else if (response.status === 'not_authorized'||response.status === 'unknown') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log into this app.';
-      if(wantto_popup){fb_login_pop_out();}
-      } else {
-      console.log("ERROR!!!");
-      document.getElementById('status').innerHTML = 'ERROR!!!';
-      }
-      }
-      function fb_login(wantto_popup){
-      FB.getLoginStatus(function(response) {
-      statusChangeCallback(response,wantto_popup);
-      })}
-      (function() {
-      var e = document.createElement('script');
-      e.src = document.location.protocol + '//connect.facebook.net/zh_TW/all.js';
-      e.async = true;
-      document.getElementById('fb-root').appendChild(e);
-      }());
-      function fb_login_pop_out(){
-      FB.login(function(response) {
-      if (response.authResponse) {
-      console.log('Welcome!  Fetching your information.... ');
-      console.log(response); // dump complete info
-      access_token = response.authResponse.accessToken; //get access token
-      user_id = response.authResponse.userID; //get FB UID
-      FB.api('/me', function(response) {
-      user_email = response.email; //get user email
-      // you can store this data into your database 
-      testAPI();            
-      });
-      } else {
-      //user hit cancel button
-      console.log('User cancelled login or did not fully authorize.');
-      }
-      }, {
-      scope: 'public_profile,email'
-      });}

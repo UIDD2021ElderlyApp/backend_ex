@@ -1,6 +1,8 @@
 extends layout
 
-block content
+block content_head
+  title #{ title }
+block content_body
   h1= message
   h2= error.status
   pre #{error.stack}

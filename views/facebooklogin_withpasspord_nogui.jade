@@ -1,0 +1,9 @@
+extends layout
+
+block content_head
+    title #{ title }
+    link(rel='stylesheet' href='/stylesheets/style.css')
+block content_body
+    h1 #{ title }
+    p Welcome to #{  title }
+    a(href='/auth/facebook') Log In with Facebook
