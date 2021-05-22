@@ -18,6 +18,22 @@ tags: uidd
 
 請先`npm i`再做其他動作
 
+## Facebook登入，跟老師說的都不一樣
+原本做的是前端的登入，但是問題是:怎麼確定前端登入完的資訊傳到後端不會被修改
+
+修正方式
+https://developers.facebook.com/docs/facebook-login/manually-build-a-login-flow?locale=zh_HK
+
+參考資料
+https://ithelp.ithome.com.tw/articles/10197391
+
+使用套件
+http://www.passportjs.org/
+https://github.com/jaredhanson/passport-facebook
+
+套件參數
+['id', 'name', 'displayName', 'gender', 'emails', 'photos', 'hometown', 'profileUrl', 'friends']
+
 ---
 
 ## 以下的東西是之前的...留著給大家參考
