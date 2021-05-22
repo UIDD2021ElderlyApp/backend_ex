@@ -18,19 +18,19 @@ passport.use(new FacebookStrategy({
         ['id', 'name', 'displayName', 'gender', 'emails', 'photos', 'hometown', 'profileUrl', 'friends']
 },
     function (accessToken, refreshToken, profile, done) {
-        //console.log(profile);
-        //console.log(profile._json.picture.data);
+        console.log(profile);
+        console.log(profile._json.picture.data);
 
         var newUser = new User({
             name: profile.displayName || "empty!",
-            email: profile.emails[0].value || "empty!",
+            email: (profile.emails) ? profile.emails[0].value || "empty!" : profile.provider || "empty!",
             username: profile.id || "empty!",
             password: "password" || "empty!",
-            profileimage: profile.photos[0].value || "empty!"
+            profileimage: (profile.photos) ? profile.photos[0].value || "empty!" : "empty!"
         });
         User.findOrCreate(newUser, function (err, user) {
             if (err) { return done(err); }
-            done(null, user);
+            return done(null, user);
         });
     }
 
