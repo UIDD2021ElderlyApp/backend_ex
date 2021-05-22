@@ -4,3 +4,4 @@ node_modules
 //如果是Mac則需要額外加入下行
 .DS_Store
 .vscode
+Variouskeys

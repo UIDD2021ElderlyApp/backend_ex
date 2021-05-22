@@ -1,7 +1,16 @@
+
+/*Reading and Writing JSON Files with Node.js*/
+const fsModule = require('fs');
+
+let rawdata = fsModule.readFileSync('Variouskeys/mongodb.json');
+let student = JSON.parse(rawdata);
+console.log(student);
+//------------------------------------------------------------------------------------------
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-mongoose.connect('mongodb://eryz:uyhihsgnest@140.116.132.223:27017/petdatabase_dev', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
+var stringmongooseconnect="mongodb://"+String(student.account)+":"+String(student.password)+"@140.116.132.223:27017/petdatabase_dev"
+mongoose.connect(stringmongooseconnect, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 var db = mongoose.connection;
 
 //User Schema
