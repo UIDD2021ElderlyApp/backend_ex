@@ -147,10 +147,12 @@ passport.use(new LocalStrategy(function (username, password, done) {
 }));
 
 //加入 passport 驗證
+//序列化
 passport.serializeUser(function (user, done) {
   done(null, user.id);
 });
 //繼續加入 session
+//反序列化
 passport.deserializeUser(function (id, done) {
   User.getUserById(id, function (err, user) {
     done(err, user);
