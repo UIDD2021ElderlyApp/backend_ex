@@ -5,6 +5,7 @@ let rawdata = fsModule.readFileSync('Variouskeys/facebook_andyxu.json');
 let student = JSON.parse(rawdata);
 console.log(student);
 //Import password or private key file------------------------------------------------------------------
+var User = require('../models/user');
 
 var passport = require('passport')
     , FacebookStrategy = require('passport-facebook').Strategy;
@@ -12,11 +13,27 @@ var passport = require('passport')
 passport.use(new FacebookStrategy({
     clientID: student.account,
     clientSecret: student.password,
-    callbackURL: "https://luffy.ee.ncku.edu.tw:38443/auth/facebook/callback"
+    callbackURL: "https://luffy.ee.ncku.edu.tw:38443/auth/facebook/callback",
+    profileFields:
+        ['id', 'name', 'displayName', 'gender', 'emails', 'photos', 'hometown', 'profileUrl', 'friends']
 },
     function (accessToken, refreshToken, profile, done) {
-        return done(null, profile);
+        //console.log(profile);
+        //console.log(profile._json.picture.data);
+
+        var newUser = new User({
+            name: profile.displayName || "empty!",
+            email: profile.emails[0].value || "empty!",
+            username: profile.id || "empty!",
+            password: "password" || "empty!",
+            profileimage: profile.photos[0].value || "empty!"
+        });
+        User.findOrCreate(newUser, function (err, user) {
+            if (err) { return done(err); }
+            done(null, user);
+        });
     }
+
 ));
 
 passport.serializeUser(function (user, cb) {

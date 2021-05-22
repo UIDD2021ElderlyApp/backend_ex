@@ -38,13 +38,11 @@ var User = module.exports = mongoose.model('User', UserSchema);
 
 //passport
 module.exports.getUserById = function (id, callback) {
-console.log("------->findById");
     User.findById(id, callback);
     console.log(callback);
 }
 
 module.exports.getUserByUsername = function (username, callback) {
-    console.log("------->getUserByUsername");
     var query = { username: username };
     User.findOne(query, callback);
     console.log(callback);
@@ -67,4 +65,16 @@ module.exports.createUser = function (newUser, callback) {
             newUser.save(callback);
         });
     });
+};
+
+module.exports.findOrCreate = function (newUser, callback) {
+    //newUser.save(callback); //mongoose function to insert to DB
+    /*bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(newUser.password, salt, function (err, hash) {
+            // Store hash in your password DB.
+            newUser.password = hash;
+            newUser.save(callback);
+        });
+    });**/
+    console.log(newUser);
 };
