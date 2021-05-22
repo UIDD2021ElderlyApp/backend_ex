@@ -10,6 +10,20 @@ tags: uidd
 
 ---
 
+## 密碼與私鑰保護
+
+請至雲端硬碟「密碼與私鑰」資料夾下載裡面的Variouskeys資料夾，整個放到本REPO中方可運作
+
+## 下載完REPO的初始化
+
+請先`npm i`再做其他動作
+
+---
+
+## 以下的東西是之前的...留著給大家參考
+
+---
+
 ## TODO list
 
 - [ ] keep刪除時的作動，會造成後端程式碼crash
@@ -31,11 +45,14 @@ fs.writeFile(`${__dirname}/poops.json`, newpooptime, (err) => {
             })
 ```
 
----
+- [ ] 前端的css、js請一律放在resources資料夾 (與html分開)
+> img放在`resources/img`
 
-## 以下的東西是之前的...留著給大家參考
+- [ ] 主程式清理，請地圖合成進主程式；刪除在後端repo中FBlogin資料夾
 
----
+- [ ] FB登入還沒合併進入主程式...待做
+
+- [ ] 各個router要加上使用這驗證(看line群組)
 
 ## 使用...
 
