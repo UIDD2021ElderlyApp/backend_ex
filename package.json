@@ -30,7 +30,9 @@
     "passport-http": "*",
     "passport-local": "*",
     "serve-favicon": "^2.5.0",
-    "randomstring": "*"
+    "randomstring": "*",
+    "frontend-dependencies": "*",
+    "html2canvas": "1.0.0-rc.7"
   },
   "devDependencies": {
     "html-loader": "^2.1.2",

@@ -1,4 +1,3 @@
-
 var DEF_DEBUG = true;
 var GLOBAL_url = "/users/login";
 /*require.config({
