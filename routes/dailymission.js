@@ -66,3 +66,5 @@ function ensureAuthenticated(req, res, next) {
     }
     res.redirect('/users/login');
 }
+
+module.exports = router;

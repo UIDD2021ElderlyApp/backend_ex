@@ -46,6 +46,7 @@ var missionRouter = require('./routes/mission');
 var keepRouter = require('./routes/keeps');
 var poopRouter = require('./routes/poops');
 var outdoorRouter = require('./routes/outdoor');
+var dailymissionRouter = require('./routes/dailymission')
 /*----------------------------------------------------*/
 
 var app = express();
@@ -145,6 +146,7 @@ app.use('/app/mission', missionRouter);
 app.use('/app/keep', keepRouter);
 app.use('/app/poop', poopRouter);
 app.use('/app/outdoor', outdoorRouter);
+app.use('/app/dailymission', dailymissionRouter);
 
 ///////////////////////////////////////////////////////
 
