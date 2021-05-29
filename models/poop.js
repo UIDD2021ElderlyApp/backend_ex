@@ -9,6 +9,9 @@ var PoopSchema = mongoose.Schema({
         type: Date,
         index: true
     },
+    user_name: {
+        type: String
+    },
     title: {
         type: String
     },
@@ -49,15 +52,21 @@ module.exports.getPoopByPooptime = function (time, callback) {
     console.log(callback);
 }
 
+module.exports.getMultiPoopByPooptime = function (time, number, callback) {
+    console.log("------->get'Multi'PoopByPooptime");
+    Poop.find({ time: { $lte: time } }, null , {sort:{ time: 'descending' }, limit: number }, callback);
+    console.log(callback);
+}
+
 module.exports.createPoop = function (newPoop, callback) {
     newPoop.save(callback);
 }
 
-module.exports.setPoopComment = function (Id, time, text, callback) {
+module.exports.setPoopComment = function (Id, user_name, time, text, callback) {
     console.log("------->setPoopComment");
     var query = { _id: Id };
     console.log("var comment = JSON.stringify({ user_name: user_name, time: time, text: text });");
-    var comment = JSON.stringify({ user_name: "user_name", time: time, text: text });
+    var comment = JSON.stringify({ user_name: user_name, time: time, text: text });
     Poop.findOne(query, function (err, postget) {
         postget.comment.push(comment);
         postget.save();
