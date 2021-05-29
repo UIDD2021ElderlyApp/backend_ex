@@ -54,7 +54,7 @@ module.exports.getPoopByPooptime = function (time, callback) {
 
 module.exports.getMultiPoopByPooptime = function (time, number, callback) {
     console.log("------->get'Multi'PoopByPooptime");
-    Poop.find({ time: { $lte: time } }, null , {sort:{ time: 'descending' }, limit: number }, callback);
+    Poop.find({ time: { $lt: time } }, null , {sort:{ time: 'descending' }, limit: number }, callback);
     console.log(callback);
 }
 
