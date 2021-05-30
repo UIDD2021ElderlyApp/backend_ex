@@ -1,6 +1,7 @@
 var DEF_DEBUG = true;
 
 var express = require('express');
+var fs = require('fs'); //load fs module
 var router = express.Router();
 var empty = require('is-empty');
 
@@ -28,6 +29,27 @@ router.post('/',function (req, res) {
         } 
     });
     res.status(200).send();
+});
+
+router.post('/forexp',function (req, res){
+    var reward = JSON.parse(fs.readFileSync('../exp/daily.json'));
+    var choose = req.body.missiontype;  // 1->walk, 2->sleep, 3->picture, 4->stroll 
+    if(choose==1)
+    {
+        res.send(reward.walk);
+    }
+    else if(choose==2)
+    {
+        res.send(reward.sleep);
+    }
+    else if(choose==3)
+    {
+        res.send(reward.picture);
+    }
+    else if(choose==4)
+    {
+        res.send(reward.stroll);
+    }
 });
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
