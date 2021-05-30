@@ -1,6 +1,10 @@
 doctype html
 html
   head
+    link(rel='apple-touch-icon' sizes='144x144' href='../modular_folder/login/image/loading.svg')
+    link(rel='manifest' href='../modular_folder/pwa/manifest.json')
     block content_head
   body
     block content_body
+    button#snap_shoot_screen snap_shoot_screen
+    script(src='../javascripts/snapshoot_layout.js' type="module")

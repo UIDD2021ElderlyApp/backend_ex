@@ -1,0 +1,12 @@
+{
+    "name": "Old friend",
+    "short_name": "Old friend",
+    "start_url": "https://luffy.ee.ncku.edu.tw:38443/ts/home",
+    "display": "standalone",
+    "orientation": "portrait",
+    "icons": [{
+      "src": "./weblogo.png",
+      "sizes": "374x374",
+      "type": "image/png"
+    }]
+  }
