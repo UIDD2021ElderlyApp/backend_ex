@@ -33,7 +33,7 @@ router.post('/',function (req, res) {
 
 router.post('/forexp',function (req, res){
     var reward = JSON.parse(fs.readFileSync('../exp/daily.json'));
-    var choose = req.body.missiontype;  // 1->walk, 2->sleep, 3->picture, 4->stroll 
+    var choose = req.body.missiontype;  // 1->wake, 2->sleep, 3->picture, 4->stroll 
     if(choose==1)
     {
         res.send(reward.walk);
