@@ -14,22 +14,23 @@ var Poop = require('../models/poop');
 
 var DEF_DEBUG = true;
 var glob_user_obj;
+var number_each = 3;
 
 var cookies = require('cookie-parser');
 router.use(cookies());
 
+
 router.get('/', function (req, res, next) {
-    if (!req.cookies.time) {
-        let date = new Date(2077, 7, 7);
-        res.cookie('lastpooptime', `${date}`, {
-            secure: true,
-            //httpOnly: true,
-            //path: '/ts/poop#_=_',
-          })
+    if (!req.cookies.last_poop_time) {
+        let date = Date(2077, 7, 7);
+        req.cookies.last_poop_time = date;
     }
-    var lastpooptime = req.cookies.lastpooptime
-    var poop3 = []
-    Poop.getMultiPoopByPooptime(lastpooptime, 3, function (err, Poopsget) {
+    if (DEF_DEBUG) {
+        console.log('last_poop_time is ' + `${req.cookies.last_poop_time}`);
+    }
+    var last_poop_time = req.cookies.last_poop_time
+    var poops = []
+    Poop.getMultiPoopByPooptime(last_poop_time, number_each, function (err, Poopsget) {
         Poopsget.forEach(Poopget => {
             if (err) throw err;
             if (DEF_DEBUG) {
@@ -44,12 +45,15 @@ router.get('/', function (req, res, next) {
             content["text"] = Poopget.text;
             content["img"] = Poopget.img;
             content["comment"] = Poopget.comment;
-            poop3.push(content)
+            poops.push(content)
         })
-        res.cookie('lastpooptime', `${poop3[2].time}`)
-        res.status(200).send(JSON.stringify(poop3));
+        res.cookie('last_poop_time', `${Poopsget[number_each - 1].time}`, {
+            secure: true,
+            httpOnly: true,
+            path: '/app/poop',
+        })
+        res.status(200).send(JSON.stringify(poops));
     })
-
 });
 
 router.post('/', ensureAuthenticated, function (req, res, next) {
@@ -60,6 +64,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     console.log(req.body);
     var poop = req.body;
     var time = poop.time;
+    //var id_time = poopget.id_time + 1;
     var user_name = glob_user_obj.username;
     var title = poop.title;
     var text = poop.text;
@@ -73,6 +78,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log(time);
+        //console.log(id_time);
         console.log(user_name);
         console.log(title);
         console.log(text);
@@ -88,6 +94,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     } else {
         var newPoop = new Poop({
             time: time,
+            //id_time: id_time,
             user_name: user_name,
             title: title,
             text: text,
@@ -100,19 +107,6 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
             var id = {};
             id["id"] = newPoop._id;
             res.status(200).send(JSON.stringify(id));
-            /*pooptime.time.unshift(newPoop.time)
-            let newpooptime = JSON.stringify(pooptime, null, '\t')
-            fs.writeFile(`${__dirname}/poops.json`, newpooptime, (err) => {
-                if (err) throw err
-                var id = {};
-                id["id"] = newPoop._id;
-                res.status(200).send(JSON.stringify(id));
-            })*/
-            /*
-            var id = {};
-            id["id"] = newPoop._id;
-            res.status(200).send(JSON.stringify(id));
-            */
         });
     }
 });
@@ -139,69 +133,11 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/users/login');
 }
 
+
+
 module.exports = router;
 
 
-
-//var pooptime = [];
-//var fs = require('fs')
-//var pooptime = JSON.parse(fs.readFileSync(`${__dirname}/poops.json`))
-
-/*
-//get 3
-router.get('/', function (req, res, next) {
-    var poop3 = []
-    Poop.getPoopByPooptime(pooptime.time[0], function (err, Poopget1) {
-        if (err) throw err;
-        if (DEF_DEBUG) {
-            console.log("+++++++++-----------");
-            console.log(Poopget1);
-        }
-        let content = {};
-        content["id"] = Poopget1._id;
-        content["time"] = Poopget1.time;
-        content["title"] = Poopget1.title;
-        content["text"] = Poopget1.text;
-        content["img"] = Poopget1.img;
-        content["comment"] = Poopget1.comment;
-        poop3.push(content)
-
-        Poop.getPoopByPooptime(pooptime.time[1], function (err, Poopget2) {
-            if (err) throw err;
-            if (DEF_DEBUG) {
-                console.log("+++++++++-----------");
-                console.log(Poopget2);
-            }
-            let content = {};
-            content["id"] = Poopget2._id;
-            content["time"] = Poopget2.time;
-            content["title"] = Poopget2.title;
-            content["text"] = Poopget2.text;
-            content["img"] = Poopget2.img;
-            content["comment"] = Poopget2.comment;
-            poop3.push(content)
-
-            Poop.getPoopByPooptime(pooptime.time[2], function (err, Poopget3) {
-                if (err) throw err;
-                if (DEF_DEBUG) {
-                    console.log("+++++++++-----------");
-                    console.log(Poopget3);
-                }
-                let content = {};
-                content["id"] = Poopget3._id;
-                content["time"] = Poopget3.time;
-                content["title"] = Poopget3.title;
-                content["text"] = Poopget3.text;
-                content["img"] = Poopget3.img;
-                content["comment"] = Poopget3.comment;
-                poop3.push(content)
-                res.status(200).send(JSON.stringify(poop3));
-            });
-        });
-    });
-
-});
-*/
 
 /*
 router.delete('/', function (req, res, next) {
@@ -210,20 +146,20 @@ router.delete('/', function (req, res, next) {
         res.status(200).send();
     });
 });
- 
- 
+
+
 router.get('/one', function (req, res, next) {
-    var poop = JSON.parse(req.body.poop) 
+    var poop = JSON.parse(req.body.poop)
     Poop.getPoopByPooptime(poop.time, function (err, Poopget) {
         if (err) throw err;
         if (!Poopget) {
           return done(null, false, { message: 'Unknown Poop' });
         }
-        console.log(Poopget);        
+        console.log(Poopget);
         var content = {};
         content["title"]  =Poopget.title;
         content["text"]  =Poopget.text;
         res.status(200).send(content);
-    });    
+    });
 });
 */
