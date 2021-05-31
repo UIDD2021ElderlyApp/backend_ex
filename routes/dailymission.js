@@ -1,5 +1,7 @@
 var DEF_DEBUG = true;
 
+const missionEXP = '../exp/daily.json';
+
 var express = require('express');
 var fs = require('fs'); //load fs module
 var router = express.Router();
@@ -32,24 +34,17 @@ router.post('/',function (req, res) {
 });
 
 router.post('/forexp',function (req, res){
-    var reward = JSON.parse(fs.readFileSync('../exp/daily.json'));
+    var reward = JSON.parse(fs.readFileSync(missionEXP));
     var choose = req.body.missiontype;  // 1->wake, 2->sleep, 3->picture, 4->stroll 
-    if(choose==1)
-    {
-        res.send(reward.walk);
-    }
-    else if(choose==2)
-    {
-        res.send(reward.sleep);
-    }
-    else if(choose==3)
-    {
-        res.send(reward.picture);
-    }
-    else if(choose==4)
-    {
-        res.send(reward.stroll);
-    }
+    DailyMission.getDailyMissionEXP(reward, choose, function(err, exp){
+        if(err){
+            console.log("ERROR!!! Check your input");
+        }
+        else
+        {
+            res.send(exp);
+        }
+    });
 });
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
@@ -78,7 +73,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         }
         res.status(200).send(JSON.stringify(content));
     });
-
 });
 
 function ensureAuthenticated(req, res, next) {

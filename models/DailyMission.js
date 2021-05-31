@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 
+const missionEXP = '../exp/daily.json';
+
 var DailyMissionSchema = mongoose.Schema({
     user_id: {
         type: Number
@@ -28,6 +30,31 @@ module.exports.getDailyMissionByUserId = function (userId_you_want_to_find, call
     console.log(callback);
 }
 
+module.exports.getDailyMissionEXP = function (reward, choose, callback)
+{
+    console.log("------->choose "+ choose);
+    if(choose==1)
+    {
+        callback(0, reward.walk);
+    }
+    else if(choose==2)
+    {
+        callback(0, reward.sleep);
+    }
+    else if(choose==3)
+    {
+        callback(0, reward.picture);
+    }
+    else if(choose==4)
+    {
+        callback(0, reward.stroll);
+    }
+    else
+    {
+        callback(-1, 0);
+    }
+}
+
 module.exports.setDailyMission = function(userId_you_want_to_find, mission, callback)
 {
     console.log("------->set wake daily mission");
@@ -44,7 +71,6 @@ module.exports.setDailyMission = function(userId_you_want_to_find, mission, call
             m_set[0].stroll = newDailyMission.stroll;
             m_set[0].save();
         }
-
     });
     callback(0);
 }
