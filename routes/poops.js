@@ -23,8 +23,8 @@ router.get('/', function (req, res, next) {
         let date = new Date(2077, 7, 7);
         res.cookie('lastpooptime', `${date}`, {
             secure: true,
-            httpOnly: true,
-            path: '/ts/poop#_=_',
+            //httpOnly: true,
+            //path: '/ts/poop#_=_',
           })
     }
     var lastpooptime = req.cookies.lastpooptime

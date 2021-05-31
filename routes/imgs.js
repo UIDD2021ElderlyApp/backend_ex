@@ -32,8 +32,8 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
         let date = new Date(2077, 7, 7);
         res.cookie('lastimgtime', `${date}`, {
             secure: true,
-            httpOnly: true,
-            path: '/ts/img#_=_',
+            //httpOnly: true,
+            //path: '',
           })
     }
     var lastimgtime = req.cookies.lastimgtime
