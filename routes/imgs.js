@@ -30,16 +30,12 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
     var user_name = glob_user_obj.username;
     if (!req.cookies.time) {
         let date = new Date(2077, 7, 7);
-        res.cookie('lastimgtime', `${date}`, {
-            secure: true,
-            httpOnly: true,
-            path: '/ts/img#_=_',
-          })
+        req.cookies.last_img_time = date
     }
-    var lastimgtime = req.cookies.lastimgtime
+    var last_img_time = req.cookies.last_img_time
     var number_of_img = req.body.number_of_img
     var imgarray = []
-    Img.getMultiImgByUsername(user_name, lastimgtime, number_of_img, function (err, Imgsget) {
+    Img.getMultiImgByUsername(user_name, last_img_time, number_of_img, function (err, Imgsget) {
         Imgsget.forEach(Imgget => {
             if (err) throw err;
             if (DEF_DEBUG) {
@@ -54,7 +50,11 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
             content["content"] = Imgget.content;
             imgarray.push(content)
         })
-        res.cookie('lastimgtime', `${imgarray[number_of_img - 1 ].time}`)
+        res.cookie('last_img_time', `${Imgsget[number_of_img - 1].time}`, {
+            secure: true,
+            httpOnly: true,
+            path: '/app/img/gallery',
+        })
         res.status(200).send(JSON.stringify(imgarray));
     })
 

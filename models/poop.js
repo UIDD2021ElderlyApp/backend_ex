@@ -5,6 +5,9 @@ var mongoose = require('mongoose');
 
 //Poop Schema
 var PoopSchema = mongoose.Schema({
+    id_time: {//備用
+        type: Number
+    },
     time: {
         type: Date,
         index: true
@@ -30,27 +33,6 @@ var PoopSchema = mongoose.Schema({
 var Poop = module.exports = mongoose.model('Poop', PoopSchema);
 
 //function
-/*
-module.exports.getPoopById = function (id, callback) {
-console.log("------->findPoopById");
-    Poop.findById(id, callback);
-    console.log(callback);
-}
-
-module.exports.getPoopByPooptitle = function (title, callback) {
-    console.log("------->getPoopByPooptitle");
-    var query = { title: title };
-    Poop.findOne(query, callback);
-    console.log(callback);
-}
-*/
-
-module.exports.getPoopByPooptime = function (time, callback) {
-    console.log("------->getPoopByPooptime");
-    var query = { time: time };
-    Poop.findOne(query, callback);
-    console.log(callback);
-}
 
 module.exports.getMultiPoopByPooptime = function (time, number, callback) {
     console.log("------->get'Multi'PoopByPooptime");
@@ -74,6 +56,50 @@ module.exports.setPoopComment = function (Id, user_name, time, text, callback) {
     console.log("module.exports.setPoopComment ");
     callback();
 }
+
+/*
+module.exports.getMaxid_time = function (callback) {
+    console.log("------->getMaxid_time");
+    Poop.findOne({}, null, { sort: '-id_time' }, callback);
+    console.log(callback);
+}
+module.exports.getMultiPoopByPoopid_time = function (id_time, number, callback) {
+    console.log("------->get'Multi'PoopByPoopid_time");
+    var query = { id_time: { $lt: id_time, $gte: id_time - number } };
+    Poop.find(query, callback);
+    console.log(callback);
+}
+*/
+
+/*
+module.exports.getMaxid_time = function (callback) {
+    console.log("------->getMaxid_time");
+    Poop.findOne({}, null, { sort: '-id_time' }, callback);
+    console.log(callback);
+}
+module.exports.getMultiPoopByPoopid_time = function (id_time, number, callback) {
+    console.log("------->get'Multi'PoopByPoopid_time");
+    var query = { id_time: { $lt: id_time, $gte: id_time - number } };
+    Poop.find(query, callback);
+    console.log(callback);
+}
+*/
+
+/*
+module.exports.getPoopByPooptitle = function (title, callback) {
+    console.log("------->getPoopByPooptitle");
+    var query = { title: title };
+    Poop.findOne(query, callback);
+    console.log(callback);
+}
+
+module.exports.getPoopByPooptime = function (time, callback) {
+    console.log("------->getPoopByPooptime");
+    var query = { time: time };
+    Poop.findOne(query, callback);
+    console.log(callback);
+}
+*/
 
 /*
 module.exports.deletePoopByPoopId = function (Id, callback) {
