@@ -56,3 +56,9 @@ module.exports.getPersonal = function (user_name, callback) {
     var query = { user_name: { $eq: user_name } };
     Personal.findOne(query, callback)
 }
+
+module.exports.getPersonalanimal = function (user_name, callback) {
+    console.log("------->getPersonal");
+    var query = { user_name: { $eq: user_name } };
+    Personal.findOne(query, callback)
+}
