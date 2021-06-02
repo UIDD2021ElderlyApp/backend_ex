@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 //var db = mongoose.connection;
 
+var stringsan = require("string-sanitizer");
+
 //Img Schema
 var ImgSchema = mongoose.Schema({
     user_name: {
@@ -26,7 +28,7 @@ var Img = module.exports = mongoose.model('Img', ImgSchema);
 
 module.exports.getImgById = function (id, callback) {
 console.log("------->findImgById");
-    Img.findById(id, callback);
+    Img.findById(stringsan.sanitize(id), callback);
     console.log(callback);
 }
 

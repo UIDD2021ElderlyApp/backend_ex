@@ -3,6 +3,8 @@ var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 //var db = mongoose.connection;
 
+var stringsan = require("string-sanitizer");
+
 //Post Schema
 var MissionSchema = mongoose.Schema({
     user_id: {
@@ -22,7 +24,7 @@ var Mission = module.exports = mongoose.model('Mission', MissionSchema);
 //passport
 module.exports.getMissionById = function (id, callback) {
     console.log("------->findMissionById");
-    Mission.findById(id, callback);
+    Mission.findById(stringsan.sanitize(id), callback);
     console.log(callback);
 }
 
@@ -31,7 +33,7 @@ module.exports.setMission = function (userId_you_want_to_find, mission, callback
     var Mission2=JSON.parse(mission);
     console.log(Mission2);
     console.log("------->setMission2");
-    Mission.find({"user_id":userId_you_want_to_find}, function(err, missionget){
+    Mission.find({"user_id":{ $eq: userId_you_want_to_find }}, function(err, missionget){
         missionget.type = Mission2.type;
         missionget.goal = Mission2.goal;
         missionget.save(callback);
