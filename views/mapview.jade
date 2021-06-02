@@ -20,7 +20,7 @@ html
     button
       a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
         #exit_button
-          img(src='./map2.png')
+          img(src='../modular_folder/mapview/map2.png')
     a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
       #hungun
         #distance
@@ -58,19 +58,19 @@ html
       //zoomOutTitle: 'decrese'
       }).addTo(map);
       var customIcon1 = L.icon({
-      iconUrl: '65.png',
+      iconUrl: '../modular_folder/mapview/65.png',
       iconSize: [150, 150], // size of the icon
       iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
       popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon2 = L.icon({
-      iconUrl: '66.png',
+      iconUrl: '../modular_folder/mapview/66.png',
       iconSize: [150, 150], // size of the icon
       iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
       popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon3 = L.icon({
-      iconUrl: '67.png',
+      iconUrl: '../modular_folder/mapview/67.png',
       iconSize: [150, 150], // size of the icon
       iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
       popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
@@ -134,7 +134,7 @@ html
       console.log(last)
       console.log("hhh")
       console.log(current)
-      document.getElementById('info3').innerHTML ='======>'+ distance1;
+      document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
       }, 2000);
       function onLocationError(e) {
       alert(e.message);
