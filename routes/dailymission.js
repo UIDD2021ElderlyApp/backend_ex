@@ -11,18 +11,19 @@ var glob_user_obj;
 
 var DailyMission = require('../models/DailyMission');
 
-router.post('/',function (req, res) {
-    var dailymission = req.body.dailymission; // input a json
-    DailyMission.setDailyMission(glob_user_obj, dailymission, function (db_have_data) {
+router.post('/', ensureAuthenticated, function (req, res) {
+    var inputdailymission = req.body.dailymission; // input a json
+    DailyMission.setDailyMission(glob_user_obj, inputdailymission, function (db_have_data) {
         if (db_have_data === -1) {
             if (DEF_DEBUG) {
-                console.log(dailymission);
+                console.log(inputdailymission);
             }
             var newDailyMission = new DailyMission({
-                wake: dailymission.wake,
-                sleep: dailymission.sleep,
-                picture: dailymission.picture,
-                stroll: dailymission.stroll
+                user_id: glob_user_obj,
+                wake: inputdailymission.wake,
+                sleep: inputdailymission.sleep,
+                picture: inputdailymission.picture,
+                stroll: inputdailymission.stroll
             });
             DailyMission.createDailyMission(newDailyMission, function(err, newDailyMission){
                 if(err) throw err;
@@ -33,7 +34,7 @@ router.post('/',function (req, res) {
     res.status(200).send();
 });
 
-router.post('/forexp',function (req, res){
+router.post('/forexp', ensureAuthenticated, function (req, res){
     var reward = JSON.parse(fs.readFileSync(missionEXP));
     var choose = req.body.missiontype;  // 1->wake, 2->sleep, 3->picture, 4->stroll 
     DailyMission.getDailyMissionEXP(reward, choose, function(err, exp){
@@ -47,7 +48,7 @@ router.post('/forexp',function (req, res){
     });
 });
 
-router.get('/', ensureAuthenticated, function (req, res, next) {
+router.get('/', ensureAuthenticated, function (req, res) {
     if (DEF_DEBUG) {
         console.log(glob_user_obj);
     }

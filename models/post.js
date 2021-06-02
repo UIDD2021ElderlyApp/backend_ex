@@ -41,14 +41,14 @@ module.exports.getPostById = function (id, callback) {
 
 module.exports.getPostByPosttitle = function (title, callback) {
     console.log("------->getPostByPosttitle");
-    var query = { title: title };
+    var query = { title: { $eq: title } };
     Post.findOne(query, callback);
     console.log(callback);
 }
 
 module.exports.setPostMessage = function (title, message, callback) {
     console.log("------->setPostMessage");
-    var query = { title: title };
+    var query = { title: { $eq: title } };
     Post.findOne(query, function(err, postget){
         postget.message.push(message);
         postget.save(callback);        
@@ -59,7 +59,7 @@ module.exports.setPostMessage = function (title, message, callback) {
 
 module.exports.setPostLike = function (title, like, callback) {
     console.log("------->setPostLike");
-    var query = { title: title };
+    var query = { title: { $eq: title } };
     Post.findOne(query, function(err, postget){
         postget.like.push(like);
         postget.save(callback);

@@ -32,21 +32,24 @@ module.exports.getDailyMissionByUserId = function (userId_you_want_to_find, call
 
 module.exports.getDailyMissionEXP = function (reward, choose, callback)
 {
-    console.log("------->choose "+ choose);
     if(choose==1)
     {
-        callback(0, reward.walk);
+        console.log("------->choose wake");
+        callback(0, reward.wake);
     }
     else if(choose==2)
     {
+        console.log("------->choose sleep");
         callback(0, reward.sleep);
     }
     else if(choose==3)
     {
+        console.log("------->choose picture");
         callback(0, reward.picture);
     }
     else if(choose==4)
     {
+        console.log("------->choose stroll");
         callback(0, reward.stroll);
     }
     else
