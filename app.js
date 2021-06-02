@@ -24,6 +24,7 @@ var upload = multer({ dest: './uploads' }); // setup multer upload destination
 var flash = require('connect-flash');
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+var randomstring = require("randomstring");
 //create db connection using mongoose
 var db = mongoose.connection;
 //---
@@ -66,7 +67,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //---
 // Handle Sessions
 app.use(session({
-  secret: 'secret',
+  secret: randomstring.generate(100),
   saveUninitialized: true,
   resave: true
 }));
@@ -126,6 +127,15 @@ app.get('*', function (req, res, next) {
   res.locals.user = req.user || null;
   next();
 });
+
+// set up rate limiter: maximum of five requests per minute
+var RateLimit = require('express-rate-limit');
+var limiter = new RateLimit({
+  windowMs: 1*60*1000, // 1 minute
+  max: 60
+});
+// apply rate limiter to all requests
+app.use(limiter);
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

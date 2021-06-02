@@ -65,9 +65,9 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
   console.log(name);
   console.log(email);
   console.log(username);
-  console.log(password);
-  console.log(password2);
-  console.log(isEqual(password, password2));
+  //console.log(password);
+  //console.log(password2);
+  //console.log(isEqual(password, password2));
   var error_msg_res = {};
 
   //Form Validator
