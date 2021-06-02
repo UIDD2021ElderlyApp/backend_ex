@@ -49,7 +49,7 @@ module.exports.createKeep = function (newKeep, callback) {
 
 module.exports.deleteKeepByKeepId = function (id, callback) {
     console.log("------->deleteKeepByKeepId");
-    var query = { _id: id };
+    var query = { _id: { $eq:id } };
     Keep.deleteOne(query, callback);
     console.log(callback);
 }
