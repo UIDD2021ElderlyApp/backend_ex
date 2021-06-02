@@ -6,7 +6,7 @@
   * getup_time:Date
   * sleep_time:Date
 
-<h2>方法</h2>
+## 方法 ##
 
 
 > get: /app/personal/
@@ -17,19 +17,19 @@
 
 > post: /app/personal/create
 
-** 選完動物時使用 **
+**選完動物時使用**
 建立一筆資料
 傳給後端req.body.animal
 回傳資料庫裡的id(JSON) 
 
->post: /app/personal/getup
+> post: /app/personal/getup
 
 傳給後端req.body.getup_time
 回傳200
 
 
 > post: /app/personal/sleep
-> 
+ 
 傳給後端req.body.sleep_time
 回傳200
 
