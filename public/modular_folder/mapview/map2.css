@@ -14,7 +14,18 @@
     justify-content: space-between;
 }
 
-#exit_button{
+#distance{
+    position: absolute;
+    margin: 0;
+    border: none;
+    top: 0px;
+   left: 30vw;
+    
+
+
+}
+
+#btn{
     z-index: 13;
     position: absolute;
     width: 7vh;
