@@ -84,7 +84,7 @@ html
       var radius = e.accuracy / 2;
       var popupContent = "You are within " + radius + " meters from this point";
       if (gpsMarker == null) {
-      gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
+      gpsMarker = L.marker(e.latlng, { icon: customIcon3 }).addTo(map);
       gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
       gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
       }
