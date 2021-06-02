@@ -84,7 +84,7 @@ html
       var radius = e.accuracy / 2;
       var popupContent = "You are within " + radius + " meters from this point";
       if (gpsMarker == null) {
-      gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
+      gpsMarker = L.marker(e.latlng, { icon: customIcon3 }).addTo(map);
       gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
       gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
       }
@@ -134,7 +134,7 @@ html
       console.log(last)
       console.log("hhh")
       console.log(current)
-      document.getElementById('info3').innerHTML ='======>'+ distance1;
+      document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
       }, 2000);
       function onLocationError(e) {
       alert(e.message);
