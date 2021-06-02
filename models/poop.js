@@ -48,7 +48,7 @@ module.exports.setPoopComment = function (Id, user_name, time, text, callback) {
     console.log("------->setPoopComment");
     var query = { _id: Id };
     console.log("var comment = JSON.stringify({ user_name: user_name, time: time, text: text });");
-    var comment = JSON.stringify({ user_name: user_name, time: time, text: text });
+    var comment = JSON.stringify({ user_name: { $eq: user_name }, time: { $eq: time }, text: { $eq: text } });
     Poop.findOne(query, function (err, postget) {
         postget.comment.push(comment);
         postget.save();

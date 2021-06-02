@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost:27017/nodeauth', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 //var db = mongoose.connection;
+var stringsan = require("string-sanitizer");
 
 //Post Schema
 var outSchema = mongoose.Schema({
@@ -16,7 +17,7 @@ var out = module.exports = mongoose.model('out', outSchema);
 //passport
 module.exports.getoutById = function (id, callback) {
     console.log("------->findoutById");
-    out.findById(id, callback);
+    out.findById(stringsan.sanitize(id), callback);
     console.log(callback);
 }
 
@@ -24,7 +25,7 @@ module.exports.postout = function (outdoor, callback) {
     console.log("------->setout");
     var outdoor2 = JSON.parse(outdoor);
     console.log(outdoor2);
-    var query = { Id: outdoor2.Id };
+    var query = { Id:  { $eq: outdoor2.Id }};
     console.log("------->setout2");
     out.findOne(query, function (err, outdoorget) {
         outdoorget.path_distance = outdoor2.path_distance + outdoorget.path_distance;
@@ -37,7 +38,7 @@ module.exports.setout = function (outdoor, callback) {
     console.log("------->setout3");
     var outdoor2 = JSON.parse(outdoor);
     console.log(outdoor2);
-    var query = { Id: outdoor2.Id };
+    var query = { Id: { $eq: outdoor2.Id } };
     console.log("------->setout4");
     out.findOne(query, function (err, outdoorget) {
         outdoorget.path_distance = outdoor2.path_distance;
