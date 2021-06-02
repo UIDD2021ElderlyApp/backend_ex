@@ -215,8 +215,8 @@
 
             setInterval(function () {
                 $.get('/app/PeopleOnMap/', {
-                    distance: [search_radius],
-                    position: [{ lat: now_lat, lng: now_lng }]
+                    distance: search_radius,
+                    position: JSON.stringify({"lat": now_lat, "lng": now_lng})
                 }, (People) => {
                     if (People) {
                         var people = JSON.parse(People)
@@ -256,8 +256,8 @@
 
             setInterval(function () {
                 $.post('/app/PeopleOnMap/', {
-                    animal: [animal_id],
-                    position: [{ lat: now_lat, lng: now_lng }]
+                    animal: animal_id,
+                    position: JSON.stringify({"lat": now_lat, "lng": now_lng})
                 }, (id) => {
                     if (id) {
                         //不一定用的到
