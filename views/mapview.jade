@@ -17,9 +17,10 @@ html
       position: relative;
       z-index: 1;
       }
-    button#exit_button
-      a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
-        img(src='../modular_folder/mapview/map2.png')
+    form#ajax-form
+      button#exit_button
+        a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
+          img(src='../modular_folder/mapview/map2.png')
     #hungun
       #distance
         bl#info
@@ -58,26 +59,26 @@ html
       var customIcon1 = L.icon({
       iconUrl: '../modular_folder/mapview/65.png',
       iconSize: [150, 150], // size of the icon
-      iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
+      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon2 = L.icon({
       iconUrl: '../modular_folder/mapview/66.png',
       iconSize: [150, 150], // size of the icon
-      iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
+      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon3 = L.icon({
       iconUrl: '../modular_folder/mapview/67.png',
       iconSize: [150, 150], // size of the icon
-      iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
+      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon_1 = L.icon({
       iconUrl: '../modular_folder/mapview/63.png',
       iconSize: [150, 150], // size of the icon
-      iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
+      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
       var gpsMarker = null;
       var gpsCircleMarker;
@@ -88,6 +89,7 @@ html
       if (user) {
       var me = JSON.parse(user)
       animal_id = me.animal
+      user_name = me.name
       }
       }
       )
@@ -110,7 +112,7 @@ html
       if (animal_id == -1) {
       gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
       }
-      gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
+      gpsMarker.bindPopup(user_name).openPopup();
       gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
       }
       if (gpsMarker != null) {
