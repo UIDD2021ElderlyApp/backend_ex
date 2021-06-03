@@ -73,6 +73,12 @@ html
       iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
       popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
       });
+      var customIcon_1 = L.icon({
+      iconUrl: '../modular_folder/mapview/63.png',
+      iconSize: [150, 150], // size of the icon
+      iconAnchor: [150, 20], // point of the icon which will correspond to marker's location
+      popupAnchor: [0, -40] // point from which the popup should open relative to the iconAnchor
+      });
       var gpsMarker = null;
       var gpsCircleMarker;
       function onLocationFound(e) {
@@ -181,6 +187,10 @@ html
       }
       if (people[i].animal == 3) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon3 }).addTo(map);
+      gpsMarker.bindPopup(people[i].name).openPopup();
+      }
+      if (people[i].animal == -1) {
+      marker_array[i] = L.marker(temp_latlng, { icon: customIcon_1 }).addTo(map);
       gpsMarker.bindPopup(people[i].name).openPopup();
       }
       }
