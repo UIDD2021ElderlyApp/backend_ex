@@ -266,7 +266,7 @@ jQuery(function dom_ready(dom_ready_params) {
     scrolledToBottom();
 
     $("#exit_button").click(function() {
-        var newstr = window.location.href.replace(re, "/ts/home");
+        var newstr = window.location.href.replace(this_url_path_re, "/ts/home");
         window.location.href = newstr;
     });
 });
