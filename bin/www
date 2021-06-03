@@ -17,8 +17,12 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || (myArgs).length != 2 || ((myArgs).length == 2 && !isNumeric(myArgs[0])) ? '30087' : myArgs[0]);
 app.set('port', port);
+app.locals.port_http=port;
+//console.log(app.locals);
 var ports = normalizePort(process.env.PORT || (myArgs).length != 2 || ((myArgs).length == 2 && !isNumeric(myArgs[1])) ? '38443' : myArgs[1]);
 apps.set('port', ports);
+apps.locals.port_https=ports;
+//console.log(apps.locals);
 
 /**
  * Create HTTP server.

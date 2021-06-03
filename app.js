@@ -39,6 +39,7 @@ var tshome = require('./routes/tshome');
 var tsfeed = require('./routes/tsfeed');
 var timedoutdoorlock = require('./routes/timedoutdoorlock');
 var facebooklogin_withpasspord_nogui = require('./routes/facebooklogin_withpasspord_nogui');
+var pwa = require('./routes/pwa');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -54,6 +55,8 @@ var peopleonmapRouter = require('./routes/PeopleOnMap')
 /*----------------------------------------------------*/
 
 var app = express();
+
+//console.log(app.locals);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -124,10 +127,25 @@ app.use(function (req, res, next) {
 
 //set global variable for login/logout status
 app.get('*', function (req, res, next) {
-  console.log("app.get(*, function(req, res, next){");
+  //console.log("app.get(*, function(req, res, next){");
   console.log(req.user);
   res.locals.user = req.user || null;
   next();
+});
+
+app.get('/manifest.json', function (req, res, next) {
+  res.status(200).json({
+      "name": "Old friend",
+      "short_name": "Old friend",
+      "start_url": "https://luffy.ee.ncku.edu.tw:"+app.locals.port_http+"/ts/home",
+      "display": "standalone",
+      "orientation": "portrait",
+      "icons": [{
+        "src": "./weblogo.png",
+        "sizes": "374x374",
+        "type": "image/png"
+      }]
+    });
 });
 
 // set up rate limiter: maximum of five requests per minute
@@ -149,7 +167,7 @@ app.use('/ts/home', tshome);
 app.use('/ts/feed', tsfeed);
 app.use('/timedoutdoorlock', timedoutdoorlock);
 app.use('/auth', facebooklogin_withpasspord_nogui);
-
+app.use('/pwa', pwa);
 
 ////////////////////////////////////////////////////
 
