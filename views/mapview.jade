@@ -46,16 +46,6 @@ html
       var now_lng;
       var marker_array = new Array;
       var animal_id = -1;
-      setTimeout(function () {
-      $.get('/app/personal/', {
-      }, (user) => {
-      if (user) {
-      var me = JSON.parse(user)
-      animal_id = me.animal
-      }
-      }
-      )
-      }, 0)
       map = L.map('map').setView([22.5, 120.5], 15);//construct map
       map.locate({ setView: true, watch: true, enableHighAccuracy: true });
       map.removeControl(map.zoomControl);
@@ -92,6 +82,16 @@ html
       var gpsMarker = null;
       var gpsCircleMarker;
       function onLocationFound(e) {
+      setTimeout(function () {
+      $.get('/app/personal/', {
+      }, (user) => {
+      if (user) {
+      var me = JSON.parse(user)
+      animal_id = me.animal
+      }
+      }
+      )
+      }, 0)
       console.log(e)
       now_lat = e.latlng.lat;
       now_lng = e.latlng.lng;
@@ -160,7 +160,7 @@ html
       console.log("hhh")
       console.log(current)
       document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
-      }, 2000);
+      }, 6000);
       function onLocationError(e) {
       alert(e.message);
       }
