@@ -10,8 +10,9 @@
 
 > get /
 >>   
->> res.status(200).send(JSON.stringify(Personget));
-**回傳所有東西(JSON)**
+>> res.status(200).send(JSON.stringify(person));  
+>> res.status(200).send(JSON.stringify(-1));
+**回傳所有東西(JSON)，若無本人資料回傳-1**
 
 > post /create
 >> req.body.animal  
