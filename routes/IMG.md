@@ -1,4 +1,4 @@
-#　IMG model的內容
+# IMG model的內容
 
 * user_name: 同users的
 * time: Date, 建立時間
