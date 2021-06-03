@@ -1,5 +1,5 @@
 /*to do ，留言完refresh page)*/
-
+var this_url_path_re=/\/ts\/poop/gi;
 
 var DEF_DEBUG = true;
 var DEF_NO_HTML_DISP = true;
@@ -9,8 +9,8 @@ var DEF_ts = true;//be true
 var DEF_fuckthephotos = true;
 //var DEF_domain_name = "luffy.ee.ncku.edu.tw";
 //var DEF_port = "38443";
-var DEF_path = window.location.href.replace(/\/ts\/poop/gi, "/app/poop");//"/app/poop";
-var DEF_comment_path = window.location.href.replace(/\/ts\/poop/gi, "/comment");//"/comment";
+var DEF_path = window.location.href.replace(this_url_path_re, "/app/poop");//"/app/poop";
+var DEF_comment_path = window.location.href.replace(this_url_path_re, "/comment");//"/comment";
 
 var DEF_TEXT_UI_comment_btn = "發佈";
 var DEF_GUI_TXT_addcomment = "新增留言";
@@ -20,13 +20,13 @@ var SET_FillTest = false;//need false
 var DEFAULT_RES_dummies_test = "[{\"id\":\"6092b210779ced6502375e01\",\"time\":\"1999-12-31T02:01:01.000Z\",\"title\":\"poop3\",\"text\":\"test\",\"img\":\"img03\",\"comment\":[\"{\\\"user_id\\\":\\\"akaishuichi\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\"]},{\"id\":\"6092b209779ced6502375e00\",\"time\":\"1999-12-31T01:01:01.000Z\",\"title\":\"poop2\",\"text\":\"test\",\"img\":\"img03\",\"comment\":[\"{\\\"user_id\\\":\\\"akaishuichi\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\",\"{\\\"user_id\\\":\\\"hatoriheiji\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\",\"{\\\"user_id\\\":\\\"amurotoru\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\"]},{\"id\":\"6092b1fe779ced6502375dff\",\"time\":\"1999-12-31T00:01:01.000Z\",\"title\":\"poop1\",\"text\":\"test\",\"img\":\"img03\",\"comment\":[]}]";
 var dummy_commit = "[\"{\\\"user_id\\\":\\\"akaishuichi\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"dummy_commit\\\"}\"]";
 
-GLOBAL_full_url = "";
+GLOBAL_full_url = window.location.href.replace(this_url_path_re, "");//"";
 GLOBAL_browse_post_on_scroll = true;
 GLOBAL_browse_post_on_scroll_delay_ms = 500;
 
 function usr_inp_comment_fcn(e) {
     if (SET_ajex_full_json) {
-        $.post(GLOBAL_full_url + DEF_comment_path, {
+        $.post(/*GLOBAL_full_url + */DEF_comment_path, {
             comment: dummy_commit
         }, (objects_returned_by_the_server) => {
             if (DEF_DEBUG) {
@@ -40,7 +40,7 @@ function usr_inp_comment_fcn(e) {
             console.log(document.getElementById(String(e.target.id).replace(/_btn/g, '') + "_input_txt").value);
         }
 
-        $.post(GLOBAL_full_url + DEF_comment_path, {
+        $.post(/*GLOBAL_full_url + */DEF_comment_path, {
             id: String(e.target.id).replace(/_btn/g, ''),
             time: Date(),
             text: document.getElementById(String(e.target.id).replace(/_btn/g, '') + "_input_txt").value
@@ -225,7 +225,7 @@ function init() {
     if (DEF_field_battle) {
         document.getElementById("browse_post").style.height = "400px";
     }
-    GLOBAL_full_url = ((DEF_use_https) ? "https" : "http") + "://" + DEF_domain_name + ":" + DEF_port + DEF_path;
+    //GLOBAL_full_url = ((DEF_use_https) ? "https" : "http") + "://" + DEF_domain_name + ":" + DEF_port + DEF_path;
     if (DEF_DEBUG) {
         console.log(GLOBAL_full_url);
     }
@@ -266,7 +266,6 @@ jQuery(function dom_ready(dom_ready_params) {
     scrolledToBottom();
 
     $("#exit_button").click(function() {
-        var re = /\/ts\/poop/gi;
         var newstr = window.location.href.replace(re, "/ts/home");
         window.location.href = newstr;
     });

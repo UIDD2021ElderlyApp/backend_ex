@@ -1,13 +1,15 @@
+var this_url_path_re=/\/ts\/poop/gi;
+
 var DEF_DEBUG = true;
 var DEF_NO_HTML_DISP = false;
 var DEF_field_battle = true;
 var DEF_use_https = true;
-var DEF_domain_name = "luffy.ee.ncku.edu.tw";
-var DEF_port = "38443";
-var DEF_path = "/app/poop";
+//var DEF_domain_name = "luffy.ee.ncku.edu.tw";
+//var DEF_port = "38443";
+//var DEF_path = "/app/poop";
 var SET_ajex_full_json = false;//need false when pub.!
 
-GLOBAL_full_url = "";
+GLOBAL_full_url = window.location.href.replace(this_url_path_re, "/app/poop");//"";
 
 function init() {
     if (DEF_DEBUG) {
@@ -26,7 +28,7 @@ function init() {
         document.getElementById("usr_inp_post_btn").style.backgroundColor = "#ddb98b";
         document.getElementById("usr_inp_title").value = "Preset things";
     }
-    GLOBAL_full_url = ((DEF_use_https) ? "https" : "http") + "://" + DEF_domain_name + ":" + DEF_port + DEF_path;
+    //GLOBAL_full_url = ((DEF_use_https) ? "https" : "http") + "://" + DEF_domain_name + ":" + DEF_port + DEF_path;
     if (DEF_DEBUG) {
         console.log(GLOBAL_full_url);
     }
