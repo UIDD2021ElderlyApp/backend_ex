@@ -6,23 +6,31 @@ var myArgs = process.argv.slice(2);
  * Module dependencies.
  */
 
-var app = require('../app');
-var apps = require('../app');
 var debug = require('debug')('server'), debugs = require('debug')('httpsServer');
 var http = require('http');
+const fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
  */
 
 var port = normalizePort(process.env.PORT || (myArgs).length != 2 || ((myArgs).length == 2 && !isNumeric(myArgs[0])) ? '30087' : myArgs[0]);
-app.set('port', port);
-app.locals.port_http=port;
-//console.log(app.locals);
 var ports = normalizePort(process.env.PORT || (myArgs).length != 2 || ((myArgs).length == 2 && !isNumeric(myArgs[1])) ? '38443' : myArgs[1]);
+
+const Variouskeys = './Variouskeys';
+if (fs.existsSync(Variouskeys)) {
+  console.log('Variouskeys exists!');
+  fs.writeFileSync('./Variouskeys/.tmp_port.json', JSON.stringify({port_http:port,port_https:ports}));
+} else {
+  console.log('Variouskeys not found.');
+}
+
+var app = require('../app');
+var apps = require('../app');
+app.set('port', port);
 apps.set('port', ports);
+app.locals.port_http=port;
 apps.locals.port_https=ports;
-//console.log(apps.locals);
 
 /**
  * Create HTTP server.
@@ -32,7 +40,7 @@ var server = http.createServer(app);
 
 
 //=========================================
-var fs = require('fs')
+//var fs = require('fs')
 var privateKey = fs.readFileSync("/home/yichung/ssl/private.key");
 var certificate = fs.readFileSync("/home/yichung/ssl/certificate.crt");
 var credentials = { key: privateKey, cert: certificate };
