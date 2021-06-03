@@ -9,8 +9,8 @@ var DEF_ts = true;//be true
 var DEF_fuckthephotos = true;
 //var DEF_domain_name = "luffy.ee.ncku.edu.tw";
 //var DEF_port = "38443";
-var DEF_path = window.location.href.replace(this_url_path_re, "/app/poop");//"/app/poop";
-var DEF_comment_path = window.location.href.replace(this_url_path_re, "/comment");//"/comment";
+var DEF_path = window.location.href.replace(this_url_path_re, "/app/poop").split('#')[0];//"/app/poop";
+var DEF_comment_path = DEF_path+ "/comment";//"/comment";
 
 var DEF_TEXT_UI_comment_btn = "發佈";
 var DEF_GUI_TXT_addcomment = "新增留言";
@@ -20,7 +20,7 @@ var SET_FillTest = false;//need false
 var DEFAULT_RES_dummies_test = "[{\"id\":\"6092b210779ced6502375e01\",\"time\":\"1999-12-31T02:01:01.000Z\",\"title\":\"poop3\",\"text\":\"test\",\"img\":\"img03\",\"comment\":[\"{\\\"user_id\\\":\\\"akaishuichi\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\"]},{\"id\":\"6092b209779ced6502375e00\",\"time\":\"1999-12-31T01:01:01.000Z\",\"title\":\"poop2\",\"text\":\"test\",\"img\":\"img03\",\"comment\":[\"{\\\"user_id\\\":\\\"akaishuichi\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\",\"{\\\"user_id\\\":\\\"hatoriheiji\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\",\"{\\\"user_id\\\":\\\"amurotoru\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"test\\\"}\"]},{\"id\":\"6092b1fe779ced6502375dff\",\"time\":\"1999-12-31T00:01:01.000Z\",\"title\":\"poop1\",\"text\":\"test\",\"img\":\"img03\",\"comment\":[]}]";
 var dummy_commit = "[\"{\\\"user_id\\\":\\\"akaishuichi\\\",\\\"time\\\":\\\"1999-12-31T23:01:01.000Z\\\",\\\"text\\\":\\\"dummy_commit\\\"}\"]";
 
-GLOBAL_full_url = window.location.href.replace(this_url_path_re, "");//"";
+GLOBAL_full_url = window.location.href.replace(this_url_path_re, "").split('#')[0];//"";
 GLOBAL_browse_post_on_scroll = true;
 GLOBAL_browse_post_on_scroll_delay_ms = 500;
 
@@ -58,7 +58,7 @@ function get3post() {
         console.log("get3post !");
     }
 
-    $.get(GLOBAL_full_url, {
+    $.get(DEF_path/*GLOBAL_full_url*/, {
         //empty!
     }, (objects_returned_by_the_server) => {
         if (DEF_DEBUG) {
@@ -227,7 +227,7 @@ function init() {
     }
     //GLOBAL_full_url = ((DEF_use_https) ? "https" : "http") + "://" + DEF_domain_name + ":" + DEF_port + DEF_path;
     if (DEF_DEBUG) {
-        console.log(GLOBAL_full_url);
+        console.log(DEF_path/*GLOBAL_full_url*/);
     }
     if (DEF_ts) {
         document.getElementById("browse_post").innerHTML = "";

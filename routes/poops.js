@@ -32,10 +32,10 @@ router.get('/', function (req, res, next) {
     var last_poop_time = req.cookies.last_poop_time
     var poops = []
     Poop.getMultiPoopByPooptime(last_poop_time, number_each, function (err, Poopsget) {
-        if (!Poopsget){
-            res.status(200).send(JSON.stringify(-1));
+        if (!Poopsget) {
+            res.status(200).send("-1");
         }
-        else{
+        else {
             Poopsget.forEach(Poopget => {
                 if (err) throw err;
                 if (DEF_DEBUG) {
@@ -52,23 +52,23 @@ router.get('/', function (req, res, next) {
                 content["comment"] = Poopget.comment;
                 poops.push(content)
             })
-            if (Poopsget.length == number_each){
+            if (Poopsget.length == number_each) {
                 res.cookie('last_poop_time', `${Poopsget[number_each - 1].time}`, {
                     secure: true,
                     httpOnly: true,
                     path: '/app/poop',
                 })
-            }else{
+            } else {
                 res.cookie('last_poop_time', `${new Date(1970, 7, 7)}`, {
                     secure: true,
                     httpOnly: true,
                     path: '/app/poop',
                 })
-            }        
+            }
             res.status(200).send(JSON.stringify(poops));
         }
-        
-    })
+
+    })//res.status(200).send("JSON.stringify(poops)");
 });
 
 router.post('/', ensureAuthenticated, function (req, res, next) {
