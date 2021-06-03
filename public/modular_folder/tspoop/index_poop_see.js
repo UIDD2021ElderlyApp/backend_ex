@@ -7,10 +7,10 @@ var DEF_field_battle = false;
 var DEF_use_https = true;
 var DEF_ts = true;//be true
 var DEF_fuckthephotos = true;
-var DEF_domain_name = "luffy.ee.ncku.edu.tw";
-var DEF_port = "38443";
-var DEF_path = "/app/poop";
-var DEF_comment_path = "/comment";
+//var DEF_domain_name = "luffy.ee.ncku.edu.tw";
+//var DEF_port = "38443";
+var DEF_path = window.location.href.replace(/\/ts\/poop/gi, "/app/poop");//"/app/poop";
+var DEF_comment_path = window.location.href.replace(/\/ts\/poop/gi, "/comment");//"/comment";
 
 var DEF_TEXT_UI_comment_btn = "發佈";
 var DEF_GUI_TXT_addcomment = "新增留言";
