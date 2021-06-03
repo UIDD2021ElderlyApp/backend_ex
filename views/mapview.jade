@@ -45,7 +45,7 @@ html
       var now_lat;
       var now_lng;
       var marker_array = new Array;
-      var animal_id = 3;
+      var animal_id = -1;
       map = L.map('map').setView([22.5, 120.5], 15);//construct map
       map.locate({ setView: true, watch: true, enableHighAccuracy: true });
       map.removeControl(map.zoomControl);
@@ -88,7 +88,18 @@ html
       var radius = e.accuracy / 2;
       var popupContent = "You are within " + radius + " meters from this point";
       if (gpsMarker == null) {
+      if(animal_id==1){
+      gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
+      }
+      if(animal_id==2){
+      gpsMarker = L.marker(e.latlng, { icon: customIcon2 }).addTo(map);
+      }
+      if(animal_id==3){
       gpsMarker = L.marker(e.latlng, { icon: customIcon3 }).addTo(map);
+      }
+      if(animal_id==-1){
+      gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
+      }
       gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
       gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
       }
@@ -150,6 +161,16 @@ html
       maxZoom: 19,
       }).addTo(map);
       $(document).ready(function () {///////////////////////////////////////////////added at 6/2
+      setInterval(function () {
+      $.get('/app/personal/', {
+      }, (user) => {
+      if (user) {
+      var me = JSON.parse(user)
+      animal_id=me.animal
+      }
+      }
+      )
+      }, 10000)
       var search_radius = 300;
       console.log("lat")
       console.log(now_lat)
