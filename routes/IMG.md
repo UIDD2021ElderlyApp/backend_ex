@@ -12,7 +12,7 @@
 >> res.status(200).send(JSON.stringify(Imgget)) 
 **用ID取一個**
 
-> get /gellery
+> get /gllery
 >> req.query.query: {"scroll": 0 or 1 ,"number_of_img": number }  
 >> res.status(200).send(JSON.stringify(imgarray)); 
 **取number_of_img個，邏輯和poop的get相同**
