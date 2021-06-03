@@ -1,9 +1,9 @@
 # /app/poop/的相關方法
 
 > get /
->> req.query.scroll :{0 or 1}  
+>> req.query.scroll: JSON.stringify(true/false)  
 >> res.status(200).send(JSON.stringify(poops));  
->> res.status(200).send(JSON.stringify(-1));
+>> res.status(200).send("-1");
 **取3個,若沒東西則回傳-1**
 
 > post /
@@ -25,10 +25,9 @@
   
 ## 請前端注意
   
-  **get 新增一個 query 為 "scroll"**
-  **請包成JSON {0 or 1}**
-  第一次進入頁面時，scroll為 0
-  滑動時scroll為 1
+  **get 新增一個 query 為scroll:  JSON.stringify(true/false)**
+  第一次進入頁面時，scroll為 false
+  滑動時scroll為 true
   如此一來才可以正常運作
 
 
