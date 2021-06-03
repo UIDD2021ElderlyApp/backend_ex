@@ -21,8 +21,8 @@ router.use(cookies());
 
 
 router.get('/', function (req, res, next) {
-    var scroll = JSON.parse(req.query.scroll)
-    if (!scroll) {
+    var query = JSON.parse(req.query.query)
+    if (!query.scroll) {
         let date = new Date(2077, 7, 7);
         req.cookies.last_poop_time = date;
     }
@@ -30,6 +30,7 @@ router.get('/', function (req, res, next) {
         console.log('last_poop_time is ' + `${req.cookies.last_poop_time}`);
     }
     var last_poop_time = req.cookies.last_poop_time
+    number_each = query.number_of_poop
     var poops = []
     Poop.getMultiPoopByPooptime(last_poop_time, number_each, function (err, Poopsget) {
         if (!Poopsget) {
@@ -139,6 +140,35 @@ router.post('/comment', ensureAuthenticated, function (req, res, next) {
         res.status(200).send(JSON.stringify(err));
     });
 })
+
+router.get('/byId', function (req, res, next) {
+    var Id = req.query.Id
+    if (DEF_DEBUG) {
+        console.log('Id: ' + `${Id}`);
+    }
+    Poop.getPoopByPoopId(Id, function (err, Poopget) {
+        if (!Poopget) {
+            res.status(200).send("-1");
+        }
+        else {
+            if (err) throw err;
+            if (DEF_DEBUG) {
+                console.log("+++++++++-----------");
+                console.log(Poopget);
+            }
+            let content = {};
+            content["id"] = Poopget._id;
+            content["time"] = Poopget.time;
+            content["user_name"] = Poopget.user_name;
+            content["title"] = Poopget.title;
+            content["text"] = Poopget.text;
+            content["img"] = Poopget.img;
+            content["comment"] = Poopget.comment;
+            res.status(200).send(JSON.stringify(Poopget));
+        }
+
+    })
+});
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {

@@ -57,6 +57,14 @@ module.exports.setPoopComment = function (Id, user_name, time, text, callback) {
     callback();
 }
 
+
+module.exports.getPoopByPoopId = function (Id, callback) {
+    console.log("------->getPoopByPoopId");
+    var query = { _id: { $eq:Id } };
+    Poop.findOne(query, callback);
+    console.log(callback);
+}
+
 /*
 module.exports.getMaxid_time = function (callback) {
     console.log("------->getMaxid_time");

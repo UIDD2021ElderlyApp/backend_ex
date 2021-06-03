@@ -59,7 +59,7 @@ function get3post(isscroll) {
     }
 
     $.get(DEF_path/*GLOBAL_full_url*/, {
-        scroll: JSON.stringify(isscroll)
+        query: JSON.stringify({"scroll": isscroll, "number_of_poop": 3})
     }, (objects_returned_by_the_server) => {
         if (DEF_DEBUG) {
             console.log(objects_returned_by_the_server);
