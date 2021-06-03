@@ -11,7 +11,7 @@
 **新增，回傳ID**
 
 > post /comment
->> req.body.id, req.body.time, req.body.text
+>> req.body.id, req.body.time, req.body.text  
 >> res.status(200).send(JSON.stringify(err));
 **回應ID的文章**
 

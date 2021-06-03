@@ -15,10 +15,10 @@ var PersonalSchema = mongoose.Schema({
         type: Number
     },
     getup_time: {
-        type: Date
+        type: Array
     },
     sleep_time: {
-        type: Date
+        type: Array
     }
 
 });
