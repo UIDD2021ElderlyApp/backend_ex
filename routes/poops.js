@@ -23,7 +23,7 @@ router.use(cookies());
 router.get('/', function (req, res, next) {
     var scroll = JSON.parse(req.query.scroll)
     if (!scroll) {
-        let date = Date(2077, 7, 7);
+        let date = new Date(2077, 7, 7);
         req.cookies.last_poop_time = date;
     }
     if (DEF_DEBUG) {
@@ -32,28 +32,42 @@ router.get('/', function (req, res, next) {
     var last_poop_time = req.cookies.last_poop_time
     var poops = []
     Poop.getMultiPoopByPooptime(last_poop_time, number_each, function (err, Poopsget) {
-        Poopsget.forEach(Poopget => {
-            if (err) throw err;
-            if (DEF_DEBUG) {
-                console.log("+++++++++-----------");
-                console.log(Poopget);
-            }
-            let content = {};
-            content["id"] = Poopget._id;
-            content["time"] = Poopget.time;
-            content["user_name"] = Poopget.user_name;
-            content["title"] = Poopget.title;
-            content["text"] = Poopget.text;
-            content["img"] = Poopget.img;
-            content["comment"] = Poopget.comment;
-            poops.push(content)
-        })
-        res.cookie('last_poop_time', `${Poopsget[number_each - 1].time}`, {
-            secure: true,
-            httpOnly: true,
-            path: '/app/poop',
-        })
-        res.status(200).send(JSON.stringify(poops));
+        if (!Poopsget){
+            res.status(200).send(JSON.stringify(-1));
+        }
+        else{
+            Poopsget.forEach(Poopget => {
+                if (err) throw err;
+                if (DEF_DEBUG) {
+                    console.log("+++++++++-----------");
+                    console.log(Poopget);
+                }
+                let content = {};
+                content["id"] = Poopget._id;
+                content["time"] = Poopget.time;
+                content["user_name"] = Poopget.user_name;
+                content["title"] = Poopget.title;
+                content["text"] = Poopget.text;
+                content["img"] = Poopget.img;
+                content["comment"] = Poopget.comment;
+                poops.push(content)
+            })
+            if (Poopsget.length == number_each){
+                res.cookie('last_poop_time', `${Poopsget[number_each - 1].time}`, {
+                    secure: true,
+                    httpOnly: true,
+                    path: '/app/poop',
+                })
+            }else{
+                res.cookie('last_poop_time', `${new Date(1970, 7, 7)}`, {
+                    secure: true,
+                    httpOnly: true,
+                    path: '/app/poop',
+                })
+            }        
+            res.status(200).send(JSON.stringify(poops));
+        }
+        
     })
 });
 
