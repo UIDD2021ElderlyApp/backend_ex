@@ -33,7 +33,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 && !(PersonOnMapget.user_name === user_name)) {
                 let content = {};
                 content["id"] = PersonOnMapget._id;
-                content["user_name"] = PersonOnMapget.user_name;
+                content["name"] = PersonOnMapget.name;
                 content["animal"] = PersonOnMapget.animal;
                 content["position"] = {
                     "lat": PersonOnMapget.position.get('lat'),
@@ -136,6 +136,6 @@ function getDistance(lat1, lon1, lat2, lon2, unit) {
 		dist = dist * 60 * 1.1515;
 		if (unit=="K") { dist = dist * 1.609344 }
 		if (unit=="N") { dist = dist * 0.8684 }
-		return dist*400;
+		return dist*40;
 	}
 }
