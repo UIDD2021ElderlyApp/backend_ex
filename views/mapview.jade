@@ -87,23 +87,7 @@ html
       now_lng = e.latlng.lng;
       var radius = e.accuracy / 2;
       var popupContent = "You are within " + radius + " meters from this point";
-      if (gpsMarker == null) {
-      if(animal_id==1){
-      gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
-      }
-      if(animal_id==2){
-      gpsMarker = L.marker(e.latlng, { icon: customIcon2 }).addTo(map);
-      }
-      if(animal_id==3){
-      gpsMarker = L.marker(e.latlng, { icon: customIcon3 }).addTo(map);
-      }
-      if(animal_id==-1){
-      gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
-      }
-      gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
-      gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
-      }
-      else {
+      if (gpsMarker != null) {
       gpsMarker.getPopup().setContent(popupContent);
       gpsMarker.setLatLng(e.latlng);
       gpsCircleMarker.setLatLng(e.latlng);
@@ -167,6 +151,22 @@ html
       if (user) {
       var me = JSON.parse(user)
       animal_id=me.animal
+      if (gpsMarker == null) {
+      if (animal_id == 1) {
+      gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
+      }
+      if (animal_id == 2) {
+      gpsMarker = L.marker(e.latlng, { icon: customIcon2 }).addTo(map);
+      }
+      if (animal_id == 3) {
+      gpsMarker = L.marker(e.latlng, { icon: customIcon3 }).addTo(map);
+      }
+      if (animal_id == -1) {
+      gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
+      }
+      gpsMarker.bindPopup("You might be " + radius + " meters from this point").openPopup();
+      gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
+      }
       }
       }
       )
