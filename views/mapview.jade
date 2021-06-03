@@ -19,8 +19,7 @@ html
       }
     form#ajax-form
       button#exit_button
-        a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
-          img(src='../modular_folder/mapview/map2.png')
+        img(src='../modular_folder/mapview/map2.png')
     #hungun
       #distance
         bl#info
@@ -232,5 +231,10 @@ html
       }
       )
       }, 10000)
+      });
+      $("#exit_button").click(function(){
+      var re=/\\/ts\/poop/gi;
+      var newstr=window.href.replace(re,"/ts/home");
+      window.location.href=newstr;
       });
     script(src='https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js')
