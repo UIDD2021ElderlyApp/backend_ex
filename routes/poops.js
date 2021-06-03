@@ -21,7 +21,8 @@ router.use(cookies());
 
 
 router.get('/', function (req, res, next) {
-    if (!req.cookies.last_poop_time) {
+    var scroll = JSON.parse(req.query.scroll)
+    if (!scroll) {
         let date = Date(2077, 7, 7);
         req.cookies.last_poop_time = date;
     }
@@ -65,7 +66,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     var poop = req.body;
     var time = poop.time;
     //var id_time = poopget.id_time + 1;
-    var user_name = glob_user_obj.username;
+    var user_name = glob_user_obj.name;
     var title = poop.title;
     var text = poop.text;
     var img = poop.imgid;
@@ -119,7 +120,7 @@ router.post('/comment', ensureAuthenticated, function (req, res, next) {
     console.log("comment===>");
     console.log(req.body);
     var comment = req.body;
-    Poop.setPoopComment(comment.id, glob_user_obj.username, comment.time, comment.text, function (err) {
+    Poop.setPoopComment(comment.id, glob_user_obj.name, comment.time, comment.text, function (err) {
         if (err) { console.log(err); }
         res.status(200).send(JSON.stringify(err));
     });

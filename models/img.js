@@ -17,7 +17,7 @@ var ImgSchema = mongoose.Schema({
         type: String
     },
     content: {
-        type: Buffer
+        type: String
     }
 });
 
@@ -27,7 +27,7 @@ var Img = module.exports = mongoose.model('Img', ImgSchema);
 //function
 
 module.exports.getImgById = function (id, callback) {
-console.log("------->findImgById");
+    console.log("------->findImgById");
     Img.findById(stringsan.sanitize(id), callback);
     console.log(callback);
 }
@@ -40,8 +40,8 @@ module.exports.getImgByImgtitle = function (title, callback) {
 }
 
 module.exports.getMultiImgByUsername = function (user_name, time, number, callback) {
-    console.log("------->get'Multi'PoopByPooptime");
-    Poop.find({user_name: user_name,  time: { $lt: time } }, null , {sort:{ time: 'descending' }, limit: number }, callback);
+    console.log("------->get'Multi'ImgByUsername");
+    Img.find({ user_name: { $eq: user_name }, time: { $lt: time } }).sort({ time: 'descending' }).limit(number).exec(callback);
     console.log(callback);
 }
 

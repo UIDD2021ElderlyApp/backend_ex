@@ -15,10 +15,10 @@ var PersonalSchema = mongoose.Schema({
         type: Number
     },
     getup_time: {
-        type: Date
+        type: Array
     },
     sleep_time: {
-        type: Date
+        type: Array
     }
 
 });
@@ -52,6 +52,12 @@ module.exports.setPersonalsleep_time = function (user_name, sleep_time, callback
 }
 
 module.exports.getPersonal = function (user_name, callback) {
+    console.log("------->getPersonal");
+    var query = { user_name: { $eq: user_name } };
+    Personal.findOne(query, callback)
+}
+
+module.exports.getPersonalanimal = function (user_name, callback) {
     console.log("------->getPersonal");
     var query = { user_name: { $eq: user_name } };
     Personal.findOne(query, callback)

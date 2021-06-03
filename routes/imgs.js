@@ -16,7 +16,8 @@ router.get('/', /*ensureAuthenticated,*/ function (req, res, next) {
         console.log(glob_user_obj);
     }
     var user_name = glob_user_obj.username;*/
-    Img.getImgById(req.body.Id, function (err, Imgget) {
+
+    Img.getImgById(req.query.Id, function (err, Imgget) {
         res.status(200).send(JSON.stringify(Imgget));
     })
 
@@ -28,12 +29,13 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
         console.log(glob_user_obj);
     }
     var user_name = glob_user_obj.username;
-    if (!req.cookies.time) {
-        let date = new Date(2077, 7, 7);
-        req.cookies.last_img_time = date
+    query = JSON.parse(req.query.query)
+    if (!query.scroll) {
+        let date = new Date();
+        req.cookies.last_img_time = date 
     }
     var last_img_time = req.cookies.last_img_time
-    var number_of_img = req.body.number_of_img
+    var number_of_img = query.number_of_img
     var imgarray = []
     Img.getMultiImgByUsername(user_name, last_img_time, number_of_img, function (err, Imgsget) {
         Imgsget.forEach(Imgget => {

@@ -17,17 +17,15 @@ html
       position: relative;
       z-index: 1;
       }
-    button
+    button#exit_button
       a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
-        #exit_button
-          img(src='../modular_folder/mapview/map2.png')
-    a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
-      #hungun
-        #distance
-          bl#info
-          bl#info2
-          b1#info3(style='font-size: 100px')
-      #map
+        img(src='./map2.png')
+    #hungun
+      #distance
+        bl#info
+        bl#info2
+        b1#info3(style='font-size: 100px')
+    #map
     // Make sure you put this AFTER Leaflet's CSS
     script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
     script(language='JavaScript').

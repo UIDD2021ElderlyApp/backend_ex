@@ -3,38 +3,29 @@
   * user_name:同users裡的
   * name:同users裡的
   * animal:Number
-  * getup_time:Date
-  * sleep_time:Date
+  * getup_time: [hr , min] 24時制 ,預設[6, 00]
+  * sleep_time: [hr , min] 24時制 ,預設[22, 00]
 
-## 方法 ##
+# /app/personal/的相關方法
 
+> get /
+>>   
+>> res.status(200).send(JSON.stringify(Personget));
+**回傳所有東西(JSON)**
 
-> get: /app/personal/
+> post /create
+>> req.body.animal  
+>> res.status(200).send(JSON.stringify(id));
+**選完動物時使用，建立一筆資料，回傳ID**
 
-回傳所有東西(JSON)  
+> post /getup
+>> req.body.getup_time  
+>> res.send(200)
+**設定起床時間，回傳200**
 
-
-
-> post: /app/personal/create
-
-**選完動物時使用**
-建立一筆資料
-傳給後端req.body.animal
-回傳資料庫裡的id(JSON) 
-
-> post: /app/personal/getup
-
-傳給後端req.body.getup_time
-回傳200
-
-
-> post: /app/personal/sleep
- 
-傳給後端req.body.sleep_time
-回傳200
+> post /sleep
+>> req.body.sleep_time  
+>> res.send(200)
+**設定睡覺時間，回傳200**
 
   
-  
-  
-  
-   
