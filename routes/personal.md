@@ -18,11 +18,6 @@
 >> res.status(200).send(JSON.stringify(id));
 **選完動物時使用，建立一筆資料，回傳ID**
 
-> post /create
->> req.body.animal  
->> res.status(200).send(JSON.stringify(id));
-**選完動物時使用，建立一筆資料，回傳ID**
-
 > post /getup
 >> req.body.getup_time  
 >> res.send(200)
