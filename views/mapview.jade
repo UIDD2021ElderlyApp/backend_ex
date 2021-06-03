@@ -84,6 +84,16 @@ html
       var gpsMarker = null;
       var gpsCircleMarker;
       var user_name;
+<<<<<<< HEAD
+=======
+      setTimeout(function () {
+      $.get('/app/personal/', {
+      }, (user) => {
+      if (user) {
+      var me = JSON.parse(user)
+      animal_id = me.animal
+      user_name = me.name
+>>>>>>> ab9e6c04577832585de3c4f11aec7868e52a007a
       function onLocationFound(e) {
       console.log(e)
       now_lat = e.latlng.lat;
@@ -147,6 +157,10 @@ html
       console.log(distance2)
       distance1 += distance2;
       }
+      }
+      }
+      )
+      }, 0)
       var current;
       var last;
       var distance1;

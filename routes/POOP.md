@@ -2,8 +2,9 @@
 
 > get /
 >> req.query.scroll :{0 or 1}  
->>res.status(200).send(JSON.stringify(poops));
-**取3個**
+>> res.status(200).send(JSON.stringify(poops));  
+>> res.status(200).send(JSON.stringify(-1));
+**取3個,若沒東西則回傳-1**
 
 > post /
 >> req.body.time, req.body.title, req.body.text, req.body.img  
