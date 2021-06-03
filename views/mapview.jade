@@ -1,5 +1,6 @@
 html
   head
+    meta(charset='utf-8')
     link(href='../modular_folder/mapview/map2.css' rel='stylesheet' type='text/css')
   body
     link(rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==' crossorigin='')
@@ -36,7 +37,7 @@ html
       //document.getElementById('info2').innerHTML = s + 's';
       //setTimeout('ShowTime()', 1000);//decide max time
       }
-    script(src='https://code.jquery.com/jquery-3.3.1.min.js')      
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
     script.
       var NowDate;
       var s;
@@ -81,7 +82,7 @@ html
       });
       var gpsMarker = null;
       var gpsCircleMarker;
-      function onLocationFound(e) {
+      var user_name;
       setTimeout(function () {
       $.get('/app/personal/', {
       }, (user) => {
@@ -89,10 +90,7 @@ html
       var me = JSON.parse(user)
       animal_id = me.animal
       user_name = me.name
-      }
-      }
-      )
-      }, 0)
+      function onLocationFound(e) {
       console.log(e)
       now_lat = e.latlng.lat;
       now_lng = e.latlng.lng;
@@ -144,6 +142,10 @@ html
       console.log(distance2)
       distance1 += distance2;
       }
+      }
+      }
+      )
+      }, 0)
       var current;
       var last;
       var distance1;
@@ -158,10 +160,9 @@ html
       console.log(distance1)
       console.log(distance2)
       console.log(last)
-      console.log("hhh")
       console.log(current)
       document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
-      }, 6000);
+      }, 2000);
       function onLocationError(e) {
       alert(e.message);
       }
@@ -180,7 +181,7 @@ html
       setInterval(function () {
       $.get('/app/PeopleOnMap/', {
       distance: search_radius,
-      position: JSON.stringify({"lat": now_lat, "lng": now_lng})
+      position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
       }, (People) => {
       if (People) {
       var people = JSON.parse(People)
@@ -201,19 +202,19 @@ html
       var temp_latlng = L.latLng(people[i].position.lat, people[i].position.lng);
       if (people[i].animal == 1) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon1 }).addTo(map);
-      gpsMarker.bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(people[i].name).openPopup();
       }
       if (people[i].animal == 2) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon2 }).addTo(map);
-      gpsMarker.bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(people[i].name).openPopup();
       }
       if (people[i].animal == 3) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon3 }).addTo(map);
-      gpsMarker.bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(people[i].name).openPopup();
       }
       if (people[i].animal == -1) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon_1 }).addTo(map);
-      gpsMarker.bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(people[i].name).openPopup();
       }
       }
       }
@@ -223,7 +224,7 @@ html
       setInterval(function () {
       $.post('/app/PeopleOnMap/', {
       animal: animal_id,
-      position: JSON.stringify({"lat": now_lat, "lng": now_lng})
+      position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
       }, (id) => {
       if (id) {
       //不一定用的到
@@ -232,9 +233,10 @@ html
       )
       }, 10000)
       });
-      $("#exit_button").click(function(){
-      var re=/\\/ts\/mapview/gi;
-      var newstr=window.href.replace(re,"/ts/home");
-      window.location.href=newstr;
+      $("#exit_button").click(function () {
+      var re = /\/ts\/poop/gi;
+      var newstr = window.href.replace(re, "/ts/home");
+      window.location.href = newstr;
       });
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
     script(src='https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js')
