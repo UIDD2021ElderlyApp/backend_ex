@@ -137,11 +137,11 @@ app.get('/manifest.json', function (req, res, next) {
   res.status(200).json({
       "name": "Old friend",
       "short_name": "Old friend",
-      "start_url": "https://luffy.ee.ncku.edu.tw:"+app.locals.port_http+"/ts/home",
+      "start_url": "https://luffy.ee.ncku.edu.tw:"+app.locals.port_https+"/ts/home",
       "display": "standalone",
       "orientation": "portrait",
       "icons": [{
-        "src": "./weblogo.png",
+        "src": "./modular_folder/pwa/weblogo.png",
         "sizes": "374x374",
         "type": "image/png"
       }]
