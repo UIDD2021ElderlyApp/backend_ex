@@ -43,6 +43,8 @@ router.post('/create', ensureAuthenticated, function (req, res, next) {
         user_name: user_name,
         name: name,
         animal: animal,
+        getup_time:  [6, 00],
+        sleep_time:  [22, 00]
     });
     Person.createPersonal(newPerson, function (err, newPerson) {
         if (err) throw err;
