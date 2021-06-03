@@ -105,8 +105,8 @@ function ensureAuthenticated(req, res, next) {
 function getAnimal(req, res, next) {
     Person.getPersonal(glob_user_obj.username, function (err, Personget) {
         animal = Personget.animal
-    })
-    return next();
+        return next();
+    })    
 }
 
 module.exports = router;
@@ -131,6 +131,6 @@ function getDistance(lat1, lon1, lat2, lon2, unit) {
 		dist = dist * 60 * 1.1515;
 		if (unit=="K") { dist = dist * 1.609344 }
 		if (unit=="N") { dist = dist * 0.8684 }
-		return dist;
+		return dist*400;
 	}
 }
