@@ -21,7 +21,8 @@ router.use(cookies());
 
 
 router.get('/', function (req, res, next) {
-    if (!req.query.scroll) {
+    var scroll = JSON.parse(req.query.scroll)
+    if (!scroll) {
         let date = Date(2077, 7, 7);
         req.cookies.last_poop_time = date;
     }
