@@ -41,6 +41,28 @@ block content_body
     //,style="display:none;"
     //input.btn.btn-primary(type='submit', name='submit', value='thisisavaluebutitseemstobeignored')
     a#passworddriventimeoriented(style="display:none;") #{ successes }
+    button#add_an_user add_an_user
+    form(method='post', action='/users/register', enctype='multipart/form-data')
+      .form-group
+      label Name
+      input.form-control(name='name', type='text', placeholder='Enter name')
+      .form-group
+      label Email   
+      input.form-control(name='email', type='email', placeholder='Enter email')
+      .form-group
+      label Username
+      input.form-control(name='username', type='text', placeholder='Enter username')
+      .form-group   
+      label Password
+      input.form-control(name='password', type='password', placeholder='Enter password')
+      .form-group   
+      label Confirm Password
+      input.form-control(name='password2', type='password', placeholder='Confirm password')
+      .form-group     
+      label Profile Image
+      input.form-control(name='profileimage', type='file')
+      .form-group
+      input.btn.btn-primary(type='submit', name='submit', value='Register')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js')
