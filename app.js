@@ -40,6 +40,7 @@ var tsfeed = require('./routes/tsfeed');
 var timedoutdoorlock = require('./routes/timedoutdoorlock');
 var facebooklogin_withpasspord_nogui = require('./routes/facebooklogin_withpasspord_nogui');
 var pwa = require('./routes/pwa');
+var ga = require('./routes/ga');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -168,6 +169,7 @@ app.use('/ts/feed', tsfeed);
 app.use('/timedoutdoorlock', timedoutdoorlock);
 app.use('/auth', facebooklogin_withpasspord_nogui);
 app.use('/pwa', pwa);
+app.use('/ga',ga);
 
 ////////////////////////////////////////////////////
 

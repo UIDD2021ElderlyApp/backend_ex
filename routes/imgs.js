@@ -23,6 +23,20 @@ router.get('/', /*ensureAuthenticated,*/ function (req, res, next) {
 
 });
 
+router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
+    /*if (DEF_DEBUG) {
+        console.log("+++++++++");
+        console.log(glob_user_obj);
+    }
+    var user_name = glob_user_obj.username;*/
+
+    Img.getImgById(req.query.Id, function (err, Imgget) {
+        res.status(200).res.sendFile(Imgget.content);
+
+    })
+
+});
+
 router.get('/gallery', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
@@ -69,15 +83,15 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     }
     console.log(req.body);
     var img = req.body;
-    var time = img.time;
+    //var time = img.time;
     var user_name = glob_user_obj.username;
-    var title = img.title;
+    var title = glob_user_obj.username.toString()+Date.now().toString()+".jpg";
     var content = img.content;
 
     var error_msg_res = {};
-    if (empty(time)) {
+    /*if (empty(time)) {
         error_msg_res["time"] = "empty";
-    }
+    }*/
     if (empty(content)) {
         error_msg_res["content"] = "empty";
     }
@@ -98,7 +112,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         });
     } else {
         var newImg = new Img({
-            time: time,
+            time: Date.now().toString(),
             user_name: user_name,
             title: title,
             content: content

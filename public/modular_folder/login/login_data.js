@@ -80,12 +80,29 @@ function login_button_click() {
             window.location.href = newstr;
         })
     }
+}
 
-
+function add_an_user() {
+    $.post("/user/register", {
+        name: "name",
+        password: pasw,
+        email: "email@email.com",
+        username: Date.now().toString(),
+        password = "psw",
+        password2 = "psw"
+    }, (objects_returned_by_the_server) => {
+        if (DEF_DEBUG) {
+            console.log(objects_returned_by_the_server);
+        }
+        var re = /\/users\/login/gi;
+        var newstr = window.location.href.replace(re, objects_returned_by_the_server);
+        window.location.href = newstr;
+    })
 }
 
 jQuery(function dom_ready(dom_ready_params) {
     document.getElementById("login_button").addEventListener("click", login_button_click);
+    document.getElementById("add_an_user").addEventListener("click", add_an_user);
     /*require(["bcrypt"], function (bcrypt) {
         bcrypt.genSalt(10, function (err, salt) {
             console.log(salt);
