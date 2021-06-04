@@ -47,6 +47,7 @@ router.get('/', function (req, res, next) {
                 content["id"] = Poopget._id;
                 content["time"] = Poopget.time;
                 content["user_name"] = Poopget.user_name;
+                content["username"] = Poopget.username;
                 content["title"] = Poopget.title;
                 content["text"] = Poopget.text;
                 content["img"] = Poopget.img;
@@ -82,6 +83,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     var time = poop.time;
     //var id_time = poopget.id_time + 1;
     var user_name = glob_user_obj.name;
+    var username = glob_user_obj.username;
     var title = poop.title;
     var text = poop.text;
     var img = poop.imgid;
@@ -96,6 +98,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         console.log(time);
         //console.log(id_time);
         console.log(user_name);
+        console.log(username);
         console.log(title);
         console.log(text);
         console.log(img);
@@ -112,6 +115,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
             time: time,
             //id_time: id_time,
             user_name: user_name,
+            username: username,
             title: title,
             text: text,
             img: img,
@@ -135,7 +139,7 @@ router.post('/comment', ensureAuthenticated, function (req, res, next) {
     console.log("comment===>");
     console.log(req.body);
     var comment = req.body;
-    Poop.setPoopComment(comment.id, glob_user_obj.name, comment.time, comment.text, function (err) {
+    Poop.setPoopComment(comment.id, glob_user_obj.name, glob_user_obj.username, comment.time, comment.text, function (err) {
         if (err) { console.log(err); }
         res.status(200).send(JSON.stringify(err));
     });
@@ -160,6 +164,7 @@ router.get('/byId', function (req, res, next) {
             content["id"] = Poopget._id;
             content["time"] = Poopget.time;
             content["user_name"] = Poopget.user_name;
+            content["username"] = Poopget.username;
             content["title"] = Poopget.title;
             content["text"] = Poopget.text;
             content["img"] = Poopget.img;

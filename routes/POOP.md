@@ -1,5 +1,10 @@
 # /app/poop/的相關方法
 
+**新增username**
+注意 user_name是人名
+注意 username是編號
+
+
 **這是最新的**
 > get /
 >> req.query.query: JSON.stringify({"scroll": true/false, "number_of_poop": number})  
