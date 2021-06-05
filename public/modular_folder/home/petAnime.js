@@ -3,6 +3,7 @@ var config = {
     parent: 'pet',
     width: 210,
     height: 200,
+    transparent: true,
     scene: {
         preload: preload,
         create: create
