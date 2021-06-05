@@ -18,7 +18,7 @@ function preload ()
 
 function create ()
 {
-    this.player = this.add.sprite(29.554,27.275,'pet1')
+    this.player = this.add.sprite(180,180,'pet1')
     this.player.scaleX = 6
     this.player.scaleY = 6
     this.anims.create({
