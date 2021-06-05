@@ -71,7 +71,7 @@ router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
 router.get('/gallery', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     var user_name = glob_user_obj.username;
     var imgtitlearray = []
@@ -96,7 +96,7 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
 
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     //console.log(req.body);
     //var img = req.body;
@@ -156,7 +156,7 @@ function set_compress_ratio(query_without_jpg) {
     let compressratio;
     console.log("set_compress_ratio for :" + query_without_jpg)
 
-    if (query_without_jpg[1]  === undefined)
+    if (query_without_jpg[1] === undefined)
         compressratio = 1
     else
         switch (query_without_jpg[2]) {

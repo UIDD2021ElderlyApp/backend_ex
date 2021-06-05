@@ -76,9 +76,9 @@ router.get('/', function (req, res, next) {
 router.post('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
-    console.log(req.body);
+    console.log("req.body :" + req.body);
     var poop = req.body;
     var time = poop.time;
     //var id_time = poopget.id_time + 1;
@@ -123,6 +123,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         });
         Poop.createPoop(newPoop, function (err, newPoop) {
             if (err) throw err;
+            console.log("newPoop :");
             console.log(newPoop);
             var id = {};
             id["id"] = newPoop._id;
@@ -134,7 +135,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
 router.post('/comment', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     console.log("comment===>");
     console.log(req.body);
