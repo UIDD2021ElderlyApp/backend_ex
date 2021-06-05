@@ -80,3 +80,9 @@ module.exports.findOrCreate = function (newUser, callback) {
         }
     })
 };
+
+module.exports.getanotheruser = function (username, callback) {
+    var query = { username: { $eq: username }};
+    User.findOne(query, 'profileimage', callback);
+    console.log(callback);
+}

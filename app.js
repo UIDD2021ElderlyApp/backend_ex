@@ -53,6 +53,7 @@ var dailymissionRouter = require('./routes/dailymission')
 var imgRouter = require('./routes/imgs')
 var personalRouter = require('./routes/personal')
 var peopleonmapRouter = require('./routes/PeopleOnMap')
+var profileimageRouter = require('./routes/profileimage')
 /*----------------------------------------------------*/
 
 var app = express();
@@ -183,6 +184,7 @@ app.use('/app/dailymission', dailymissionRouter);
 app.use('/app/img', imgRouter);
 app.use('/app/personal', personalRouter);
 app.use('/app/PeopleOnMap', peopleonmapRouter)
+app.use('/app/profileimage', profileimageRouter)
 ///////////////////////////////////////////////////////
 
 
