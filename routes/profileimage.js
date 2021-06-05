@@ -97,7 +97,7 @@ function set_compress_ratio(query_without_jpg) {
     let compressratio;
     console.log("set_compress_ratio for :" + query_without_jpg)
 
-    if (query_without_jpg[1] == 'undefined')
+    if (query_without_jpg[1] === undefined)
         compressratio = 1
     else
         switch (query_without_jpg[2]) {
