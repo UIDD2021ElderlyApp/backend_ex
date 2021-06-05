@@ -1,8 +1,8 @@
 var config = {
     type: Phaser.AUTO,
     parent: 'pet',
-    width: 59.108,
-    height: 54.55,
+    width: 360,
+    height: 360,
     scene: {
         preload: preload,
         create: create
@@ -13,7 +13,7 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.spritesheet('pet1', './pet1.png',{frameWidth:59.108,frameHeight:54.55})
+    this.load.spritesheet('pet1', '../modular_folder/home/pet1.png',{frameWidth:59.108,frameHeight:54.55})
 }
 
 function create ()
