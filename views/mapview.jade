@@ -97,6 +97,13 @@ html
       now_lng = e.latlng.lng;
       var radius = e.accuracy / 2;
       var popupContent = "You are within " + radius + " meters from this point";
+      setTimeout(function () {
+      $.get('/app/personal/', {
+      }, (user) => {
+      if (user) {
+      var me = JSON.parse(user)
+      animal_id = me.animal
+      user_name = me.name
       if (gpsMarker == null) {
       if (animal_id == 1) {
       gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
@@ -114,11 +121,15 @@ html
       gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
       }
       if (gpsMarker != null) {
-      gpsMarker.getPopup().setContent(popupContent);
+      gpsMarker.getPopup().setContent(user_name);
       gpsMarker.setLatLng(e.latlng);
       gpsCircleMarker.setLatLng(e.latlng);
       gpsCircleMarker.setRadius(radius);
       }
+      }
+      }
+      )
+      }, 0)
       //document.getElementById('info').innerHTML = `you are at ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
       ShowTime()
       var marker = L.marker(L.latLng(22.9998, 120.215));
@@ -234,5 +245,4 @@ html
       )
       }, 10000)
       });
-    script(src='https://code.jquery.com/jquery-3.3.1.min.js')
     script(src='https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js')
