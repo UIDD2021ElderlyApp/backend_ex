@@ -26,10 +26,9 @@
             z-index: 1;
         }
     </style>
-    <button><a href="https://luffy.ee.ncku.edu.tw:38443/ts/home">
-            <div id="btn">
-                <img src="./map2.png">
-            </div>
+    <button id="btn" >
+            <a href="https://luffy.ee.ncku.edu.tw:38443/ts/home">
+            <img src="./map2.png"></a>
     </button>
     <div id="hungun">
 
@@ -73,7 +72,7 @@
         var now_lng;
         var marker_array = new Array;
 
-        var animal_id = 3;
+        var animal_id = 2;
 
         map = L.map('map').setView([22.5, 120.5], 15);//construct map
         map.locate({ setView: true, watch: true, enableHighAccuracy: true });
@@ -216,7 +215,7 @@
             setInterval(function () {
                 $.get('/app/PeopleOnMap/', {
                     distance: search_radius,
-                    position: JSON.stringify({"lat": now_lat, "lng": now_lng})
+                    position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
                 }, (People) => {
                     if (People) {
                         var people = JSON.parse(People)
@@ -257,7 +256,7 @@
             setInterval(function () {
                 $.post('/app/PeopleOnMap/', {
                     animal: animal_id,
-                    position: JSON.stringify({"lat": now_lat, "lng": now_lng})
+                    position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
                 }, (id) => {
                     if (id) {
                         //不一定用的到

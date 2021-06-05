@@ -1,22 +1,36 @@
 #!/usr/bin/env node
 
+var myArgs = process.argv.slice(2);
+
 /**
  * Module dependencies.
  */
 
-var app = require('../app');
-var apps = require('../app');
-var debug = require('debug')('pixitest:server');
+var debug = require('debug')('server'), debugs = require('debug')('httpsServer');
 var http = require('http');
+const fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '30087');
+var port = normalizePort(process.env.PORT || (myArgs).length != 2 || ((myArgs).length == 2 && !isNumeric(myArgs[0])) ? '30087' : myArgs[0]);
+var ports = normalizePort(process.env.PORT || (myArgs).length != 2 || ((myArgs).length == 2 && !isNumeric(myArgs[1])) ? '38443' : myArgs[1]);
+
+const Variouskeys = './Variouskeys';
+if (fs.existsSync(Variouskeys)) {
+  console.log('Variouskeys exists!');
+  fs.writeFileSync('./Variouskeys/.tmp_port.json', JSON.stringify({port_http:port,port_https:ports}));
+} else {
+  console.log('Variouskeys not found.');
+}
+
+var app = require('../app');
+var apps = require('../app');
 app.set('port', port);
-var ports = normalizePort(process.env.PORT || '38443');
 apps.set('port', ports);
+app.locals.port_http=port;
+apps.locals.port_https=ports;
 
 /**
  * Create HTTP server.
@@ -26,15 +40,15 @@ var server = http.createServer(app);
 
 
 //=========================================
-var fs = require('fs')
-var privateKey  = fs.readFileSync("/home/yichung/ssl/private.key");
+//var fs = require('fs')
+var privateKey = fs.readFileSync("/home/yichung/ssl/private.key");
 var certificate = fs.readFileSync("/home/yichung/ssl/certificate.crt");
-var credentials = { key: privateKey, cert: certificate};
+var credentials = { key: privateKey, cert: certificate };
 var https = require('https');
-var httpsServer = https.createServer(credentials ,app);
+var httpsServer = https.createServer(credentials, app);
 httpsServer.listen(ports);
-httpsServer.on('error', onError);
-httpsServer.on('listening', onListening);
+httpsServer.on('error', onErrors);
+httpsServer.on('listening', onListenings);
 //=========================================
 
 
@@ -71,6 +85,7 @@ function normalizePort(val) {
  */
 
 function onError(error) {
+  console.log("http onError");
   if (error.syscall !== 'listen') {
     throw error;
   }
@@ -94,6 +109,31 @@ function onError(error) {
   }
 }
 
+function onErrors(errors) {
+  console.log("https onError");
+  if (errors.syscall !== 'listen') {
+    throw errors;
+  }
+
+  var bind = typeof ports === 'string'
+    ? 'Pipe ' + ports
+    : 'Port ' + ports;
+
+  // handle specific listen errors with friendly messages
+  switch (errors.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
 /**
  * Event listener for HTTP server "listening" event.
  */
@@ -104,4 +144,18 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+}
+
+function onListenings() {
+  var addr = httpsServer.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debugs('Listening on ' + bind);
+}
+
+function isNumeric(str) {
+  if (typeof str != "string") return false // we only process strings!  
+  return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
+    !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }

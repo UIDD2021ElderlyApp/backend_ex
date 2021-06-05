@@ -1,16 +1,60 @@
 var express = require('express');
 var router = express.Router();
+var multer = require('multer');
+const storage = multer.memoryStorage();
+var upload = multer({ storage: storage, limits: { /*fields: 1, */fileSize: 6000000, files: 1/*, parts: 2 */ } });
 var empty = require('is-empty');
 
 var Img = require('../models/img');
+const sharp = require('sharp');
 
 var DEF_DEBUG = true;
 var glob_user_obj;
 
-var cookies = require('cookie-parser');
-router.use(cookies());
+router.get('/', function (req, res, next) {
 
-router.get('/', /*ensureAuthenticated,*/ function (req, res, next) {
+    var query_without_jpg = req.query.title.split(".")[0];//去掉.jpg
+    var file_format = req.query.title.split(".")[1];//jpg
+    query_without_jpg = query_without_jpg.split("_");//['abc123', 'tb', 'b']
+    console.log("query_without_jpg :" + query_without_jpg)
+    console.log("file_format :" + file_format)
+    var title = query_without_jpg[0] + "." + file_format//'abc123.jpg'
+
+    Img.getImgByImgtitle(title, function (err, Imgget) {
+        if (Imgget == null) {
+            res.status(200).send("-1")
+        }
+        else {
+            console.log(`image/${set_Content_Type(file_format)}`)
+            console.log("Imgget :" + Imgget._id)
+            const img = new Buffer.from(Imgget.content, 'base64');
+            const image = sharp(img)
+            image
+                .metadata()
+                .then(metadata => {
+                    const compress_ratio = set_compress_ratio(query_without_jpg)
+                    console.log("compress_ratio is :" + compress_ratio)
+                    return image
+                        .resize({
+                            width: Math.round(metadata.width * compress_ratio),
+                            height: Math.round(metadata.height * compress_ratio)
+                        })
+                        .toBuffer();
+                })
+                .then(data => {
+                    //res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })//有問題
+                    res.type(`${set_Content_Type(file_format)}`)
+                    res.status(200)
+                    res.send(data)
+                })
+                .catch(err => { throw err });
+        }
+
+    })
+
+});
+
+router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
     /*if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log(glob_user_obj);
@@ -18,7 +62,8 @@ router.get('/', /*ensureAuthenticated,*/ function (req, res, next) {
     var user_name = glob_user_obj.username;*/
 
     Img.getImgById(req.query.Id, function (err, Imgget) {
-        res.status(200).send(JSON.stringify(Imgget));
+        res.status(200).res.sendFile(Imgget.content);
+
     })
 
 });
@@ -29,55 +74,41 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
         console.log(glob_user_obj);
     }
     var user_name = glob_user_obj.username;
-    query = JSON.parse(req.query.query)
-    if (!query.scroll) {
-        let date = new Date();
-        req.cookies.last_img_time = date 
-    }
-    var last_img_time = req.cookies.last_img_time
-    var number_of_img = query.number_of_img
-    var imgarray = []
-    Img.getMultiImgByUsername(user_name, last_img_time, number_of_img, function (err, Imgsget) {
+    var imgtitlearray = []
+    Img.getMultiImgByUsername(user_name, function (err, Imgsget) {
         Imgsget.forEach(Imgget => {
             if (err) throw err;
             if (DEF_DEBUG) {
                 console.log("+++++++++-----------");
-                console.log(Imgget);
+                console.log(Imgget.title);
             }
-            let content = {};
-            content["id"] = Imgget._id;
-            content["time"] = Imgget.time;
-            content["user_name"] = Imgget.user_name;
-            content["title"] = Imgget.title;
-            content["content"] = Imgget.content;
-            imgarray.push(content)
+            imgtitlearray.push(Imgget.title)
         })
-        res.cookie('last_img_time', `${Imgsget[number_of_img - 1].time}`, {
-            secure: true,
-            httpOnly: true,
-            path: '/app/img/gallery',
-        })
-        res.status(200).send(JSON.stringify(imgarray));
+        res.status(200).send(JSON.stringify(imgtitlearray));
     })
 
 });
 
-router.post('/', ensureAuthenticated, function (req, res, next) {
+router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, next) {
+
+    //console.log(req.file.buffer.toString('base64'));
+    var content = req.file.buffer.toString('base64');
+
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log(glob_user_obj);
     }
-    console.log(req.body);
-    var img = req.body;
-    var time = img.time;
+    //console.log(req.body);
+    //var img = req.body;
+    //var time = img.time;
     var user_name = glob_user_obj.username;
-    var title = img.title;
-    var content = img.content;
+    var title = glob_user_obj.username.toString() + Date.now().toString() + ".jpg";
+    //var content = img.content;
 
     var error_msg_res = {};
-    if (empty(time)) {
+    /*if (empty(time)) {
         error_msg_res["time"] = "empty";
-    }
+    }*/
     if (empty(content)) {
         error_msg_res["content"] = "empty";
     }
@@ -87,7 +118,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         console.log(time);
         console.log(user_name);
         console.log(title);
-        console.log(content);
+        //console.log(content);
         console.log(error_msg_res);
     }
 
@@ -98,7 +129,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         });
     } else {
         var newImg = new Img({
-            time: time,
+            time: Date.now().toString(),
             user_name: user_name,
             title: title,
             content: content
@@ -107,7 +138,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
             if (err) throw err;
             console.log(newImg);
             var id = {};
-            id["id"] = newImg._id;
+            id["img_title"] = title;
             res.status(200).send(JSON.stringify(id));
         });
     }
@@ -121,6 +152,56 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/users/login');
 }
 
+function set_compress_ratio(query_without_jpg) {
+    let compressratio;
+    console.log("set_compress_ratio for :" + query_without_jpg)
+
+    if (query_without_jpg[1]  === undefined)
+        compressratio = 1
+    else
+        switch (query_without_jpg[2]) {
+            case 'b':
+                compressratio = 0.96
+                break;
+            case 'z':
+                compressratio = 0.8
+                break;
+            case 'n':
+                compressratio = 0.48
+                break;
+            case 'm':
+                compressratio = 0.32
+                break;
+            case 't':
+                compressratio = 0.16
+                break;
+            default:
+                compressratio = 0.64
+        }
+
+    return compressratio
+}
+
+function set_Content_Type(output_file_format) {
+
+    let Content_Type;
+    console.log("set_Content_Type for :" + output_file_format)
+
+    switch (output_file_format) {
+        case 'jpg':
+            Content_Type = 'jpg'
+            break;
+        case 'png':
+            Content_Type = 'png'
+            break;
+        default:
+            Content_Type = 'jpg'
+    }
+
+    console.log("set_Content_Type is :" + Content_Type)
+    return Content_Type
+}
+
 module.exports = router;
 
 
@@ -131,20 +212,20 @@ router.delete('/', function (req, res, next) {
         res.status(200).send();
     });
 });
- 
- 
+
+
 router.get('/one', function (req, res, next) {
-    var img = JSON.parse(req.body.img) 
+    var img = JSON.parse(req.body.img)
     Img.getImgByImgtime(img.time, function (err, Imgget) {
         if (err) throw err;
         if (!Imgget) {
           return done(null, false, { message: 'Unknown Img' });
         }
-        console.log(Imgget);        
+        console.log(Imgget);
         var content = {};
         content["title"]  =Imgget.title;
         content["text"]  =Imgget.text;
         res.status(200).send(content);
-    });    
+    });
 });
 */

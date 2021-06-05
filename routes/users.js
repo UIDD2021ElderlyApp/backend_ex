@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var multer = require('multer');
-var upload = multer({ dest: './uploads' });
+const storage = multer.memoryStorage();
+var upload = multer({ storage: storage, limits: { /*fields: 1, */fileSize: 6000000, files: 1/*, parts: 2 */ } });
 var empty = require('is-empty');
 var Isemail = require('isemail');
 var isEqual = require('is-equal');
@@ -55,6 +56,9 @@ router.get('/login', function routergetlogin(req, res, next) {
 
 //POST request to register
 router.post('/register', upload.single('profileimage'), function (req, res, next) {
+
+  //console.log(req.file.buffer.toString('base64'));
+  var profileimage=req.file.buffer.toString('base64');
   //using multer
   var name = req.body.name;
   var email = req.body.email;
@@ -88,14 +92,14 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
   }
 
   //console.log(req.file); //show uploaded image info.
-  if (req.file) {
+  /*if (req.file) {
     console.log('Uploading File...');
     var profileimage = req.file.filename;
   } else {
     console.log('No File Uploaded...');
     var profileimage = 'noimage.jpg'; //use default image
     error_msg_res["profileimage"] = "empty";
-  }
+  }*/
 
   console.log(error_msg_res);
   if (!empty(error_msg_res)) {

@@ -57,3 +57,10 @@ module.exports.setPersonOnMapPosition = function (time, user_name, position, cal
 
 }
 
+module.exports.deletePersonOnMapByuser_name = function (user_name, callback) {
+    console.log("------->deletePersonOnMapByuser_name");
+    var query = { user_name: { $eq: user_name } };
+    PersonOnMap.deleteOne(query, callback);
+    console.log(callback);
+}
+

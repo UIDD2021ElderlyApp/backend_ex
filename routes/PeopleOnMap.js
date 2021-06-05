@@ -33,7 +33,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 && !(PersonOnMapget.user_name === user_name)) {
                 let content = {};
                 content["id"] = PersonOnMapget._id;
-                content["user_name"] = PersonOnMapget.user_name;
+                content["name"] = PersonOnMapget.name;
                 content["animal"] = PersonOnMapget.animal;
                 content["position"] = {
                     "lat": PersonOnMapget.position.get('lat'),
@@ -46,8 +46,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
     })
 });
 
-var animal
-router.post('/', ensureAuthenticated, getAnimal ,function (req, res, next) {
+
+router.post('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log(glob_user_obj);
@@ -57,7 +57,7 @@ router.post('/', ensureAuthenticated, getAnimal ,function (req, res, next) {
     var user_name = glob_user_obj.username;
     var name = glob_user_obj.name;
     var time = new Date().getTime();
-    //var animal = Person.animal;
+    var animal = Person.animal;
     var position = JSON.parse(Person.position);
 
     if (DEF_DEBUG) {
@@ -93,6 +93,18 @@ router.post('/', ensureAuthenticated, getAnimal ,function (req, res, next) {
     })
 });
 
+router.post('/deleteme', ensureAuthenticated, function (req, res, next) {
+    if (DEF_DEBUG) {
+        console.log("+++++++++");
+        console.log(glob_user_obj);
+    }
+    var user_name = glob_user_obj.username;
+    PersonOnMap.deletePersonOnMapByuser_name(user_name, function (err) {
+        if (err) throw err;
+        res.send(200)
+    });
+});
+
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
@@ -100,13 +112,6 @@ function ensureAuthenticated(req, res, next) {
         return next();
     }
     res.redirect('/users/login');
-}
-
-function getAnimal(req, res, next) {
-    Person.getPersonal(glob_user_obj.username, function (err, Personget) {
-        animal = Personget.animal
-    })
-    return next();
 }
 
 module.exports = router;
@@ -131,6 +136,6 @@ function getDistance(lat1, lon1, lat2, lon2, unit) {
 		dist = dist * 60 * 1.1515;
 		if (unit=="K") { dist = dist * 1.609344 }
 		if (unit=="N") { dist = dist * 0.8684 }
-		return dist;
+		return dist*40;
 	}
 }

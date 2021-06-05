@@ -11,7 +11,7 @@ var ImgSchema = mongoose.Schema({
         type: String
     },
     time: {
-        type: Date
+        type: String
     },
     title: {
         type: String
@@ -34,14 +34,14 @@ module.exports.getImgById = function (id, callback) {
 
 module.exports.getImgByImgtitle = function (title, callback) {
     console.log("------->getImgByImgtitle");
-    var query = { title: title };
+    var query = { title: { $eq: title }};
     Img.findOne(query, callback);
     console.log(callback);
 }
 
-module.exports.getMultiImgByUsername = function (user_name, time, number, callback) {
+module.exports.getMultiImgByUsername = function (user_name, callback) {
     console.log("------->get'Multi'ImgByUsername");
-    Img.find({ user_name: { $eq: user_name }, time: { $lt: time } }).sort({ time: 'descending' }).limit(number).exec(callback);
+    Img.find({ user_name: { $eq: user_name }}).exec(callback);
     console.log(callback);
 }
 

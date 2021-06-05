@@ -13,8 +13,11 @@
     "debug": "~2.6.9",
     "express": "~4.17.1",
     "express-messages": "*",
+    "express-rate-limit": "*",
     "express-session": "*",
     "express-validator": "*",
+    "frontend-dependencies": "*",
+    "html2canvas": "^1.0.0-rc.7",
     "http-errors": "~1.6.3",
     "is-empty": "^1.2.0",
     "is-equal": "^1.6.1",
@@ -29,12 +32,10 @@
     "passport-facebook": "*",
     "passport-http": "*",
     "passport-local": "*",
-    "serve-favicon": "^2.5.0",
     "randomstring": "*",
-    "frontend-dependencies": "*",
-    "html2canvas": "1.0.0-rc.7",
-    "express-rate-limit": "*",
-    "string-sanitizer": "*"
+    "serve-favicon": "^2.5.0",
+    "sharp": "^0.28.3",
+    "string-sanitizer": "^1.1.1"
   },
   "devDependencies": {
     "html-loader": "^2.1.2",

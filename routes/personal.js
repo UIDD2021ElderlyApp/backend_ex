@@ -19,7 +19,20 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             console.log("+++++++++-----------");
             console.log(Personget);
         }
-        res.status(200).send(JSON.stringify(Personget));
+        if(Personget){
+            let person = {};
+            person["id"] = Personget._id;
+            person["user_name"] = Personget.user_name;
+            person["name"] = Personget.name;
+            person["animal"] = Personget.animal;
+            person["getup_time"] = Personget.getup_time;
+            person["sleep_time"] = Personget.sleep_time;
+            res.status(200).send(JSON.stringify(person));
+            console.log("+++++++++-----------");
+        }
+        else{
+            res.status(200).send(JSON.stringify(-1));
+        }        
     })
 });
 
