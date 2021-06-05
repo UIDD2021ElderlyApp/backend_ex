@@ -35,7 +35,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                     .toBuffer();
             })
             .then(data => {
-                res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })
+                //res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })//有問題
+                res.type(`${set_Content_Type(file_format)}`)
                 res.status(200)
                 res.send(data)
             })
@@ -73,7 +74,8 @@ router.get('/anotheruser', function (req, res, next) {//https://luffy.ee.ncku.ed
                         .toBuffer();
                 })
                 .then(data => {
-                    res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })
+                    //res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })//有問題
+                    res.type(`${set_Content_Type(file_format)}`)
                     res.status(200)
                     res.send(data)
                 })

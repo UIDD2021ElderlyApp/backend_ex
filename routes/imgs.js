@@ -19,12 +19,13 @@ router.get('/', function (req, res, next) {
     console.log("query_without_jpg :" + query_without_jpg)
     console.log("file_format :" + file_format)
     var title = query_without_jpg[0] + "." + file_format//'abc123.jpg'
-    
+
     Img.getImgByImgtitle(title, function (err, Imgget) {
-        if (Imgget == null){
+        if (Imgget == null) {
             res.status(200).send("-1")
         }
-        else{
+        else {
+            console.log(`image/${set_Content_Type(file_format)}`)
             console.log("Imgget :" + Imgget._id)
             const img = new Buffer.from(Imgget.content, 'base64');
             const image = sharp(img)
@@ -41,13 +42,14 @@ router.get('/', function (req, res, next) {
                         .toBuffer();
                 })
                 .then(data => {
-                    res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })
+                    //res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })//有問題
+                    res.type(`${set_Content_Type(file_format)}`)
                     res.status(200)
                     res.send(data)
                 })
                 .catch(err => { throw err });
         }
-        
+
     })
 
 });
