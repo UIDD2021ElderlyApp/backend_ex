@@ -52,7 +52,8 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
-    console.log("req.body is :" + req.body);
+    console.log("req.body is :");
+    console.log(req.body);
     var Person = req.body;
     var user_name = glob_user_obj.username;
     var name = glob_user_obj.name;

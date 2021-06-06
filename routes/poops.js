@@ -78,7 +78,8 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
-    console.log("req.body :" + req.body);
+    console.log("req.body is : ");
+    console.log(req.body);
     var poop = req.body;
     var time = poop.time;
     //var id_time = poopget.id_time + 1;
