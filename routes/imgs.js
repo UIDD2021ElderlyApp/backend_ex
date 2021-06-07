@@ -84,7 +84,7 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
 
             imgtitlearray.push(Imgget.title)
         })
-        res.status(200).send(JSON.stringify(imgtitlearray));
+        res.status(200).send(imgtitlearray);
     })
 
 });

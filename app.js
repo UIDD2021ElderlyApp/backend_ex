@@ -42,7 +42,7 @@ var facebooklogin_withpasspord_nogui = require('./routes/facebooklogin_withpassp
 var pwa = require('./routes/pwa');
 var ga = require('./routes/ga');
 var image_api_test = require('./routes/image_api_test');
-var imggetapiRouter = require('./routes/imggetapi');
+//var imggetapiRouter = require('./routes/imggetapi');
 var imgRouter = require('./routes/imgs');
 
 /*----------------------------------------------------*/
@@ -156,7 +156,7 @@ app.get('/manifest.json', function (req, res, next) {
 var RateLimit = require('express-rate-limit');
 var limiter = new RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
-  max: 60
+  max: 60 * 1000//1000/1sec max
 });
 // apply rate limiter to all requests
 app.use(limiter);
@@ -174,8 +174,8 @@ app.use('/auth', facebooklogin_withpasspord_nogui);
 app.use('/pwa', pwa);
 app.use('/ga', ga);
 app.use('/image_api_test', image_api_test);
-app.use('/app/img', imggetapiRouter);
-app.use('/app/img_api', imgRouter);
+//app.use('/app/img', imggetapiRouter);
+app.use('/app/img', imgRouter);
 
 ////////////////////////////////////////////////////
 
