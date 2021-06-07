@@ -88,8 +88,8 @@ function add_an_user() {
         password: pasw,
         email: "email@email.com",
         username: Date.now().toString(),
-        password = "psw",
-        password2 = "psw"
+        password : "psw",
+        password2 : "psw"
     }, (objects_returned_by_the_server) => {
         if (DEF_DEBUG) {
             console.log(objects_returned_by_the_server);

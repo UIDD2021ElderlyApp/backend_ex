@@ -8,32 +8,32 @@ var empty = require('is-empty');
 var Img = require('../models/img');
 const sharp = require('sharp');
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var glob_user_obj;
 
-router.get('/', function (req, res, next) {
+router.get('/', ensureAuthenticated, function (req, res, next) {
 
     var query_without_jpg = req.query.title.split(".")[0];//去掉.jpg
     var file_format = req.query.title.split(".")[1];//jpg
     query_without_jpg = query_without_jpg.split("_");//['abc123', 'tb', 'b']
-    console.log("query_without_jpg :" + query_without_jpg)
-    console.log("file_format :" + file_format)
-    var title = query_without_jpg[0] + "." + file_format//'abc123.jpg'
+    if (DEF_DEBUG) console.log("query_without_jpg :" + query_without_jpg);
+    if (DEF_DEBUG) console.log("file_format :" + file_format);
+    var title = query_without_jpg[0] + "." + file_format;//'abc123.jpg'
 
     Img.getImgByImgtitle(title, function (err, Imgget) {
         if (Imgget == null) {
-            res.status(200).send("-1")
+            res.status(200).send("-1");
         }
         else {
-            console.log(`image/${set_Content_Type(file_format)}`)
-            console.log("Imgget :" + Imgget._id)
+            if (DEF_DEBUG) console.log(`image/${set_Content_Type(file_format)}`);
+            if (DEF_DEBUG) console.log("Imgget :" + Imgget._id);
             const img = new Buffer.from(Imgget.content, 'base64');
-            const image = sharp(img)
+            const image = sharp(img);
             image
                 .metadata()
                 .then(metadata => {
-                    const compress_ratio = set_compress_ratio(query_without_jpg)
-                    console.log("compress_ratio is :" + compress_ratio)
+                    const compress_ratio = set_compress_ratio(query_without_jpg);
+                    if (DEF_DEBUG) console.log("compress_ratio is :" + compress_ratio);
                     return image
                         .resize({
                             width: Math.round(metadata.width * compress_ratio),
@@ -43,22 +43,22 @@ router.get('/', function (req, res, next) {
                 })
                 .then(data => {
                     //res.set({ 'Content-Type': `image/${set_Content_Type(file_format)}` })//有問題
-                    res.type(`${set_Content_Type(file_format)}`)
-                    res.status(200)
-                    res.send(data)
+                    res.type(`${set_Content_Type(file_format)}`);
+                    res.status(200);
+                    res.send(data);
                 })
-                .catch(err => { throw err });
+                .catch(err => { throw err; });
         }
 
-    })
+    });
 
 });
 
 router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
-    /*if (DEF_DEBUG) {
-        console.log("+++++++++");
-        console.log(glob_user_obj);
-    }
+    /* 
+            if(DEF_DEBUG)console.log("+++++++++");
+            if(DEF_DEBUG)console.log(glob_user_obj);
+    
     var user_name = glob_user_obj.username;*/
 
     Img.getImgById(req.query.Id, function (err, Imgget) {
@@ -69,36 +69,36 @@ router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
 });
 
 router.get('/gallery', ensureAuthenticated, function (req, res, next) {
-    if (DEF_DEBUG) {
-        console.log("+++++++++");
-        console.log("glob_user_obj.username :" + glob_user_obj.username);
-    }
+
+    if (DEF_DEBUG) console.log("+++++++++");
+    if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
+
     var user_name = glob_user_obj.username;
     var imgtitlearray = []
     Img.getMultiImgByUsername(user_name, function (err, Imgsget) {
         Imgsget.forEach(Imgget => {
             if (err) throw err;
-            if (DEF_DEBUG) {
-                console.log("+++++++++-----------");
-                console.log(Imgget.title);
-            }
+
+            if (DEF_DEBUG) console.log("+++++++++-----------");
+            if (DEF_DEBUG) console.log(Imgget.title);
+
             imgtitlearray.push(Imgget.title)
         })
-        res.status(200).send(JSON.stringify(imgtitlearray));
+        res.status(200).send(imgtitlearray);
     })
 
 });
 
 router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, next) {
 
-    //console.log(req.file.buffer.toString('base64'));
+    //if(DEF_DEBUG)console.log(req.file.buffer.toString('base64'));
     var content = req.file.buffer.toString('base64');
 
-    if (DEF_DEBUG) {
-        console.log("+++++++++");
-        console.log("glob_user_obj.username :" + glob_user_obj.username);
-    }
-    //console.log(req.body);
+
+    if (DEF_DEBUG) console.log("+++++++++");
+    if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
+
+    //if(DEF_DEBUG)console.log(req.body);
     //var img = req.body;
     //var time = img.time;
     var user_name = glob_user_obj.username;
@@ -113,14 +113,14 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
         error_msg_res["content"] = "empty";
     }
 
-    if (DEF_DEBUG) {
-        console.log("+++++++++");
-        console.log(/*time*/Date.now().toString() );
-        console.log(user_name);
-        console.log(title);
-        //console.log(content);
-        console.log(error_msg_res);
-    }
+
+    if (DEF_DEBUG) console.log("+++++++++");
+    if (DEF_DEBUG) console.log(/*time*/Date.now().toString());
+    if (DEF_DEBUG) console.log(user_name);
+    if (DEF_DEBUG) console.log(title);
+    //if(DEF_DEBUG)console.log(content);
+    if (DEF_DEBUG) console.log(error_msg_res);
+
 
     if (!empty(error_msg_res)) {
         //res.status(400).json(error_msg_res);
@@ -136,7 +136,7 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
         });
         Img.createImg(newImg, function (err, newImg) {
             if (err) throw err;
-            console.log(newImg);
+            if (DEF_DEBUG) console.log(newImg);
             var id = {};
             id["img_title"] = title;
             res.status(200).send(JSON.stringify(id));
@@ -145,16 +145,19 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
 });
 
 function ensureAuthenticated(req, res, next) {
+    
     if (req.isAuthenticated()) {
         glob_user_obj = req.user;
         return next();
+    } else {
+        
+        res.redirect('/users/login');
     }
-    res.redirect('/users/login');
 }
 
 function set_compress_ratio(query_without_jpg) {
     let compressratio;
-    console.log("set_compress_ratio for :" + query_without_jpg)
+    if (DEF_DEBUG) console.log("set_compress_ratio for :" + query_without_jpg)
 
     if (query_without_jpg[1] === undefined)
         compressratio = 1
@@ -185,7 +188,7 @@ function set_compress_ratio(query_without_jpg) {
 function set_Content_Type(output_file_format) {
 
     let Content_Type;
-    console.log("set_Content_Type for :" + output_file_format)
+    if (DEF_DEBUG) console.log("set_Content_Type for :" + output_file_format)
 
     switch (output_file_format) {
         case 'jpg':
@@ -198,7 +201,7 @@ function set_Content_Type(output_file_format) {
             Content_Type = 'jpg'
     }
 
-    console.log("set_Content_Type is :" + Content_Type)
+    if (DEF_DEBUG) console.log("set_Content_Type is :" + Content_Type)
     return Content_Type
 }
 
@@ -221,7 +224,7 @@ router.get('/one', function (req, res, next) {
         if (!Imgget) {
           return done(null, false, { message: 'Unknown Img' });
         }
-        console.log(Imgget);
+        if(DEF_DEBUG)console.log(Imgget);
         var content = {};
         content["title"]  =Imgget.title;
         content["text"]  =Imgget.text;
