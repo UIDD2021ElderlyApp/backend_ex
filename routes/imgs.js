@@ -115,7 +115,7 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
 
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(time);
+        console.log(/*time*/Date.now().toString() );
         console.log(user_name);
         console.log(title);
         //console.log(content);

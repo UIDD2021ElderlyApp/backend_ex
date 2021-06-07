@@ -41,6 +41,7 @@ var timedoutdoorlock = require('./routes/timedoutdoorlock');
 var facebooklogin_withpasspord_nogui = require('./routes/facebooklogin_withpasspord_nogui');
 var pwa = require('./routes/pwa');
 var ga = require('./routes/ga');
+var image_api_test=require('./routes/image_api_test')
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -171,6 +172,7 @@ app.use('/timedoutdoorlock', timedoutdoorlock);
 app.use('/auth', facebooklogin_withpasspord_nogui);
 app.use('/pwa', pwa);
 app.use('/ga',ga);
+app.use('/image_api_test',image_api_test);
 
 ////////////////////////////////////////////////////
 
