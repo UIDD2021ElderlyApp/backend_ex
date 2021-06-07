@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 //var db = mongoose.connection;
 
 var stringsan = require("string-sanitizer");
+var DEF_DEBUG = false;
 
 //Img Schema
 var ImgSchema = mongoose.Schema({
@@ -27,22 +28,22 @@ var Img = module.exports = mongoose.model('Img', ImgSchema);
 //function
 
 module.exports.getImgById = function (id, callback) {
-    console.log("------->findImgById");
+    if(DEF_DEBUG)console.log("------->findImgById");
     Img.findById(stringsan.sanitize(id), callback);
-    console.log(callback);
+    if(DEF_DEBUG)console.log(callback);
 }
 
 module.exports.getImgByImgtitle = function (title, callback) {
-    console.log("------->getImgByImgtitle");
+    if(DEF_DEBUG)console.log("------->getImgByImgtitle");
     var query = { title: { $eq: title }};
     Img.findOne(query, callback);
-    console.log(callback);
+    if(DEF_DEBUG)console.log(callback);
 }
 
 module.exports.getMultiImgByUsername = function (user_name, callback) {
-    console.log("------->get'Multi'ImgByUsername");
+    if(DEF_DEBUG)console.log("------->get'Multi'ImgByUsername");
     Img.find({ user_name: { $eq: user_name }}).exec(callback);
-    console.log(callback);
+    if(DEF_DEBUG)console.log(callback);
 }
 
 module.exports.createImg = function (newImg, callback) {
@@ -51,9 +52,9 @@ module.exports.createImg = function (newImg, callback) {
 
 /*
 module.exports.deleteImgByImgId = function (Id, callback) {
-    console.log("------->deleteImgByImgId");
+    if(DEF_DEBUG)console.log("------->deleteImgByImgId");
     var query = { Id: Id };
     Img.deleteOne(query, callback);
-    console.log(callback);
+    if(DEF_DEBUG)console.log(callback);
 }
 */
