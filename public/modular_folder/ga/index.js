@@ -74,7 +74,6 @@ $("#confirmed_forwarding_path").on('click', function (e) {
 $("#quit").on('click', function (e) {
     e.preventDefault();
     console.log("quit");
-    $('#mygallery').justifiedGallery('norewind');
 })
 
 function page_escape(params) {
