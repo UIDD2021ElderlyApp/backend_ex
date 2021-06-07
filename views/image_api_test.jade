@@ -1,0 +1,13 @@
+extends layout
+
+block content_head
+    meta(charset='utf8')
+    title image_api_test
+
+block content_body
+    form(method='post', action='/app/img', enctype='multipart/form-data')
+      .form-group
+      label upload Image
+      input.form-control(name='img', type='file')
+      .form-group
+      input.btn.btn-primary(type='submit', name='submit', value='submit')
