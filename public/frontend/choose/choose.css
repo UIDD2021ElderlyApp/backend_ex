@@ -1,0 +1,120 @@
+html,
+body {
+    position: relative;
+    height: 100%;
+    background: #eee;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+#choose_text {
+    z-index: 5;
+    position: absolute;
+    font-size: 6vw;
+    font-weight: bold;
+    letter-spacing: 1vw;
+    text-align: center;
+    color: #ffffff;
+    width: 100%;
+    height: 6vw;
+    top: 25%;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+#back1 {
+    position: absolute;
+    width: 100%;
+    height: 80%;
+    top: 0%;
+    background: linear-gradient( #7bcfb6 0%, #6fdb74 60%, #FFFFFF 100%);
+    z-index: 0;
+}
+
+#animal1 {
+    text-align: center;
+    position: absolute;
+    width: 60%;
+    bottom: 5vh;
+    z-index: 3;
+}
+
+#back2_1 {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    top: 0%;
+    background: linear-gradient( #4c5bbd 0%, #f5a347 50%, #FFDB45 66.67%, #EDFFF2 83.33%, #FFFF8F 100%);
+    z-index: 0;
+}
+
+#back2_2 {
+    position: absolute;
+    width: 100%;
+    height: 40%;
+    bottom: 0%;
+    background: linear-gradient( #ffff8f 0%, #EDFFF2 40%, #62c0d3 55%, #3c8388 100%);
+    opacity: 0.7;
+    z-index: 2;
+}
+
+#sun {
+    text-align: center;
+    position: absolute;
+    width: 40%;
+    top: calc(60% - 20vw);
+    z-index: 1
+}
+
+#animal2 {
+    text-align: center;
+    position: absolute;
+    width: 70%;
+    bottom: 5vh;
+    z-index: 5;
+}
+
+#back3 {
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    top: 0%;
+    background: linear-gradient( #0eb9cf 0%, #8cdbe5 25%, #0eb9cf 60%, #FFFFFF 100%);
+    z-index: 0;
+}
+
+#animal3 {
+    text-align: center;
+    position: absolute;
+    width: 70%;
+    bottom: 5vh;
+    z-index: 3;
+}

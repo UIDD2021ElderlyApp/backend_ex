@@ -1,0 +1,51 @@
+extends layout
+  block content_head
+    meta(charset='utf8')
+    meta(name='viewport' content='width=device-width, user-scalable=no')
+    title post
+    link(href='./frontend/post/post.css' rel='stylesheet' type='text/css')
+  block content_body
+    img
+    #exit_button.button
+    #upper_windows
+      #new_post
+        textarea#new_post_text(placeholder='打字打在這...' onfocus="this.placeholder = ''" onblur="this.placeholder = '打字打在這...'")
+        #new_post_button_block
+      #browse_post
+        // one post
+        .post
+          .poster_block
+            .poster_photo
+              img
+            .post_detail
+              .poster_name XXX
+              .post_time OO OO OO
+          .post_text
+            | aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+            br
+            | aaaaaaaaaaaaaa
+            br
+            | aaaaaaaa
+            br
+            | aaaaaaaaaa
+            br
+            | aaaaaaa
+          .post_photo
+            img
+          .comment_group
+            // <div class="more_comment"></div>
+            // one comment
+            //
+              <div class="comment">
+              <div class="commenter_name">OOO</div>
+              <div class="comment_text">XXXXXXXXXXXXXXXXX</div>
+              </div>
+          .new_comment_block
+            .new_comment
+              .your_name XXX
+              input#new_comment_text(type='text' placeholder='留言...' onfocus="this.placeholder = ''" onblur="this.placeholder = '留言...'")
+            .post_comment_button.button 發佈
+    script(src='https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js')
+    script(src='https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js')
+    script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
+    script(src='./frontend/post/post.js')
