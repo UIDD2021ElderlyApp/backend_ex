@@ -44,6 +44,7 @@ var ga = require('./routes/ga');
 var image_api_test = require('./routes/image_api_test');
 //var imggetapiRouter = require('./routes/imggetapi');
 var imgRouter = require('./routes/imgs');
+var allin1=require('./routes/allin1');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -177,6 +178,7 @@ app.use('/ga', ga);
 app.use('/image_api_test', image_api_test);
 //app.use('/app/img', imggetapiRouter);
 app.use('/app/img', imgRouter);
+app.use('/allin1',allin1);
 
 ////////////////////////////////////////////////////
 
