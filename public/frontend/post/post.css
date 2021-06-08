@@ -1,22 +1,16 @@
 body {
     position: absolute;
     background-position: center top;
-    background-size: 100% auto;
     height: 100%;
+    max-height: 100%;
     width: 100%;
     max-width: 100%;
     margin: 0;
     padding: 0;
-    /* didn't work */
-    /* background: url('image/back_test.svg');
-    background-repeat: no-repeat;
-    background-size: contain; */
     overflow: hidden;
-}
-
-body img {
-    content: url('image/back_test.svg');
-    width: 100%;
+    background: url(image/back_test.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 #exit_button {
