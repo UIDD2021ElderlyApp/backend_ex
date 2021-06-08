@@ -40,6 +40,7 @@ var tsfeed = require('./routes/tsfeed');
 var timedoutdoorlock = require('./routes/timedoutdoorlock');
 var facebooklogin_withpasspord_nogui = require('./routes/facebooklogin_withpasspord_nogui');
 var pwa = require('./routes/pwa');
+var ga = require('./routes/ga');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -52,6 +53,7 @@ var dailymissionRouter = require('./routes/dailymission')
 var imgRouter = require('./routes/imgs')
 var personalRouter = require('./routes/personal')
 var peopleonmapRouter = require('./routes/PeopleOnMap')
+var profileimageRouter = require('./routes/profileimage')
 /*----------------------------------------------------*/
 
 var app = express();
@@ -168,6 +170,7 @@ app.use('/ts/feed', tsfeed);
 app.use('/timedoutdoorlock', timedoutdoorlock);
 app.use('/auth', facebooklogin_withpasspord_nogui);
 app.use('/pwa', pwa);
+app.use('/ga',ga);
 
 ////////////////////////////////////////////////////
 
@@ -181,6 +184,7 @@ app.use('/app/dailymission', dailymissionRouter);
 app.use('/app/img', imgRouter);
 app.use('/app/personal', personalRouter);
 app.use('/app/PeopleOnMap', peopleonmapRouter)
+app.use('/app/profileimage', profileimageRouter)
 ///////////////////////////////////////////////////////
 
 

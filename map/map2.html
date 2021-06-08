@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <link href="map2.css" rel="stylesheet" type="text/css">
+    <link rel="html2canvas" href="../../snap/html2canvas/dist/html2canvas.esm.js">
 
 </head>
 
@@ -33,6 +34,10 @@
             <img src="./map2.png">
         </a>
         </button>
+
+        <button id="camera_button" type="button" OnClientClick="return false;">
+            <img src="./camera.png" id="camera" >
+        </button>
     </form>
     <div id="hungun">
 
@@ -47,7 +52,6 @@
     <div id="map">
 
     </div>
-
 
     <!-- Make sure you put this AFTER Leaflet's CSS -->
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
@@ -66,7 +70,7 @@
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-    <script>
+    <script type="module">
         var NowDate;
         var s;
         var map;
@@ -134,13 +138,13 @@
             var radius = e.accuracy / 2;
             var popupContent = "You are within " + radius + " meters from this point";
 
-            setTimeout(function () {
-                $.get('/app/personal/', {
-                }, (user) => {
-                    if (user) {
-                        var me = JSON.parse(user)
-                        animal_id = me.animal
-                        user_name = me.name
+            // setTimeout(function () {
+            //     $.get('/app/personal/', {
+            //     }, (user) => {
+            //         if (user) {
+            //             var me = JSON.parse(user)
+            //             animal_id = me.animal
+            //             user_name = me.name
                         if (gpsMarker == null) {
                             if (animal_id == 1) {
                                 gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
@@ -165,10 +169,10 @@
                         }
 
 
-                    }
-                }
-                )
-            }, 0)
+            //         }
+            //     }
+            //     )
+            // }, 0)
             //document.getElementById('info').innerHTML = `you are at ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
 
 
@@ -311,8 +315,27 @@
             }, 10000)
 
         });
+import html2canvas from '../../snap/html2canvas/dist/html2canvas.esm.js';
+var DEF_app_img="/app/img";
+var DEF_DEBUG=true;
 
+document.getElementById("camera_button").addEventListener("click", function () {
+    html2canvas(document.querySelector("body")).then(canvas => {
+        var url = window.location.href;
+        var window_location_href_host = new URL(url).host;
+        console.log(window_location_href_host);
 
+        var target_img=canvas.toDataURL("image/jpeg", 1.0);
+
+        $.post("https://"+window_location_href_host + DEF_app_img, {
+            content: target_img
+        }, (objects_returned_by_the_server) => {
+            if (DEF_DEBUG) {
+                console.log(String(objects_returned_by_the_server));
+            }
+        })
+    });
+});
 
     </script>
 </body>

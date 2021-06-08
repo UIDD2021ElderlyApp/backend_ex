@@ -2,6 +2,7 @@
     background-image: url("./map3.png");
     z-index: 10;
 
+    -webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.7));
     position: absolute;
     margin: 0;
     padding: 3vh 3vw 0 3vw;
@@ -28,13 +29,35 @@
 #exit_button{
     z-index: 13;
     position: absolute;
-    width: 7vh;
-    height: 7vh;
-    top: 1vh;
-    left: 1vw;
+    width: 7vw;
+    height: 7vw;
+    top: 2vw;
+    left: 2vw;
     background-color: transparent;
     border: none;
     padding: 0%;
 }
-
+#camera_button{
+    z-index: 14;
+    position: absolute;
+    width: 21vw;
+    height: 21vw;
+    bottom: 2vw;
+    right: 2vw;
+    background-color: transparent;
+    background-size: contain;
+   
+    border: none;
+    padding: 0%;
+}
+#camera{
+    z-index: 14;
+    position: absolute;
+    width: 17vw;
+    height: 17vw;
+    bottom: 2vw;
+    right: 2vw;
+    -webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.7));
+    border: none;
+    padding: 0%;
 }
