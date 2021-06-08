@@ -10,7 +10,7 @@ var glob_user_obj;
 router.get('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     var user_name = glob_user_obj.username;
     Person.getPersonal(user_name, function (err, Personget) {
@@ -19,7 +19,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             console.log("+++++++++-----------");
             console.log(Personget);
         }
-        if(Personget){
+        if (Personget) {
             let person = {};
             person["id"] = Personget._id;
             person["user_name"] = Personget.user_name;
@@ -30,16 +30,16 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             res.status(200).send(JSON.stringify(person));
             console.log("+++++++++-----------");
         }
-        else{
+        else {
             res.status(200).send(JSON.stringify(-1));
-        }        
+        }
     })
 });
 
 router.post('/create', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     var user_name = glob_user_obj.username;
     var name = glob_user_obj.name;
@@ -56,12 +56,12 @@ router.post('/create', ensureAuthenticated, function (req, res, next) {
         user_name: user_name,
         name: name,
         animal: animal,
-        getup_time:  [6, 00],
-        sleep_time:  [22, 00]
+        getup_time: [6, 00],
+        sleep_time: [22, 00]
     });
     Person.createPersonal(newPerson, function (err, newPerson) {
         if (err) throw err;
-        console.log("newPerson");
+        console.log("newPerson : ");
         console.log(newPerson);
         var id = {};
         id["id"] = newPerson._id;
@@ -73,7 +73,7 @@ router.post('/create', ensureAuthenticated, function (req, res, next) {
 router.post('/getup', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     var user_name = glob_user_obj.username;
     var getup_time = req.body.getup_time;
@@ -85,7 +85,7 @@ router.post('/getup', ensureAuthenticated, function (req, res, next) {
 router.post('/sleep', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     var user_name = glob_user_obj.username;
     var sleep_time = req.body.sleep_time;

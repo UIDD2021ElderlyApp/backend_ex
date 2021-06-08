@@ -85,7 +85,16 @@ html
       var gpsCircleMarker;
       var user_name;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+      function onLocationFound(e) {
+      console.log(e)
+      now_lat = e.latlng.lat;
+      now_lng = e.latlng.lng;
+      var radius = e.accuracy / 2;
+      var popupContent = "You are within " + radius + " meters from this point";
+>>>>>>> 0b382926103ef6963efa95dc2a5bec2fb5ed5405
       setTimeout(function () {
       $.get('/app/personal/', {
       }, (user) => {
@@ -93,6 +102,7 @@ html
       var me = JSON.parse(user)
       animal_id = me.animal
       user_name = me.name
+<<<<<<< HEAD
 >>>>>>> ab9e6c04577832585de3c4f11aec7868e52a007a
       function onLocationFound(e) {
       console.log(e)
@@ -107,6 +117,8 @@ html
       var me = JSON.parse(user)
       animal_id = me.animal
       user_name = me.name
+=======
+>>>>>>> 0b382926103ef6963efa95dc2a5bec2fb5ed5405
       if (gpsMarker == null) {
       if (animal_id == 1) {
       gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
@@ -157,10 +169,6 @@ html
       console.log(distance2)
       distance1 += distance2;
       }
-      }
-      }
-      )
-      }, 0)
       var current;
       var last;
       var distance1;
@@ -249,7 +257,10 @@ html
       }, 10000)
       });
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     script(src='https://code.jquery.com/jquery-3.3.1.min.js')
 >>>>>>> f959eaae6aca8822196266edec1d93d792ec92d1
+=======
+>>>>>>> 0b382926103ef6963efa95dc2a5bec2fb5ed5405
     script(src='https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js')

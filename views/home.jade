@@ -1,0 +1,37 @@
+extends layout
+  block content_head
+    meta(charset='utf8')
+    title home
+    link(href='./frontend/home/home.css' rel='stylesheet' type='text/css')
+  block content_body
+    #top_bar
+      #user_photo
+        img(src='./frontend/home/image/test.svg')
+      #animal_name 小白
+      #level
+        div 等級: 
+        #level_bar
+          #level_value
+    #back_block
+    #animal_block
+      #animal
+        img(style='width:100%;')
+    #medal_block
+      img(src='./frontend/home/image/home_medal.svg' width='80%')
+      #medal_button.button 徽章
+    #house
+    #menu_back
+      #menu
+        #setting.menu_button.button
+          img(src='./frontend/home/image/home_button1.svg' height='100%')
+        #stroll.menu_button.button
+          img(src='./frontend/home/image/home_button2.svg' height='100%')
+        #mission.menu_button.button
+          img(src='./frontend/home/image/home_button3.svg' height='100%')
+          #remind
+            img(src='./frontend/home/image/home_remind.svg')
+        #social.menu_button.button
+          img(src='./frontend/home/image/home_button4.svg' height='100%')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+    script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
+    script(src='./frontend/home/home.js')

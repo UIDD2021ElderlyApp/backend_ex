@@ -33,7 +33,7 @@ function usr_inp_comment_fcn(e) {
                 console.log(String(objects_returned_by_the_server));
             }
             document.getElementById(String(e.target.id).replace(/_btn/g, '') + "_input_txt").value = "";
-        })
+        });
     } else {
 
         if (DEF_DEBUG) {

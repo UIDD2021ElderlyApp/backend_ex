@@ -41,6 +41,9 @@ var timedoutdoorlock = require('./routes/timedoutdoorlock');
 var facebooklogin_withpasspord_nogui = require('./routes/facebooklogin_withpasspord_nogui');
 var pwa = require('./routes/pwa');
 var ga = require('./routes/ga');
+var image_api_test = require('./routes/image_api_test');
+//var imggetapiRouter = require('./routes/imggetapi');
+var imgRouter = require('./routes/imgs');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -50,10 +53,10 @@ var keepRouter = require('./routes/keeps');
 var poopRouter = require('./routes/poops');
 var outdoorRouter = require('./routes/outdoor');
 var dailymissionRouter = require('./routes/dailymission')
-var imgRouter = require('./routes/imgs')
 var personalRouter = require('./routes/personal')
 var peopleonmapRouter = require('./routes/PeopleOnMap')
 var profileimageRouter = require('./routes/profileimage')
+var posttmpRouter = require('./routes/posttmp')
 /*----------------------------------------------------*/
 
 var app = express();
@@ -137,24 +140,24 @@ app.get('*', function (req, res, next) {
 
 app.get('/manifest.json', function (req, res, next) {
   res.status(200).json({
-      "name": "Old friend",
-      "short_name": "Old friend",
-      "start_url": "https://luffy.ee.ncku.edu.tw:"+app.locals.port_https+"/ts/home",
-      "display": "standalone",
-      "orientation": "portrait",
-      "icons": [{
-        "src": "./modular_folder/pwa/weblogo.png",
-        "sizes": "374x374",
-        "type": "image/png"
-      }]
-    });
+    "name": "Old friend",
+    "short_name": "Old friend",
+    "start_url": "https://luffy.ee.ncku.edu.tw:" + app.locals.port_https + "/ts/home",
+    "display": "standalone",
+    "orientation": "portrait",
+    "icons": [{
+      "src": "./modular_folder/pwa/weblogo.png",
+      "sizes": "374x374",
+      "type": "image/png"
+    }]
+  });
 });
 
 // set up rate limiter: maximum of five requests per minute
 var RateLimit = require('express-rate-limit');
 var limiter = new RateLimit({
-  windowMs: 1*60*1000, // 1 minute
-  max: 60
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 60 * 1000//1000/1sec max
 });
 // apply rate limiter to all requests
 app.use(limiter);
@@ -170,7 +173,10 @@ app.use('/ts/feed', tsfeed);
 app.use('/timedoutdoorlock', timedoutdoorlock);
 app.use('/auth', facebooklogin_withpasspord_nogui);
 app.use('/pwa', pwa);
-app.use('/ga',ga);
+app.use('/ga', ga);
+app.use('/image_api_test', image_api_test);
+//app.use('/app/img', imggetapiRouter);
+app.use('/app/img', imgRouter);
 
 ////////////////////////////////////////////////////
 
@@ -181,10 +187,10 @@ app.use('/app/keep', keepRouter);
 app.use('/app/poop', poopRouter);
 app.use('/app/outdoor', outdoorRouter);
 app.use('/app/dailymission', dailymissionRouter);
-app.use('/app/img', imgRouter);
 app.use('/app/personal', personalRouter);
-app.use('/app/PeopleOnMap', peopleonmapRouter)
-app.use('/app/profileimage', profileimageRouter)
+app.use('/app/PeopleOnMap', peopleonmapRouter);
+app.use('/app/profileimage', profileimageRouter);
+app.use('/app/posttmp', posttmpRouter);
 ///////////////////////////////////////////////////////
 
 

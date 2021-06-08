@@ -1,0 +1,34 @@
+extends layout
+
+block content_head
+    meta(charset='utf8')
+    title image_api_test
+
+block content_body
+    form(method='post', action='/app/img', enctype='multipart/form-data')
+      .form-group
+      label upload Image
+      input.form-control(name='img', type='file')
+      .form-group
+      input.btn.btn-primary(type='submit', name='submit', value='submit')
+    h1(style='background-color:yellow;color:black;') real image!
+    a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904.jpg')
+      img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904.jpg')
+    h1(style='background-color:yellow;color:black;') tb!
+    a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb.jpg')
+      img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb.jpg')
+    h1(style='background-color:yellow;color:black;') b!
+    a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_b.jpg')
+      img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_b.jpg')
+    h1(style='background-color:yellow;color:black;') z!
+    a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_z.jpg')
+      img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_z.jpg')
+    h1(style='background-color:yellow;color:black;') n!
+    a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_n.jpg')
+      img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_n.jpg')
+    h1(style='background-color:yellow;color:black;') m!
+    a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_m.jpg')
+      img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_m.jpg')
+    h1(style='background-color:yellow;color:black;') t!
+    a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_t.jpg')
+      img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_t.jpg')

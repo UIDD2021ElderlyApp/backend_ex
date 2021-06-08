@@ -13,7 +13,7 @@ var glob_user_obj;
 router.get('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
-        console.log(glob_user_obj);
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
 
     if (glob_user_obj.profileimage == null) {
