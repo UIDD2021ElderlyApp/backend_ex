@@ -19,9 +19,10 @@ html
       z-index: 1;
       }
     form#ajax-form
-      button#exit_button
-        a(href='https://luffy.ee.ncku.edu.tw:38443/ts/home')
-          img(src='../modular_folder/mapview/map2.png')
+      button#exit_button(type='button' onclientclick='return false;')
+        // <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
+        img(src='../modular_folder/mapview/map2.png')
+        // </a>
       button#camera_button(type='button' onclientclick='return false;')
         img#camera(src='../modular_folder/mapview/camera.png')
     #hungun
@@ -253,5 +254,10 @@ html
       }
       })
       });
+      });
+      $("#exit_button").click(function() {
+      var re = /\/ts\/mapview/gi;
+      var newstr = window.location.href.replace(re, "/ts/home");
+      window.location.href = newstr;
       });
     script(src='https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js')
