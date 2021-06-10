@@ -1,8 +1,8 @@
 var config = {
     type: Phaser.AUTO,
     parent: 'pet',
-    width: 210,
-    height: 200,
+    width: 630,
+    height: 600,
     transparent: true,
     scene: {
         preload: preload,
@@ -15,14 +15,19 @@ var game = new Phaser.Game(config);
 function preload ()
 {
     this.load.spritesheet('pet1', '../modular_folder/home/pet1.png',{frameWidth:209.5,frameHeight:193})
+    this.load.spritesheet('pet2', '../modular_folder/home/pet2.png',{frameWidth:209.5,frameHeight:193})
+    this.load.spritesheet('pet3', '../modular_folder/home/pet3.png',{frameWidth:209.5,frameHeight:193})
 }
 
 function create ()
 {
-    this.player = this.add.sprite(105,100,'pet1')
+    var pet = 'pet1'
+    this.player = this.add.sprite(305,300,pet)
+    this.player.scaleX = 3
+    this.player.scaleY = 3
     this.anims.create({
         key: 'idle',
-        frames: this.anims.generateFrameNumbers('pet1',{start:0 , end: 3}),
+        frames: this.anims.generateFrameNumbers(pet,{start:0 , end: 3}),
         frameRate: 5,
         repeat: -1
     })

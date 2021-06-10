@@ -88,10 +88,10 @@ body {
 #pet {
     z-index: 3;
     position: absolute;
-    width: 40%;
+    width: 60%;
     /*************/
-    left: 15%;
-    bottom: 15%;
+    left: 5%;
+    bottom: 10%;
 }
 
 #bed_block {
