@@ -9,7 +9,8 @@ console.log(student);
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
-var stringmongooseconnect = "mongodb://" + String(student.account) + ":" + String(student.password) + "@140.116.132.223:27017/petdatabase_dev"
+//var stringmongooseconnect = "mongodb://" + String(student.account) + ":" + String(student.password) + "@140.116.132.223:27017/petdatabase_dev"
+var stringmongooseconnect = "mongodb+srv://" + String(student.account) + ":" + String(student.password) + "@cluster0.wko22.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 mongoose.connect(stringmongooseconnect, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 var db = mongoose.connection;
 
