@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="35.3099mm" height="36.8736mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 149 156"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:#ECF6F3;stroke-width:1.05786}
+    .fil3 {fill:none}
+    .fil4 {fill:#FEFEFE}
+    .fil0 {fill:#D9E483}
+    .fil1 {fill:#A6D4AE}
+    .fil2 {fill:#61913D}
+    .fil5 {fill:#FEFEFE;fill-rule:nonzero}
+   ]]>
+  </style>
+   <clipPath id="id0">
+    <path d="M3 4l146 0 0 152 -146 0 0 -152z"/>
+   </clipPath>
+    <clipPath id="id1">
+     <path d="M37 16l87 0 0 95 -87 0 0 -95z"/>
+    </clipPath>
+ </defs>
+ <g id="圖層_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <polygon class="fil0" points="149,1 135,1 135,0 149,0 "/>
+  <g style="clip-path:url(#id0)">
+   <image x="3" y="4" width="146" height="152" xlink:href="home_button5_Images\home_button5_ImgID1.png"/>
+  </g>
+  <path class="fil1" d="M25 0l100 0c13,0 24,11 24,25l0 106c0,14 -11,25 -24,25l-100 0c-14,0 -25,-11 -25,-25l0 -106c0,-14 11,-25 25,-25z"/>
+  <path class="fil2" d="M149 109l0 22c0,14 -11,25 -24,25l-100 0c-14,0 -25,-11 -25,-25l0 -22c0,5 4,9 9,9l131 0c5,0 9,-4 9,-9z"/>
+  <rect class="fil3 str0" x="7" y="8" width="134" height="140" rx="22" ry="23"/>
+  <g id="_2173722201632">
+   <g style="clip-path:url(#id1)">
+    <image x="37" y="16" width="87.1574" height="95.7548" xlink:href="home_button5_Images\home_button5_ImgID2.png"/>
+   </g>
+  </g>
+  <g id="_2173722198592">
+   <path class="fil4" d="M61 78c-9,1 -15,7 -17,14 -1,2 -2,7 -1,9 1,5 11,5 16,5 7,0 14,0 21,0 5,0 14,0 17,-4 1,-2 1,-6 0,-9 -2,-7 -8,-13 -16,-15 -3,-1 -17,-1 -20,0z"/>
+   <path class="fil4" d="M62 81c-3,0 -5,1 -7,2 -3,2 -7,6 -8,10 0,1 -2,6 -1,7 2,3 28,2 33,2 3,0 15,0 15,-2 1,-2 0,-6 -1,-7 -2,-6 -7,-11 -14,-12 -2,0 -15,0 -17,0z"/>
+   <path class="fil4" d="M67 43c-8,2 -16,9 -14,19 1,9 9,16 19,14 9,-1 16,-9 14,-19 -1,-8 -9,-15 -19,-14z"/>
+   <path class="fil4" d="M68 47c-7,0 -13,7 -12,14 1,7 8,13 16,11 6,0 12,-7 11,-14 -1,-7 -8,-13 -15,-11z"/>
+   <path class="fil4" d="M84 36c0,4 1,8 3,10 3,5 3,1 3,11 1,0 2,-1 3,-2 6,-3 3,-2 9,-2 2,0 3,0 5,-1 0,0 3,-1 4,-1 0,-1 1,-1 1,-1 1,-1 1,-1 2,-1 0,-1 0,-1 0,-1 0,0 1,-1 2,-2 3,-6 2,-9 2,-11 0,0 0,0 0,0 0,-1 0,-3 -1,-3l0 -1c0,0 0,0 0,0l-1 -1c0,-1 0,-1 -1,-2 -1,-1 -3,-3 -5,-4 -1,-1 -1,-1 -3,-2 -1,0 -3,0 -3,-1l-4 0c-1,1 -1,1 -2,1 -7,1 -13,7 -14,14zm27 0c0,-1 0,-1 -1,-1 -1,0 -1,0 -2,1 -1,0 -1,2 0,2 0,1 0,1 0,1 1,0 1,0 1,0 3,0 3,-3 2,-3zm-10 -1c-3,1 -2,5 1,4 2,-1 1,-5 -1,-4zm-8 0c-3,1 -2,5 1,4 2,-1 1,-4 -1,-4z"/>
+  </g>
+  <path class="fil5" d="M56 122c1,1 1,2 1,3l4 0 0 2c-1,2 -2,3 -3,5 1,0 3,1 4,3l-2 1c-1,-1 -1,-2 -3,-2l0 9 -2 0 0 -9c-1,1 -2,2 -3,3l0 -2c1,-1 2,-2 3,-3 1,-1 2,-3 3,-5l-6 0 0 -2 3 0c0,-1 0,-2 -1,-3l2 0zm5 5l4 0 0 -5 3 0 0 5 4 0 0 2 -4 0 0 11 5 0 0 2 -13 0 0 -2 5 0 0 -11 -4 0 0 -2z"/>
+  <path id="1" class="fil5" d="M87 122c0,1 1,1 1,2l9 0 0 2 -21 0 0 -2 9 0c0,0 0,-1 -1,-2l3 0zm-4 5l2 0c-2,3 -4,5 -7,7l-2 -2c3,-1 5,-3 7,-5zm7 0c3,2 5,4 7,6l-2 1c-1,-2 -4,-4 -7,-6l2 -1zm0 4l2 1c-1,2 -2,4 -4,5 0,0 0,0 0,0 3,1 5,3 9,4l-1 2c-4,-1 -7,-3 -9,-4 0,0 0,0 0,0 -3,1 -6,3 -9,4l-2 -2c4,-1 7,-2 9,-4 -2,-1 -3,-3 -4,-5l2 -1c1,2 2,3 4,5 1,-2 2,-3 3,-5z"/>
+ </g>
+</svg>
