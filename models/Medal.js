@@ -385,6 +385,6 @@ module.exports.getLevel = function (userId_you_want_to_find, callback) {
     })
 }
 
-module.exports.createMetal = function (newMetal, callback) {
-    newMetal.save(callback);
+module.exports.createMedal = function (newMedal, callback) {
+    newMedal.save(callback);
 }
