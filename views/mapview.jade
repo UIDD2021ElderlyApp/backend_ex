@@ -98,7 +98,10 @@ html
       }, (user) => {
       if (user) {
       var me = JSON.parse(user)
+      if (me.animal)
       animal_id = me.animal
+      else 
+      animal_id = -1
       user_name = me.name
       if (gpsMarker == null) {
       if (animal_id == 1) {
@@ -239,16 +242,8 @@ html
       });
       import html2canvas from '../../snap/html2canvas/dist/html2canvas.esm.js';
       var DEF_app_img="/app/img";
-      var DEF_map="/app/PeopleOnMap";
+      var DEF_map="/app/PeopleOnMap/deleteme";
       var DEF_DEBUG=true;
-      document.getElementById("exit_button").addEventListener("click", function () {
-      $.post("https://"+window_location_href_host + DEF_map, {
-      }, (objects_returned_by_the_server) => {
-      if (DEF_DEBUG) {
-      console.log(String(objects_returned_by_the_server));
-      }
-      })
-      });
       document.getElementById("camera_button").addEventListener("click", function () {
       html2canvas(document.querySelector("body")).then(canvas => {
       var url = window.location.href;
@@ -265,6 +260,15 @@ html
       });
       });
       $("#exit_button").click(function() {
+      var url = window.location.href;
+      var window_location_href_host = new URL(url).host;
+      console.log(window_location_href_host);  
+      $.post("https://"+window_location_href_host + DEF_map, {
+      }, (objects_returned_by_the_server) => {
+      if (DEF_DEBUG) {
+      console.log(String(objects_returned_by_the_server));
+      }
+      })
       var re = /\/ts\/mapview/gi;
       var newstr = window.location.href.replace(re, "/ts/home");
       window.location.href = newstr;

@@ -102,7 +102,7 @@ router.post('/deleteme', ensureAuthenticated, function (req, res, next) {
     var user_name = glob_user_obj.username;
     PersonOnMap.deletePersonOnMapByuser_name(user_name, function (err) {
         if (err) throw err;
-        res.send(200)
+        res.status(200).send()
     });
 });
 
