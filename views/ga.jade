@@ -22,14 +22,14 @@ block content_head
 block content_body
     #mygallery(style='position:absolute;')
     #label.button(style='opacity: 1;') 圖片選擇器
-    //#quit.button(style='opacity: 1;') 離開
-    #quit(style='opacity: 1;')
-      form(method='post', action='/app/img', enctype='multipart/form-data')
-        .form-group
-        label upload Image
-        input.form-control(name='img', type='file')
-        .form-group
-        input.btn.btn-primary(type='submit', name='submit', value='submit')
+    #quit.button(style='opacity: 1;') 離開
+    //#quit(style='opacity: 1;')
+    //  form(method='post', action='/app/img', enctype='multipart/form-data')
+    //    .form-group
+    //    label upload Image
+    //    input.form-control(name='img', type='file')
+    //    .form-group
+    //    input.btn.btn-primary(type='submit', name='submit', value='submit')
     #confirmed_forwarding_path(style='display: none;' src='http://andythebreaker.me')
     #allpicarray(style='display: none;')
 block content_footer

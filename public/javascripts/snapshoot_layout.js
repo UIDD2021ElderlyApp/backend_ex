@@ -13,7 +13,8 @@ function saveData(blob, filename) {
 var DEF_app_img = "/app/img";
 var DEF_DEBUG = true;
 var DEF_consolelogdata = false;
-var DEF_download_screenshot = true;
+var DEF_download_screenshot = false;
+var DEF_download_Blob = false;
 
 document.getElementById("snap_shoot_screen").addEventListener("click", function () {
     html2canvas(document.querySelector("body")).then(canvas => {
@@ -36,42 +37,25 @@ document.getElementById("snap_shoot_screen").addEventListener("click", function 
             a.click(); //Downloaded file
         }
 
-        /*$.post("https://"+window_location_href_host + DEF_app_img, {
-            content: target_img
-    }, (objects_returned_by_the_server) => {
-        if (DEF_DEBUG) {
-            console.log(String(objects_returned_by_the_server));
-        }
-    })*/
-        //You can give your whole form to FormData() for processing
-
-        var form = $('form')[0]; // You need to use standard javascript object here
-        var formData = new FormData(form);
-        //or specify exact data for FormData()
-
-        //var formData = new FormData();
-        //formData.append('section', 'general');
-        //formData.append('action', 'previewImg');
-        // Attach file
         var blob_tmp = dataURItoBlob(target_img);
-        saveData(blob_tmp, "download_blob.jpg");
-        formData.append('img', blob_tmp);
-        //Sending form
+        if (DEF_download_Blob) {
+            saveData(blob_tmp, "download_blob.jpg");
 
-        //Ajax request with jquery will looks like this:
+        }
+        if (blob_tmp.size < 6000000) {
+            send_pic_to_backend(blob_tmp);
+        } else {
+            console.log("compress_ratio");
+            var compress_ratio = 0.9;
+            while (compress_ratio > 0 && (dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)).size > 6000000)) {
+                compress_ratio = compress_ratio - 0.1;
+            }
+            if(dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)).size > 6000000){
+                console.error("this is a error, the page is tooooooooooooooooo large, so you can't trans this file to backend!!!!")
+            }
+            send_pic_to_backend(dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)));
+        }
 
-        $.ajax({
-            url: `${DEF_app_img}`,
-            data: formData,
-            type: 'POST',
-            contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-            processData: false, // NEEDED, DON'T OMIT THIS
-            accepts: {
-                text: "text/html"
-            },
-            // ... Other options like success and etc
-        });
-        //After this it will send ajax request like you submit regular form with enctype="multipart/form-data"
     });
 });
 function dataURItoBlob(dataURI) {
@@ -97,6 +81,22 @@ function dataURItoBlob(dataURI) {
 
     //New Code
     return new Blob([ab], { type: mimeString });
+}
+function send_pic_to_backend(img_blob) {
+    var form = $('form')[0]; // You need to use standard javascript object here
+    var formData = new FormData(form);
 
+    formData.append('img', img_blob);
 
+    $.ajax({
+        url: `${DEF_app_img}`,
+        data: formData,
+        type: 'POST',
+        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+        processData: false, // NEEDED, DON'T OMIT THIS
+        accepts: {
+            text: "text/html"
+        },
+        // ... Other options like success and etc
+    });
 }

@@ -69,9 +69,9 @@ router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
 });
 
 router.get('/gallery', ensureAuthenticated, function (req, res, next) {
-
-    if (DEF_DEBUG) console.log("+++++++++");
-    if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
+console.log("router.get('/gallery', ensureAuthenticated, function (req, res, next) {    ");
+    //if (DEF_DEBUG) console.log("+++++++++");
+    //if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
 
     var user_name = glob_user_obj.username;
     var imgtitlearray = []

@@ -5,10 +5,6 @@ var DEF_default_load_img_one = 5;
 
 console.log("windos-height:" + $(window).height()); console.log("windos-width:" + $(window).width());
 
-document.body.addEventListener("change", function () {
-    console.log("dom change!");
-});
-
 function checkFlag() {
     if (!document.getElementById("cboxLoadingGraphic")) {
         setTimeout(() => {
@@ -71,10 +67,10 @@ $("#confirmed_forwarding_path").on('click', function (e) {
     console.log("confirmed_forwarding_path");
 })
 
-/*$("#quit").on('click', function (e) {
+$("#quit").on('click', function (e) {
     e.preventDefault();
     console.log("quit");
-})*/
+})
 $('#label').on('click', function (e) {e.preventDefault();
     document.getElementById("snap_shoot_screen").click();
 })
@@ -84,10 +80,11 @@ function page_escape(params) {
 }
 
 function init_load_img(params) {
+    console.log(" init_load_img(params) ");
     $.get(DEF_string_app_img_gallery, {
         //empty
     }, (objects_returned_by_the_server) => {
-        //console.log(objects_returned_by_the_server);
+        console.log(objects_returned_by_the_server);
         if (objects_returned_by_the_server.length >= DEF_default_load_img_num) {
             for (var i = 0; i < DEF_default_load_img_num; i++) {
                 add_img_obj(objects_returned_by_the_server[i]);
