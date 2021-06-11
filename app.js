@@ -186,7 +186,7 @@ app.use('/app/mission', missionRouter);
 app.use('/app/keep', keepRouter);
 app.use('/app/poop', poopRouter);
 app.use('/app/outdoor', outdoorRouter);
-app.use('/app/dailymission', dailymissionRouter);
+//app.use('/app/dailymission', dailymissionRouter);//ReferenceError: dailymissionRouter is not defined//20210611被andyrhebreaker註解掉,cuz跑不動
 app.use('/app/personal', personalRouter);
 app.use('/app/PeopleOnMap', peopleonmapRouter);
 app.use('/app/profileimage', profileimageRouter);

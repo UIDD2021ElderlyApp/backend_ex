@@ -42,6 +42,7 @@ module.exports.getImgByImgtitle = function (title, callback) {
 
 module.exports.getMultiImgByUsername = function (user_name, callback) {
     if(DEF_DEBUG)console.log("------->get'Multi'ImgByUsername");
+    console.log("module.exports.getMultiImgByUsername = function (user_name, callbac");
     Img.find({ user_name: { $eq: user_name }}).exec(callback);
     if(DEF_DEBUG)console.log(callback);
 }

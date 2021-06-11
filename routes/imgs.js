@@ -76,16 +76,19 @@ console.log("router.get('/gallery', ensureAuthenticated, function (req, res, nex
     var user_name = glob_user_obj.username;
     var imgtitlearray = []
     Img.getMultiImgByUsername(user_name, function (err, Imgsget) {
+        console.log("t1");
         Imgsget.forEach(Imgget => {
             if (err) throw err;
 
             if (DEF_DEBUG) console.log("+++++++++-----------");
             if (DEF_DEBUG) console.log(Imgget.title);
-
+            console.log("t2");
             imgtitlearray.unshift(Imgget.title)
-        })
+        });
+        console.log("t3");
         res.status(200).send(imgtitlearray);
-    })
+        console.log("t4");
+    });
 
 });
 

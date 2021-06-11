@@ -17,6 +17,7 @@ var DEF_download_screenshot = false;
 var DEF_download_Blob = false;
 
 document.getElementById("snap_shoot_screen").addEventListener("click", function () {
+    document.getElementById("snap_shoot_finish").innerText = "0";
     html2canvas(document.querySelector("body")).then(canvas => {
         var url = window.location.href;
         var window_location_href_host = new URL(url).host;
@@ -50,7 +51,7 @@ document.getElementById("snap_shoot_screen").addEventListener("click", function 
             while (compress_ratio > 0 && (dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)).size > 6000000)) {
                 compress_ratio = compress_ratio - 0.1;
             }
-            if(dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)).size > 6000000){
+            if (dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)).size > 6000000) {
                 console.error("this is a error, the page is tooooooooooooooooo large, so you can't trans this file to backend!!!!")
             }
             send_pic_to_backend(dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)));
@@ -97,6 +98,26 @@ function send_pic_to_backend(img_blob) {
         accepts: {
             text: "text/html"
         },
-        // ... Other options like success and etc
+        //http://blog.twbryce.com/jquery-ajax-callback-method/
+        beforeSend: function (xhr) {
+            document.getElementById("snap_shoot_finish").innerText = "2";
+
+        },
+        success: function (xhr) {
+            //console.log("alert('Ajax request 發生錯誤');");
+            //$(e.target).attr('disabled', false);
+            document.getElementById("snap_shoot_finish").innerText = "3";
+        },
+        error: function (xhr) {
+            document.getElementById("snap_shoot_finish").innerText = "4";
+
+            console.log("alert('Ajax request 發生錯誤');");
+            //$(e.target).attr('disabled', false);
+        },
+        complete: function (xhr) {
+            if (document.getElementById("snap_shoot_finish").innerText === "3") {
+                document.getElementById("snap_shoot_finish").innerText = "1";
+            }
+        },
     });
 }
