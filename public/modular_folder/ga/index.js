@@ -71,9 +71,12 @@ $("#confirmed_forwarding_path").on('click', function (e) {
     console.log("confirmed_forwarding_path");
 })
 
-$("#quit").on('click', function (e) {
+/*$("#quit").on('click', function (e) {
     e.preventDefault();
     console.log("quit");
+})*/
+$('#label').on('click', function (e) {e.preventDefault();
+    document.getElementById("snap_shoot_screen").click();
 })
 
 function page_escape(params) {
@@ -93,6 +96,7 @@ function init_load_img(params) {
             //mygallery_justifiedGallery();
         } else {
             console.log("error default img not enough 6!!!");
+            console.log(objects_returned_by_the_server);
         }
     });
 }
