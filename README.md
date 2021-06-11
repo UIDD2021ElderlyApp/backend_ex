@@ -10,6 +10,34 @@ tags: uidd
 
 ---
 
+## 各url代表的jade檔案所在位置
+
+主頁面+發文:/view/main
+選角:/view/layout
+
+其中所有的html發送router需使用
+```javascript=
+router.get('/', ensureAuthenticated, function (req, res, next) {
+    Person.getPersonal(req.user.username, function (err, Personget) {
+        if (err) throw err;
+        res.render('main', {
+            title: 'old_friend',
+            var_jade_user_info_name: `${req.user.name}`,
+            var_jade_user_info_username: `${req.user.username}`,
+            var_jade_user_info_profileimage: `${req.user.profileimage}`,
+            var_jade_user_info_choosedanimal: `${(!Personget)?'-1':Personget.animal}`
+        });
+    });
+});
+```
+方可正常作動
+
+---
+
+## 以下的東西是之前的...留著給大家參考
+
+---
+
 ## 密碼與私鑰保護
 
 請至雲端硬碟「密碼與私鑰」資料夾下載裡面的Variouskeys資料夾，整個放到本REPO中方可運作
@@ -34,9 +62,6 @@ https://github.com/jaredhanson/passport-facebook
 套件參數
 ['id', 'name', 'displayName', 'gender', 'emails', 'photos', 'hometown', 'profileUrl', 'friends']
 
----
-
-## 以下的東西是之前的...留著給大家參考
 
 ---
 
