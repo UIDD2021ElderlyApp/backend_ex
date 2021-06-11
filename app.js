@@ -52,7 +52,7 @@ var missionRouter = require('./routes/mission');
 var keepRouter = require('./routes/keeps');
 var poopRouter = require('./routes/poops');
 var outdoorRouter = require('./routes/outdoor');
-var dailymissionRouter = require('./routes/dailymission')
+var medalRouter = require('./routes/medal')
 var personalRouter = require('./routes/personal')
 var peopleonmapRouter = require('./routes/PeopleOnMap')
 var profileimageRouter = require('./routes/profileimage')
@@ -191,6 +191,7 @@ app.use('/app/personal', personalRouter);
 app.use('/app/PeopleOnMap', peopleonmapRouter);
 app.use('/app/profileimage', profileimageRouter);
 app.use('/app/posttmp', posttmpRouter);
+app.use('/app/medal',medalRouter);
 ///////////////////////////////////////////////////////
 
 
