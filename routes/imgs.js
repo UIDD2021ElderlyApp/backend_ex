@@ -82,7 +82,7 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
             if (DEF_DEBUG) console.log("+++++++++-----------");
             if (DEF_DEBUG) console.log(Imgget.title);
 
-            imgtitlearray.push(Imgget.title)
+            imgtitlearray.unshift(Imgget.title)
         })
         res.status(200).send(imgtitlearray);
     })
