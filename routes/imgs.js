@@ -8,7 +8,7 @@ var empty = require('is-empty');
 var Img = require('../models/img');
 const sharp = require('sharp');
 
-var DEF_DEBUG = false;
+var DEF_DEBUG = true;
 var glob_user_obj;
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
@@ -69,9 +69,9 @@ router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
 });
 
 router.get('/gallery', ensureAuthenticated, function (req, res, next) {
-
-    if (DEF_DEBUG) console.log("+++++++++");
-    if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
+console.log("router.get('/gallery', ensureAuthenticated, function (req, res, next) {    ");
+    //if (DEF_DEBUG) console.log("+++++++++");
+    //if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
 
     var user_name = glob_user_obj.username;
     var imgtitlearray = []
@@ -94,7 +94,11 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
     //if(DEF_DEBUG)console.log(req.file.buffer.toString('base64'));
     var content = req.file.buffer.toString('base64');
 
-
+console.log(`||||||
+|
+|
+|----------------------------------
+`);console.log(content);
     if (DEF_DEBUG) console.log("+++++++++");
     if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
 

@@ -20,17 +20,23 @@ block content_head
     link(rel='stylesheet' href='./modular_folder/ga/colorbox.css')
 
 block content_body
-    header
     #mygallery(style='position:absolute;')
     #label.button(style='opacity: 1;') 圖片選擇器
     #quit.button(style='opacity: 1;') 離開
+    //#quit(style='opacity: 1;')
+    //  form(method='post', action='/app/img', enctype='multipart/form-data')
+    //    .form-group
+    //    label upload Image
+    //    input.form-control(name='img', type='file')
+    //    .form-group
+    //    input.btn.btn-primary(type='submit', name='submit', value='submit')
     #confirmed_forwarding_path(style='display: none;' src='http://andythebreaker.me')
     #allpicarray(style='display: none;')
-    footer
+block content_footer
       .a_bunch_of_js
         // js
         // jquery
-        script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+        //script(src='https://code.jquery.com/jquery-3.2.1.min.js')
         script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
         //
           script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.colorbox/1.6.4/jquery.colorbox-min.js"
