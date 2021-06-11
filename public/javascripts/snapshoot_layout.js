@@ -84,13 +84,13 @@ function dataURItoBlob(dataURI) {
     return new Blob([ab], { type: mimeString });
 }
 function send_pic_to_backend(img_blob) {
-    var form = $('form')[0]; // You need to use standard javascript object here
+    var form = jQuery_3_6_0('form')[0]; // You need to use standard javascript object here
     var formData = new FormData(form);
 
     formData.append('img', img_blob);
 
-    $.ajax({
-        url: `${DEF_app_img}`,
+    jQuery_3_6_0.ajax({
+        url: `jQuery_3_6_0{DEF_app_img}`,
         data: formData,
         type: 'POST',
         contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
@@ -105,14 +105,14 @@ function send_pic_to_backend(img_blob) {
         },
         success: function (xhr) {
             //console.log("alert('Ajax request 發生錯誤');");
-            //$(e.target).attr('disabled', false);
+            //jQuery_3_6_0(e.target).attr('disabled', false);
             document.getElementById("snap_shoot_finish").innerText = "3";
         },
         error: function (xhr) {
             document.getElementById("snap_shoot_finish").innerText = "4";
 
             console.log("alert('Ajax request 發生錯誤');");
-            //$(e.target).attr('disabled', false);
+            //jQuery_3_6_0(e.target).attr('disabled', false);
         },
         complete: function (xhr) {
             if (document.getElementById("snap_shoot_finish").innerText === "3") {

@@ -11,7 +11,14 @@ html
     footer
       //If the order of things in this block is changed, the elf will be angry
       script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+      script(type='text/javascript').
+        var jQuery_3_6_0 = $.noConflict(true);
       button#snap_shoot_screen(style='display: none;') snap_shoot_screen
       #snap_shoot_finish(style='display: none;') -1
       script(src='../javascripts/snapshoot_layout.js' type="module")
+      #jade_user_info(style='display: none;')
+        #jade_user_info_name(style='display: none;') #{var_jade_user_info_name}
+        #jade_user_info_username(style='display: none;') #{var_jade_user_info_username}
+        #jade_user_info_profileimage(style='display: none;') #{var_jade_user_info_profileimage}
+        #jade_user_info_choosedanimal(style='display: none;') #{var_jade_user_info_choosedanimal}
       block content_footer

@@ -44,6 +44,7 @@ var ga = require('./routes/ga');
 var image_api_test = require('./routes/image_api_test');
 //var imggetapiRouter = require('./routes/imggetapi');
 var imgRouter = require('./routes/imgs');
+var main = require('./routes/main');
 
 /*----------------------------------------------------*/
 var socialRouter = require('./routes/social');
@@ -142,7 +143,7 @@ app.get('/manifest.json', function (req, res, next) {
   res.status(200).json({
     "name": "Old friend",
     "short_name": "Old friend",
-    "start_url": "https://luffy.ee.ncku.edu.tw:" + app.locals.port_https + "/ts/home",
+    "start_url": "https://luffy.ee.ncku.edu.tw:" + app.locals.port_https + "/main",
     "display": "standalone",
     "orientation": "portrait",
     "icons": [{
@@ -177,6 +178,7 @@ app.use('/ga', ga);
 app.use('/image_api_test', image_api_test);
 //app.use('/app/img', imggetapiRouter);
 app.use('/app/img', imgRouter);
+app.use('/main', main);
 
 ////////////////////////////////////////////////////
 
@@ -191,7 +193,7 @@ app.use('/app/personal', personalRouter);
 app.use('/app/PeopleOnMap', peopleonmapRouter);
 app.use('/app/profileimage', profileimageRouter);
 app.use('/app/posttmp', posttmpRouter);
-app.use('/app/medal',medalRouter);
+app.use('/app/medal', medalRouter);
 ///////////////////////////////////////////////////////
 
 

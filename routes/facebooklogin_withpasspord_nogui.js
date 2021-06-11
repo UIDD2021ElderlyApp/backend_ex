@@ -9,7 +9,7 @@ router.get('/facebook', passport.authenticate('facebook'/*, { scope: ['profileUr
 
 router.get('/facebook/callback',
     passport.authenticate('facebook', {
-        successRedirect: '/app/sel',
+        successRedirect: '/main',
         failureRedirect: '/users/login'
     }));
 

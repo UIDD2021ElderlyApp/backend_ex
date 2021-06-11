@@ -4,18 +4,18 @@
 var animal = 2
 switch (animal) {
     case 1:
-        $("#back_block").html('<div id="back1"></div><img src="image/home_back1_land.svg" style="position:absolute; width:100%; bottom:10%; z-index:2;"><img src="image/home_back1_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"></img>')
-        $("#animal img").css("content", "url('image/home_animal1.svg')")
+        $("#back_block").html('<div id="back1"></div><img src="./frontend/biggggg/image/home_back1_land.svg" style="position:absolute; width:100%; bottom:10%; z-index:2;"><img src="./frontend/biggggg/image/home_back1_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"></img>')
+        $("#animal img").css("content", "url('./frontend/biggggg/image/home_animal1.svg')")
         $("#menu_back").css('background-color', '#61913D')
         break;
     case 2:
-        $("#back_block").html('<div id="back2_1"></div><div id="back2_2"></div><img src="image/home_back2_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"><div id="sun"><img src="image/home_back2_sun.svg" style="height:100%;"></div><img src="image/home_back2_sand.svg" style="position:absolute; width:100%; bottom:10%; z-index:3;"><img src="image/home_back2_unbrella.svg" style="position:absolute; width:50%; right:0%; top:20%; z-index:4"><img src="image/home_back2_tree.svg" style="position:absolute; width:30%; left:25%; bottom:43vw; z-index:6"><img src="image/home_back2_coconut.svg" style="position:absolute; width: 15%; left:25%; bottom:35vw; z-index:8"></img>')
-        $("#animal img").css("content", "url('image/home_animal2.svg')")
+        $("#back_block").html('<div id="back2_1"></div><div id="back2_2"></div><img src="./frontend/biggggg/image/home_back2_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"><div id="sun"><img src="./frontend/biggggg/image/home_back2_sun.svg" style="height:100%;"></div><img src="./frontend/biggggg/image/home_back2_sand.svg" style="position:absolute; width:100%; bottom:10%; z-index:3;"><img src="./frontend/biggggg/image/home_back2_unbrella.svg" style="position:absolute; width:50%; right:0%; top:20%; z-index:4"><img src="./frontend/biggggg/image/home_back2_tree.svg" style="position:absolute; width:30%; left:25%; bottom:43vw; z-index:6"><img src="./frontend/biggggg/image/home_back2_coconut.svg" style="position:absolute; width: 15%; left:25%; bottom:35vw; z-index:8"></img>')
+        $("#animal img").css("content", "url('./frontend/biggggg/image/home_animal2.svg')")
         $("#menu_back").css('background-color', '#004D69')
         break;
     case 3:
-        $("#back_block").html('<div id="back3"></div><img src="image/home_back3_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"><img src="image/home_back3_land.svg" style="position:absolute; width:100%; bottom:10%; z-index:2;"></img>')
-        $("#animal img").css("content", "url('image/home_animal3.svg')")
+        $("#back_block").html('<div id="back3"></div><img src="./frontend/biggggg/image/home_back3_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"><img src="./frontend/biggggg/image/home_back3_land.svg" style="position:absolute; width:100%; bottom:10%; z-index:2;"></img>')
+        $("#animal img").css("content", "url('./frontend/biggggg/image/home_animal3.svg')")
         $("#menu_back").css('background-color', '#61913D')
         break;
 }
@@ -34,13 +34,13 @@ $("#house").click(function() {
             $("#animal").css("width", "0%");
             switch (animal) {
                 case 1:
-                    $("#house").css("background-image", "url(image/home_sleep1.svg)");
+                    $("#house").css("background-image", "url(./frontend/biggggg/image/home_sleep1.svg)");
                     break;
                 case 2:
-                    $("#house").css("background-image", "url(image/home_sleep2.svg)");
+                    $("#house").css("background-image", "url(./frontend/biggggg/image/home_sleep2.svg)");
                     break;
                 case 3:
-                    $("#house").css("background-image", "url(image/home_sleep3.svg)");
+                    $("#house").css("background-image", "url(./frontend/biggggg/image/home_sleep3.svg)");
                     break;
             }
         })
@@ -48,7 +48,7 @@ $("#house").click(function() {
     } else {
         $(this).animate({}, 300, function() {
             $("#animal").css("width", "60%");
-            $(this).css("background-image", "url(image/home_house.svg)");
+            $(this).css("background-image", "url(./frontend/biggggg/image/home_house.svg)");
         })
         sleep = false
     }
