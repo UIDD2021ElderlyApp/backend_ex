@@ -11,6 +11,7 @@ block content_body
       input.form-control(name='img', type='file')
       .form-group
       input.btn.btn-primary(type='submit', name='submit', value='submit')
+    button#getgallerylist 拿圖清單很慢測試
     h1(style='background-color:yellow;color:black;') real image!
     a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904.jpg')
       img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904.jpg')
@@ -32,3 +33,5 @@ block content_body
     h1(style='background-color:yellow;color:black;') t!
     a(href='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_t.jpg')
       img(alt='Title 1' src='https://luffy.ee.ncku.edu.tw:36443/app/img/?title=43137057520153061623054008904_tb_t.jpg')
+block content_footer
+    script(src='../modular_folder/image_api_test/index.js')

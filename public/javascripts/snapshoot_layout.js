@@ -44,7 +44,7 @@ document.getElementById("snap_shoot_screen").addEventListener("click", function 
         }
         if (blob_tmp.size < 6000000) {
             send_pic_to_backend(blob_tmp);
-        } else {
+        } /*else {
             console.log("compress_ratio");
             var compress_ratio = 0.9;
             while (compress_ratio > 0 && (dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)).size > 6000000)) {
@@ -54,7 +54,7 @@ document.getElementById("snap_shoot_screen").addEventListener("click", function 
                 console.error("this is a error, the page is tooooooooooooooooo large, so you can't trans this file to backend!!!!")
             }
             send_pic_to_backend(dataURItoBlob(canvas.toDataURL("image/jpeg", compress_ratio)));
-        }
+        }*/
 
     });
 });
