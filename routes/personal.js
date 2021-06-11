@@ -33,7 +33,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         else {
             res.status(200).send(JSON.stringify(-1));
         }
-    })
+    });
 });
 
 router.post('/create', ensureAuthenticated, function (req, res, next) {
@@ -65,7 +65,8 @@ router.post('/create', ensureAuthenticated, function (req, res, next) {
         console.log(newPerson);
         var id = {};
         id["id"] = newPerson._id;
-        res.status(200).send(JSON.stringify(id));
+        //res.status(200).send(JSON.stringify(id));
+        res.status(200).send("success");
     });
 });
 
