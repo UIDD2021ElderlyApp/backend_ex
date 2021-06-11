@@ -169,7 +169,7 @@ router.post('/login',
   passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: 'Invalid username or password' }),
   function (req, res) {
 
-    res.status(200).send("/app/sel");
+    res.status(200).send("/main");
   });
 
 router.get('/logout', function (req, res) {
