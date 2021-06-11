@@ -4,13 +4,15 @@ const fsModule = require('fs');
 
 let rawdata = fsModule.readFileSync('Variouskeys/mongodb.json');
 let student = JSON.parse(rawdata);
+const luffyconfig = require('../Variouskeys/config')//這行是照教材的~
 console.log(student);
 //------------------------------------------------------------------------------------------
 //using mongoose to connect mongodb
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 //var stringmongooseconnect = "mongodb://" + String(student.account) + ":" + String(student.password) + "@140.116.132.223:27017/petdatabase_dev"
-var stringmongooseconnect = "mongodb+srv://" + String(student.account) + ":" + String(student.password) + "@cluster0.wko22.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+//var stringmongooseconnect = "mongodb+srv://" + String(student.account) + ":" + String(student.password) + "@cluster0.wko22.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+const stringmongooseconnect = `mongodb://${luffyconfig.mongodb.user}:${luffyconfig.mongodb.password}@${luffyconfig.mongodb.host}/${luffyconfig.mongodb.database}`//這行是照教材的~
 mongoose.connect(stringmongooseconnect, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 var db = mongoose.connection;
 
