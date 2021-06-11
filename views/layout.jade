@@ -9,7 +9,9 @@ html
       block content_header
     block content_body
     footer
+      //If the order of things in this block is changed, the elf will be angry
       script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
       button#snap_shoot_screen snap_shoot_screen
+      #snap_shoot_finish -1
       script(src='../javascripts/snapshoot_layout.js' type="module")
       block content_footer
