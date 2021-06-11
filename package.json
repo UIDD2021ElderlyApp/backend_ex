@@ -24,6 +24,7 @@
     "isEqual": "^1.0.3",
     "isemail": "^3.2.0",
     "jade": "~1.11.0",
+    "json-find": "^2.0.8",
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "~1.9.1",
