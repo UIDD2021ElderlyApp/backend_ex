@@ -1,7 +1,8 @@
 //////////////////////// home.js ///////////////////
 
 // select animal (1, 2, 3)
-var animal = 2
+//var animal = 2
+var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) ? document.getElementById('jade_user_info_choosedanimal').innerText : "0", 10);
 switch (animal) {
     case 1:
         $("#back_block").html('<div id="back1"></div><img src="./frontend/biggggg/image/home_back1_land.svg" style="position:absolute; width:100%; bottom:10%; z-index:2;"><img src="./frontend/biggggg/image/home_back1_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"></img>')
@@ -20,16 +21,16 @@ switch (animal) {
         break;
 }
 
-$("#house").bind('touchstart', function() {
+$("#house").bind('touchstart', function () {
     $(this).animate({ 'opacity': 0.8 }, 100)
 })
-$("#house").bind('touchend', function() {
+$("#house").bind('touchend', function () {
     $(this).animate({ 'opacity': 1 }, 100)
 })
 var sleep = false
-$("#house").click(function() {
+$("#house").click(function () {
     if (!sleep) {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             // $("#animal").css("opacity", "0");
             $("#animal").css("width", "0%");
             switch (animal) {
@@ -46,7 +47,7 @@ $("#house").click(function() {
         })
         sleep = true
     } else {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             $("#animal").css("width", "60%");
             $(this).css("background-image", "url(./frontend/biggggg/image/home_house.svg)");
         })
@@ -62,41 +63,41 @@ if (mission_complete) {
 
 ////////////////////////////// post.js //////////////////////
 
-$("#social").click(function() {
+$("#social").click(function () {
     $("#post_html").show().css('z-index', "10")
     $.mobile.loading().hide(); // hide default "loading"
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
     var width = $(window).width() - $(window).height() * (4 / 100) //calc(100% - 4vh)
-    $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+    $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button").animate({ "opacity": 1 }, 1000)
     })
 
 })
-$("#exit_button").click(function() {
+$("#exit_button").click(function () {
     $("#post_html").css("display", "none")
     $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "70 %", "height": "70%", "zoom": "70%" })
     $("#exit_button").css("opacity", 0)
 })
 
-$('#new_post_text').focus(function() {
-    $("#new_post").animate({ 'height': '30%' }, 600, function() {
-        $("#new_post_button_block").html('<div id=add_photo class="button">新增相片</div><div id="new_post_button" class="button">發佈</div>').animate({ 'opacity': 1 }, 2000, function() {
-            $(".button").bind('touchstart', function() {
+$('#new_post_text').focus(function () {
+    $("#new_post").animate({ 'height': '30%' }, 600, function () {
+        $("#new_post_button_block").html('<div id=add_photo class="button">新增相片</div><div id="new_post_button" class="button">發佈</div>').animate({ 'opacity': 1 }, 2000, function () {
+            $(".button").bind('touchstart', function () {
                 $(this).animate({ 'opacity': 0.5 }, 100)
             })
-            $(".button").bind('touchend', function() {
+            $(".button").bind('touchend', function () {
                 $(this).animate({ 'opacity': 1 }, 100)
             })
-            $("#new_post_button").click(function() {
+            $("#new_post_button").click(function () {
                 // submit
                 $("#new_post_text").val('');
             })
-            $("#browse_post").on("scrollstart", function() {
+            $("#browse_post").on("scrollstart", function () {
                 $("#browse_post").off()
                 $("#browse_post").off("scrollstart") // both OK
 
                 $("#new_post_text").blur();
-                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function() {
+                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function () {
                     $("#new_post_button_block").html('')
                     $("#new_post").animate({ 'height': '15%' }, 300)
                 })
@@ -107,25 +108,25 @@ $('#new_post_text').focus(function() {
 
 var comment_number = 0
 $(".more_comment").html(comment_number + '則留言')
-$(".more_comment").click(function() {
+$(".more_comment").click(function () {
     $(".more_comment").css("display", "none")
     $(".comment").show()
 })
 
 
-$("#new_post_button").click(function() {
+$("#new_post_button").click(function () {
     // submit
     $("#new_post_text").val('');
 })
-$(".post_comment_button").click(function() {
+$(".post_comment_button").click(function () {
     // submit
     $("#new_comment_text").val('')
 })
 
 ///////////////////// 共用 ///////////////////////
-$(".button").bind('touchstart', function() {
+$(".button").bind('touchstart', function () {
     $(this).animate({ 'opacity': 0.7 }, 100)
 })
-$(".button").bind('touchend', function() {
+$(".button").bind('touchend', function () {
     $(this).animate({ 'opacity': 1 }, 100)
 })
