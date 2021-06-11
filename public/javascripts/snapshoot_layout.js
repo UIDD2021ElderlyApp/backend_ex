@@ -90,7 +90,7 @@ function send_pic_to_backend(img_blob) {
     formData.append('img', img_blob);
 
     jQuery_3_6_0.ajax({
-        url: `jQuery_3_6_0{DEF_app_img}`,
+        url: `${DEF_app_img}`,
         data: formData,
         type: 'POST',
         contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)

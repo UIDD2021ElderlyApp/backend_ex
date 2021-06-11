@@ -33,7 +33,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         else {
             res.status(200).send(JSON.stringify(-1));
         }
-    })
+    });
 });
 
 router.post('/create', ensureAuthenticated, function (req, res, next) {
