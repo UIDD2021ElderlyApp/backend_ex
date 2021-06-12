@@ -298,7 +298,24 @@ document.getElementById('social').addEventListener("click", function () {
     checkFlag();
 });
 
+document.getElementById('new_post_button').addEventListener("click", function () {
+    function checkFlag() {
+        if (document.getElementById('usr_inp_send_success').innerText !== 'post_success?yes') {
+            setTimeout(() => {
+                checkFlag();
+            }, 5);
+        } else {
+            document.querySelectorAll('.remove_at_exit_post_page').forEach(e => e.remove());
+            init();
+            scrolledToBottom();
+        }
+    }
+    checkFlag();
+});
+
+
 document.getElementById('exit_button').addEventListener("click", function () {
+
     document.querySelectorAll('.remove_at_exit_post_page').forEach(e => e.remove());
-    
+
 });

@@ -91,8 +91,10 @@ $("#exit_button").click(function () {
 
 $('#new_post_text').focus(function () {
     $("#new_post").animate({ 'height': '30%' }, 600, function () {
+        $("#new_post_button_block").show().animate({ 'opacity': 1 }, 2000);
         $("#new_post_button_block #new_post_button").show().animate({ 'opacity': 1 }, 2000);
-        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function () {
+        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function () {/*
+            這裡是否會有事件重複宣告的問題*/
             document.getElementById('new_post_button_on_loaded_stat').innerText = '1';
             $(".button").bind('touchstart', function () {
                 $(this).animate({ 'opacity': 0.5 }, 100)
