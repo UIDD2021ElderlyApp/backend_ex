@@ -31,12 +31,12 @@
     <form id="ajax-form">
         <button id="exit_button">
             <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
-            <img src="./map2.png">
-        </a>
+                <img src="./map2.png">
+            </a>
         </button>
 
         <button id="camera_button" type="button" OnClientClick="return false;">
-            <img src="./camera.png" id="camera" >
+            <img src="./camera.png" id="camera">
         </button>
     </form>
     <div id="hungun">
@@ -86,10 +86,16 @@
 
 
 
-        map = L.map('map').setView([22.5, 120.5], 15);//construct map
-        map.locate({ setView: true, watch: true, enableHighAccuracy: true });
+        map = L.map('map').setView([22.5, 120.5], 15); //construct map
+        map.locate({
+            setView: true,
+            watch: true,
+            enableHighAccuracy: true
+        });
         map.removeControl(map.zoomControl);
-        L.control.scale({ imperial: false }).addTo(map);
+        L.control.scale({
+            imperial: false
+        }).addTo(map);
         L.control.zoom({
 
             position: 'topright',
@@ -145,28 +151,36 @@
             //             var me = JSON.parse(user)
             //             animal_id = me.animal
             //             user_name = me.name
-                        if (gpsMarker == null) {
-                            if (animal_id == 1) {
-                                gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
-                            }
-                            if (animal_id == 2) {
-                                gpsMarker = L.marker(e.latlng, { icon: customIcon2 }).addTo(map);
-                            }
-                            if (animal_id == 3) {
-                                gpsMarker = L.marker(e.latlng, { icon: customIcon3 }).addTo(map);
-                            }
-                            if (animal_id == -1) {
-                                gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
-                            }
-                            gpsMarker.bindPopup(user_name).openPopup();
-                            gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
-                        }
-                        if (gpsMarker != null) {
-                            gpsMarker.getPopup().setContent(user_name);
-                            gpsMarker.setLatLng(e.latlng);
-                            gpsCircleMarker.setLatLng(e.latlng);
-                            gpsCircleMarker.setRadius(radius);
-                        }
+            if (gpsMarker == null) {
+                if (animal_id == 1) {
+                    gpsMarker = L.marker(e.latlng, {
+                        icon: customIcon1
+                    }).addTo(map);
+                }
+                if (animal_id == 2) {
+                    gpsMarker = L.marker(e.latlng, {
+                        icon: customIcon2
+                    }).addTo(map);
+                }
+                if (animal_id == 3) {
+                    gpsMarker = L.marker(e.latlng, {
+                        icon: customIcon3
+                    }).addTo(map);
+                }
+                if (animal_id == -1) {
+                    gpsMarker = L.marker(e.latlng, {
+                        icon: customIcon_1
+                    }).addTo(map);
+                }
+                gpsMarker.bindPopup(user_name).openPopup();
+                gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
+            }
+            if (gpsMarker != null) {
+                gpsMarker.getPopup().setContent(user_name);
+                gpsMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setRadius(radius);
+            }
 
 
             //         }
@@ -203,7 +217,23 @@
             current = e.latlng;
             distance2 = last.distanceTo(current);
             last = current;
-            console.log(distance2)
+            console.log('dis2 ' + distance2)
+            var getgoal; //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            $.post('/app/medal/', {
+                type:4,
+                goal:0
+            }
+            )
+            ;$.post('/app/medal/getWalk/', {
+            }, (walk) => {
+                if (walk) {
+                    console.log('walk '+walk)
+                    var parse_walk= JSON.parse(walk)
+                    getgoal=parse_walk.goal
+                }
+
+            });
+            console.log('getgoal ' + getgoal)
 
             distance1 += distance2;
         }
@@ -223,14 +253,14 @@
         setInterval(function () {
             console.log(distance1)
             console.log(distance2)
-            console.log(last)
-            console.log(current)
+            // console.log(last)
+            // console.log(current)
             document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
 
 
 
 
-        }, 2000);
+        }, 5000);
 
         function onLocationError(e) {
             alert(e.message);
@@ -248,19 +278,22 @@
             maxZoom: 19,
         }).addTo(map);
 
-        $(document).ready(function () {///////////////////////////////////////////////added at 6/2
+        $(document).ready(function () { ///////////////////////////////////////////////added at 6/2
 
 
-            var search_radius = 300;
-            console.log("lat")
-            console.log(now_lat)
-            console.log("lng")
-            console.log(now_lng)
+            // var search_radius = 300;
+            // console.log("lat")
+            // console.log(now_lat)
+            // console.log("lng")
+            // console.log(now_lng)
 
             setInterval(function () {
                 $.get('/app/PeopleOnMap/', {
                     distance: search_radius,
-                    position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
+                    position: JSON.stringify({
+                        "lat": now_lat,
+                        "lng": now_lng
+                    })
                 }, (People) => {
                     if (People) {
                         var people = JSON.parse(People)
@@ -279,64 +312,83 @@
                             }
                         }
                         for (var i = 0; i < people.length; i++) {
-                            var temp_latlng = L.latLng(people[i].position.lat, people[i].position.lng);
+                            var temp_latlng = L.latLng(people[i].position.lat, people[i]
+                                .position.lng);
                             if (people[i].animal == 1) {
-                                marker_array[i] = L.marker(temp_latlng, { icon: customIcon1 }).addTo(map);
+                                marker_array[i] = L.marker(temp_latlng, {
+                                    icon: customIcon1
+                                }).addTo(map);
                                 marker_array[i].bindPopup(people[i].name).openPopup();
                             }
                             if (people[i].animal == 2) {
-                                marker_array[i] = L.marker(temp_latlng, { icon: customIcon2 }).addTo(map);
+                                marker_array[i] = L.marker(temp_latlng, {
+                                    icon: customIcon2
+                                }).addTo(map);
                                 marker_array[i].bindPopup(people[i].name).openPopup();
                             }
                             if (people[i].animal == 3) {
-                                marker_array[i] = L.marker(temp_latlng, { icon: customIcon3 }).addTo(map);
+                                marker_array[i] = L.marker(temp_latlng, {
+                                    icon: customIcon3
+                                }).addTo(map);
                                 marker_array[i].bindPopup(people[i].name).openPopup();
                             }
                             if (people[i].animal == -1) {
-                                marker_array[i] = L.marker(temp_latlng, { icon: customIcon_1 }).addTo(map);
+                                marker_array[i] = L.marker(temp_latlng, {
+                                    icon: customIcon_1
+                                }).addTo(map);
                                 marker_array[i].bindPopup(people[i].name).openPopup();
                             }
                         }
                     }
-                }
-                )
+                })
             }, 10000)
 
             setInterval(function () {
                 $.post('/app/PeopleOnMap/', {
                     animal: animal_id,
-                    position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
+                    position: JSON.stringify({
+                        "lat": now_lat,
+                        "lng": now_lng
+                    })
                 }, (id) => {
                     if (id) {
                         //不一定用的到
                     }
-                }
-                )
+                })
             }, 10000)
 
         });
-import html2canvas from '../../snap/html2canvas/dist/html2canvas.esm.js';
-var DEF_app_img="/app/img";
-var DEF_DEBUG=true;
+        import html2canvas from '../../snap/html2canvas/dist/html2canvas.esm.js';
+        var DEF_app_img = "/app/img";
+        var DEF_map = "/app/PeopleOnMap";
+        var DEF_DEBUG = true;
+        document.getElementById("exit_button").addEventListener("click", function () {
 
-document.getElementById("camera_button").addEventListener("click", function () {
-    html2canvas(document.querySelector("body")).then(canvas => {
-        var url = window.location.href;
-        var window_location_href_host = new URL(url).host;
-        console.log(window_location_href_host);
 
-        var target_img=canvas.toDataURL("image/jpeg", 1.0);
+            $.post("https://" + window_location_href_host + DEF_map, {}, (objects_returned_by_the_server) => {
+                if (DEF_DEBUG) {
+                    console.log(String(objects_returned_by_the_server));
+                }
+            })
 
-        $.post("https://"+window_location_href_host + DEF_app_img, {
-            content: target_img
-        }, (objects_returned_by_the_server) => {
-            if (DEF_DEBUG) {
-                console.log(String(objects_returned_by_the_server));
-            }
-        })
-    });
-});
+        });
+        document.getElementById("camera_button").addEventListener("click", function () {
+            html2canvas(document.querySelector("body")).then(canvas => {
+                var url = window.location.href;
+                var window_location_href_host = new URL(url).host;
+                console.log(window_location_href_host);
 
+                var target_img = canvas.toDataURL("image/jpeg", 1.0);
+
+                $.post("https://" + window_location_href_host + DEF_app_img, {
+                    content: target_img
+                }, (objects_returned_by_the_server) => {
+                    if (DEF_DEBUG) {
+                        console.log(String(objects_returned_by_the_server));
+                    }
+                })
+            });
+        });
     </script>
 </body>
 
