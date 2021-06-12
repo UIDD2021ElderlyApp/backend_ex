@@ -10,6 +10,7 @@
     "body-parser": "^1.19.0",
     "connect-flash": "*",
     "cookie-parser": "~1.4.5",
+    "data-uri-to-buffer": "^3.0.1",
     "debug": "~2.6.9",
     "express": "~4.17.1",
     "express-messages": "*",
@@ -34,10 +35,10 @@
     "passport-http": "*",
     "passport-local": "*",
     "randomstring": "*",
+    "request": "*",
     "serve-favicon": "^2.5.0",
     "sharp": "^0.28.3",
-    "string-sanitizer": "^1.1.1",
-    "request": "*"
+    "string-sanitizer": "^1.1.1"
   },
   "devDependencies": {
     "html-loader": "^2.1.2",

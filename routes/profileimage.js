@@ -10,6 +10,25 @@ var User = require('../models/user');
 var DEF_DEBUG = true;
 var glob_user_obj;
 
+router.get('/', function (req, res, next) {//https://luffy.ee.ncku.edu.tw:8787/get/?username=123.jpg
+
+    var username = req.query.username.split(".")[0];//去掉.jpg
+    var file_format = req.query.username.split(".")[1];//jpg
+    console.log("username :" + username)
+    console.log("file_format :" + file_format)
+
+    User.getanotheruser(username, function (err, anotheruser) {
+        if (anotheruser == null) {
+            res.status(200).send("-1")
+        }
+        else {
+            res.status(200).send(anotheruser.profileimage)
+        }
+    })
+});
+
+
+/*以下是時代的產物
 router.get('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
@@ -83,6 +102,7 @@ router.get('/anotheruser', function (req, res, next) {//https://luffy.ee.ncku.ed
         }
     })
 });
+*/
 
 
 function ensureAuthenticated(req, res, next) {
@@ -92,7 +112,7 @@ function ensureAuthenticated(req, res, next) {
     }
     res.redirect('/users/login');
 }
-
+/*以下是時代的產物
 function set_compress_ratio(query_without_jpg) {
     let compressratio;
     console.log("set_compress_ratio for :" + query_without_jpg)
@@ -142,5 +162,5 @@ function set_Content_Type(output_file_format) {
     console.log("set_Content_Type is :" + Content_Type)
     return Content_Type
 }
-
+*/
 module.exports = router;
