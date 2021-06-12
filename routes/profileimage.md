@@ -6,7 +6,7 @@
 > get /
 >> query: ?username=123.jpg  
 >> res.status(200).send(jpg file or "-1") 
-**回傳一個dataurl或網址**
+**參照大頭照api.doc**
 
 ## 以下是時代的產物
 
