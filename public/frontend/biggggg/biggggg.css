@@ -377,7 +377,7 @@ body {
 
 /****************************/
 
-.post {
+.post_poop {
     position: relative;
     background-color: #ffffff;
     width: calc(100% - 2vh);
@@ -413,7 +413,7 @@ body {
 
 .poster_photo img {
     width: 100%;
-    content: url('image/test.svg');
+    /*content: url('image/test.svg');*/
 }
 
 .poster_name {
@@ -548,4 +548,12 @@ body {
     box-shadow: #636363 0 0 0.6vh;
     background-color: #ffffff;
     z-index: 1;
+}
+
+.commenter_photo{
+    display: none;
+
+}
+.comment_time{
+    display: none;
 }
