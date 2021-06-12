@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
-const JsonFind = require("json-find");
+const fs = require("fs");
 
-const medalEXP = '../exp/accumulate';
-const dailyEXP = '../exp/daily';
+const medalEXP = 'exp/accumulate.json';
+const dailyEXP = 'exp/daily.json';
 
 var MedalSchema = mongoose.Schema({
     user_id: {
@@ -82,8 +82,8 @@ module.exports.getMedalByUserId = function (userId_you_want_to_find, callback) {
 module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal, callback) {
     console.log("--------->setMedal");
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
-        if (err) {
-            console.log(err);
+        if (m_set.length === 0) {
+            console.log("------> create a new medal");
             callback(-1);
         }
         else
@@ -287,7 +287,7 @@ module.exports.getEXP = function (userId_you_want_to_find, callback) {
 
 module.exports.getWalk = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
-        if(err) {
+        if(err||m_set.length === 0) {
             console.log(err);
             var wrongWalk = {
                 progress: -1,
