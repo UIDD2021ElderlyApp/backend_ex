@@ -248,32 +248,32 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
 
 module.exports.getDaily = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
-        if (err) {
+        if (err||m_set.length === 0) {
             console.log(err);
             var wrongDailyMission = {
-                wake: false,
-                sleep: false,
-                picture: false,
-                stroll: false
+                "wake": false,
+                "sleep": false,
+                "picture": false,
+                "stroll": false
             };
-            callback(wrongDailyMission);
+            callback(JSON.stringify(wrongDailyMission));
         }
         else 
         {
             var dailyMission = {
-                wake: m_set[0].wake,
-                sleep: m_set[0].sleep,
-                picture: m_set[0].picture,
-                stroll: m_set[0].stroll
+                "wake": m_set[0].wake,
+                "sleep": m_set[0].sleep,
+                "picture": m_set[0].picture,
+                "stroll": m_set[0].stroll
             };
-            callback(dailyMission);
+            callback(JSON.stringify(dailyMission));
         }
     })
 }
 
 module.exports.getEXP = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
-        if(err) {
+        if(err||m_set.length === 0) {
             console.log(err);
             callback(-1);
         }
@@ -312,13 +312,13 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
 
 module.exports.getPost = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
-        if(err) {
+        if(err||m_set.length === 0) {
             console.log(err);
             var wrongPost = {
-                progress: -1,
-                goal: -1
+                "progress": -1,
+                "goal": -1
             }
-            callback(wrongPost);
+            callback(JSON.stringify(wrongPost));
         }
         else
         {
@@ -327,23 +327,23 @@ module.exports.getPost = function (userId_you_want_to_find, callback) {
             var currentprogress = m_set[0].post.progress;
             if(currentprogress > 7) currentprogress = 7;
             var postMission = {
-                progress: medalReward.post[currentprogress].goal,
-                goal: m_set[0].post.goal
+                "progress": medalReward.post[currentprogress].goal,
+                "goal": m_set[0].post.goal
             }
-            callback(postMission);
+            callback(JSON.stringify(postMission));
         }
     })
 }
 
 module.exports.getMessage = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
-        if(err) {
+        if(err||m_set.length === 0) {
             console.log(err);
             var wrongMessage = {
-                progress: -1,
-                goal: -1
+                "progress": -1,
+                "goal": -1
             }
-            callback(wrongMessage);
+            callback(JSON.stringify(wrongMessage));
         }
         else
         {
@@ -352,23 +352,23 @@ module.exports.getMessage = function (userId_you_want_to_find, callback) {
             var currentprogress = m_set[0].message.progress;
             if(currentprogress > 7) currentprogress = 7;
             var messageMission = {
-                progress: medalReward.message[currentprogress].goal,
-                goal: m_set[0].message.goal
+                "progress": medalReward.message[currentprogress].goal,
+                "goal": m_set[0].message.goal
             }
-            callback(messageMission);
+            callback(JSON.stringify(messageMission));
         }
     })
 }
 
 module.exports.getLevel = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
-        if(err) {
+        if(err||m_set.length === 0) {
             console.log(err);
             var wrongLevel = {
-                progress: -1,
-                goal: -1
+                "progress": -1,
+                "goal": -1
             }
-            callback(wrongLevel);
+            callback(JSON.stringify(wrongLevel));
         }
         else
         {
@@ -377,10 +377,10 @@ module.exports.getLevel = function (userId_you_want_to_find, callback) {
             var currentprogress = m_set[0].level.progress;
             if(currentprogress > 7) currentprogress = 7;
             var levelMission = {
-                progress: medalReward.level[currentprogress].goal,
-                goal: m_set[0].level.goal
+                "progress": medalReward.level[currentprogress].goal,
+                "goal": m_set[0].level.goal
             }
-            callback(levelMission);
+            callback(JSON.stringify(levelMission));
         }
     })
 }
