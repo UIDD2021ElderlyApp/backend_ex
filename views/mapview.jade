@@ -167,11 +167,12 @@ html
       console.log(distance1)
       console.log(distance2)
       var getgoal;  
-      $.post('/app/medal/', {
-      medal: {
-      type: 4,
-      goal: 0
+      var somemedal = {
+        type: 4,
+        goal: 0
       }
+      $.post('/app/medal/', {
+      medal: somemedal
       });
       $.post('/app/medal/getWalk/', {
       }, (walk) => {
