@@ -12,10 +12,10 @@ var Medal = require('../models/Medal');
 
 router.post('/', ensureAuthenticated, function(req, res){
     var inputMedal = req.body.medal;
-    Medal.setMedalByUserId(glob_user_obj, inputMedal, function(db_type){
+    Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function(db_type){
         if (db_type === -1) {
             var newMedal = new Medal({
-                user_id: glob_user_obj,
+                user_id: glob_user_obj.username,
                 exp: 0,
                 wake: false,
                 sleep: false,
@@ -46,7 +46,7 @@ router.post('/', ensureAuthenticated, function(req, res){
                 if(err) throw err;
                 console.log(newMedal);
             });  
-            Medal.setMedalByUserId(glob_user_obj, inputMedal, function(db_type_2){
+            Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function(db_type_2){
                 console.log("**********Reload to put data**********");
                 if(db_type_2 === 1)
                 {
@@ -54,7 +54,7 @@ router.post('/', ensureAuthenticated, function(req, res){
                         type: 8,
                         goal: 1
                     }
-                    Medal.setMedalByUserId(glob_user_obj, levelObject, function(db_type_3){
+                    Medal.setMedalByUserId(glob_user_obj.username, levelObject, function(db_type_3){
                         console.log("**********Reload to level up**********");
                     });
                 }
@@ -66,7 +66,7 @@ router.post('/', ensureAuthenticated, function(req, res){
                 type: 8,
                 goal: 1
             }
-            Medal.setMedalByUserId(glob_user_obj, levelObject, function(db_type){
+            Medal.setMedalByUserId(glob_user_obj.username, levelObject, function(db_type){
                 console.log("**********Reload to level up**********");
             });
         }
@@ -75,37 +75,37 @@ router.post('/', ensureAuthenticated, function(req, res){
 })
 
 router.post('/getdaily', ensureAuthenticated, function(req, res){
-    Medal.getDaily(glob_user_obj, function(dailyMissionComplete){
+    Medal.getDaily(glob_user_obj.username, function(dailyMissionComplete){
         res.status(200).send(dailyMissionComplete);
     })
 })
 
 router.post('/getEXP', ensureAuthenticated, function(req, res){
-    Medal.getEXP(glob_user_obj, function(goal){
+    Medal.getEXP(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
 router.post('/getWalk', ensureAuthenticated, function(req, res){
-    Medal.getWalk(glob_user_obj, function(goal){
+    Medal.getWalk(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
 router.post('/getPost', ensureAuthenticated, function(req, res){
-    Medal.getPost(glob_user_obj, function(goal){
+    Medal.getPost(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
 router.post('/getMessage', ensureAuthenticated, function(req, res){
-    Medal.getMessage(glob_user_obj, function(goal){
+    Medal.getMessage(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
 router.post('/getLevel', ensureAuthenticated, function(req, res){
-    Medal.getLevel(glob_user_obj, function(goal){
+    Medal.getLevel(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
