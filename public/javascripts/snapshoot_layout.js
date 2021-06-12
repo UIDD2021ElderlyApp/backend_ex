@@ -18,7 +18,7 @@ var DEF_download_Blob = false;
 
 document.getElementById("snap_shoot_screen").addEventListener("click", function () {
     document.getElementById("snap_shoot_finish").innerText = "0";
-    html2canvas(document.querySelector("body")).then(canvas => {
+    html2canvas(document.querySelector("body"), { useCORS: true, }).then(canvas => {
         var url = window.location.href;
         var window_location_href_host = new URL(url).host;
         console.log(window_location_href_host);
