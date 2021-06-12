@@ -10,6 +10,7 @@ const sharp = require('sharp');
 
 var DEF_DEBUG = true;
 var glob_user_obj;
+var default_img_numbers = 6;
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
 
@@ -69,7 +70,7 @@ router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
 });
 
 router.get('/gallery', ensureAuthenticated, function (req, res, next) {
-console.log("router.get('/gallery', ensureAuthenticated, function (req, res, next) {    ");
+    console.log("router.get('/gallery', ensureAuthenticated, function (req, res, next) {    ");
     //if (DEF_DEBUG) console.log("+++++++++");
     //if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
 
@@ -86,6 +87,9 @@ console.log("router.get('/gallery', ensureAuthenticated, function (req, res, nex
             imgtitlearray.unshift(Imgget.title)
         });
         console.log("t3");
+        for (let i = 0; i < default_img_numbers; i++) {
+            imgtitlearray.push(`DefaultImgNo${i}.jpg`)
+        }
         res.status(200).send(imgtitlearray);
         console.log("t4");
     });
@@ -97,11 +101,11 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
     //if(DEF_DEBUG)console.log(req.file.buffer.toString('base64'));
     var content = req.file.buffer.toString('base64');
 
-console.log(`||||||
+    console.log(`||||||
 |
 |
 |----------------------------------
-`);console.log(content);
+`); console.log(content);
     if (DEF_DEBUG) console.log("+++++++++");
     if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
 
@@ -152,12 +156,12 @@ console.log(`||||||
 });
 
 function ensureAuthenticated(req, res, next) {
-    
+
     if (req.isAuthenticated()) {
         glob_user_obj = req.user;
         return next();
     } else {
-        
+
         res.redirect('/users/login');
     }
 }
