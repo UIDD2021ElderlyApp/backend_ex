@@ -317,5 +317,15 @@ document.getElementById('new_post_button').addEventListener("click", function ()
 document.getElementById('exit_button').addEventListener("click", function () {
 
     document.querySelectorAll('.remove_at_exit_post_page').forEach(e => e.remove());
-
+    document.getElementById('add_photo').classList.remove('glow');
+    document.getElementById('social_page_stat').innerText = '0';
+    jQuery_3_6_0.get('/app/posttmp/poop_tmmp_clear  ', {
+        //empty
+    }, (objects_returned_by_the_server) => {
+        if (objects_returned_by_the_server === "success") {
+            //only console log
+        } else {
+            //only console log
+        }
+    });
 });

@@ -7,7 +7,7 @@ var PostTmp = require('../models/PostTmp');
 var DEF_DEBUG = true;
 var glob_user_obj;
 
-router.get('/pooptmp', ensureAuthenticated, function (req, res, next) {
+router.get('/pooptmmp', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
@@ -21,12 +21,12 @@ router.get('/pooptmp', ensureAuthenticated, function (req, res, next) {
             console.log(PostTmpget);
         }
         let content = {};
-        content["post_tmp"] = PostTmpget.post_tmp;
-        res.status(200).send(JSON.stringify(content));
+        content["post_tmmp"] = PostTmpget.post_tmmp;
+        res.status(200).send("JSON.stringify(content)");
     })
 });
 
-router.get('/poop_img_sel_tmp', ensureAuthenticated, function (req, res, next) {
+router.get('/poop_img_sel_tmmp', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
@@ -40,40 +40,40 @@ router.get('/poop_img_sel_tmp', ensureAuthenticated, function (req, res, next) {
             console.log(PostTmpget);
         }
         let content = {};
-        content["post_img_select_tmp"] = PostTmpget.post_img_select_tmp;
+        content["post_img_select_tmmp"] = PostTmpget.post_img_select_tmmp;
         res.status(200).send(JSON.stringify(content));
     })
 });
 
 
-router.post('/pooptmp', ensureAuthenticated, function (req, res, next) {
+router.post('/pooptmmp', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     console.log("req.body is :");
     console.log(req.body);
-    var tmp = JSON.parse(req.body);
+    var tmmp = req.body;
     var user_name = glob_user_obj.username;
     var time = new Date().getTime();
-    var post_tmp = tmp.post_tmp;
+    var post_tmmp = tmmp.post_tmmp;
 
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log(user_name);
         console.log(time);
-        console.log(post_tmp);
+        console.log(post_tmmp);
     }
 
-    PostTmp.setPostTmp(time, user_name, post_tmp, 1, function (newPerson) {
+    PostTmp.setPostTmp(time, user_name, post_tmmp, 1, function (newPerson) {
         if (!newPerson) {
-            res.status(200).send();
+            res.status(200).send("success");
         }
         else {//create
             var newPostTmp = new PostTmp({
                 last_update_time: time,
                 user_name: user_name,
-                post_tmp: post_tmp
+                post_tmmp: post_tmmp
             });
             PostTmp.createPostTmp(newPostTmp, function (err, newPostTmp) {
                 if (err) throw err;
@@ -81,40 +81,40 @@ router.post('/pooptmp', ensureAuthenticated, function (req, res, next) {
                 console.log(newPostTmp);
                 var id = {};
                 id["id"] = newPostTmp._id;
-                res.status(200).send(JSON.stringify(id));
+                res.status(200).send("success");
             });
         }
     })
 });
 
-router.post('/poop_img_sel_tmp', ensureAuthenticated, function (req, res, next) {
+router.post('/poop_img_sel_tmmp', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     console.log("req.body is :");
     console.log(req.body);
-    var tmp = JSON.parse(req.body);
+    var tmmp = req.body;
     var user_name = glob_user_obj.username;
     var time = new Date().getTime();
-    var post_img_select_tmp = tmp.post_img_select_tmp;
+    var post_img_select_tmmp = tmmp.post_img_select_tmmp;
 
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log(user_name);
         console.log(time);
-        console.log(post_img_select_tmp);
+        console.log(post_img_select_tmmp);
     }
 
-    PostTmp.setPostTmp(time, user_name, post_img_select_tmp, 2, function (newPerson) {
+    PostTmp.setPostTmp(time, user_name, post_img_select_tmmp, 2, function (newPerson) {
         if (!newPerson) {
-            res.status(200).send();
+            res.status(200).send("success");
         }
         else {//create
             var newPostTmp = new PostTmp({
                 last_update_time: time,
                 user_name: user_name,
-                post_img_select_tmp: post_img_select_tmp
+                post_img_select_tmmp: post_img_select_tmmp
             });
             PostTmp.createPostTmp(newPostTmp, function (err, newPostTmp) {
                 if (err) throw err;
@@ -122,13 +122,13 @@ router.post('/poop_img_sel_tmp', ensureAuthenticated, function (req, res, next) 
                 console.log(newPostTmp);
                 var id = {};
                 id["id"] = newPostTmp._id;
-                res.status(200).send(JSON.stringify(id));
+                res.status(200).send("success");
             });
         }
     })
 });
 
-router.get('/poop_tmp_clear', ensureAuthenticated, function (req, res, next) {
+router.get('/poop_tmmp_clear', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
@@ -165,7 +165,7 @@ router.get('/poop_tmp_clear', ensureAuthenticated, function (req, res, next) {
 
 
 
-router.post('/delete_poop_tmp', ensureAuthenticated, function (req, res, next) {
+router.post('/delete_poop_tmmp', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);

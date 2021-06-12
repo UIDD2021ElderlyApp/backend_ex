@@ -40,6 +40,16 @@ function usr_inp_post_success(objects_returned_by_the_server) {
     }
     document.getElementById("usr_inp_send_success").innerText = (JSON.parse(objects_returned_by_the_server).hasOwnProperty("id")) ? "post_success?yes" : "post_success?no";
     $("#new_post_text").val('');
+    document.getElementById('add_photo').classList.remove('glow');
+    jQuery_3_6_0.get('/app/posttmp/poop_tmmp_clear  ', {
+        //empty
+    }, (objects_returned_by_the_server) => {
+        if (objects_returned_by_the_server === "success") {
+            //only console log
+        } else {
+            //only console log
+        }
+    });
 }
 
 function usr_inp_post_fcn() {
@@ -95,4 +105,17 @@ document.getElementById('social').addEventListener("click", function () {
         }
     }
     checkFlag();
+});
+
+document.getElementById('add_photo').addEventListener("click", function () {
+    jQuery_3_6_0.post('/app/posttmp/pooptmmp', {
+        post_tmmp: document.getElementById("new_post_text").value
+    }, (objects_returned_by_the_server) => {
+        if (objects_returned_by_the_server === "success") {
+            var newstr = window.location.href.replace(this_url_path_re, "/ga");
+            window.location.href = newstr;
+        } else {
+            console.error("internet error when Open album");
+        }
+    });
 });

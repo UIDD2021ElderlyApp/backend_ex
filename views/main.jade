@@ -4,6 +4,7 @@ block content_head
     meta(name='viewport' content='width=device-width, user-scalable=no')
     title #{title}
     link(href='./frontend/biggggg/biggggg.css' rel='stylesheet' type='text/css')
+    link(href='./frontend_data/css/glow.css' rel='stylesheet' type='text/css')
     // phaser
     script(src='https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js')
 block content_header
@@ -63,9 +64,13 @@ block content_body
         // <img>
       #upper_windows
         #new_post
-          textarea#new_post_text(placeholder='打字打在這...' onfocus="this.placeholder = ''" onblur="this.placeholder = '打字打在這...'")
+          textarea#new_post_text(placeholder='打字打在這...' onfocus="this.placeholder = ''" onblur="this.placeholder = '打字打在這...'") #{var_app_PostTmp_get_pooptmmp}
           #new_post_button_block
-            #add_photo.button(style='display:none;') 新增相片
+            - if(var_app_PostTmp_get_poop_img_sel_tmmp) {
+                #add_photo.button.glow(style='display:none;') 新增相片
+            - } else {
+                #add_photo.button(style='display:none;') 新增相片
+            - }
             #new_post_button.button(style='display:none;') 發佈
         #browse_post
           // one post
@@ -104,6 +109,8 @@ block content_footer
     #new_post_button_on_loaded_stat(style='display: none;') -1
     #snap_shoot_social_page_clean_html(style='display: none;')
     #snap_shoot_social_page_clean_html_stat(style='display: none;') -1
+    #app_PostTmp_get_pooptmmp(style='display: none;') #{var_app_PostTmp_get_pooptmmp}
+    #app_PostTmp_get_poop_img_sel_tmmp(style='display: none;') #{var_app_PostTmp_get_poop_img_sel_tmmp}
     // home
     //
     //<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -119,3 +126,9 @@ block content_footer
     script(src='./frontend_data/screenshoot_tset.js')
     script(src='./frontend_data/tspoop/index_poop.js')
     script(src='./frontend_data/tspoop/index_poop_see.js')
+    - if(var_app_PostTmp_get_poop_img_sel_tmmp||var_app_PostTmp_get_pooptmmp) {
+        #jade_js_fuction_auto_pop_up_post_page(style='display: none;')
+          script(src='./frontend_data/jade_js_fuction_auto_pop_up_post_page.js')
+    - } else {
+        #jade_js_fuction_auto_pop_up_post_page(style='display: none;')
+    - }
