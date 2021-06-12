@@ -150,7 +150,22 @@ html
       current = e.latlng;
       distance2 = last.distanceTo(current);
       last = current;
-      console.log(distance2)
+      console.log('dis2 '+distance2)
+      var getgoal;  
+      $.post('/app/medal/', {
+      type:4,
+      goal:0
+      }
+      )
+      $.post('/app/medal/getWalk/', {
+      }, (walk) => {
+      if (walk) {
+      console.log('walk '+walk)
+      var parse_walk= JSON.parse(walk)
+      getgoal=parse_walk.goal
+      }
+      });
+      console.log('getgoal '+getgoal)
       distance1 += distance2;
       }
       var current;
@@ -166,8 +181,6 @@ html
       setInterval(function () {
       console.log(distance1)
       console.log(distance2)
-      console.log(last)
-      console.log(current)
       document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
       }, 2000);
       function onLocationError(e) {
@@ -181,10 +194,6 @@ html
       }).addTo(map);
       $(document).ready(function () {///////////////////////////////////////////////added at 6/2
       var search_radius = 300;
-      console.log("lat")
-      console.log(now_lat)
-      console.log("lng")
-      console.log(now_lng)
       setInterval(function () {
       $.get('/app/PeopleOnMap/', {
       distance: search_radius,
