@@ -68,7 +68,7 @@
         }
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script type="module">
         var NowDate;
@@ -217,23 +217,23 @@
             current = e.latlng;
             distance2 = last.distanceTo(current);
             last = current;
-            console.log('dis2 ' + distance2)
-            var getgoal; //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            $.post('/app/medal/', {
-                type:4,
-                goal:0
-            }
-            )
-            ;$.post('/app/medal/getWalk/', {
-            }, (walk) => {
-                if (walk) {
-                    console.log('walk '+walk)
-                    var parse_walk= JSON.parse(walk)
-                    getgoal=parse_walk.goal
-                }
+            console.log('dis2 ' + distance2) //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            // var getgoal;$.post('/app/medal/', {
+            //     medal: {
+            //         type: 4,
+            //         goal: 0
+            //     }
+            // });
+            // $.post('/app/medal/getWalk/', {}, (walk) => {
+            //     if (walk) {
+            //         console.log('walk ' + walk)
+            //         var parse_walk = JSON.parse(walk)
+            //         getgoal = parse_walk.goal
+            //     }
 
-            });
-            console.log('getgoal ' + getgoal)
+            // });
+            // console.log('getgoal ' + getgoal)
 
             distance1 += distance2;
         }
@@ -257,6 +257,21 @@
             // console.log(current)
             document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
 
+            var getgoal;$.post('/app/medal/', {
+                medal: {
+                    type: 4,
+                    goal: 0
+                }
+            });
+            $.post('/app/medal/getWalk/', {}, (walk) => {
+                if (walk) {
+                    console.log('walk ' + walk)
+                    var parse_walk = JSON.parse(walk)
+                    getgoal = parse_walk.goal
+                }
+
+            });
+            console.log('getgoal ' + getgoal)
 
 
 
