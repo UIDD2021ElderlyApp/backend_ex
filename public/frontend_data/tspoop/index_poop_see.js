@@ -73,46 +73,47 @@ function get3post(isscroll) {
                 //no move!
             }
         } else {
+            document.getElementById("browse_post").className = "";
             document.getElementById("STAT_no_articles_here_or_stolen_by_aliens").innerText = "no_articles_here_or_stolen_by_aliens?no";
             for (let forloopindexofOBJRETURNBYSV = 0; forloopindexofOBJRETURNBYSV < JSON.parse(objects_returned_by_the_server).length; forloopindexofOBJRETURNBYSV++) {
                 const element_returned_by_the_server = JSON.parse(objects_returned_by_the_server)[forloopindexofOBJRETURNBYSV];
 
                 if (DEF_DEBUG) { console.log(element_returned_by_the_server); }
                 var post_poop = document.createElement("div");
-                post_poop.classList.add("post_poop");
+                post_poop.classList.add("post_poop"); post_poop.classList.add("remove_at_exit_post_page");
                 var original = document.createElement("div");
-                original.classList.add("original");
+                original.classList.add("original"); original.classList.add("remove_at_exit_post_page");
                 var comment_group = document.createElement("div");
-                comment_group.classList.add("comment_group");
+                comment_group.classList.add("comment_group"); comment_group.classList.add("remove_at_exit_post_page");
                 var poster_block = document.createElement("div");
-                poster_block.classList.add("poster_block");
+                poster_block.classList.add("poster_block"); poster_block.classList.add("remove_at_exit_post_page");
                 var ppt_frame = document.createElement("div");
-                ppt_frame.classList.add("ppt_frame");
+                ppt_frame.classList.add("ppt_frame"); ppt_frame.classList.add("remove_at_exit_post_page");
                 var poster_photo = document.createElement("div");
-                poster_photo.classList.add("poster_photo");
+                poster_photo.classList.add("poster_photo"); poster_photo.classList.add("remove_at_exit_post_page");
                 var poster_name = document.createElement("div");
-                poster_name.classList.add("poster_name");
+                poster_name.classList.add("poster_name"); poster_name.classList.add("remove_at_exit_post_page");
                 if (AMENDuser_idTOuser_name) {
                     poster_name.innerText = element_returned_by_the_server.user_id;
                 } else {
                     poster_name.innerText = element_returned_by_the_server.user_name;
                 }
                 var post_time = document.createElement("div");
-                post_time.classList.add("post_time");
+                post_time.classList.add("post_time"); post_time.classList.add("remove_at_exit_post_page");
                 //convert given date into readable format
                 var tmp_date = new Date(element_returned_by_the_server.time);
                 post_time.innerText = tmp_date.toDateString();
                 var post_text = document.createElement("div");
-                post_text.classList.add("post_text");
+                post_text.classList.add("post_text"); post_text.classList.add("remove_at_exit_post_page");
                 post_text.innerText = element_returned_by_the_server.text;
                 var post_photo = document.createElement("div");
-                post_photo.classList.add("post_photo");
+                post_photo.classList.add("post_photo"); post_photo.classList.add("remove_at_exit_post_page");
 
                 /////////////////////////////////////////////////
                 var more_comment = document.createElement("div");
-                more_comment.classList.add("more_comment");
+                more_comment.classList.add("more_comment"); more_comment.classList.add("remove_at_exit_post_page");
                 more_comment.id = String(element_returned_by_the_server.id) + "_more_comment_btn";
-                more_comment.innerText = String(element_returned_by_the_server.comment.length)+ '則留言';
+                more_comment.innerText = String(element_returned_by_the_server.comment.length) + '則留言';
                 comment_group.appendChild(more_comment);
 
                 for (let forloopcommentindex = 0; forloopcommentindex < element_returned_by_the_server.comment.length; forloopcommentindex++) {
@@ -121,18 +122,18 @@ function get3post(isscroll) {
 
 
                     var comment = document.createElement("div");
-                    comment.classList.add("comment");
+                    comment.classList.add("comment"); comment.classList.add("remove_at_exit_post_page");
                     //var commenter_block = document.createElement("div");
                     //commenter_block.classList.add("commenter_block");
                     var comment_text = document.createElement("div");
-                    comment_text.classList.add("comment_text");
+                    comment_text.classList.add("comment_text"); comment_text.classList.add("remove_at_exit_post_page");
                     comment_text.innerText = comment_element.text;
                     //var commenter_photo = document.createElement("div");
                     //commenter_photo.classList.add("commenter_photo");
 
 
                     var commenter_name = document.createElement("div");
-                    commenter_name.classList.add("commenter_name");
+                    commenter_name.classList.add("commenter_name"); commenter_name.classList.add("remove_at_exit_post_page");
                     if (AMENDuser_idTOuser_name) {
                         commenter_name.innerText = comment_element.user_id;
                     } else {
@@ -165,7 +166,7 @@ function get3post(isscroll) {
                 poster_block.appendChild(poster_photo);
 
                 var poster_detail = document.createElement("div");
-                poster_detail.classList.add("poster_detail");
+                poster_detail.classList.add("poster_detail"); poster_detail.classList.add("remove_at_exit_post_page");
 
                 poster_detail.appendChild(poster_name);
                 poster_detail.appendChild(post_time);
@@ -175,21 +176,21 @@ function get3post(isscroll) {
                 post_poop.appendChild(original);
                 //--------------------bton
                 var new_comment_block = document.createElement("div");
-                new_comment_block.classList.add("new_comment_block");
+                new_comment_block.classList.add("new_comment_block"); new_comment_block.classList.add("remove_at_exit_post_page");
                 var new_comment = document.createElement("div");
-                new_comment.classList.add("new_comment");
+                new_comment.classList.add("new_comment"); new_comment.classList.add("new_comment");
                 var usr_inp_comment_txt = document.createElement("input");
-                usr_inp_comment_txt.classList.add("usr_inp_comment_txt");
+                usr_inp_comment_txt.classList.add("usr_inp_comment_txt"); usr_inp_comment_txt.classList.add("remove_at_exit_post_page");
                 usr_inp_comment_txt.name = "new_comment_text";
                 usr_inp_comment_txt.type = "text"; usr_inp_comment_txt.placeholder = "留言...";
                 usr_inp_comment_txt.id = String(element_returned_by_the_server.id) + "_input_txt";
                 var post_comment_button = document.createElement("div");
-                post_comment_button.classList.add("post_comment_button");
+                post_comment_button.classList.add("post_comment_button"); post_comment_button.classList.add("remove_at_exit_post_page");
                 post_comment_button.innerText = DEF_TEXT_UI_comment_btn;
                 post_comment_button.id = String(element_returned_by_the_server.id) + "_btn";
 
                 var your_name = document.createElement("div");
-                your_name.classList.add("your_name");
+                your_name.classList.add("your_name"); your_name.classList.add("remove_at_exit_post_page");
                 your_name.innerText = document.getElementById("jade_user_info_name").innerText;
 
                 new_comment.appendChild(your_name);
@@ -202,7 +203,7 @@ function get3post(isscroll) {
                 document.getElementById("browse_post").appendChild(post_poop);
 
                 document.getElementById(post_comment_button.id).addEventListener("click", usr_inp_comment_fcn);
-                
+
                 $(`#${more_comment.id}`).click(function () {
                     $(`#${more_comment.id}`).css("display", "none");
                     $(`.${String(element_returned_by_the_server.id) + "_comment_css_show_disp"}`).show();
@@ -282,6 +283,8 @@ function scrolledToBottom() {
 
 
 document.getElementById('social').addEventListener("click", function () {
+    document.getElementById('snap_shoot_social_page_clean_html').innerText = document.getElementById('social').innerHTML;
+    document.getElementById('snap_shoot_social_page_clean_html_stat').innerText = '1';
     function checkFlag() {
         if (document.getElementById('social_page_stat').innerText !== '1') {
             setTimeout(() => {
@@ -293,4 +296,9 @@ document.getElementById('social').addEventListener("click", function () {
         }
     }
     checkFlag();
+});
+
+document.getElementById('exit_button').addEventListener("click", function () {
+    document.querySelectorAll('.remove_at_exit_post_page').forEach(e => e.remove());
+    
 });
