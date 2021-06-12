@@ -217,8 +217,10 @@
             current = e.latlng;
             distance2 = last.distanceTo(current);
             last = current;
-            console.log('dis2 ' + distance2) //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            
+            console.log('dis2 ' +
+                    distance2
+                    ) //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
             // var getgoal;$.post('/app/medal/', {
             //     medal: {
             //         type: 4,
@@ -257,17 +259,36 @@
             // console.log(current)
             document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
 
-            var getgoal;$.post('/app/medal/', {
+            var getgoal;
+            $.post('/app/medal/', {
                 medal: {
                     type: 4,
                     goal: 0
                 }
             });
+            if (distance2 != 0) {
+                $.post('/app/medal/', {
+                    medal: JSON.stringify({
+                        "type": 4,
+                        "goal": 1
+                    })
+                });
+            }
+            distance2 = 0;
             $.post('/app/medal/getWalk/', {}, (walk) => {
                 if (walk) {
                     console.log('walk ' + walk)
                     var parse_walk = JSON.parse(walk)
                     getgoal = parse_walk.goal
+                    if (getgoal === -1) {
+
+                        $.post('/app/medal/', {
+                            medal: JSON.stringify({
+                                "type": 5,
+                                "goal": 0
+                            })
+                        });
+                    }
                 }
 
             });
@@ -405,8 +426,15 @@
             });
         });
     </script>
+    <footer>
+        <script type="text/javascript">
+            var jQuery_3_6_0 = $.noConflict(true);
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="../javascripts/snapshoot_layout.js" type="module"></script>
+        
+    </footer>
 </body>
-
 <script src="https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js"></script>
 
 

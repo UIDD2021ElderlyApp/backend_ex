@@ -12,6 +12,7 @@ html
       font-size: 50px;
       }
       #map {
+      z-index: 1;
       top: 0vh;
       width: 100%;
       height: 100%;
@@ -23,12 +24,13 @@ html
         // <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
         img(src='../modular_folder/mapview/map2.png')
         // </a>
-      button#camera_button(type='button' onclientclick='return false;')
+    form#ajax-form2
+      button#snap_shoot_screen(type='button' onclientclick='return false;')
         img#camera(src='../modular_folder/mapview/camera.png')
     #hungun
       #distance
         bl#info
-        bl#info2
+        bl#snap_shoot_finish
         b1#info3(style='font-size: 100px')
     #map
     // Make sure you put this AFTER Leaflet's CSS
@@ -163,14 +165,23 @@ html
       currrent = NaN;
       last = NaN;
       }, 0)
+      var getgoal;    
       setInterval(function () {
       console.log(distance1)
       console.log(distance2)
-      var getgoal;  
-      
+      console.log('nowgoal '+getgoal+' dis2 '+distance2)    
       $.post('/app/medal/', {
-      medal: JSON.stringify({"type":5,"goal":0})
+      medal: JSON.stringify({"type":5,"goal":distance2})
       });
+      if (distance2 != 0) {
+      $.post('/app/medal/', {
+      medal: JSON.stringify({
+      "type": 4,
+      "goal": 1
+      })
+      });
+      }
+      distance2=0;
       $.post('/app/medal/getWalk/', {
       }, (walk) => {
       if (walk) {
@@ -179,6 +190,14 @@ html
       console.log(parse_walk)
       getgoal=parse_walk.goal
       console.log('getgoal '+getgoal)
+      if (getgoal === -1) {
+      $.post('/app/medal/', {
+      medal: JSON.stringify({
+      "type": 5,
+      "goal": 0
+      })
+      });
+      }
       }
       });
       document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
@@ -249,25 +268,9 @@ html
       )
       }, 10000)
       });
-      import html2canvas from '../../snap/html2canvas/dist/html2canvas.esm.js';
-      var DEF_app_img="/app/img";
       var DEF_map="/app/PeopleOnMap/deleteme";
       var DEF_DEBUG=true;
-      document.getElementById("camera_button").addEventListener("click", function () {
-      html2canvas(document.querySelector("body")).then(canvas => {
-      var url = window.location.href;
-      var window_location_href_host = new URL(url).host;
-      console.log(window_location_href_host);
-      var target_img=canvas.toDataURL("image/jpeg", 1.0);
-      $.post("https://"+window_location_href_host + DEF_app_img, {
-      content: target_img
-      }, (objects_returned_by_the_server) => {
-      if (DEF_DEBUG) {
-      console.log(String(objects_returned_by_the_server));
-      }
-      })
-      });
-      });
+     
       $("#exit_button").click(function() {
       var url = window.location.href;
       var window_location_href_host = new URL(url).host;
@@ -279,7 +282,12 @@ html
       }
       })
       var re = /\/ts\/mapview/gi;
-      var newstr = window.location.href.replace(re, "/ts/home");
+      var newstr = window.location.href.replace(re, "/main");
       window.location.href = newstr;
       });
+    footer
+      script(type='text/javascript').
+        var jQuery_3_6_0 = $.noConflict(true);
+      script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
+      script(src='../javascripts/snapshoot_layout.js' type='module')
     script(src='https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js')
