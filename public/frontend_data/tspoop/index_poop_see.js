@@ -1,12 +1,13 @@
 /*to do ，留言完refresh page)*/
 var this_url_path_re = /\/main/gi;
+var DEF_string_app_img_title = "/app/img/?title=";
 
 var DEF_DEBUG = true;
 var DEF_NO_HTML_DISP = true;
 var DEF_field_battle = false;
 var DEF_use_https = true;
 var DEF_ts = true;//be true
-var DEF_fuckthephotos = true;
+var DEF_fuckthephotos = false;
 //var DEF_domain_name = "luffy.ee.ncku.edu.tw";
 //var DEF_port = "38443";
 var DEF_path = window.location.href.replace(this_url_path_re, "/app/poop").split('#')[0];//"/app/poop";
@@ -90,6 +91,7 @@ function get3post(isscroll) {
                 var ppt_frame = document.createElement("div");
                 ppt_frame.classList.add("ppt_frame"); ppt_frame.classList.add("remove_at_exit_post_page");
                 var poster_photo = document.createElement("div");
+                poster_photo.innerHTML = `<img src=\"/app/profileimage?username=${element_returned_by_the_server.username}.jpg\">`;
                 poster_photo.classList.add("poster_photo"); poster_photo.classList.add("remove_at_exit_post_page");
                 var poster_name = document.createElement("div");
                 poster_name.classList.add("poster_name"); poster_name.classList.add("remove_at_exit_post_page");
@@ -107,6 +109,12 @@ function get3post(isscroll) {
                 post_text.classList.add("post_text"); post_text.classList.add("remove_at_exit_post_page");
                 post_text.innerText = element_returned_by_the_server.text;
                 var post_photo = document.createElement("div");
+                if (element_returned_by_the_server.img === '-1') {
+                    post_photo.innerHTML = `<img src=\"\">`;
+                } else {
+
+                    post_photo.innerHTML = `<img src=\"${DEF_string_app_img_title}${element_returned_by_the_server.img}.jpg\">`;
+                }
                 post_photo.classList.add("post_photo"); post_photo.classList.add("remove_at_exit_post_page");
 
                 /////////////////////////////////////////////////

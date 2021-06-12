@@ -450,7 +450,7 @@ body {
 
 .post_photo img {
     width: 100%;
-    content: url('image/test2.svg');
+    //content: url('image/test2.svg');
 }
 
 .comment_group {

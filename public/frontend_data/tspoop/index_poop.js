@@ -71,14 +71,14 @@ function usr_inp_post_fcn() {
             console.log(Date());
             console.log(document.getElementById("usr_inp_title").value);
             console.log(document.getElementById("new_post_text").value);
-            console.log(document.getElementById("usr_inp_img_num").innerText);
+            console.log(document.getElementById("app_PostTmp_get_poop_img_sel_tmmp").innerText);
         }
 
         jQuery_3_6_0.post(DEF_path, {
             time: Date(),
             title: document.getElementById("usr_inp_title").value,
             text: document.getElementById("new_post_text").value,
-            imgid: document.getElementById("usr_inp_img_num").innerText,
+            imgid: document.getElementById("app_PostTmp_get_poop_img_sel_tmmp").innerText,
         }, (objects_returned_by_the_server) => {
             if (DEF_DEBUG) {
                 console.log(String(objects_returned_by_the_server));
