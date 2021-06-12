@@ -32,7 +32,25 @@ module.exports.createPostTmp = function (newPostTmp, callback) {
 module.exports.getPostTmp = function (user_name, callback) {
     console.log("------->getPostTmp");
     var query = { user_name: { $eq: user_name } };
-    PostTmp.findOne(query, callback);
+    PostTmp.findOne(query, function (err, PostTmpget) {
+        if (!PostTmpget) {
+            var newPostTmp = new PostTmp({
+                last_update_time: new Date().getTime(),
+                user_name: user_name,
+                post_tmp: "",
+                post_img_select_tmp: ""
+            });
+            PostTmp.createPostTmp(newPostTmp, function (err, newpostTmp) {
+                if (err) throw err;
+                console.log("newPostTmp : ");
+                console.log(newpostTmp);
+                PostTmp.findOne(query, callback);
+            });
+        }
+        else {
+            PostTmp.findOne(query, callback);
+        }
+    });
     console.log(callback);
 }
 
