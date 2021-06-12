@@ -1,3 +1,4 @@
+var this_url_path_re = /\/ga/gi;
 var DEF_string_app_img_gallery = "/app/img/gallery";
 var DEF_string_app_img_title = "/app/img/?title=";
 var DEF_default_load_img_num = 6;
@@ -44,10 +45,10 @@ $("#mygallery").justifiedGallery({
 // vmousedown fail
 $(".button").bind('touchstart', function () {
     $(this).animate({ 'opacity': 0.5 }, 100)
-})
+});
 $(".button").bind('touchend', function () {
     $(this).animate({ 'opacity': 1 }, 100)
-})
+});
 $(window).scroll(function () {
     //console.log("scrolltop:" + $(this).scrollTop());
     document.getElementById("label").style.marginTop = $(this).scrollTop().toString() + "px";
@@ -61,22 +62,43 @@ $(window).scroll(function () {
 
         });
     }
-})
+});
 $("#confirmed_forwarding_path").on('click', function (e) {
     e.preventDefault();
     console.log("confirmed_forwarding_path");
-})
+    var things_to_return = getQueryVariable(document.getElementById('confirmed_forwarding_path').innerHTML, 'title').split('.').slice(0, -1).join('.');
+    jQuery_3_6_0.post('/app/posttmp/poop_img_sel_tmmp', {
+        post_img_select_tmmp: things_to_return || "error@frontend"
+    }, (objects_returned_by_the_server) => {
+        if (objects_returned_by_the_server === "success") {
+            page_escape();
+        } else {
+            console.error("internet error when Open album");
+        }
+    });
+});
 
 $("#quit").on('click', function (e) {
     e.preventDefault();
     console.log("quit");
-})
-$('#label').on('click', function (e) {e.preventDefault();
+    jQuery_3_6_0.post('/app/posttmp/poop_img_sel_tmmp', {
+        post_img_select_tmmp: ""
+    }, (objects_returned_by_the_server) => {
+        if (objects_returned_by_the_server === "success") {
+            page_escape();
+        } else {
+            console.error("internet error when Open album");
+        }
+    });
+});
+$('#label').on('click', function (e) {
+    e.preventDefault();
     document.getElementById("snap_shoot_screen").click();
-})
+});
 
 function page_escape(params) {
-
+    var newstr = window.location.href.replace(this_url_path_re, "/main");
+    window.location.href = newstr;
 }
 
 function init_load_img(params) {
@@ -123,6 +145,19 @@ function add_img_by_roll(objects_returned_by_the_server) {
         $('#mygallery').justifiedGallery('norewind');
         //console.log("-");
     }
+}
+
+function getQueryVariable(urlstr, variable) {
+    let githubURL = new URL(urlstr);
+    var query = githubURL.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=');
+        if (decodeURIComponent(pair[0]) == variable) {
+            return decodeURIComponent(pair[1]);
+        }
+    }
+    console.log('Query variable %s not found', variable);
 }
 
 init_load_img();

@@ -1,0 +1,14 @@
+.glow {
+    -webkit-animation: glow 1s ease-in-out infinite alternate;
+    -moz-animation: glow 1s ease-in-out infinite alternate;
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+@-webkit-keyframes glow {
+    from {
+        text-shadow: 0 0 1vh #fff, 0 0 2vh #fff, 0 0 3vh #e60073, 0 0 4vh #e60073, 0 0 5vh #e60073, 0 0 6vh #e60073, 0 0 7vh #e60073;
+    }
+    to {
+        text-shadow: 0 0 2vh #fff, 0 0 3vh #ff4da6, 0 0 4vh #ff4da6, 0 0 5vh #ff4da6, 0 0 6vh #ff4da6, 0 0 7vh #ff4da6, 0 0 8vh #ff4da6;
+    }
+}

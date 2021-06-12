@@ -42,13 +42,17 @@ module.exports.setPostTmp = function (time, user_name, string_to_set, select, ca
     PostTmp.findOne(query, function (err, Personget) {
         if (Personget) {
             Personget.last_update_time = time;
-            if (select == 1)
+            if (select == 1) {
                 Personget.post_tmp = string_to_set;
-            else if (select == 2)
+            }
+            else if (select == 2) {
+                console.log("RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
                 Personget.post_img_select_tmp = string_to_set;
-            else if (select == 0)
+            }
+            else if (select == 0) {
                 Personget.post_tmp = "";
                 Personget.post_img_select_tmp = "";
+            }
             Personget.save();
             callback(0);
         }
