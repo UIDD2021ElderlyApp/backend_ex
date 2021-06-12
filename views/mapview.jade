@@ -167,22 +167,20 @@ html
       console.log(distance1)
       console.log(distance2)
       var getgoal;  
-      var somemedal = {
-        type: 4,
-        goal: 0
-      }
+      
       $.post('/app/medal/', {
-      medal: somemedal
+      medal: JSON.stringify({"type":5,"goal":0})
       });
       $.post('/app/medal/getWalk/', {
       }, (walk) => {
       if (walk) {
       console.log('walk '+walk)
       var parse_walk= JSON.parse(walk)
+      console.log(parse_walk)
       getgoal=parse_walk.goal
+      console.log('getgoal '+getgoal)
       }
       });
-      console.log('getgoal '+getgoal)
       document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
       }, 2000);
       function onLocationError(e) {

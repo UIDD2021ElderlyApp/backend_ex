@@ -290,10 +290,10 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
         if(err||m_set.length === 0) {
             console.log(err);
             var wrongWalk = {
-                progress: -1,
-                goal: -1
+                "progress": -1,
+                "goal": -1
             }
-            callback(wrongWalk);
+            callback(JSON.stringify(wrongWalk));
         }
         else
         {
@@ -302,10 +302,10 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
             var currentprogress = m_set[0].walk.progress;
             if(currentprogress > 11) currentprogress = 11;
             var walkMission = {
-                progress: medalReward.walk[currentprogress].goal,
-                goal: m_set[0].walk.goal
+                "progress": medalReward.walk[currentprogress].goal,
+                "goal": m_set[0].walk.goal
             }
-            callback(walkMission);
+            callback(JSON.stringify(walkMission));
         }
     })
 }

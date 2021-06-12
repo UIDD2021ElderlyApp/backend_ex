@@ -8,9 +8,9 @@ var glob_user_obj;
 var Medal = require('../models/Medal');
 
 router.post('/', ensureAuthenticated, function(req, res){
-    console.log("?------------------------------> set Medal test1")
-    var inputMedal = JSON.parse(req.body.medal);
-    console.log("?------------------------------> set Medal test2")
+    console.log("?------------------------------> set Medal")
+    console.log(req.body.medal)
+    var inputMedal = req.body.medal;
     Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function(db_type){
         if (db_type === -1) {
             var newMedal = new Medal({
