@@ -11,7 +11,7 @@ var glob_user_obj;
 var Medal = require('../models/Medal');
 
 router.post('/', ensureAuthenticated, function(req, res){
-    var inputMedal = req.body.medal;
+    var inputMedal = JSON.parse(req.body.medal);
     Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function(db_type){
         if (db_type === -1) {
             var newMedal = new Medal({
