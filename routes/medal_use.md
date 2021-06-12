@@ -1,6 +1,6 @@
 1. '/' : 用來傳入任務判斷的值
 格式:
-modal : 
+medal : 
 {
     type: int,
     goal: int
