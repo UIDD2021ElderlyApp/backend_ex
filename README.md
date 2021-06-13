@@ -10,6 +10,15 @@ tags: uidd
 
 ---
 
+## how to get usr. info. @ front end (html, js)
+
+動物:
+
+document.getElementById('jade_user_info_choosedanimal').innerText
+
+![](https://i.imgur.com/MGOVwZF.png)
+
+
 ## 各url代表的jade檔案所在位置
 
 主頁面+發文:/view/main

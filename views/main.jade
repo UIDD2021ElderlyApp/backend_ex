@@ -34,14 +34,7 @@ block content_body
         #level_bar
           #level_value
     #back_block
-    #animal_block
-      //
-      //<div id="animal">
-      //<img style="width:100%;">
-      //</div>
-      #pet1.animal
-      #pet2.animal
-      #pet3.animal
+    #animal
     #medal_block
       img(src='./frontend/biggggg/image/home_medal.svg' width='80%')
       #medal_button.button 徽章
@@ -61,7 +54,6 @@ block content_body
     // post
     #post_html(style='position:absolute; display:none;')
       #exit_button.button
-        // <img>
       #upper_windows
         #new_post
           textarea#new_post_text(placeholder='打字打在這...' onfocus="this.placeholder = ''" onblur="this.placeholder = '打字打在這...'") #{var_app_PostTmp_get_pooptmmp}
@@ -112,7 +104,6 @@ block content_footer
     #app_PostTmp_get_pooptmmp(style='display: none;') #{var_app_PostTmp_get_pooptmmp}
     #app_PostTmp_get_poop_img_sel_tmmp(style='display: none;') #{var_app_PostTmp_get_poop_img_sel_tmmp}
     // home
-    //
     //<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     //<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     // post
@@ -120,9 +111,7 @@ block content_footer
     script(src='https://apps.bdimg.com/libs/jquerymobile/1.4.5/jquery.mobile-1.4.5.min.js')
     script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
     script(src='./frontend/biggggg/biggggg.js')
-    // <script src="petAnime1.js"></script>
-    script(src='./frontend/biggggg/petAnime2.js')
-    // <script src="petAnime3.js"></script>
+    script(src='./frontend/biggggg/petAnime.js')
     script(src='./frontend_data/screenshoot_tset.js')
     script(src='./frontend_data/tspoop/index_poop.js')
     script(src='./frontend_data/tspoop/index_poop_see.js')
