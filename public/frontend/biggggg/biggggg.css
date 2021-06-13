@@ -535,8 +535,7 @@ body {
     height: 6vh;
     width: 6vh;
     right: 0;
-    bottom: 0;
-    margin: 2vh;
+    bottom: -1vh;
     font-size: 2vh;
     font-weight: bold;
     color: #000000;
