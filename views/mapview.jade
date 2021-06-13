@@ -22,11 +22,11 @@ html
     form#ajax-form
       button#exit_button(type='button' onclientclick='return false;')
         // <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
-        img(src='../modular_folder/mapview/map2.png')
+        //img(src='../modular_folder/mapview/cross.svg')
         // </a>
     form#ajax-form2
       button#snap_shoot_screen(type='button' onclientclick='return false;')
-        img#camera(src='../modular_folder/mapview/camera.png')
+        img#camera(src='../modular_folder/mapview/camera.svg')
     #hungun
       #distance
         bl#info
@@ -64,26 +64,26 @@ html
       //zoomOutTitle: 'decrese'
       }).addTo(map);
       var customIcon1 = L.icon({
-      iconUrl: '../modular_folder/mapview/65.png',
-      iconSize: [150, 150], // size of the icon
-      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
+      iconUrl: '../modular_folder/mapview/c1.svg',
+      iconSize: [250, 250], // size of the icon
+      iconAnchor: [120, 0], // point of the icon which will correspond to marker's location
       popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon2 = L.icon({
-      iconUrl: '../modular_folder/mapview/66.png',
-      iconSize: [150, 150], // size of the icon
-      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
+      iconUrl: '../modular_folder/mapview/c2.svg',
+      iconSize: [250, 250], // size of the icon
+      iconAnchor: [120, 0], // point of the icon which will correspond to marker's location
       popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon3 = L.icon({
-      iconUrl: '../modular_folder/mapview/67.png',
-      iconSize: [150, 150], // size of the icon
-      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
+      iconUrl: '../modular_folder/mapview/c3.svg',
+      iconSize: [250, 250], // size of the icon
+      iconAnchor: [120, 0], // point of the icon which will correspond to marker's location
       popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
       var customIcon_1 = L.icon({
       iconUrl: '../modular_folder/mapview/63.png',
-      iconSize: [150, 150], // size of the icon
+      iconSize: [250, 250], // size of the icon
       iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
       popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
       });
@@ -124,11 +124,11 @@ html
       if (animal_id == -1) {
       gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
       }
-      gpsMarker.bindPopup(user_name).openPopup();
+      gpsMarker.bindPopup(`<b1 style="font-size: 60px" >${user_name}</b1>`).openPopup();
       gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
       }
       if (gpsMarker != null) {
-      gpsMarker.getPopup().setContent(user_name);
+      gpsMarker.getPopup().setContent(`<b1 style="font-size: 60px" >${user_name}</b1>`);
       gpsMarker.setLatLng(e.latlng);
       gpsCircleMarker.setLatLng(e.latlng);
       gpsCircleMarker.setRadius(radius);
@@ -243,19 +243,19 @@ html
       var temp_latlng = L.latLng(people[i].position.lat, people[i].position.lng);
       if (people[i].animal == 1) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon1 }).addTo(map);
-      marker_array[i].bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
       }
       if (people[i].animal == 2) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon2 }).addTo(map);
-      marker_array[i].bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
       }
       if (people[i].animal == 3) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon3 }).addTo(map);
-      marker_array[i].bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
       }
       if (people[i].animal == -1) {
       marker_array[i] = L.marker(temp_latlng, { icon: customIcon_1 }).addTo(map);
-      marker_array[i].bindPopup(people[i].name).openPopup();
+      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
       }
       }
       }

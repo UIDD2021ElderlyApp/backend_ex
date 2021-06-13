@@ -1,5 +1,5 @@
 #hungun{
-    background-image: url("./map3.png");
+    background-image: url("./hungun.svg");
     z-index: 10;
 
     -webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.7));
@@ -27,13 +27,16 @@
 }
 
 #exit_button{
+    background-image: url("cross.svg");
     z-index: 13;
     position: absolute;
-    width: 7vw;
-    height: 7vw;
+    width: 14vw;
+    height: 14vw;
     top: 2vw;
     left: 2vw;
     background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
     border: none;
     padding: 0%;
 }
@@ -44,6 +47,7 @@
     height: 21vw;
     bottom: 2vw;
     right: 2vw;
+    	
     background-color: transparent;
     background-size: contain;
    
@@ -60,4 +64,10 @@
     -webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.7));
     border: none;
     padding: 0%;
+}
+
+.popupCustom .leaflet-popup-tip,
+.popupCustom .leaflet-popup-content-wrapper {
+    background: #e0e0e0;
+    color: #234c5e;
 }

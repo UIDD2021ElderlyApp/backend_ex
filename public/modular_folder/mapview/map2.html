@@ -44,9 +44,7 @@
 
         <div id="distance">
             <bl id="info"></bl>
-            <div style="display:none">
-                <bl id="info2"></bl>
-            </div>
+            <bl id="info2"></bl>
             <b1 style="font-size: 100px" id="info3"></b1>
 
         </div>
@@ -70,7 +68,7 @@
         }
     </script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <script type="module">
         var NowDate;
@@ -88,16 +86,16 @@
 
 
 
-        map = L.map('map', {
-            renderer: L.canvas()
-        }).setView([22.5, 120.5], 15); //construct map
+        map = L.map('map').setView([22.5, 120.5], 15); //construct map
         map.locate({
             setView: true,
             watch: true,
             enableHighAccuracy: true
         });
         map.removeControl(map.zoomControl);
-
+        L.control.scale({
+            imperial: false
+        }).addTo(map);
         L.control.zoom({
 
             position: 'topright',
@@ -121,7 +119,7 @@
         });
         var customIcon3 = L.icon({
             iconUrl: '67.png',
-            iconSize: [350, 350], // size of the icon
+            iconSize: [150, 150], // size of the icon
             iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
             popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
         });
@@ -136,17 +134,13 @@
         var gpsMarker = null;
         var gpsCircleMarker;
         var user_name;
-        var check_first_time = 1;
 
         function onLocationFound(e) {
-            if (check_first_time != 0) {
-                map = L.map('map').setView([e.latlng.lat, e.latlng.lat], 15);
-            }
 
-            check_first_time = 0;
+
             console.log(e)
             now_lat = e.latlng.lat;
-            now_lng = e.latlng.lat;
+            now_lng = e.latlng.lng;
             var radius = e.accuracy / 2;
             var popupContent = "You are within " + radius + " meters from this point";
 
@@ -223,25 +217,23 @@
             current = e.latlng;
             distance2 = last.distanceTo(current);
             last = current;
-            console.log('dis2 ' +
-                distance2
-            ) //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            console.log('dis2 ' + distance2)
+            var getgoal; //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            $.post('/app/medal/', {
+                type:4,
+                goal:0
+            }
+            )
+            ;$.post('/app/medal/getWalk/', {
+            }, (walk) => {
+                if (walk) {
+                    console.log('walk '+walk)
+                    var parse_walk= JSON.parse(walk)
+                    getgoal=parse_walk.goal
+                }
 
-            // var getgoal;$.post('/app/medal/', {
-            //     medal: {
-            //         type: 4,
-            //         goal: 0
-            //     }
-            // });
-            // $.post('/app/medal/getWalk/', {}, (walk) => {
-            //     if (walk) {
-            //         console.log('walk ' + walk)
-            //         var parse_walk = JSON.parse(walk)
-            //         getgoal = parse_walk.goal
-            //     }
-
-            // });
-            // console.log('getgoal ' + getgoal)
+            });
+            console.log('getgoal ' + getgoal)
 
             distance1 += distance2;
         }
@@ -265,44 +257,10 @@
             // console.log(current)
             document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
 
-            var getgoal;
-            $.post('/app/medal/', {
-                medal: {
-                    type: 4,
-                    goal: 0
-                }
-            });
-            if (distance2 != 0) {
-                $.post('/app/medal/', {
-                    medal: JSON.stringify({
-                        "type": 4,
-                        "goal": 1
-                    })
-                });
-            }
-            distance2 = 0;
-            $.post('/app/medal/getWalk/', {}, (walk) => {
-                if (walk) {
-                    console.log('walk ' + walk)
-                    var parse_walk = JSON.parse(walk)
-                    getgoal = parse_walk.goal
-                    if (getgoal === -1) {
-
-                        $.post('/app/medal/', {
-                            medal: JSON.stringify({
-                                "type": 5,
-                                "goal": 0
-                            })
-                        });
-                    }
-                }
-
-            });
-            console.log('getgoal ' + getgoal)
 
 
 
-        }, 5000);
+        }, 2000);
 
         function onLocationError(e) {
             alert(e.message);
@@ -414,23 +372,26 @@
             })
 
         });
-        
-        jQuery("#snap_shoot_screen").on("click", function () {
-            myCapture();
+        document.getElementById("camera_button").addEventListener("click", function () {
+            html2canvas(document.querySelector("body")).then(canvas => {
+                var url = window.location.href;
+                var window_location_href_host = new URL(url).host;
+                console.log(window_location_href_host);
+
+                var target_img = canvas.toDataURL("image/jpeg", 1.0);
+
+                $.post("https://" + window_location_href_host + DEF_app_img, {
+                    content: target_img
+                }, (objects_returned_by_the_server) => {
+                    if (DEF_DEBUG) {
+                        console.log(String(objects_returned_by_the_server));
+                    }
+                })
+            });
         });
-
-
-
     </script>
-    <footer>
-        <script type="text/javascript">
-            var jQuery_3_6_0 = $.noConflict(true);
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script src="../javascripts/snapshoot_layout.js" type="module"></script>
-
-    </footer>
 </body>
+
 <script src="https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js"></script>
 
 

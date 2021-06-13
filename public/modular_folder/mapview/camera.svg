@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X7 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16.038mm" height="16.038mm" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+viewBox="0 0 42 42"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+    <clipPath id="id0">
+     <path d="M0 0l42 0 0 42 -42 0 0 -42z"/>
+    </clipPath>
+ </defs>
+ <g id="圖層_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_577266712">
+   <g clip-path="url(#id0)">
+    <image x="0" y="0" width="41.5072" height="41.5072" xlink:href="地圖上的相機_Images\地圖上的相機_ImgID1.png"/>
+   </g>
+  </g>
+  <g id="_577266256">
+   <circle fill="#73D0BE" cx="21" cy="21" r="18"/>
+   <path fill="#FEFEFE" d="M15 12c-4,1 -6,1 -7,4 -1,2 -1,6 -1,9 0,8 6,7 13,7 6,0 14,2 14,-6 1,-7 2,-13 -7,-14 -1,-3 -2,-3 -6,-3 -7,0 -5,0 -6,3zm1 3c-8,-1 -7,2 -7,11 0,3 2,4 5,4l14 0c5,0 4,-5 4,-11 0,-5 -4,-4 -6,-4 -1,-1 -1,-3 -1,-3l-8 0c0,0 0,2 -1,3z"/>
+   <path fill="#FEFEFE" d="M19 17c-7,1 -5,13 3,11 8,-2 5,-13 -3,-11zm1 2c-5,1 -3,8 2,7 1,-1 3,-2 2,-5 0,-1 -2,-3 -4,-2z"/>
+  </g>
+ </g>
+</svg>
