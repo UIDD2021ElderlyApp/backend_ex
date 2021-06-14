@@ -7,6 +7,7 @@ app = Flask(__name__)
 @app.route('/')
 def api_root():
     print(Path(__file__).parent.absolute())
+    #p = subprocess.run("git pull", shell=True,cwd=Path(__file__).parent.absolute())
     return "welcome to github auto deploy"
 
 @app.route('/webhook',methods=['POST'])
@@ -14,7 +15,8 @@ def webhook():
     data = request.json
     print(request.json)
     repository_name = data['repository']['name']
-    p = subprocess.run("cd %s && git pull"%repository_name, shell=True,cwd=Path(__file__).parent.absolute())
+    #p = subprocess.run("cd %s && git pull"%repository_name, shell=True,cwd=Path(__file__).parent.absolute())
+    p = subprocess.run("git pull", shell=True,cwd=Path(__file__).parent.absolute())
     return ""
 
 if __name__ == '__main__':
