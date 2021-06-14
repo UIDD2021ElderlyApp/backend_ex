@@ -16,7 +16,7 @@ def webhook():
     print(request.json)
     repository_name = data['repository']['name']
     #p = subprocess.run("cd %s && git pull"%repository_name, shell=True,cwd=Path(__file__).parent.absolute())
-    p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
+    p = subprocess.run("git pull && cd.. && ./NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
     return ""
 
 if __name__ == '__main__':
