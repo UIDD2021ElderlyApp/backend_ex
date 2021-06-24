@@ -298,11 +298,16 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
         else
         {
             var medalReward = JSON.parse(fs.readFileSync(medalEXP));
+            var medalBool = [false, false, false, false, false, false, false, false, false, false, false, false];
             console.log("------> get player's walk");
             var currentprogress = m_set[0].walk.progress;
-            if(currentprogress > 11) currentprogress = 11;
+            if(currentprogress > 12) currentprogress = 12;
+            for(var i = 0; i<medalReward.walk[currentprogress].goal;i++)
+            {
+                medalBool[i] = true;
+            }
             var walkMission = {
-                "progress": medalReward.walk[currentprogress].goal,
+                "progress": medalBool,
                 "goal": m_set[0].walk.goal
             }
             callback(JSON.stringify(walkMission));
@@ -323,11 +328,16 @@ module.exports.getPost = function (userId_you_want_to_find, callback) {
         else
         {
             var medalReward = JSON.parse(fs.readFileSync(medalEXP));
+            var medalBool = [false, false, false, false, false, false, false, false];
             console.log("------> get player's post");
             var currentprogress = m_set[0].post.progress;
-            if(currentprogress > 7) currentprogress = 7;
+            if(currentprogress > 8) currentprogress = 8;
+            for(var i = 0; i<medalReward.post[currentprogress].goal;i++)
+            {
+                medalBool[i] = true;
+            }
             var postMission = {
-                "progress": medalReward.post[currentprogress].goal,
+                "progress": medalBool,
                 "goal": m_set[0].post.goal
             }
             callback(JSON.stringify(postMission));
@@ -348,11 +358,16 @@ module.exports.getMessage = function (userId_you_want_to_find, callback) {
         else
         {
             var medalReward = JSON.parse(fs.readFileSync(medalEXP));
+            var medalBool = [false, false, false, false, false, false, false, false];
             console.log("------> get player's message");
             var currentprogress = m_set[0].message.progress;
-            if(currentprogress > 7) currentprogress = 7;
+            if(currentprogress > 8) currentprogress = 8;
+            for(var i = 0; i<medalReward.message[currentprogress].goal;i++)
+            {
+                medalBool[i] = true;
+            }
             var messageMission = {
-                "progress": medalReward.message[currentprogress].goal,
+                "progress": medalBool,
                 "goal": m_set[0].message.goal
             }
             callback(JSON.stringify(messageMission));
@@ -373,11 +388,16 @@ module.exports.getLevel = function (userId_you_want_to_find, callback) {
         else
         {
             var medalReward = JSON.parse(fs.readFileSync(medalEXP));
+            var medalBool = [false, false, false, false, false, false, false, false];
             console.log("------> get player's level");
             var currentprogress = m_set[0].level.progress;
-            if(currentprogress > 7) currentprogress = 7;
+            if(currentprogress > 8) currentprogress = 8;
+            for(var i = 0; i<medalReward.level[currentprogress].goal;i++)
+            {
+                medalBool[i] = true;
+            }
             var levelMission = {
-                "progress": medalReward.level[currentprogress].goal,
+                "progress": medalBool,
                 "goal": m_set[0].level.goal
             }
             callback(JSON.stringify(levelMission));

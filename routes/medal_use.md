@@ -32,7 +32,7 @@ medal :
 4. '/getWalk' : 用來獲得和走路相關的資訊
 格式 : 
 {
-    progress: int,    // 正在破哪個走路的徽章任務(全部徽章都拿到後會保持在最後一個徽章的要求)
+    progress: [bool, ... ,bool],    // 走路的徽章任務，共12個bool
     goal: int         // 累積路程
 }
 錯誤時所有值回傳-1
@@ -40,21 +40,21 @@ medal :
 5. '/getPost' : 用來獲得和發文數相關的資訊
 格式 : 
 {
-    progress: int,    // 正在破哪個發文數的徽章任務(全部徽章都拿到後會保持在最後一個徽章的要求)
+    progress: [bool, ... ,bool],    // 發文的徽章任務，共8個bool
     goal: int         // 累積發文數
 }
 錯誤時所有值回傳-1
 6. '/getMessage' : 用來獲得和留言數相關的資訊
 格式 : 
 {
-    progress: int,    // 正在破哪個留言數的徽章任務(全部徽章都拿到後會保持在最後一個徽章的要求)
+    progress: [bool, ... ,bool],    // 留言的徽章任務，共8個bool
     goal: int         // 累積留言數
 }
 錯誤時所有值回傳-1
 7. '/getLevel' : 用來獲得和等級相關的資訊
 格式 : 
 {
-    progress: int,    // 正在破哪個等級的徽章任務(全部徽章都拿到後會保持在最後一個徽章的要求)
+    progress: [bool, ... ,bool],    // 等級的徽章任務，共8個bool
     goal: int         // 累積等級
 }
 錯誤時所有值回傳-1
