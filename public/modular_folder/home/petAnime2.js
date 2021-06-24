@@ -14,7 +14,7 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.spritesheet('pet2', '../modular_folder/home/pet2.png',{frameWidth:209.5,frameHeight:193})
+    this.load.spritesheet('pet2', '../modular_folder/home/pet2.png',{frameWidth:210,frameHeight:193})
 }
 
 function create ()
