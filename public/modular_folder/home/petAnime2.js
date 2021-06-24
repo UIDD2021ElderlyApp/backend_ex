@@ -19,6 +19,7 @@ function preload ()
 
 function create ()
 {
+    game.renderer.renderSession.roundPixels = true;
     var pet = 'pet2'
     this.player = this.add.sprite(305,300,pet)
     this.player.scaleX = 3
