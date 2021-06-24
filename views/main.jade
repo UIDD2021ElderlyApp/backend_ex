@@ -94,6 +94,28 @@ block content_body
                 .your_name XXX
                 input#new_comment_text(type='text' placeholder='留言...' onfocus="this.placeholder = ''" onblur="this.placeholder = '留言...'")
               .post_comment_button.button 發佈
+    // setting
+    #setting_html(style='position:absolute; display:none;')
+      // _1 : setting
+      #exit_button_1.button
+      #upper_windows_1
+        #windows_tree_1
+        #time_blocks
+          #setting_title 設定
+          #wakeup_block.time_block
+            .time_font 起床時間
+            .separate
+            input#wakeup_hour.time(type='number' pattern='[0-9]*' inputmode='numeric')
+            .colon :
+            input#wakeup_minute.time(type='number' pattern='[0-9]*' inputmode='numeric')
+          #sleep_block.time_block
+            .time_font 睡覺時間
+            .separate
+            input#sleep_hour.time(type='number' pattern='[0-9]*' inputmode='numeric')
+            .colon :
+            input#sleep_minute.time(type='number' pattern='[0-9]*' inputmode='numeric')
+        #setting_logout 登出
+
 block content_footer
     #social_page_stat(style='display: none;') -1
     #new_post_button_on_loaded_stat(style='display: none;') -1

@@ -118,6 +118,75 @@ $('#new_post_text').focus(function() {
         })
     })
 });
+////////////////////////////// setting.js //////////////////////
+
+$("#setting").click(function() {
+    $("#setting_html").show().css('z-index', "10")
+    $.mobile.loading().hide(); // hide default "loading"
+    var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
+    var width = $(window).width() - $(window).height() * 0.04 //calc(100% - 4vh)
+    $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $("#exit_button_1").animate({ "opacity": 1 }, 500)
+    })
+
+})
+$("#exit_button_1").click(function() {
+        $("#setting_html").css("display", "none")
+        $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "70 %", "height": "70%", "zoom": "70%" })
+        $("#exit_button_1").css("opacity", 0)
+    })
+    // assign default value (previously stored value)
+var wakeup_h = 8
+var wakeup_m = 30
+var sleep_h = 21
+var sleep_m = 00
+$("#wakeup_hour").val(wakeup_h)
+$("#wakeup_minute").val(wakeup_m)
+$("#sleep_hour").val(sleep_h)
+$("#sleep_minute").val(sleep_m)
+
+// get recent value (input)
+$("#wakeup_hour").blur(function() {
+    if ($(this).val() > 23 || $(this).val() < 0) {
+        $(this).val("0")
+    }
+    if ($(this).val() % 1 != 0) {
+        $(this).val(Math.floor($(this).val()))
+    }
+    console.log($(this).val())
+})
+$("#wakeup_minute").blur(function() {
+    if ($(this).val() > 59 || $(this).val() < 0) {
+        $(this).val("0")
+    }
+    if ($(this).val() % 1 != 0) {
+        $(this).val(Math.floor($(this).val()))
+    }
+    console.log($(this).val())
+})
+$("#sleep_hour").blur(function() {
+    if ($(this).val() > 23 || $(this).val() < 0) {
+        $(this).val("0")
+    }
+    if ($(this).val() % 1 != 0) {
+        $(this).val(Math.floor($(this).val()))
+    }
+    console.log($(this).val())
+})
+$("#sleep_minute").blur(function() {
+    if ($(this).val() > 59 || $(this).val() < 0) {
+        $(this).val("0")
+    }
+    if ($(this).val() % 1 != 0) {
+        $(this).val(Math.floor($(this).val()))
+    }
+    console.log($(this).val())
+})
+
+// logout
+$("#setting_logout").click(function() {
+    console.log("logout")
+})
 
 ///////////////////// 共用 ///////////////////////
 $(".button").bind('touchstart', function() {
