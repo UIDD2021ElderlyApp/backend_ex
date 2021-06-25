@@ -166,7 +166,7 @@ app.use(limiter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/app/sel', selectanimalOBJ);
-app.use('/pure_txt_no_gui/reward', reward_pure_txt_no_gui_OBJ);
+//app.use('/pure_txt_no_gui/reward', reward_pure_txt_no_gui_OBJ);
 //app.use('/ts/poop', tspoop);
 app.use('/ts/mapview', mapview);
 //app.use('/ts/home', tshome);
