@@ -71,8 +71,9 @@ $(function () {
     init();
 });
 function init(){
-    document.getElementById("style_width_280px").style.width="33vw";
-    document.getElementById("style_RIGHT").style.width="67vw"
+    document.getElementById("style_width_280px").style.width="25vw";
+    document.getElementById("style_RIGHT").style.width="74vw";
+    document.getElementById("width_1_5rem").style.width="1vw";
     document.getElementById("get_info").click();
     document.getElementById("all_repo").click();
     document.getElementById("game_main_website_status").click();
