@@ -1,4 +1,4 @@
-var width = $(window).width()
+var width = window.innerWidth
 var config = {
     type: Phaser.AUTO,
     parent: 'animal',
