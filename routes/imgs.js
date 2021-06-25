@@ -55,24 +55,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 });
 
-router.post('/get', /*ensureAuthenticated,*/ function (req, res, next) {
-    /* 
-            if(DEF_DEBUG)console.log("+++++++++");
-            if(DEF_DEBUG)console.log(glob_user_obj);
-    
-    var user_name = glob_user_obj.username;*/
-
-    Img.getImgById(req.query.Id, function (err, Imgget) {
-        res.status(200).res.sendFile(Imgget.content);
-
-    })
-
-});
-
 router.get('/gallery', ensureAuthenticated, function (req, res, next) {
     console.log("router.get('/gallery', ensureAuthenticated, function (req, res, next) {    ");
-    //if (DEF_DEBUG) console.log("+++++++++");
-    //if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
 
     var user_name = glob_user_obj.username;
     var imgtitlearray = []
@@ -98,7 +82,6 @@ router.get('/gallery', ensureAuthenticated, function (req, res, next) {
 
 router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, next) {
 
-    //if(DEF_DEBUG)console.log(req.file.buffer.toString('base64'));
     var content = req.file.buffer.toString('base64');
 
     console.log(`||||||
@@ -109,17 +92,10 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
     if (DEF_DEBUG) console.log("+++++++++");
     if (DEF_DEBUG) console.log("glob_user_obj.username :" + glob_user_obj.username);
 
-    //if(DEF_DEBUG)console.log(req.body);
-    //var img = req.body;
-    //var time = img.time;
     var user_name = glob_user_obj.username;
     var title = glob_user_obj.username.toString() + Date.now().toString() + ".jpg";
-    //var content = img.content;
 
     var error_msg_res = {};
-    /*if (empty(time)) {
-        error_msg_res["time"] = "empty";
-    }*/
     if (empty(content)) {
         error_msg_res["content"] = "empty";
     }
@@ -129,12 +105,12 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
     if (DEF_DEBUG) console.log(/*time*/Date.now().toString());
     if (DEF_DEBUG) console.log(user_name);
     if (DEF_DEBUG) console.log(title);
-    //if(DEF_DEBUG)console.log(content);
+
     if (DEF_DEBUG) console.log(error_msg_res);
 
 
     if (!empty(error_msg_res)) {
-        //res.status(400).json(error_msg_res);
+
         res.render('build', {
             errors: error_msg_res
         });
@@ -218,28 +194,3 @@ function set_Content_Type(output_file_format) {
 
 module.exports = router;
 
-
-/*
-router.delete('/', function (req, res, next) {
-    var img = JSON.parse(req.body.img)
-    Img.deleteImgByImgId(img.id, function (err) {
-        res.status(200).send();
-    });
-});
-
-
-router.get('/one', function (req, res, next) {
-    var img = JSON.parse(req.body.img)
-    Img.getImgByImgtime(img.time, function (err, Imgget) {
-        if (err) throw err;
-        if (!Imgget) {
-          return done(null, false, { message: 'Unknown Img' });
-        }
-        if(DEF_DEBUG)console.log(Imgget);
-        var content = {};
-        content["title"]  =Imgget.title;
-        content["text"]  =Imgget.text;
-        res.status(200).send(content);
-    });
-});
-*/

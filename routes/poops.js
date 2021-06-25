@@ -2,14 +2,6 @@ var express = require('express');
 var router = express.Router();
 var empty = require('is-empty');
 
-/*
-var multer = require('multer');
-var upload = multer({
-    dest: './uploads_poop_img',
-});
-const { NotExtended } = require('http-errors');
-*/
-
 var Poop = require('../models/poop');
 
 var DEF_DEBUG = false;
@@ -107,7 +99,6 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     }
 
     if (!empty(error_msg_res)) {
-        //res.status(400).json(error_msg_res);
         res.render('build', {
             errors: error_msg_res
         });
