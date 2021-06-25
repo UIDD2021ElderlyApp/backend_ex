@@ -2,8 +2,8 @@ var width = $(window).width()
 var config = {
     type: Phaser.AUTO,
     parent: 'animal',
-    width: width * 0.7,
-    height: width * 0.63,
+    width: Math.round(width * 0.7),
+    height: Math.round(width * 0.63),
     roundPixels: true,
     transparent: true,
     scene: {
