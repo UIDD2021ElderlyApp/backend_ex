@@ -1,5 +1,3 @@
-var DEF_DEBUG = false;
-
 //////////////////////// home.js ///////////////////
 
 // select animal (1, 2, 3)
@@ -138,7 +136,7 @@ $("#setting").click(function () {
     jQuery_3_6_0.get("/app/personal", {
         //empty
     }, (res) => {
-        if (DEF_DEBUG) console.log(res);
+         console.log(res);
         wakeup_h = (res !== -1) ? res.getup_time[0] || 8 : 8;
         wakeup_m = (res !== -1) ? res.getup_time[1] || 30 : 30;
         sleep_h = (res !== -1) ? res.sleep_time[0] || 21 : 21;
@@ -164,7 +162,7 @@ $("#wakeup_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    if (DEF_DEBUG) console.log($(this).val());
+     console.log($(this).val());
     send_wake_time();
 })
 $("#wakeup_minute").blur(function () {
@@ -174,7 +172,7 @@ $("#wakeup_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    if (DEF_DEBUG) console.log($(this).val());
+     console.log($(this).val());
     send_wake_time();
 
 })
@@ -185,7 +183,7 @@ $("#sleep_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    if (DEF_DEBUG) console.log($(this).val());
+     console.log($(this).val());
     send_sleep_time();
 
 })
@@ -196,14 +194,14 @@ $("#sleep_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    if (DEF_DEBUG) console.log($(this).val());
+     console.log($(this).val());
     send_sleep_time();
 
 })
 
 function send_wake_time(params) {
-    if (DEF_DEBUG) console.log($('#wakeup_hour').val());
-    if (DEF_DEBUG) console.log($('#wakeup_minute').val());
+     console.log($('#wakeup_hour').val());
+     console.log($('#wakeup_minute').val());
     jQuery_3_6_0.post("/app/personal/getup", {
         getup_time_0: $('#wakeup_hour').val(),
         getup_time_1: $('#wakeup_minute').val()
@@ -213,8 +211,8 @@ function send_wake_time(params) {
 }
 
 function send_sleep_time(params) {
-    if (DEF_DEBUG) console.log($('#sleep_hour').val());
-    if (DEF_DEBUG) console.log($('#sleep_minute').val());
+     console.log($('#sleep_hour').val());
+     console.log($('#sleep_minute').val());
     jQuery_3_6_0.post("/app/personal/sleep", {
         sleep_time_0: $('#sleep_hour').val(),
         sleep_time_1: $('#sleep_minute').val()
@@ -225,7 +223,7 @@ function send_sleep_time(params) {
 
 // logout
 /*$("#setting_logout").click(function () {
-    if (DEF_DEBUG)console.log("logout")
+    console.log("logout")
 })*/
 
 ///////////////////// 共用 ///////////////////////
