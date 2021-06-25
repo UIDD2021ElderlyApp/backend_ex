@@ -4,6 +4,7 @@ var config = {
     parent: 'animal',
     width: width * 0.7,
     height: width * 0.63,
+    roundPixels: true,
     transparent: true,
     scene: {
         preload: preload,
@@ -30,7 +31,6 @@ function preload() {
 }
 
 function create() {
-    this.renderer.renderSession.roundPixels = true
     var pet = 'pet'
     this.player = this.add.sprite(width * 0.33, width * 0.32, pet) // image center vs canvas
     this.player.scaleX = width * 0.0038
