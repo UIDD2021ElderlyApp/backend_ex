@@ -4,7 +4,7 @@ var empty = require('is-empty');
 
 var PostTmp = require('../models/PostTmp');
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var glob_user_obj;
 
 router.get('/pooptmmp', ensureAuthenticated, function (req, res, next) {

@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var empty = require('is-empty');
 
 var Person = require('../models/Personal');
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var glob_user_obj;
 
 router.get('/', ensureAuthenticated, function (req, res, next) {
@@ -28,7 +27,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             person["getup_time"] = Personget.getup_time;
             person["sleep_time"] = Personget.sleep_time;
             res.status(200).send(JSON.stringify(person));
-            console.log("+++++++++-----------");
+            console.log("=====================");
         }
         else {
             res.status(200).send(JSON.stringify(-1));

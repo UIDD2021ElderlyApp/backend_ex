@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var empty = require('is-empty');
 
 var Human = require('../models/human');
-var Map = require('../models/map');
 var coordinate = [];
 
 router.get('/', function (req, res, next) {

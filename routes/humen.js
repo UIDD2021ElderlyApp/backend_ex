@@ -3,7 +3,6 @@ var router = express.Router();
 var multer = require('multer');
 var upload = multer({ dest: './uploads' });
 var empty = require('is-empty');
-var isEqual = require('is-equal');
 
 //import Data Model
 var Human = require('../models/Human');

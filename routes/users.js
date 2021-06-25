@@ -49,7 +49,6 @@ router.get('/login', function routergetlogin(req, res, next) {
       resok = false;
       routergetlogin(req, res, next);
     }
-    //content["exp"] = Rewardget[0].exp;
   });
   if (resok) { res.render('login', { successes: randomstringgenerate100 }); }
 });
@@ -69,9 +68,6 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
   console.log(name);
   console.log(email);
   console.log(username);
-  //console.log(password);
-  //console.log(password2);
-  //console.log(isEqual(password, password2));
   var error_msg_res = {};
 
   //Form Validator
@@ -91,24 +87,12 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
     error_msg_res["password2"] = "neq";
   }
 
-  //console.log(req.file); //show uploaded image info.
-  /*if (req.file) {
-    console.log('Uploading File...');
-    var profileimage = req.file.filename;
-  } else {
-    console.log('No File Uploaded...');
-    var profileimage = 'noimage.jpg'; //use default image
-    error_msg_res["profileimage"] = "empty";
-  }*/
-
   console.log(error_msg_res);
   if (!empty(error_msg_res)) {
-    //res.status(400).json(error_msg_res);
     res.render('register', {
       errors: error_msg_res
     });
   } else {
-    //res.status(200).json(error_msg_res);
     var newUser = new User({
       name: name,
       email: email,
@@ -146,7 +130,6 @@ passport.use(new LocalStrategy(function (username, password, done) {
         return done(null, false, { message: 'Invalid Password' });
       }
     });
-
   });
 }));
 

@@ -5,19 +5,10 @@ var empty = require('is-empty');
 var out = require('../models/out');
 
 router.post('/create', function(req, res){
-    var outdoor = JSON.parse(req.body.outdoor)
     var path_distance = req.body.path_distance;
 
-    //console.log(token);
     console.log(path_distance);
     var error_msg_res = {};
-    // error detection !!!
-    /*
-    if(empty(token))
-    {
-        error_msg_res["token"] = "empty";
-    }
-    */
     if(empty(path_distance))
     {
         error_msg_res["path_distance"] = "empty";
@@ -35,7 +26,6 @@ router.post('/create', function(req, res){
     else
     {
         var newout = new out({
-            //token: token,
             path_distance: path_distance
         });
         out.createout(newout, function(err, newout){

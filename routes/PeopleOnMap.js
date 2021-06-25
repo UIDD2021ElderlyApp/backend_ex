@@ -1,11 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var empty = require('is-empty');
 
 var PersonOnMap = require('../models/PersonOnMap');
-var Person = require('../models/Personal');
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var glob_user_obj;
 
 router.get('/', ensureAuthenticated, function (req, res, next) {

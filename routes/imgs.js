@@ -8,7 +8,7 @@ var empty = require('is-empty');
 var Img = require('../models/img');
 const sharp = require('sharp');
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var glob_user_obj;
 var default_img_numbers = 6;
 

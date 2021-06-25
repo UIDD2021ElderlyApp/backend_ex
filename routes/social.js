@@ -11,7 +11,7 @@ router.get('/', function (req, res, next) {
     res.send('respond with a resource');
 });
 
-router.post('/build', upload.single('image'),/* upload.single('voice') ,*/function (req, res, next) {
+router.post('/build', upload.single('image'), function (req, res, next) {
     var time = req.body.time;
     var title = req.body.title;
     var text = req.body.text;
@@ -40,28 +40,19 @@ router.post('/build', upload.single('image'),/* upload.single('voice') ,*/functi
     } else {
         var image = 'default.jpg';
     }
-    /*if (req.file.voice) {
-        console.log('Uploading voice...');
-        var voice = req.file.voice.filename;
-    }else{
-        var voice = 'default.mp4';
-    }*/
 
     console.log(error_msg_res);
     if (!empty(error_msg_res)) {
-        //res.status(400).json(error_msg_res);
         res.render('build', {
             errors: error_msg_res
         });
     } else {
-        //res.status(200).json(error_msg_res);
         res.status(200);
         var newPost = new Post({
             PostTime: time,
             title: title,
             text: text,
             image: image,
-            //voice: voice,
             like: like,
             message: message
         });
@@ -98,7 +89,7 @@ router.get('/view', function (req, res, next) {
         context["text"]  =Postget.text;
         context["like"]  =Postget.like;
         context["message"]  =Postget.message;
-        res.status(200).send([Postget.image, /*Postget.voice,*/ context]);
+        res.status(200).send([Postget.image, context]);
     });
     
 });

@@ -12,7 +12,7 @@ const { NotExtended } = require('http-errors');
 
 var Poop = require('../models/poop');
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var glob_user_obj;
 var number_each = 3;
 
@@ -188,30 +188,3 @@ function ensureAuthenticated(req, res, next) {
 
 
 module.exports = router;
-
-
-
-/*
-router.delete('/', function (req, res, next) {
-    var poop = JSON.parse(req.body.poop)
-    Poop.deletePoopByPoopId(poop.id, function (err) {
-        res.status(200).send();
-    });
-});
-
-
-router.get('/one', function (req, res, next) {
-    var poop = JSON.parse(req.body.poop)
-    Poop.getPoopByPooptime(poop.time, function (err, Poopget) {
-        if (err) throw err;
-        if (!Poopget) {
-          return done(null, false, { message: 'Unknown Poop' });
-        }
-        console.log(Poopget);
-        var content = {};
-        content["title"]  =Poopget.title;
-        content["text"]  =Poopget.text;
-        res.status(200).send(content);
-    });
-});
-*/
