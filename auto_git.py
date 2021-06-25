@@ -47,7 +47,7 @@ def trigger_version_change_git_reset_hard():
     data = request.form
     print("\033[92m")
     print(data.getlist('trigger_version_change_git_reset_hard_sha')[0])
-    var_cmd="git reset --hard "+str(data.getlist('trigger_version_change_git_reset_hard_sha')[0])+" && git pull && ../NPMrestart"
+    var_cmd="git reset --hard "+str(data.getlist('trigger_version_change_git_reset_hard_sha')[0])+" && ../NPMrestart"
     print(var_cmd)
     print("\033[0m")
     p = subprocess.run(var_cmd, shell=True,cwd=Path(__file__).parent.absolute())
