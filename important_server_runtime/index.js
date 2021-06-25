@@ -78,6 +78,13 @@ $(function () {
             document.getElementById("get_infoV").innerText=res;
         });
     });
+    document.getElementById("game_main_website_status").addEventListener("click", function(){
+        $.post("/game_main_website_status", {
+            //empty
+        }, (res) => {
+            document.getElementById("game_main_website_statusV").innerText=res;
+        });
+    });
     document.getElementById("Pull_the_remote_code_to_the_local_end_and_trigger_the_update").addEventListener("click", function(){
         $.post("/Pull_the_remote_code_to_the_local_end_and_trigger_the_update", {
             //empty
@@ -137,4 +144,5 @@ $(function () {
 function init(){
     document.getElementById("get_info").click();
     document.getElementById("all_repo").click();
+    document.getElementById("game_main_website_status").click();
 }

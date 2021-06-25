@@ -2,6 +2,7 @@
 from flask import jsonify,request,Flask
 import subprocess
 from pathlib import Path,PurePath
+import urllib.request
 app = Flask(__name__)
 
 globe_var_last_update=""
@@ -64,6 +65,14 @@ def git_version_info():
     print("\033[0m")
     return str(out)
 
+@app.route('/game_main_website_status',methods=['POST'])
+def game_main_website_status():
+    #data = request.form
+    print("\033[92m")
+    var_stat=urllib.request.urlopen("http://luffy.ee.ncku.edu.tw:16443/users/login").getcode()
+    print(var_stat)
+    print("\033[0m")
+    return str(var_stat)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=int('15487'),ssl_context=('/home/yichung/ssl/certificate.crt', '/home/yichung/ssl/private.key'),debug=True)
