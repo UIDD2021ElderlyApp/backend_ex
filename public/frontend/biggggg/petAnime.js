@@ -1,4 +1,4 @@
-var width = window.innerWidth
+var width = window.innerWidth*window.devicePixelRatio
 var config = {
     type: Phaser.AUTO,
     parent: 'animal',
@@ -31,13 +31,12 @@ function preload() {
 }
 
 function create() {
-    var pet = 'pet'
-    this.player = this.add.sprite(Math.round(width * 0.33), Math.round(width * 0.32), pet) // image center vs canvas
+    this.player = this.add.sprite(Math.round(width * 0.35), Math.round(width * 0.32), 'pet') // image center vs canvas
     this.player.scaleX = width * 0.0038
     this.player.scaleY = width * 0.0038
     this.anims.create({
         key: 'idle',
-        frames: this.anims.generateFrameNumbers(pet, { start: 0, end: 3 }),
+        frames: this.anims.generateFrameNumbers('pet', { start: 0, end: 3 }),
         frameRate: 5,
         repeat: -1
     })
