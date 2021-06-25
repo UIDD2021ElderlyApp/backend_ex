@@ -30,7 +30,7 @@ function preload() {
 }
 
 function create() {
-    game.renderer.renderSession.roundPixels = true
+    //game.renderer.renderSession.roundPixels = true
     var pet = 'pet'
     this.player = this.add.sprite(width * 0.33, width * 0.32, pet) // image center vs canvas
     this.player.scaleX = width * 0.0038
