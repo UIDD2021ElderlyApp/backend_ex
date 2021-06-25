@@ -315,6 +315,11 @@ body {
     flex-grow: 1;
 }
 
+#new_post_text>.ui-input-text {
+    line-height: 4vh;
+    margin: 0%;
+}
+
 #new_post_button_block {
     position: relative;
     height: 20%;
@@ -650,7 +655,7 @@ body {
     border-color: #000000;
 }
 
-.ui-input-text {
+.time_block .ui-input-text {
     position: relative;
     width: 18%;
     line-height: 14vh;
