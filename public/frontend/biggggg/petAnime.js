@@ -5,6 +5,7 @@ var config = {
     width: Math.round(width * 0.7),
     height: Math.round(width * 0.63),
     roundPixels: true,
+    pixelArt: true,
     transparent: true,
     scene: {
         preload: preload,
