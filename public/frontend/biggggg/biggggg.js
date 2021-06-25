@@ -140,18 +140,19 @@ $("#setting").click(function () {
         wakeup_h = (res !== -1) ? res.getup_time[0] : 8;
         wakeup_m = (res !== -1) ? res.getup_time[0] : 30;
         sleep_h = (res !== -1) ? res.sleep_time[0] : 21;
-        sleep_m = (res !== -1) ? res.sleep_time[0] : 00;
+        sleep_m = (res !== -1) ? res.sleep_time[0] : 0;
+        $("#wakeup_hour").val(wakeup_h);
+        $("#wakeup_minute").val(wakeup_m);
+        $("#sleep_hour").val(sleep_h);
+        $("#sleep_minute").val(sleep_m);
     });
 });
+
 $("#exit_button_1").click(function () {
     $("#setting_html").css("display", "none");
     $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "70 %", "height": "70%", "zoom": "70%" });
     $("#exit_button_1").css("opacity", 0);
 });
-$("#wakeup_hour").val(wakeup_h)
-$("#wakeup_minute").val(wakeup_m)
-$("#sleep_hour").val(sleep_h)
-$("#sleep_minute").val(sleep_m)
 
 // get recent value (input)
 $("#wakeup_hour").blur(function () {
