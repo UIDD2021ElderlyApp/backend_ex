@@ -200,20 +200,20 @@ $("#sleep_minute").blur(function () {
 })
 
 function send_wake_time(params) {
-    console.log($('wakeup_hour').val());
-    console.log($('wakeup_minute').val());
+    console.log($('#wakeup_hour').val());
+    console.log($('#wakeup_minute').val());
     jQuery_3_6_0.post("/app/personal/getup", {
-        getup_time:[$('wakeup_hour').val(),$('wakeup_minute').val()]
+        getup_time:[$('#wakeup_hour').val(),$('#wakeup_minute').val()]
     }, (res) => {
         //empty
     });
 }
 
 function send_sleep_time(params) {
-    console.log($('sleep_hour').val());
-    console.log($('sleep_minute').val());
+    console.log($('#sleep_hour').val());
+    console.log($('#sleep_minute').val());
     jQuery_3_6_0.post("/app/personal/sleep", {
-        sleep_time:[$('sleep_hour').val(),$('sleep_minute').val()]
+        sleep_time:[$('#sleep_hour').val(),$('#sleep_minute').val()]
     }, (res) => {
         //empty
     });
