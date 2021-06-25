@@ -71,6 +71,25 @@ $(function () {
     });
 });*/
 $(function () {
+    document.getElementById("get_info").addEventListener("click", function(){
+        $.post("/git_version_info", {
+            //empty
+        }, (res) => {
+            document.getElementById("get_infoV").innerText=res;
+        });
+    });
+    document.getElementById("Pull_the_remote_code_to_the_local_end_and_trigger_the_update").addEventListener("click", function(){
+        $.post("/Pull_the_remote_code_to_the_local_end_and_trigger_the_update", {
+            //empty
+        }, (res) => {
+            if (res == "success") {
+                console.log("success");
+            } else {
+                console.error(res);
+            }
+            location.reload();
+        });
+    });
     document.getElementById("all_repo").addEventListener("click", function (e) {
         document.getElementById("all_commits").innerHTML = "";
         $.get("https://api.github.com/repos/UIDD2021ElderlyApp/backend_ex/commits", {
@@ -108,8 +127,14 @@ $(function () {
                     } else {
                         console.error(res);
                     }
+                    location.reload();
                 });
             });
         });
     });
+    init();
 });
+function init(){
+    document.getElementById("get_info").click();
+    document.getElementById("all_repo").click();
+}

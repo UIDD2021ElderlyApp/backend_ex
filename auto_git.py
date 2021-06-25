@@ -36,6 +36,11 @@ def webhook():
     p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
     return ""
 
+@app.route('/Pull_the_remote_code_to_the_local_end_and_trigger_the_update',methods=['POST'])
+def Pull_the_remote_code_to_the_local_end_and_trigger_the_update():
+    p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
+    return "success"
+
 @app.route('/trigger_version_change_git_reset_hard',methods=['POST'])
 def trigger_version_change_git_reset_hard():
     data = request.form
@@ -44,6 +49,18 @@ def trigger_version_change_git_reset_hard():
     print("\033[0m")
     p = subprocess.run("git reset --hard "+str(data)+" && git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
     return "success"
+
+@app.route('/git_version_info',methods=['POST'])
+def git_version_info():
+    #data = request.form
+    print("\033[92m")
+    process = subprocess.Popen(['git', 'show'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    out, err = process.communicate()
+    print('========')
+    print(out)
+    print("\033[0m")
+    return str(out)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=int('15487'),ssl_context=('/home/yichung/ssl/certificate.crt', '/home/yichung/ssl/private.key'),debug=True)
