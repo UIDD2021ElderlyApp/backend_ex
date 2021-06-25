@@ -11,13 +11,20 @@
 # /app/img的相關方法  
 
 ## get /app/img?title=abc123_tb_b.jpg  
+```
 * send : 無資料："-1"  
          有資料：file  
+```
 
 ## get /app/img/gallery  
+```
 * send : ["title1","title2",...]  
+```
 
 ## post /app/img  
+```
 * body : 單張圖片  
 * send : {"img_title":  }  
+```
+
 
