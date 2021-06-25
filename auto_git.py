@@ -38,6 +38,7 @@ def webhook():
 
 @app.route('/Pull_the_remote_code_to_the_local_end_and_trigger_the_update',methods=['POST'])
 def Pull_the_remote_code_to_the_local_end_and_trigger_the_update():
+    print("Pull_the_remote_code_to_the_local_end_and_trigger_the_update")
     p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
     return "success"
 
