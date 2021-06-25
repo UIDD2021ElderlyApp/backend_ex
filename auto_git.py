@@ -36,5 +36,14 @@ def webhook():
     p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
     return ""
 
+@app.route('/trigger_version_change_git_reset_hard',methods=['POST'])
+def trigger_version_change_git_reset_hard():
+    data = request.form
+    print("\033[92m")
+    print(data.getlist('trigger_version_change_git_reset_hard_sha')[0])
+    print("\033[0m")
+    p = subprocess.run("git reset --hard "+str(data)+" && git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
+    return "success"
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=int('15487'),ssl_context=('/home/yichung/ssl/certificate.crt', '/home/yichung/ssl/private.key'),debug=True)
