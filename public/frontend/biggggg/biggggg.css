@@ -315,11 +315,6 @@ body {
     flex-grow: 1;
 }
 
-#new_post_text>.ui-input-text {
-    line-height: 4vh;
-    margin: 0%;
-}
-
 #new_post_button_block {
     position: relative;
     height: 20%;
