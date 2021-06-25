@@ -133,7 +133,7 @@ $("#setting").click(function () {
     $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button_1").animate({ "opacity": 1 }, 500)
     });
-    jQuery_3_6_0.post("/app/personal", {
+    jQuery_3_6_0.get("/app/personal", {
         //empty
     }, (res) => {
         console.log((res!==-1)?res.getup_time:'08:30');
