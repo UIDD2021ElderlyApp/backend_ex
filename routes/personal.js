@@ -76,9 +76,11 @@ router.post('/getup', ensureAuthenticated, function (req, res, next) {
         console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     var user_name = glob_user_obj.username;
-    var getup_time = req.body.getup_time;
-    console.log("wTF");
-    console.log(getup_time);
+    var getup_time_0 = req.body.getup_time_0;
+    var getup_time_1 = req.body.getup_time_;
+    var getup_time = [getup_time_0, getup_time_1];
+    //console.log("wTF");
+    //console.log(getup_time);
     if (is_time_valid(getup_time)) {
         Person.setPersonalgetup_time(user_name, getup_time, function (err) {
             if (err) throw err
@@ -95,9 +97,11 @@ router.post('/sleep', ensureAuthenticated, function (req, res, next) {
         console.log("glob_user_obj.username :" + glob_user_obj.username);
     }
     var user_name = glob_user_obj.username;
-    var sleep_time = req.body.sleep_time;
-    console.log("wTF");
-    console.log(sleep_time);
+    var sleep_time_0 = req.body.sleep_time_0;
+    var sleep_time_1 = req.body.sleep_time_1;
+    var sleep_time = [sleep_time_0, sleep_time_1];
+    //console.log("wTF");
+    //console.log(sleep_time);
     if (is_time_valid(sleep_time)) {
         Person.setPersonalsleep_time(user_name, sleep_time, function (err) {
             if (err) throw err
