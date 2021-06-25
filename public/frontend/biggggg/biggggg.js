@@ -162,7 +162,8 @@ $("#wakeup_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    console.log($(this).val())
+    console.log($(this).val());
+    send_wake_time();
 })
 $("#wakeup_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
@@ -171,7 +172,9 @@ $("#wakeup_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    console.log($(this).val())
+    console.log($(this).val());
+    send_wake_time();
+
 })
 $("#sleep_hour").blur(function () {
     if ($(this).val() > 23 || $(this).val() < 0) {
@@ -180,7 +183,9 @@ $("#sleep_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    console.log($(this).val())
+    console.log($(this).val());
+    send_sleep_time();
+
 })
 $("#sleep_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
@@ -189,13 +194,31 @@ $("#sleep_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-    console.log($(this).val())
+    console.log($(this).val());
+    send_sleep_time();
+
 })
 
+function send_wake_time(params) {
+    jQuery_3_6_0.get("/app/personal/getup", {
+        getup_time:[document.getElementById('wakeup_hour').value,document.getElementById('wakeup_minute').value]
+    }, (res) => {
+        //empty
+    });
+}
+
+function send_sleep_time(params) {
+    jQuery_3_6_0.get("/app/personal/sleep", {
+        sleep_time:[document.getElementById('sleep_hour').value,document.getElementById('sleep_minute').value]
+    }, (res) => {
+        //empty
+    });
+}
+
 // logout
-$("#setting_logout").click(function () {
+/*$("#setting_logout").click(function () {
     console.log("logout")
-})
+})*/
 
 ///////////////////// 共用 ///////////////////////
 $(".button").bind('touchstart', function () {
