@@ -10,7 +10,21 @@ globe_var_last_update=""
 def api_root():
     print(Path(__file__).parent.absolute())
     #p = subprocess.run("git pull", shell=True,cwd=Path(__file__).parent.absolute())
-    return "welcome to github auto deploy<p>"+globe_var_last_update
+    #return "welcome to github auto deploy<p>"+globe_var_last_update
+    f=open('./important_server_runtime/gui.html')
+    text=f.read()
+    f.close
+    return text
+
+@app.route('/index.js')
+def index_js():
+    print(Path(__file__).parent.absolute())
+    #p = subprocess.run("git pull", shell=True,cwd=Path(__file__).parent.absolute())
+    #return "welcome to github auto deploy<p>"+globe_var_last_update
+    f=open('./important_server_runtime/index.js')
+    text=f.read()
+    f.close
+    return text
 
 @app.route('/webhook',methods=['POST'])
 def webhook():
