@@ -77,10 +77,15 @@ router.post('/getup', ensureAuthenticated, function (req, res, next) {
     }
     var user_name = glob_user_obj.username;
     var getup_time = req.body.getup_time;
-    Person.setPersonalgetup_time(user_name, getup_time, function (err) {
-        if (err) throw err
-        res.send(200)
-    })
+    if (is_time_valid(getup_time)) {
+        Person.setPersonalgetup_time(user_name, getup_time, function (err) {
+            if (err) throw err
+            res.send(200)
+        })
+    }
+    else
+        res.status(406).send()
+
 });
 router.post('/sleep', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
@@ -89,10 +94,14 @@ router.post('/sleep', ensureAuthenticated, function (req, res, next) {
     }
     var user_name = glob_user_obj.username;
     var sleep_time = req.body.sleep_time;
-    Person.setPersonalsleep_time(user_name, sleep_time, function (err) {
-        if (err) throw err
-        res.send(200)
-    })
+    if (is_time_valid(sleep_time)) {
+        Person.setPersonalsleep_time(user_name, sleep_time, function (err) {
+            if (err) throw err
+            res.send(200)
+        })
+    }
+    else
+        res.status(406).send()
 });
 
 
@@ -105,3 +114,14 @@ function ensureAuthenticated(req, res, next) {
 }
 
 module.exports = router;
+
+function is_time_valid(time) {
+    let time_hour = time[0]
+    let time_minute = time[1]
+    if (time_hour > 24 || time_hour < 0)
+        return false
+    else if (time_minute > 60 || time_minute < 0)
+        return false
+    else
+        return true
+}
