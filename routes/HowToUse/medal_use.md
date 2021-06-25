@@ -20,12 +20,14 @@ medal :
 ---
 # '/getdaily' : 用來獲取日常任務的完成情形
 ### 格式:
+```
 {
     wake: bool,
     sleep: bool,
     picture: bool,
     stroll: bool
 }
+```
 ---
 # '/getEXP' : 用來獲取玩家現在的經驗值
 ### 格式 : int
@@ -33,32 +35,40 @@ medal :
 ---
 # '/getWalk' : 用來獲得和走路相關的資訊
 ### 格式 : 
+```
 {
     progress: [bool, ... ,bool],    // 走路的徽章任務，共12個bool
     goal: int         // 累積路程
 }
+```
 **錯誤時所有值回傳-1**
 ---
 # '/getPost' : 用來獲得和發文數相關的資訊
 ### 格式 : 
+```
 {
     progress: [bool, ... ,bool],    // 發文的徽章任務，共8個bool
     goal: int         // 累積發文數
 }
+```
 **錯誤時所有值回傳-1**
 ---
 # '/getMessage' : 用來獲得和留言數相關的資訊
 ### 格式 : 
+```
 {
     progress: [bool, ... ,bool],    // 留言的徽章任務，共8個bool
     goal: int         // 累積留言數
 }
+```
 **錯誤時所有值回傳-1**
 ---
 # '/getLevel' : 用來獲得和等級相關的資訊
 ### 格式 : 
+```
 {
     progress: [bool, ... ,bool],    // 等級的徽章任務，共8個bool
     goal: int         // 累積等級
 }
+```
 **錯誤時所有值回傳-1**
