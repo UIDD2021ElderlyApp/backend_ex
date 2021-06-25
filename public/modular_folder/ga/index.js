@@ -19,7 +19,7 @@ checkFlag();
 
 //function mygallery_justifiedGallery(params) {
 $("#mygallery").justifiedGallery({
-    rowHeight: 700,
+    rowHeight: $(window).height()*(3/7),
     lastRow: 'nojustify',
     rel: 'gallery1',
     margins: 3,
