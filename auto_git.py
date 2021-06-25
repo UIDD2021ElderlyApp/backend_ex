@@ -67,12 +67,19 @@ def git_version_info():
 
 @app.route('/game_main_website_status',methods=['POST'])
 def game_main_website_status():
-    #data = request.form
-    print("\033[92m")
-    var_stat=urllib.request.urlopen("http://luffy.ee.ncku.edu.tw:16443/users/login").getcode()
-    print(var_stat)
-    print("\033[0m")
-    return str(var_stat)
+    var_stat=None
+    try:     
+        var_stat=urllib.request.urlopen("http://luffy.ee.ncku.edu.tw:16443/users/login").getcode()
+    except Exception as e: 
+        print("\033[92m");print(e);print("\033[0m")
+        var_stat=e
+    else:
+        print("\033[92m");print(var_stat);print("\033[0m")
+        #return str(var_stat)
+        var_stat="is working"+str(var_stat)
+    finally:
+        #print("\033[92m");print("you can't come here");print("\033[0m")
+        return str(var_stat)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=int('15487'),ssl_context=('/home/yichung/ssl/certificate.crt', '/home/yichung/ssl/private.key'),debug=True)
