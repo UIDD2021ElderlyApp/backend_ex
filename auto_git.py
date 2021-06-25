@@ -4,16 +4,19 @@ import subprocess
 from pathlib import Path,PurePath
 app = Flask(__name__)
 
+globe_var_last_update=""
+
 @app.route('/')
 def api_root():
     print(Path(__file__).parent.absolute())
     #p = subprocess.run("git pull", shell=True,cwd=Path(__file__).parent.absolute())
-    return "welcome to github auto deploy"
+    return "welcome to github auto deploy<p>"+globe_var_last_update
 
 @app.route('/webhook',methods=['POST'])
 def webhook():
     data = request.json
     print(request.json)
+    global globe_var_last_update;globe_var_last_update = str(data)
     repository_name = data['repository']['name']
     #p = subprocess.run("cd %s && git pull"%repository_name, shell=True,cwd=Path(__file__).parent.absolute())
     p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
