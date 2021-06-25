@@ -137,10 +137,10 @@ $("#setting").click(function () {
         //empty
     }, (res) => {
         console.log(res);
-        wakeup_h = (res !== -1) ? res.getup_time[0] : 8;
-        wakeup_m = (res !== -1) ? res.getup_time[0] : 30;
-        sleep_h = (res !== -1) ? res.sleep_time[0] : 21;
-        sleep_m = (res !== -1) ? res.sleep_time[0] : 0;
+        wakeup_h = (res !== -1) ? res.getup_time[0] || 8 : 8;
+        wakeup_m = (res !== -1) ? res.getup_time[1] || 30 : 30;
+        sleep_h = (res !== -1) ? res.sleep_time[0] || 21 : 21;
+        sleep_m = (res !== -1) ? res.sleep_time[1] || 0 : 0;
         $("#wakeup_hour").val(wakeup_h);
         $("#wakeup_minute").val(wakeup_m);
         $("#sleep_hour").val(sleep_h);
@@ -203,7 +203,7 @@ function send_wake_time(params) {
     console.log($('#wakeup_hour').val());
     console.log($('#wakeup_minute').val());
     jQuery_3_6_0.post("/app/personal/getup", {
-        getup_time:[$('#wakeup_hour').val(),$('#wakeup_minute').val()]
+        getup_time: [$('#wakeup_hour').val(), $('#wakeup_minute').val()]
     }, (res) => {
         //empty
     });
@@ -213,7 +213,7 @@ function send_sleep_time(params) {
     console.log($('#sleep_hour').val());
     console.log($('#sleep_minute').val());
     jQuery_3_6_0.post("/app/personal/sleep", {
-        sleep_time:[$('#sleep_hour').val(),$('#sleep_minute').val()]
+        sleep_time: [$('#sleep_hour').val(), $('#sleep_minute').val()]
     }, (res) => {
         //empty
     });
