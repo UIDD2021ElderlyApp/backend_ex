@@ -17,13 +17,13 @@ var game = new Phaser.Game(config);
 function preload() {
     switch (animal) {
         case 1:
-            this.load.spritesheet('pet', './frontend/biggggg/image/pet1.svg', { frameWidth: 209.5, frameHeight: 193 })
+            this.load.spritesheet('pet', './frontend/biggggg/image/pet1.svg', { frameWidth: 223, frameHeight: 193 })
             break
         case 2:
-            this.load.spritesheet('pet', './frontend/biggggg/image/pet2.svg', { frameWidth: 209.5, frameHeight: 193 })
+            this.load.spritesheet('pet', './frontend/biggggg/image/pet2.svg', { frameWidth: 223, frameHeight: 193 })
             break
         case 3:
-            this.load.spritesheet('pet', './frontend/biggggg/image/pet3.svg', { frameWidth: 209.5, frameHeight: 193 })
+            this.load.spritesheet('pet', './frontend/biggggg/image/pet3.svg', { frameWidth: 223, frameHeight: 193 })
             break
         default:
             console.log("???")
