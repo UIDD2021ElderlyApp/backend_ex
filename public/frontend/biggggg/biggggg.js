@@ -136,7 +136,11 @@ $("#setting").click(function () {
     jQuery_3_6_0.get("/app/personal", {
         //empty
     }, (res) => {
-        console.log((res!==-1)?res.getup_time:'08:30');
+        //console.log((res !== -1) ? res.getup_time : '08:30');
+        wakeup_h = (res !== -1) ? res.getup_time[0] : 8;
+        wakeup_m = (res !== -1) ? res.getup_time[0] : 30;
+        sleep_h = (res !== -1) ? res.sleep_time[0] : 21;
+        sleep_m = (res !== -1) ? res.sleep_time[0] : 00;
     });
 });
 $("#exit_button_1").click(function () {
