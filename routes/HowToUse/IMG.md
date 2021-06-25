@@ -8,19 +8,23 @@
      content      |   String    |base64     |
 ```
 
-# /app/img的相關方法
+# /app/img的相關方法  
 
-## get /
-* query: title=abc123_tb_b.jpg  
-* send : file or "-1"
+## get /app/img?title=abc123_tb_b.jpg  
+```
+* send : 無資料："-1"  
+         有資料：file  
+```
 
-## get /gallery
-* query: 無
-* send : imgtitlearray 
-**imgtitlearray=[title1,title2,...]**
+## get /app/img/gallery  
+```
+* send : ["title1","title2",...]  
+```
 
-## post /
-* body : 單張圖片
-* send : id
-**id:{"img_title": title}**
+## post /app/img  
+```
+* body : 單張圖片  
+* send : {"img_title":  }  
+```
+
 

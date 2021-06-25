@@ -1,32 +1,47 @@
-# 儲存自己的動物、起床、睡覺時間
+# Personal model的內容
 
-  * user_name:同users裡的
-  * name:同users裡的
-  * animal:Number
-  * getup_time: [hr , min] 24時制 ,預設[6, 00]
-  * sleep_time: [hr , min] 24時制 ,預設[22, 00]
+```
+     name         |   type      |           |
+     user_name    |   String    |           |
+     name         |   String    |           |
+     animal       |   Number    |           |
+     getup_time   |   Array     |[hr , min] 24|
+     getup_time   |   Array     |[hr , min] 24|
+```
 
-# /app/personal/的相關方法
+# /app/personal/的相關方法  
 
-> get /
->>   
->> res.status(200).send(JSON.stringify(person));  
->> res.status(200).send(JSON.stringify(-1));
-**回傳所有東西(JSON)，若無本人資料回傳-1**
+## get /app/personal/  
+```
+* send : 
+        無資料："-1"  
+        有資料：  
+        {  
+          "user_name":  
+          "name":  
+          "animal":  
+          "getup_time":  
+          "getup_time":  
+        }  
+```
 
-> post /create
->> req.body.animal  
->> res.status(200).send(JSON.stringify(id));
-**選完動物時使用，建立一筆資料，回傳ID**
+## post /app/personal/create
+```
+* body : animal:NUMBER  
+* send : {"id":  }    
+```
+**選完動物時使用，建立一筆資料，回傳ID**  
 
-> post /getup
->> req.body.getup_time  
->> res.send(200)
-**設定起床時間，回傳200**
+## post /app/personal/getup  
+```
+* body : getup_time:[hh,mm]  
+* send : (200)  
+```
 
-> post /sleep
->> req.body.sleep_time  
->> res.send(200)
-**設定睡覺時間，回傳200**
+## post /app/personal/sleep  
+```
+* body : sleep_time:[hh,mm]  
+* send : (200)  
+```
 
   
