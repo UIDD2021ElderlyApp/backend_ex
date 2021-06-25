@@ -77,7 +77,7 @@ router.post('/getup', ensureAuthenticated, function (req, res, next) {
     }
     var user_name = glob_user_obj.username;
     var getup_time_0 = req.body.getup_time_0;
-    var getup_time_1 = req.body.getup_time_;
+    var getup_time_1 = req.body.getup_time_1;
     var getup_time = [getup_time_0, getup_time_1];
     //console.log("wTF");
     console.log(getup_time);
