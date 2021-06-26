@@ -137,7 +137,9 @@ module.exports = router;
 function is_time_valid(time) {
     let time_hour = time[0]
     let time_minute = time[1]
-    if (time_hour > 24 || time_hour < 0)
+    if (!time_hour || !time_minute)
+        return false
+    else if (time_hour > 24 || time_hour < 0)
         return false
     else if (time_minute > 60 || time_minute < 0)
         return false
