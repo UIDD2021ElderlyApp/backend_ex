@@ -3,6 +3,7 @@ html
   head
     link(rel='apple-touch-icon' sizes='144x144' href='../modular_folder/login/image/loading.svg')
     link(rel='manifest' href='../manifest.json')
+    link(href='/frontend_data/css/var.css' rel='stylesheet' type='text/css')
     - if(var_jade_user_info_choosedanimal=='-1') {
         meta(charset='utf8')
         meta(name='viewport' content='width=device-width, initial-scale=1')
@@ -15,6 +16,8 @@ html
     
   body
     header
+      #calc_var_vw(style='background-color: transparent;height:1px;width:calc(var(--var_vw));')
+      #calc_var_right_global_displacement(style='background-color: transparent;height:1px;width:calc(var(--var_right_global_displacement));')
       - if(var_jade_user_info_choosedanimal!='-1') {
           block content_header
       - }
@@ -62,7 +65,8 @@ html
           script(type='text/javascript').
             var jQuery_3_6_0 = $.noConflict(true);
           script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
-      - }
+      - }   
+      script(src='/frontend_data/index_layout.js')
       button#snap_shoot_screen(style='display: none;') snap_shoot_screen
       #snap_shoot_finish(style='display: none;') -1
       script(src='../javascripts/snapshoot_layout.js' type="module")

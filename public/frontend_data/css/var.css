@@ -8,3 +8,12 @@
 .desktop_width_100{
     width:calc(var(--var_vw)*100);
 }
+.desktop_width_60{
+    width:calc(var(--var_vw)*60);
+}
+.desktop_width_40{
+    width:calc(var(--var_vw)*40);
+}
+.desktop_width_70{
+    width:calc(var(--var_vw)*70);
+}
