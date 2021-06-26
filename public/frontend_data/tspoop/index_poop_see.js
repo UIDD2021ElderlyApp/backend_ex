@@ -141,11 +141,12 @@ function get3post(isscroll) {
 
                     var commenter_name = document.createElement("div");
                     commenter_name.classList.add("commenter_name"); commenter_name.classList.add("remove_at_exit_post_page");
-                    if (AMENDuser_idTOuser_name) {
+                    /*if (AMENDuser_idTOuser_name) {
                         commenter_name.innerText = comment_element.user_id;
                     } else {
                         commenter_name.innerText = comment_element.user_name;
-                    }
+                    }*/
+                    commenter_name.innerHTML = `<img src=\"/app/profileimage?username=${comment_element.user_id}.jpg\">`;
                     //var comment_time = document.createElement("div");
                     //comment_time.classList.add("comment_time");
                     //convert given date into readable format
