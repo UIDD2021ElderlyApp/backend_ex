@@ -554,6 +554,7 @@ body {
     background-color: #ffffff;
     z-index: 1;
     margin:auto;
+    bottom:calc((7.5vh - 6vh)/2);/*(mother-height)/2*/
 }
 
 
