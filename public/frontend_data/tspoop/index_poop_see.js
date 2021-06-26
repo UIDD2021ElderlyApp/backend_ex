@@ -146,14 +146,14 @@ function get3post(isscroll) {
                     } else {
                         commenter_name.innerText = comment_element.user_name;
                     }*/
-                    commenter_name.style.backgroundImage="url(\"/app/profileimage?username="+String(comment_element.username)+".jpg\")";
-                    commenter_name.style.backgroundPosition="center";
-                    commenter_name.style.backgroundRepeat="no-repeat";
+                    commenter_name.style.backgroundImage = "url(\"/app/profileimage?username=" + String(comment_element.username) + ".jpg\")";
+                    commenter_name.style.backgroundPosition = "center";
+                    commenter_name.style.backgroundRepeat = "no-repeat";
                     //commenter_name.style.backgroundAttachment="scroll";
                     //commenter_name.style.backgroundClip="content-box";
                     //commenter_name.style.backgroundOrigin="content-box";
-                    commenter_name.style.backgroundSize="contain";
-                    commenter_name.style.backgroundColor="transparent";//"#ddb98b";
+                    commenter_name.style.backgroundSize = "contain";
+                    commenter_name.style.backgroundColor = "transparent";//"#ddb98b";
                     //commenter_name.innerHTML = `<img class="head_height_100" src=\"/app/profileimage?username=${comment_element.username}.jpg\">`;
                     //var comment_time = document.createElement("div");
                     //comment_time.classList.add("comment_time");
@@ -207,7 +207,12 @@ function get3post(isscroll) {
 
                 var your_name = document.createElement("div");
                 your_name.classList.add("your_name"); your_name.classList.add("remove_at_exit_post_page");
-                your_name.innerText = document.getElementById("jade_user_info_name").innerText;
+                //your_name.innerText = document.getElementById("jade_user_info_name").innerText;
+                commenter_name.style.backgroundImage = "url(\"" + document.getElementById("jade_user_info_profileimage").innerText + "\")";
+                commenter_name.style.backgroundPosition = "center";
+                commenter_name.style.backgroundRepeat = "no-repeat";
+                commenter_name.style.backgroundSize = "contain";
+                commenter_name.style.backgroundColor = "transparent";//"#ddb98b";
 
                 new_comment.appendChild(your_name);
                 new_comment.appendChild(usr_inp_comment_txt);
