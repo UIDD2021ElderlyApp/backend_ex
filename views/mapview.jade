@@ -104,9 +104,9 @@ html
       var popupContent = "You are within " + radius + " meters from this point";
       setTimeout(function () {
       $.get('/app/personal/', {
-      }, (user) => {
-      if (user) {
-      var me = JSON.parse(user)
+      }, (me) => {
+      if (me) {
+      //var me = JSON.parse(user)
       if (me.animal)
       animal_id = me.animal
       else 
