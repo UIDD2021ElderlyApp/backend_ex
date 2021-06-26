@@ -48,10 +48,10 @@ router.post('/', ensureAuthenticated, function(req, res){
                 if(db_type_2 === 1)
                 {
                     var levelObject = {
-                        type: 8,
-                        goal: 1
+                        "type": 8,
+                        "goal": 1
                     }
-                    Medal.setMedalByUserId(glob_user_obj.username, levelObject, function(db_type_3){
+                    Medal.setMedalByUserId(glob_user_obj.username, JSON.stringify(levelObject), function(db_type_3){
                         console.log("**********Reload to level up**********");
                     });
                 }
@@ -60,10 +60,10 @@ router.post('/', ensureAuthenticated, function(req, res){
         if(db_type === 1)
         {
             var levelObject = {
-                type: 8,
-                goal: 1
+                "type": 8,
+                "goal": 1
             }
-            Medal.setMedalByUserId(glob_user_obj.username, levelObject, function(db_type){
+            Medal.setMedalByUserId(glob_user_obj.username, JSON.stringify(levelObject), function(db_type){
                 console.log("**********Reload to level up**********");
             });
         }
