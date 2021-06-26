@@ -520,10 +520,10 @@ body {
     height: calc(3*2.5vh);
 }
 
-.new_comment input[type=text] {
+.usr_inp_comment_txt {
     position: relative;
     width: 90%;
-    height: 4vh;
+    height: 7.5vh;/*4->7.5*/
     background-color: #e5e2e2;
     border-width: 0;
     border-radius: 1vh;
@@ -532,6 +532,7 @@ body {
     font-size: 2vh;
     color: #494949;
     outline: 0;
+    margin:auto;
 }
 
 .post_comment_button {
