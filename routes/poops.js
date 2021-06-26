@@ -83,13 +83,13 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
 
 
     var error_msg_res = {};
-    if (empty(time)) {
+    if (!time) {
         error_msg_res["time"] = "empty";
     }
-    if (empty(text)) {
+    if (!text) {
         error_msg_res["text"] = "empty";
     }
-    if (empty(img)) {
+    if (!img) {
         error_msg_res["img"] = "empty";
     }
 
@@ -138,7 +138,7 @@ router.post('/comment', ensureAuthenticated, function (req, res, next) {
     console.log(req.body);
     var comment = req.body;
     var error_msg_res = {};
-    if (empty(comment)) {
+    if (!comment.text) {
         error_msg_res["comment"] = "empty";
     }
     if (!empty(error_msg_res)) {
