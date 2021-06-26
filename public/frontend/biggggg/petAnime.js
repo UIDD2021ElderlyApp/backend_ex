@@ -8,7 +8,8 @@ var config = {
     transparent: true,
     scene: {
         preload: preload,
-        create: create
+        create: create,
+        update: update
     }
 };
 var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) ? document.getElementById('jade_user_info_choosedanimal').innerText : "0", 10);
@@ -41,4 +42,13 @@ function create() {
         repeat: -1
     })
     this.player.anims.play('idle', true)
+}
+
+function update() {
+    //canvas size
+    game.scale.resize($(window).width() * 0.7, $(window).width() * 0.6);
+    //sprite position
+    this.player.setPosition($(window).width() * 0.33, $(window).width() * 0.32)
+    this.player.scaleX = $(window).width() * 0.0038
+    this.player.scaleY = $(window).width() * 0.0038
 }
