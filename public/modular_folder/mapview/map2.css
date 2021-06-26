@@ -1,302 +1,71 @@
-html
-  head
-    meta(charset='utf-8')
-    link(href='../modular_folder/mapview/map2.css' rel='stylesheet' type='text/css')
-  body
-    link(rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==' crossorigin='')
-    style.
-      html,
-      body {
-      width: 100%;
-      height: 100%;
-      font-size: 50px;
-      }
-      #map {
-      z-index: 1;
-      top: 0vh;
-      width: 100%;
-      height: 100%;
-      position: relative;
-      z-index: 1;
-      }
-    form#ajax-form
-      button#exit_button(type='button' onclientclick='return false;')
-        // <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
-        //img(src='../modular_folder/mapview/cross.svg')
-        // </a>
-    form#ajax-form2
-      button#snap_shoot_screen(type='button' onclientclick='return false;')
-        img#camera(src='../modular_folder/mapview/camera.svg')
-    #hungun
-      #distance
-        bl#info
-        div(style='display:none')
-          bl#snap_shoot_finish
-        font#info3(face='微軟正黑體' style='font-size: 100px' td='' align='center')
-    #map
-    // Make sure you put this AFTER Leaflet's CSS
-    script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
-    script(language='JavaScript').
-      function ShowTime() {
-      if (document.getElementById("info").hidden === false)
-      var NowDate = new Date();
-      var s = NowDate.getSeconds();
-      //document.getElementById('info2').innerHTML = s + 's';
-      //setTimeout('ShowTime()', 1000);//decide max time
-      }
-    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
-    script(type='module').
-      var NowDate;
-      var s;
-      var map;
-      // var radius;
-      var now_lat;
-      var now_lng;
-      var marker_array = new Array;
-      var animal_id = -1;
-      map = L.map('map', {renderer:L.canvas()}).setView([22.5, 120.5], 15);//construct map
-      map.locate({ setView: true, watch: true, enableHighAccuracy: true });
-      map.removeControl(map.zoomControl);
-      L.control.scale({ imperial: false }).addTo(map);
-      L.control.zoom({
-      position: 'topright',
-      //zoomInTitle: 'increase',
-      //zoomOutTitle: 'decrese'
-      }).addTo(map);
-      var customIcon1 = L.icon({
-      iconUrl: '../modular_folder/mapview/c1.svg',
-      iconSize: [250, 250], // size of the icon
-      iconAnchor: [120, 0], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
-      });
-      var customIcon2 = L.icon({
-      iconUrl: '../modular_folder/mapview/c2.svg',
-      iconSize: [250, 250], // size of the icon
-      iconAnchor: [120, 0], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
-      });
-      var customIcon3 = L.icon({
-      iconUrl: '../modular_folder/mapview/c3.svg',
-      iconSize: [250, 250], // size of the icon
-      iconAnchor: [120, 0], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
-      });
-      var customIcon_1 = L.icon({
-      iconUrl: '../modular_folder/mapview/63.png',
-      iconSize: [250, 250], // size of the icon
-      iconAnchor: [90, 0], // point of the icon which will correspond to marker's location
-      popupAnchor: [0, 0] // point from which the popup should open relative to the iconAnchor
-      });
-      var gpsMarker = null;
-      var gpsCircleMarker;
-      var user_name;
-      var check_first_time=1;
-      function onLocationFound(e) {
-      if(check_first_time!=0){
-      map.setView([e.latlng.lat, e.latlng.lat], 15);
-      }
-      check_first_time=0;
-      console.log(e)
-      now_lat = e.latlng.lat;
-      now_lng = e.latlng.lng;
-      var current;
-      var radius = e.accuracy / 2;
-      var popupContent = "You are within " + radius + " meters from this point";
-      setTimeout(function () {
-      $.get('/app/personal/', {
-      }, (user) => {
-      if (user) {
-      var me = JSON.parse(user)
-      if (me.animal)
-      animal_id = me.animal
-      else 
-      animal_id = -1
-      user_name = me.name
-      if (gpsMarker == null) {
-      if (animal_id == 1) {
-      gpsMarker = L.marker(e.latlng, { icon: customIcon1 }).addTo(map);
-      }
-      if (animal_id == 2) {
-      gpsMarker = L.marker(e.latlng, { icon: customIcon2 }).addTo(map);
-      }
-      if (animal_id == 3) {
-      gpsMarker = L.marker(e.latlng, { icon: customIcon3 }).addTo(map);
-      }
-      if (animal_id == -1) {
-      gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
-      }
-      gpsMarker.bindPopup(`<b1 style="font-size: 60px" >${user_name}</b1>`).openPopup();
-      gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
-      }
-      if (gpsMarker != null) {
-      gpsMarker.getPopup().setContent(`<b1 style="font-size: 60px" >${user_name}</b1>`);
-      gpsMarker.setLatLng(e.latlng);
-      gpsCircleMarker.setLatLng(e.latlng);
-      gpsCircleMarker.setRadius(radius);
-      }
-      }
-      }
-      )
-      }, 0)
-      //document.getElementById('info').innerHTML = `you are at ( lat : ${e.latlng.lat} lng : ${e.latlng.lng} ) with accuracy ${e.accuracy} m!`
-      ShowTime()
-      var marker = L.marker(L.latLng(22.9998, 120.215));
-      marker.bindPopup("<b>NCKU</b><br>the BEST University in south Taiwan").openPopup();
-      marker.addTo(map);
-      console.log(e.latlng)
-      console.log(marker._latlng)
-      // var latlng = L.latLng(40, 112);
-      // var _distance = L.GeometryUtil.distance(map, from, to);
-      // var d2 = latlng.distanceTo(L.latLng(44, 115));
-      // let dis = e.distanceTo(marker.LatLng);
-      //document.getElementById('info3').innerHTML =_distance;
-      //var dis = e.distanceTo(marker.latLng);
-      //document.getElementById('info3').innerHTML = e.latlng.distanceTo(marker._latlng);
-      //distance2= e.latlng.distanceTo(marker._latlng);
-      if (last != current) {
-      last = e.latlng
-      }
-      current = e.latlng;
-      distance2 = last.distanceTo(current);
-      last = current;
-      console.log('dis2 '+distance2)
-      distance1 += distance2;
-      }
-      var last;
-      var distance1;
-      var distance2;
-      setTimeout(function () {
-      distance1 = 0;
-      distance2 = 0;
-      currrent = NaN;
-      last = NaN;
-      }, 0)
-      var getgoal;    
-      setInterval(function () {
-      console.log(distance1)
-      console.log(distance2)
-      console.log('nowgoal '+getgoal+' dis2 '+distance2)    
-      $.post('/app/medal/', {
-      medal: JSON.stringify({"type":5,"goal":distance2})
-      });
-      if (distance2 != 0) {
-      $.post('/app/medal/', {
-      medal: JSON.stringify({
-      "type": 4,
-      "goal": 1
-      })
-      });
-      }
-      distance2=0;
-      $.post('/app/medal/getWalk/', {
-      }, (walk) => {
-      if (walk) {
-      console.log('walk '+walk)
-      var parse_walk= JSON.parse(walk)
-      console.log(parse_walk)
-      getgoal=parse_walk.goal
-      console.log('getgoal '+getgoal)
-      if (getgoal === -1) {
-      $.post('/app/medal/', {
-      medal: JSON.stringify({
-      "type": 5,
-      "goal": 0
-      })
-      });
-      }
-      }
-      });
-      document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
-      if(Math.floor(distance1)>999){
-      document.getElementById('info3').innerHTML = '距離' + (Math.floor(distance1)-Math.floor(distance1)%1000)/1000 + 'km';
-      }
-      }, 2000);
-      function onLocationError(e) {
-      alert(e.message);
-      }
-      map.on('locationerror', onLocationError);
-      map.on('locationfound', onLocationFound);
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '<a href="https://www.openstreetmap.org/">OSM</a>',
-      maxZoom: 19,
-      }).addTo(map);
-      $(document).ready(function () {///////////////////////////////////////////////added at 6/2
-      var search_radius = 300;
-      setInterval(function () {
-      $.get('/app/PeopleOnMap/', {
-      distance: search_radius,
-      position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
-      }, (People) => {
-      if (People) {
-      var people = JSON.parse(People)
-      /*people:[{
-      "id" = ""
-      "name" = ""
-      "animal" = 1
-      "position" = {lat:,lng:}
-      },
-      ]*/
-      //做事
-      for (var i = 0; i < marker_array.length; i++) {
-      if (marker_array != null) {
-      map.removeLayer(marker_array[i])
-      }
-      }
-      for (var i = 0; i < people.length; i++) {
-      var temp_latlng = L.latLng(people[i].position.lat, people[i].position.lng);
-      if (people[i].animal == 1) {
-      marker_array[i] = L.marker(temp_latlng, { icon: customIcon1 }).addTo(map);
-      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
-      }
-      if (people[i].animal == 2) {
-      marker_array[i] = L.marker(temp_latlng, { icon: customIcon2 }).addTo(map);
-      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
-      }
-      if (people[i].animal == 3) {
-      marker_array[i] = L.marker(temp_latlng, { icon: customIcon3 }).addTo(map);
-      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
-      }
-      if (people[i].animal == -1) {
-      marker_array[i] = L.marker(temp_latlng, { icon: customIcon_1 }).addTo(map);
-      marker_array[i].bindPopup(`<b1 style="font-size: 60px" >${people[i].name}</b1>`).openPopup();
-      }
-      }
-      }
-      }
-      )
-      }, 10000)
-      setInterval(function () {
-      $.post('/app/PeopleOnMap/', {
-      animal: animal_id,
-      position: JSON.stringify({ "lat": now_lat, "lng": now_lng })
-      }, (id) => {
-      if (id) {
-      //不一定用的到
-      }
-      }
-      )
-      }, 10000)
-      });
-      var DEF_map="/app/PeopleOnMap/deleteme";
-      var DEF_DEBUG=true;
-     
-      $("#exit_button").click(function() {
-      var url = window.location.href;
-      var window_location_href_host = new URL(url).host;
-      console.log(window_location_href_host);  
-      $.post("https://"+window_location_href_host + DEF_map, {
-      }, (objects_returned_by_the_server) => {
-      if (DEF_DEBUG) {
-      console.log(String(objects_returned_by_the_server));
-      }
-      })
-      var re = /\/ts\/mapview/gi;
-      var newstr = window.location.href.replace(re, "/main");
-      window.location.href = newstr;
-      });
-    footer
-      script(type='text/javascript').
-        var jQuery_3_6_0 = $.noConflict(true);
-      script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
-      script(src='../javascripts/snapshoot_layout.js' type='module')
-      script(src='https://makinacorpus.github.io/Leaflet.GeometryUtil/leaflet.geometryutil.js')
+#hungun{
+    background-image: url("./hungun.svg");
+    z-index: 10;
+
+    -webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.7));
+    position: absolute;
+    margin: 0;
+    padding: 3vh 3vw 0 3vw;
+    top: 0px;
+    width: 94vw;
+    height: 20vw;
+    background-repeat: no-repeat;
+    background-size: contain;
+    display: flex;
+    justify-content: space-between;
+}
+
+#distance{
+    position: absolute;
+    margin:0px auto;
+    border: none;
+    top: 0px;
+   left: 26vw;
+}
+
+
+#exit_button{
+    background-image: url("cross.svg");
+    z-index: 13;
+    position: absolute;
+    width: 14vw;
+    height: 14vw;
+    top: 2vw;
+    left: 2vw;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+    padding: 0%;
+}
+#snap_shoot_screen{
+    z-index: 14;
+    position: absolute;
+    width: 21vw;
+    height: 21vw;
+    bottom: 2vw;
+    right: 2vw;
+    	
+    background-color: transparent;
+    background-size: contain;
+   
+    border: none;
+    padding: 0%;
+}
+#camera{
+    z-index: 14;
+    position: absolute;
+    width: 17vw;
+    height: 17vw;
+    bottom: 2vw;
+    right: 2vw;
+    -webkit-filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, 0.7));
+    border: none;
+    padding: 0%;
+}
+
+.popupCustom .leaflet-popup-tip,
+.popupCustom .leaflet-popup-content-wrapper {
+    background: #e0e0e0;
+    color: #234c5e;
+}
