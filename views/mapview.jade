@@ -32,7 +32,8 @@ html
         bl#info
         div(style='display:none')
           bl#snap_shoot_finish
-        font#info3(face='微軟正黑體' style='font-size: 100px' td='' align='center')
+        #distance2
+          font#info3(face='微軟正黑體' style='font-size: 100px')
     #map
     // Make sure you put this AFTER Leaflet's CSS
     script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
@@ -96,10 +97,9 @@ html
       map.setView([e.latlng.lat, e.latlng.lat], 15);
       }
       check_first_time=0;
-      console.log(e)
+      //console.log(e)//627
       now_lat = e.latlng.lat;
       now_lng = e.latlng.lng;
-      var current;
       var radius = e.accuracy / 2;
       var popupContent = "You are within " + radius + " meters from this point";
       setTimeout(function () {
@@ -143,28 +143,21 @@ html
       var marker = L.marker(L.latLng(22.9998, 120.215));
       marker.bindPopup("<b>NCKU</b><br>the BEST University in south Taiwan").openPopup();
       marker.addTo(map);
-      console.log(e.latlng)
-      console.log(marker._latlng)
-      // var latlng = L.latLng(40, 112);
-      // var _distance = L.GeometryUtil.distance(map, from, to);
-      // var d2 = latlng.distanceTo(L.latLng(44, 115));
-      // let dis = e.distanceTo(marker.LatLng);
-      //document.getElementById('info3').innerHTML =_distance;
-      //var dis = e.distanceTo(marker.latLng);
-      //document.getElementById('info3').innerHTML = e.latlng.distanceTo(marker._latlng);
-      //distance2= e.latlng.distanceTo(marker._latlng);
+      //console.log(e.latlng)//627
+      //console.log(marker._latlng)//627
       if (last != current) {
       last = e.latlng
       }
       current = e.latlng;
       distance2 = last.distanceTo(current);
       last = current;
-      console.log('dis2 '+distance2)
+      //console.log('dis2 '+distance2)//627
       distance1 += distance2;
       }
       var last;
       var distance1;
       var distance2;
+      var current;
       setTimeout(function () {
       distance1 = 0;
       distance2 = 0;
@@ -173,9 +166,9 @@ html
       }, 0)
       var getgoal;    
       setInterval(function () {
-      console.log(distance1)
-      console.log(distance2)
-      console.log('nowgoal '+getgoal+' dis2 '+distance2)    
+      //console.log(distance1)//627
+      //console.log(distance2)//627
+      //console.log('nowgoal '+getgoal+' dis2 '+distance2)   //627 
       $.post('/app/medal/', {
       medal: JSON.stringify({"type":5,"goal":distance2})
       });
@@ -191,11 +184,11 @@ html
       $.post('/app/medal/getWalk/', {
       }, (walk) => {
       if (walk) {
-      console.log('walk '+walk)
+      //console.log('walk '+walk)//627
       var parse_walk= JSON.parse(walk)
-      console.log(parse_walk)
+      //console.log(parse_walk)//627
       getgoal=parse_walk.goal
-      console.log('getgoal '+getgoal)
+      //console.log('getgoal '+getgoal)//627
       if (getgoal === -1) {
       $.post('/app/medal/', {
       medal: JSON.stringify({
@@ -283,11 +276,11 @@ html
       $("#exit_button").click(function() {
       var url = window.location.href;
       var window_location_href_host = new URL(url).host;
-      console.log(window_location_href_host);  
+      //console.log(window_location_href_host);  //627
       $.post("https://"+window_location_href_host + DEF_map, {
       }, (objects_returned_by_the_server) => {
       if (DEF_DEBUG) {
-      console.log(String(objects_returned_by_the_server));
+      //console.log(String(objects_returned_by_the_server));//627
       }
       })
       var re = /\/ts\/mapview/gi;
