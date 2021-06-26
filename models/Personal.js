@@ -19,6 +19,9 @@ var PersonalSchema = mongoose.Schema({
     },
     sleep_time: {
         type: Array
+    },
+    is_sleep: {
+        type: Boolean
     }
 
 });
@@ -35,7 +38,7 @@ module.exports.createPersonal = function (newPersonal, callback) {
 module.exports.setPersonalgetup_time = function (user_name, getup_time, callback) {
     console.log("------->setPersonal");
     var query = { user_name: { $eq: user_name } };
-    Personal.findOne(query, function(err, Personget){
+    Personal.findOne(query, function (err, Personget) {
         Personget.getup_time = getup_time;
         Personget.save()
     })
@@ -44,7 +47,7 @@ module.exports.setPersonalgetup_time = function (user_name, getup_time, callback
 module.exports.setPersonalsleep_time = function (user_name, sleep_time, callback) {
     console.log("------->setPersonalsleep_time");
     var query = { user_name: { $eq: user_name } };
-    Personal.findOne(query, function(err, Personget){
+    Personal.findOne(query, function (err, Personget) {
         Personget.sleep_time = sleep_time;
         Personget.save()
     })
