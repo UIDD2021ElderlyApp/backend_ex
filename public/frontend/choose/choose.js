@@ -4,7 +4,7 @@ var swiper = new Swiper(".mySwiper", {
     },
     initialSlide: 1, //起始頁
     centeredSlides: false,
-    slidesPerView: 'auto', //可自定義slide宽度，(配合css)
+    slidesPerView: 1, //可自定義slide宽度，(配合css)
     loop: true //循環
 });
 var timer;
