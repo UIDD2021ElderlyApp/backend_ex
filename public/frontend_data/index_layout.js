@@ -4,6 +4,7 @@ jQuery_3_6_0(function () {
 function init_layout() {
     console.log(jQuery_3_6_0(window).width() / jQuery_3_6_0(window).height());
     if (jQuery_3_6_0(window).width() / jQuery_3_6_0(window).height() > 1.0) {
+        document.getElementById("is_a_squuuuuuuuuuuuuuare").innerText=yes;
         console.log('squuuuuuuuuuuuuuuuuuuuuuuuuuuuare');
         document.documentElement.style.setProperty('--var_vw', '(9*(1vh/16))');
         document.documentElement.style.setProperty('--var_right_global_displacement', '(100vw - var(--var_vw)*100)');
@@ -12,10 +13,20 @@ function init_layout() {
             if (document.body.classList[index] === "vsc-initialized") {
                 is_choose = true;
             }
-
         }
         if (is_choose) {
             console.log("ARARARAR");
+            var vsc_initialized = document.createElement("div");
+            var overall = document.createElement("div");
+            overall.classList=document.getElementById("overall").classList;
+            overall.innerHTML=document.getElementById("overall").innerHTML;
+            document.getElementById("overall").innerHTML="";
+            jQuery_3_6_0("#overall").removeClass();
+            overall.id="overall";
+            vsc_initialized.classList.add("vsc_initialized");
+            vsc_initialized.appendChild(overall);
+            document.body.appendChild(vsc_initialized);
+            document.getElementById("is_a_squuuuuuuuuuuuuuare").innerText=ok;
         }
     }
 }

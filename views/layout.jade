@@ -18,6 +18,12 @@ html
     header
       #calc_var_vw(style='background-color: transparent;height:1px;width:calc(var(--var_vw));')
       #calc_var_right_global_displacement(style='background-color: transparent;height:1px;width:calc(var(--var_right_global_displacement));')
+      #jade_user_info(style='display: none;')
+        #jade_user_info_name(style='display: none;') #{var_jade_user_info_name}
+        #jade_user_info_username(style='display: none;') #{var_jade_user_info_username}
+        #jade_user_info_profileimage(style='display: none;') #{var_jade_user_info_profileimage}
+        #jade_user_info_choosedanimal(style='display: none;') #{var_jade_user_info_choosedanimal}
+      #is_a_squuuuuuuuuuuuuuare(style='display: none;') no
       - if(var_jade_user_info_choosedanimal!='-1') {
           block content_header
       - }
@@ -70,11 +76,6 @@ html
       button#snap_shoot_screen(style='display: none;') snap_shoot_screen
       #snap_shoot_finish(style='display: none;') -1
       script(src='../javascripts/snapshoot_layout.js' type="module")
-      #jade_user_info(style='display: none;')
-        #jade_user_info_name(style='display: none;') #{var_jade_user_info_name}
-        #jade_user_info_username(style='display: none;') #{var_jade_user_info_username}
-        #jade_user_info_profileimage(style='display: none;') #{var_jade_user_info_profileimage}
-        #jade_user_info_choosedanimal(style='display: none;') #{var_jade_user_info_choosedanimal}
       - if(var_jade_user_info_choosedanimal=='-1') {
           script(src='https://unpkg.com/swiper/swiper-bundle.min.js')
           script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
