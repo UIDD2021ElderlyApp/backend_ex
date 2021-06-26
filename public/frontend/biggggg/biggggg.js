@@ -101,7 +101,7 @@ $("#social").click(function () {
 });
 $("#exit_button").click(function () {
     $("#post_html").css("display", "none")
-    $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" })
+    $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "70%", "height": "70%", "zoom": "70%" })
     $("#exit_button").css("opacity", 0);
 
 });
@@ -165,7 +165,7 @@ $("#setting").click(function () {
 
 $("#exit_button_1").click(function () {
     $("#setting_html").css("display", "none");
-    $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
+    $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "70%", "height": "70%", "zoom": "70%" });
     $("#exit_button_1").css("opacity", 0);
 });
 
