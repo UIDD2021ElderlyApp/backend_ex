@@ -79,7 +79,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     var username = glob_user_obj.username;
     var title = poop.title;
     var text = poop.text;
-    var img = poop.imgid;
+    var img = poop.imgid || "-1";
 
     var error_msg_res = {};
     if (empty(time)) {
