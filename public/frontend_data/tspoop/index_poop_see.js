@@ -146,7 +146,7 @@ function get3post(isscroll) {
                     } else {
                         commenter_name.innerText = comment_element.user_name;
                     }*/
-                    commenter_name.innerHTML = `<img src=\"/app/profileimage?username=${comment_element.username}.jpg\">`;
+                    commenter_name.innerHTML = `<img class="head_height_100" src=\"/app/profileimage?username=${comment_element.username}.jpg\">`;
                     //var comment_time = document.createElement("div");
                     //comment_time.classList.add("comment_time");
                     //convert given date into readable format
