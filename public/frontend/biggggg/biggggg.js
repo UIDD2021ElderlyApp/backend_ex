@@ -1,5 +1,5 @@
-//var window_width = jQuery_3_6_0('#calc_var_vw').innerWidth()*100;
-//console.error(jQuery_3_6_0('#calc_var_vw').innerWidth());
+var window_width = (9.0*($(window).height()/16.0));
+//console.error(window_width);
 
 //////////////////////// home.js ///////////////////
 
@@ -16,8 +16,8 @@ switch (animal) {
         break;
     case 2:
         $("#back_block").html(`<div id="back2_1"></div><div id="back2_2"></div>
-        <img src="./frontend/biggggg/image/home_back2_cloud.svg" style="position:absolute; 
-        width:100%; top:10%; z-index:1;"><div id="sun"><img src="./frontend/biggggg/image/home_back2_sun.svg" 
+        <img class="desktop_width_100" src="./frontend/biggggg/image/home_back2_cloud.svg" style="position:absolute; 
+        top:10%; z-index:1;"><div id="sun"><img src="./frontend/biggggg/image/home_back2_sun.svg" 
         style="height:100%;"></div><img class="desktop_width_100" src="./frontend/biggggg/image/home_back2_sand.svg" 
         style="position:absolute; bottom:10%; z-index:3;"><img class="desktop_width_50" src="./frontend/biggggg/image/home_back2_unbrella.svg" 
         style="position:absolute; right:calc(var(--var_right_global_displacement) + 0%); top:20%; 
@@ -91,8 +91,8 @@ $("#social").click(function () {
             $("#post_html").show().css('z-index', "10")
             $.mobile.loading().hide(); // hide default "loading"
             var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
-            //var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-            $('#upper_windows').animate({ "width": "calc(var(--var_vw)*100 - vh*(4/100))", "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
+            var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
+            $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
                 $("#exit_button").animate({ "opacity": 1 }, 500);
                 document.getElementById('social_page_stat').innerText = 1;
             });
@@ -145,8 +145,8 @@ $("#setting").click(function () {
     $("#setting_html").show().css('z-index', "10")
     $.mobile.loading().hide(); // hide default "loading"
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
-    //var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
-    $('#upper_windows_1').animate({ "width": "calc(var(--var_vw)*100 - vh*0.04)", "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
+    var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
+    $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button_1").animate({ "opacity": 1 }, 500)
     });
     jQuery_3_6_0.get("/app/personal", {
