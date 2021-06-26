@@ -79,11 +79,18 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     var username = glob_user_obj.username;
     var title = poop.title;
     var text = poop.text;
-    var img = poop.imgid || "-1";
+    var img = poop.imgid;
+
 
     var error_msg_res = {};
     if (empty(time)) {
         error_msg_res["time"] = "empty";
+    }
+    if (empty(text)) {
+        error_msg_res["text"] = "empty";
+    }
+    if (empty(img)) {
+        error_msg_res["img"] = "empty";
     }
 
     if (DEF_DEBUG) {
@@ -99,9 +106,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     }
 
     if (!empty(error_msg_res)) {
-        res.render('build', {
-            errors: error_msg_res
-        });
+        res.status(406).send(error_msg_res);
     } else {
         var newPoop = new Poop({
             time: time,
@@ -132,10 +137,18 @@ router.post('/comment', ensureAuthenticated, function (req, res, next) {
     console.log("comment===>");
     console.log(req.body);
     var comment = req.body;
-    Poop.setPoopComment(comment.id, glob_user_obj.name, glob_user_obj.username, comment.time, comment.text, function (err) {
-        if (err) { console.log(err); }
-        res.status(200).send(JSON.stringify(err));
-    });
+    var error_msg_res = {};
+    if (empty(comment)) {
+        error_msg_res["comment"] = "empty";
+    }
+    if (!empty(error_msg_res)) {
+        res.status(406).send(error_msg_res);
+    } else {
+        Poop.setPoopComment(comment.id, glob_user_obj.name, glob_user_obj.username, comment.time, comment.text, function (err) {
+            if (err) { console.log(err); }
+            res.status(200).send(JSON.stringify(err));
+        });
+    }
 })
 
 router.get('/byId', function (req, res, next) {
