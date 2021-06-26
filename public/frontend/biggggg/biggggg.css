@@ -10,17 +10,16 @@ body {
     overflow: hidden;
 }
 
-
 /* home */
 
 #top_bar {
     z-index: 3;
     position: absolute;
     margin: 0;
-    padding: 3vh 3vw 0 3vw;
+    padding: 3vh calc(var(--var_vw)*3) 0 calc(var(--var_vw)*3);
     top: 0px;
-    width: 94vw;
-    height: 20vw;
+    width: calc(var(--var_vw)*94);
+    height: calc(var(--var_vw)*20);
     background-image: url("image/home_topbar.svg");
     background-repeat: no-repeat;
     background-size: contain;
@@ -58,7 +57,7 @@ body {
 
 #level_bar {
     position: relative;
-    width: 25vw;
+    width: calc(var(--var_vw)*25);
     height: 2vh;
     margin-left: 2vh;
     border: 0.2vh #90CD91 solid;
@@ -71,9 +70,9 @@ body {
 
 #level_value {
     position: relative;
-    width: 1vw;
+    width: calc(var(--var_vw)*1);
     height: 1vh;
-    left: 0px;
+    left: calc(var(--var_left_global_displacement)+0px);
     border-radius: 1vh;
     background-color: #4b6d4b;
 }
@@ -82,11 +81,10 @@ body {
     text-align: center;
     position: absolute;
     width: 60%;
-    left: 25%;
-    bottom: 32vw;
+    left: calc(var(--var_left_global_displacement)+25%);
+    bottom: calc(var(--var_vw)*32);
     z-index: 7;
 }
-
 
 /**************** animal1 ****************/
 
@@ -98,7 +96,6 @@ body {
     background: linear-gradient( #7bcfb6 0%, #6fdb74 60%, #FFFFFF 100%);
     z-index: 0;
 }
-
 
 /**************** animal2 ****************/
 
@@ -125,7 +122,7 @@ body {
     text-align: center;
     position: absolute;
     width: 100%;
-    height: 40vw;
+    height: calc(var(--var_vw)*40);
     top: calc(50% - 20vw);
     z-index: 1;
 }
@@ -133,21 +130,20 @@ body {
 #tree {
     position: absolute;
     width: 30%;
-    left: 25%;
+    left: calc(var(--var_left_global_displacement)+25%);
     /*-2%*/
-    bottom: 40vw;
+    bottom: calc(var(--var_vw)*40);
     z-index: 6
 }
 
 #coconut {
     position: absolute;
     width: 15%;
-    left: 25%;
+    left: calc(var(--var_left_global_displacement)+25%);
     /* 10% */
-    bottom: 38vw;
+    bottom: calc(var(--var_vw)*38);
     z-index: 8
 }
-
 
 /**************** animal3 ****************/
 
@@ -160,7 +156,6 @@ body {
     z-index: 0;
 }
 
-
 /*****************************************/
 
 #medal_block {
@@ -168,7 +163,7 @@ body {
     position: absolute;
     width: 18%;
     right: 5%;
-    top: 20vw;
+    top: calc(var(--var_vw)*20);
     text-align: center;
 }
 
@@ -188,9 +183,9 @@ body {
 #house {
     position: absolute;
     width: 50%;
-    height: 38vw;
-    bottom: 40vw;
-    left: 5%;
+    height: calc(var(--var_vw)*38);
+    bottom: calc(var(--var_vw)*40);
+    left: calc(var(--var_left_global_displacement)+5%);
     z-index: 5;
     background-image: url("image/home_house.svg");
     background-repeat: no-repeat;
@@ -200,7 +195,7 @@ body {
 #menu_back {
     position: absolute;
     width: 100%;
-    height: calc(23vw + 3vh);
+    height: calc(var(--var_vw)*23 + 3vh);
     bottom: 0px;
     z-index: 5;
 }
@@ -209,9 +204,9 @@ body {
     z-index: 6;
     position: absolute;
     bottom: 0px;
-    width: 98vw;
-    height: 23vw;
-    padding: 1vh 1vw;
+    width: calc(var(--var_vw)*98);
+    height: calc(var(--var_vw)*23);
+    padding: 1vh calc(var(--var_vw)*1);
     background-color: #D8E480;
     display: flex;
     align-items: center;
@@ -222,9 +217,9 @@ body {
     position: relative;
     height: 100%;
     text-align: center;
-    margin: 1vh 1vw;
+    margin: 1vh calc(var(--var_vw)*1);
     border: 0vh;
-    border-radius: 4vw;
+    border-radius: calc(var(--var_vw)*4);
     box-shadow: #3f3f3f 0.4vh 0.4vh 0.5vh;
     z-index: 7;
 }
@@ -245,7 +240,6 @@ body {
     right: 0%;
 }
 
-
 /*********************** post *************************/
 
 #exit_button {
@@ -254,7 +248,7 @@ body {
     width: 6vh;
     height: 6vh;
     top: 1vh;
-    left: 1vw;
+    left: calc(var(--var_left_global_displacement)+var(--var_vw)*1);
     background-color: white;
     border-width: 0vh;
     border-radius: 3.5vh;
@@ -275,7 +269,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     /* init : */
-    left: 10%;
+    left: calc(var(--var_left_global_displacement)+10%);
     top: 13%;
     width: 70%;
     height: 70%;
@@ -302,7 +296,7 @@ body {
     /* 調整閃爍游標位置 */
     padding: 2vh;
     position: relative;
-    top: 1vw;
+    top: calc(var(--var_vw)*1);
     font-size: 2vh;
     text-align: left;
     /*滑鼠閃爍游標顏色*/
@@ -364,7 +358,7 @@ body {
 
 #browse_post::-webkit-scrollbar {
     /* didn't work on mobile */
-    width: 1vw;
+    width: calc(var(--var_vw)*1);
     background-color: transparent;
 }
 
@@ -374,9 +368,8 @@ body {
 
 #browse_post::-webkit-scrollbar-thumb {
     background-color: #73D0BE92;
-    border-radius: 1vw;
+    border-radius: calc(var(--var_vw)*1);
 }
-
 
 /****************************/
 
@@ -550,7 +543,6 @@ body {
     z-index: 1;
 }
 
-
 /********************** setting ***********************/
 
 #exit_button_1 {
@@ -559,7 +551,7 @@ body {
     width: 6vh;
     height: 6vh;
     top: 1vh;
-    left: 1vw;
+    left: calc(var(--var_left_global_displacement)+var(--var_vw)*1);
     background-color: white;
     border-width: 0vh;
     border-radius: 3.5vh;
@@ -578,7 +570,7 @@ body {
     background-color: #fafaeb;
     text-align: center;
     /* init : */
-    left: 10%;
+    left: calc(var(--var_left_global_displacement)+10%);
     top: 13%;
     width: 70%;
     height: 70%;
@@ -685,7 +677,7 @@ body {
 .setting_logout {
     position: relative;
     top: 5vh;
-    left: calc((100vw - 20vh)/2);
+    left: calc(var(--var_left_global_displacement)+(var(--var_vw)*100 - 20vh)/2);
     width: 20vh;
     font-size: 2.5vh;
     cursor: pointer;
