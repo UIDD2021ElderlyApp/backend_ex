@@ -95,7 +95,7 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
             if(newMedal.type === 1) // daily__wake
             {
                 console.log("-------> choose daily wake")
-                if(!m_set[0].wake)
+                if(!m_set[0].wake && newMedal.goal === 1)
                 {
                     m_set[0].wake = true;
                     m_set[0].exp += dailyReward.wake;
@@ -105,11 +105,15 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
                         levelChange = 1;
                     }
                 }
+                else if(m_set[0].wake && newMedal.goal === 0)
+                {
+                    m_set[0].wake = false;
+                }
             }
             else if(newMedal.type === 2)
             {
                 console.log("-------> choose daily sleep")
-                if(!m_set[0].sleep)
+                if(!m_set[0].sleep && newMedal.goal === 1)
                 {
                     m_set[0].sleep = true;
                     m_set[0].exp += dailyReward.sleep;
@@ -119,11 +123,15 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
                         levelChange = 1;
                     }
                 }
+                else if(m_set[0].sleep && newMedal.goal === 0)
+                {
+                    m_set[0].sleep = false;
+                }
             }
             else if(newMedal.type === 3)
             {
                 console.log("-------> choose daily picture")
-                if(!m_set[0].picture)
+                if(!m_set[0].picture && newMedal.goal === 1)
                 {
                     m_set[0].picture = true;
                     m_set[0].exp += dailyReward.picture;
@@ -133,11 +141,15 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
                         levelChange = 1;
                     }
                 }
+                else if(m_set[0].picture && newMedal.goal === 0)
+                {
+                    m_set[0].picture = false;
+                }
             }
             else if(newMedal.type === 4)
             {
                 console.log("-------> choose daily stroll")
-                if(!m_set[0].stroll)
+                if(!m_set[0].stroll && newMedal.goal === 1)
                 {
                     m_set[0].stroll = true;
                     m_set[0].exp += dailyReward.stroll;
@@ -146,6 +158,10 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
                         m_set[0].exp -= 100;
                         levelChange = 1;
                     }
+                }
+                else if(m_set[0].stroll && newMedal.goal === 0)
+                {
+                    m_set[0].stroll = false;
                 }
             }
             else if(newMedal.type === 5)
