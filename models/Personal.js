@@ -56,3 +56,9 @@ module.exports.getPersonal = function (user_name, callback) {
     var query = { user_name: { $eq: user_name } };
     Personal.findOne(query, callback)
 }
+
+module.exports.deletePersonal = function (user_name, callback) {
+    if(DEF_DEBUG)console.log("------->deletePersonal");
+    var query = { user_name: { $eq: user_name } };
+    Personal.deleteOne(query, callback);
+}

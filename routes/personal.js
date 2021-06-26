@@ -79,7 +79,7 @@ router.post('/getup', ensureAuthenticated, function (req, res, next) {
     var getup_time_1 = req.body.getup_time_1;
     var getup_time = [getup_time_0, getup_time_1];
     //console.log("wTF");
-    if (DEF_DEBUG)console.log(getup_time);
+    if (DEF_DEBUG) console.log(getup_time);
     if (is_time_valid(getup_time)) {
         Person.setPersonalgetup_time(user_name, getup_time, function (err) {
             if (err) throw err
@@ -88,8 +88,8 @@ router.post('/getup', ensureAuthenticated, function (req, res, next) {
     }
     else
         res.status(406).send()
-
 });
+
 router.post('/sleep', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
@@ -100,7 +100,7 @@ router.post('/sleep', ensureAuthenticated, function (req, res, next) {
     var sleep_time_1 = req.body.sleep_time_1;
     var sleep_time = [sleep_time_0, sleep_time_1];
     //console.log("wTF");
-    if (DEF_DEBUG)console.log(sleep_time);
+    if (DEF_DEBUG) console.log(sleep_time);
     if (is_time_valid(sleep_time)) {
         Person.setPersonalsleep_time(user_name, sleep_time, function (err) {
             if (err) throw err
@@ -109,6 +109,18 @@ router.post('/sleep', ensureAuthenticated, function (req, res, next) {
     }
     else
         res.status(406).send()
+});
+
+router.post('/kill', ensureAuthenticated, function (req, res, next) {
+    if (DEF_DEBUG) {
+        console.log("+++++++++");
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
+    }
+    var user_name = glob_user_obj.username;
+    Person.deletePersonal(user_name, function (err) {
+        if (err) throw err
+        res.send(200)
+    })
 });
 
 
