@@ -405,7 +405,7 @@ body {
     position: relative;
     width: 8vh;
     height: 100%;
-    margin-right: calc(var(--var_right_global_displacement) + 1vh);
+    margin-right: 1vh;
     border-style: solid;
     border-width: 0.1vh;
     border-color: #4a6e31;
@@ -534,7 +534,7 @@ body {
     position: absolute;
     height: 6vh;
     width: 6vh;
-    right: calc(var(--var_right_global_displacement) + 0);
+    right: 0;
     bottom: -1vh;
     font-size: 2vh;
     font-weight: bold;
