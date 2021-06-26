@@ -553,6 +553,7 @@ body {
     box-shadow: #636363 0 0 0.6vh;
     background-color: #ffffff;
     z-index: 1;
+    margin:auto;
 }
 
 
