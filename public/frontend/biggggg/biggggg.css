@@ -82,7 +82,7 @@ body {
     text-align: center;
     position: absolute;
     width: calc(var(--var_vw)*60);
-    left: 25%;
+    left: calc(var(--var_vw)*25);
     bottom: calc(var(--var_vw)*32);
     z-index: 7;
 }
@@ -133,7 +133,7 @@ body {
 #tree {
     position: absolute;
     width: calc(var(--var_vw)*30);
-    left: 25%;
+    left: calc(var(--var_vw)*25%);
     /*-2%*/
     bottom: calc(var(--var_vw)*40);
     z-index: 6
@@ -142,7 +142,7 @@ body {
 #coconut {
     position: absolute;
     width: calc(var(--var_vw)*15);
-    left: 25%;
+    left: calc(var(--var_vw)*25%);
     /* 10% */
     bottom: calc(var(--var_vw)*38);
     z-index: 8
@@ -190,7 +190,7 @@ body {
     width: calc(var(--var_vw)*50);
     height: calc(var(--var_vw)*38);
     bottom: calc(var(--var_vw)*40);
-    left: 5%;
+    left: calc(var(--var_vw)*5);
     z-index: 5;
     background-image: url("image/home_house.svg");
     background-repeat: no-repeat;
