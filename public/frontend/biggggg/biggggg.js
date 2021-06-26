@@ -1,4 +1,4 @@
-var window_width = (9.0*($(window).height()/16.0));
+var window_width = ($(window).width() / $(window).height() > 1.0) ? (9.0 * ($(window).height() / 16.0)) : $(window).width();
 //console.error(window_width);
 
 //////////////////////// home.js ///////////////////
@@ -152,7 +152,7 @@ $("#setting").click(function () {
     jQuery_3_6_0.get("/app/personal", {
         //empty
     }, (res) => {
-         console.log(res);
+        console.log(res);
         wakeup_h = (res !== -1) ? res.getup_time[0] || 8 : 8;
         wakeup_m = (res !== -1) ? res.getup_time[1] || 30 : 30;
         sleep_h = (res !== -1) ? res.sleep_time[0] || 21 : 21;
@@ -178,7 +178,7 @@ $("#wakeup_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_wake_time();
 })
 $("#wakeup_minute").blur(function () {
@@ -188,7 +188,7 @@ $("#wakeup_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_wake_time();
 
 })
@@ -199,7 +199,7 @@ $("#sleep_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_sleep_time();
 
 })
@@ -210,14 +210,14 @@ $("#sleep_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_sleep_time();
 
 })
 
 function send_wake_time(params) {
-     console.log($('#wakeup_hour').val());
-     console.log($('#wakeup_minute').val());
+    console.log($('#wakeup_hour').val());
+    console.log($('#wakeup_minute').val());
     jQuery_3_6_0.post("/app/personal/getup", {
         getup_time_0: $('#wakeup_hour').val(),
         getup_time_1: $('#wakeup_minute').val()
@@ -227,8 +227,8 @@ function send_wake_time(params) {
 }
 
 function send_sleep_time(params) {
-     console.log($('#sleep_hour').val());
-     console.log($('#sleep_minute').val());
+    console.log($('#sleep_hour').val());
+    console.log($('#sleep_minute').val());
     jQuery_3_6_0.post("/app/personal/sleep", {
         sleep_time_0: $('#sleep_hour').val(),
         sleep_time_1: $('#sleep_minute').val()
