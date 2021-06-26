@@ -1,5 +1,5 @@
-var window_width = document.getElementById('calc_var_vw').getBoundingClientRect().width*100;
-//console.error(window_width);
+//var window_width = jQuery_3_6_0('#calc_var_vw').innerWidth()*100;
+//console.error(jQuery_3_6_0('#calc_var_vw').innerWidth());
 
 //////////////////////// home.js ///////////////////
 
@@ -91,8 +91,8 @@ $("#social").click(function () {
             $("#post_html").show().css('z-index', "10")
             $.mobile.loading().hide(); // hide default "loading"
             var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
-            var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-            $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
+            //var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
+            $('#upper_windows').animate({ "width": "calc(var(--var_vw)*100 - vh*(4/100))", "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
                 $("#exit_button").animate({ "opacity": 1 }, 500);
                 document.getElementById('social_page_stat').innerText = 1;
             });
@@ -145,8 +145,8 @@ $("#setting").click(function () {
     $("#setting_html").show().css('z-index', "10")
     $.mobile.loading().hide(); // hide default "loading"
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
-    var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
-    $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
+    //var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
+    $('#upper_windows_1').animate({ "width": "calc(var(--var_vw)*100 - vh*0.04)", "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button_1").animate({ "opacity": 1 }, 500)
     });
     jQuery_3_6_0.get("/app/personal", {
