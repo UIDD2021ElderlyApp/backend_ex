@@ -24,8 +24,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             person["user_name"] = Personget.user_name;
             person["name"] = Personget.name;
             person["animal"] = Personget.animal;
-            person["getup_time"] = {0:Personget.getup_time[0],1:Personget.getup_time[1]};
-            person["sleep_time"] = {0:Personget.sleep_time[0],1:Personget.sleep_time[1]};
+            person["getup_time"] = {hh:Personget.getup_time[0],mm:Personget.getup_time[1]};
+            person["sleep_time"] = {hh:Personget.sleep_time[0],mm:Personget.sleep_time[1]};
             res.status(200).send(JSON.stringify(person));
         }
         else {

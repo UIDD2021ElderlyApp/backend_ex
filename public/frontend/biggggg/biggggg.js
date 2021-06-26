@@ -153,10 +153,10 @@ $("#setting").click(function () {
         //empty
     }, (res) => {
         console.log(res);
-        wakeup_h = (res !== -1) ? res.getup_time[0] || 8 : 8;
-        wakeup_m = (res !== -1) ? res.getup_time[1] || 30 : 30;
-        sleep_h = (res !== -1) ? res.sleep_time[0] || 21 : 21;
-        sleep_m = (res !== -1) ? res.sleep_time[1] || 0 : 0;
+        wakeup_h = (res !== -1) ? res.getup_time.hh || 8 : 8;
+        wakeup_m = (res !== -1) ? res.getup_time.mm || 30 : 30;
+        sleep_h = (res !== -1) ? res.sleep_time.hh || 21 : 21;
+        sleep_m = (res !== -1) ? res.sleep_time.mm || 0 : 0;
         $("#wakeup_hour").val(wakeup_h);
         $("#wakeup_minute").val(wakeup_m);
         $("#sleep_hour").val(sleep_h);
