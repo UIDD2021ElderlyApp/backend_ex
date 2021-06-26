@@ -208,11 +208,11 @@ function get3post(isscroll) {
                 var your_name = document.createElement("div");
                 your_name.classList.add("your_name"); your_name.classList.add("remove_at_exit_post_page");
                 //your_name.innerText = document.getElementById("jade_user_info_name").innerText;
-                commenter_name.style.backgroundImage = "url(\"" + document.getElementById("jade_user_info_profileimage").innerText + "\")";
-                commenter_name.style.backgroundPosition = "center";
-                commenter_name.style.backgroundRepeat = "no-repeat";
-                commenter_name.style.backgroundSize = "contain";
-                commenter_name.style.backgroundColor = "transparent";//"#ddb98b";
+                your_name.style.backgroundImage = "url(\"" + document.getElementById("jade_user_info_profileimage").innerText + "\")";
+                your_name.style.backgroundPosition = "center";
+                your_name.style.backgroundRepeat = "no-repeat";
+                your_name.style.backgroundSize = "contain";
+                your_name.style.backgroundColor = "transparent";//"#ddb98b";
 
                 new_comment.appendChild(your_name);
                 new_comment.appendChild(usr_inp_comment_txt);
