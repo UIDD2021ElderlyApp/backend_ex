@@ -5,7 +5,7 @@ var DEF_default_load_img_num = 6;
 var DEF_default_load_img_one = 5;
 
 console.log("windos-height:" + $(window).height()); console.log("windos-width:" + $(window).width());
-console.log((($(window).width()/2)/9)*16);
+console.log((($(window).width()/2.0)/9.0)*16.0);
 
 function checkFlag() {
     if (!document.getElementById("cboxLoadingGraphic")) {
@@ -20,7 +20,7 @@ checkFlag();
 
 //function mygallery_justifiedGallery(params) {
 $("#mygallery").justifiedGallery({
-    rowHeight: (($(window).width()/2)/9)*16,
+    rowHeight: String((($(window).width()/2.0)/9.0)*16.0)+'px',
     lastRow: 'nojustify',
     rel: 'gallery1',
     margins: 3,
