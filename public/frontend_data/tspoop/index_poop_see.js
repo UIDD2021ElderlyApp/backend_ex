@@ -146,7 +146,7 @@ function get3post(isscroll) {
                     } else {
                         commenter_name.innerText = comment_element.user_name;
                     }*/
-                    commenter_name.style.backgroundImage="/app/profileimage?username="+String(comment_element.username)+".jpg";
+                    commenter_name.style.backgroundImage="url(\"/app/profileimage?username="+String(comment_element.username)+".jpg\")";
                     commenter_name.style.backgroundPosition="center";
                     commenter_name.style.backgroundRepeat="no-repeat";
                     //commenter_name.style.backgroundAttachment="scroll";
