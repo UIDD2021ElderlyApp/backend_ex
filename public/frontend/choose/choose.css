@@ -13,23 +13,23 @@ body {
 #choose_text {
     z-index: 5;
     position: absolute;
-    font-size: calc(var(--var_vw)*6);
+    font-size: 6vw;
     font-weight: bold;
-    letter-spacing: calc(var(--var_vw)*1);
+    letter-spacing: 1vw;
     text-align: center;
     color: #ffffff;
-    /*width: 100%;*/
-    height: calc(var(--var_vw)*6);
+    width: 100%;
+    height: 6vw;
     top: 25%;
 }
 
 .swiper-container {
-    /*width: 100%;*/
+    width: 100%;
     height: 100%;
 }
 
 .swiper-slide {
-    /*width: 100%;*/
+    width: 100%;
     height: 100%;
     overflow: hidden;
     text-align: center;
@@ -52,7 +52,7 @@ body {
 
 #back1 {
     position: absolute;
-    /*width: 100%;*/
+    width: 100%;
     height: 80%;
     top: 0%;
     background: linear-gradient( #7bcfb6 0%, #6fdb74 60%, #FFFFFF 100%);
@@ -62,14 +62,14 @@ body {
 #animal1 {
     text-align: center;
     position: absolute;
-    /*width: 60%;*/
+    width: 60%;
     bottom: 5vh;
     z-index: 3;
 }
 
 #back2_1 {
     position: absolute;
-    /*width: 100%;*/
+    width: 100%;
     height: 60%;
     top: 0%;
     background: linear-gradient( #4c5bbd 0%, #f5a347 50%, #FFDB45 66.67%, #EDFFF2 83.33%, #FFFF8F 100%);
@@ -78,7 +78,7 @@ body {
 
 #back2_2 {
     position: absolute;
-    /*width: 100%;*/
+    width: 100%;
     height: 40%;
     bottom: 0%;
     background: linear-gradient( #ffff8f 0%, #EDFFF2 40%, #62c0d3 55%, #3c8388 100%);
@@ -89,22 +89,22 @@ body {
 #sun {
     text-align: center;
     position: absolute;
-    /*width: 40%;*/
-    top: calc(60% - var(--var_vw)*20);
+    width: 40%;
+    top: calc(60% - 20vw);
     z-index: 1
 }
 
 #animal2 {
     text-align: center;
     position: absolute;
-    /*width: 70%;*/
+    width: 70%;
     bottom: 5vh;
     z-index: 5;
 }
 
 #back3 {
     position: absolute;
-    /*width: 100%;*/
+    width: 100%;
     height: 60%;
     top: 0%;
     background: linear-gradient( #0eb9cf 0%, #8cdbe5 25%, #0eb9cf 60%, #FFFFFF 100%);
@@ -114,7 +114,7 @@ body {
 #animal3 {
     text-align: center;
     position: absolute;
-    /*width: 70%;*/
+    width: 70%;
     bottom: 5vh;
     z-index: 3;
 }
