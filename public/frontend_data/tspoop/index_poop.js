@@ -1,6 +1,6 @@
 var this_url_path_re = /\/main/gi;
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var DEF_NO_HTML_DISP = false;
 var DEF_field_battle = false;
 var DEF_use_https = true;

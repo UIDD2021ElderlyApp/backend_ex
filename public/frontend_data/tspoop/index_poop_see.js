@@ -2,14 +2,12 @@
 var this_url_path_re = /\/main/gi;
 var DEF_string_app_img_title = "/app/img/?title=";
 
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var DEF_NO_HTML_DISP = true;
 var DEF_field_battle = false;
 var DEF_use_https = true;
 var DEF_ts = true;//be true
 var DEF_fuckthephotos = false;
-//var DEF_domain_name = "luffy.ee.ncku.edu.tw";
-//var DEF_port = "38443";
 var DEF_path = window.location.href.replace(this_url_path_re, "/app/poop").split('#')[0];//"/app/poop";
 var DEF_comment_path = DEF_path + "/comment";//"/comment";
 
