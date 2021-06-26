@@ -385,7 +385,7 @@ body {
     background-color: #ffffff;
     width: calc(100% - 2vh);
     /* for box-shadow */
-    margin-right: calc(var(--var_right_global_displacement) + 2vh);
+    margin-right: 2vh;
     margin-bottom: 2vh;
     padding: 1vh 0%;
     border-radius: 3vh;
