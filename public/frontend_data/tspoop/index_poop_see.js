@@ -153,7 +153,7 @@ function get3post(isscroll) {
                     //commenter_name.style.backgroundClip="content-box";
                     //commenter_name.style.backgroundOrigin="content-box";
                     commenter_name.style.backgroundSize="contain";
-                    commenter_name.style.backgroundColor="#ddb98b";
+                    commenter_name.style.backgroundColor="transparent";//"#ddb98b";
                     //commenter_name.innerHTML = `<img class="head_height_100" src=\"/app/profileimage?username=${comment_element.username}.jpg\">`;
                     //var comment_time = document.createElement("div");
                     //comment_time.classList.add("comment_time");

@@ -494,6 +494,7 @@ body {
     text-align: left;
     color: #000000;
     word-wrap: break-word;
+    margin:auto;
 }
 
 .new_comment_block {
