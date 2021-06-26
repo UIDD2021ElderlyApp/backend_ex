@@ -4,7 +4,8 @@ var DEF_string_app_img_title = "/app/img/?title=";
 var DEF_default_load_img_num = 6;
 var DEF_default_load_img_one = 5;
 
-console.log("windos-height:" + $(window).height()); console.log("windos-width:" + $(window).width());console.log($(window).height()*(2/7));
+console.log("windos-height:" + $(window).height()); console.log("windos-width:" + $(window).width());
+console.log((($(window).width()/2.0)/9.0)*16.0*0.75);
 
 function checkFlag() {
     if (!document.getElementById("cboxLoadingGraphic")) {
@@ -19,7 +20,7 @@ checkFlag();
 
 //function mygallery_justifiedGallery(params) {
 $("#mygallery").justifiedGallery({
-    rowHeight: $(window).height()*(2/7),
+    rowHeight: (($(window).width()/2.0)/9.0)*16.0*0.75,
     lastRow: 'nojustify',
     rel: 'gallery1',
     margins: 3,

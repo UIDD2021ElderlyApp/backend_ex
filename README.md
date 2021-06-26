@@ -10,6 +10,53 @@ tags: uidd
 
 ---
 
+## 前端的vw要改
+
+成`var(--var_vw)`
+
+例如`94vw`要成為`calc(var(--var_vw)*94)`
+
+## 對全域(windows)的100%要改
+
+成`var(--var_vw)*100`
+
+例如
+
+```=css
+#menu_back {
+    position: absolute;
+    width: calc(var(--var_vw)*100);
+    height: calc(var(--var_vw)*23  +  3vh);
+    bottom: 0px;
+    z-index: 5;
+}
+```
+
+的width
+
+## 對全域(windows)的right要改
+
+成`var(--var_right_global_displacement)`
+
+例如
+
+```=css
+#medal_block {
+    z-index: 5;
+    position: absolute;
+    width: calc(var(--var_vw)*18);
+    right: calc(var(--var_right_global_displacement) + 5%);
+    top: calc(var(--var_vw)*20);
+    text-align: center;
+}
+```
+
+---
+
+## 以下的東西是之前的...留著給大家參考
+
+---
+
 ## how to get usr. info. @ front end (html, js)
 
 動物:
@@ -40,12 +87,6 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 });
 ```
 方可正常作動
-
----
-
-## 以下的東西是之前的...留著給大家參考
-
----
 
 ## 密碼與私鑰保護
 

@@ -1,3 +1,6 @@
+var window_width = ($(window).width() / $(window).height() > 1.0) ? (9.0 * ($(window).height() / 16.0)) : $(window).width();
+//console.error(window_width);
+
 //////////////////////// home.js ///////////////////
 
 // select animal (1, 2, 3)
@@ -5,15 +8,28 @@ $.mobile.loading().hide();
 var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) ? document.getElementById('jade_user_info_choosedanimal').innerText : "0", 10);
 switch (animal) {
     case 1:
-        $("#back_block").html('<div id="back1"></div><img src="./frontend/biggggg/image/home_back1_land.svg" style="position:absolute; width:100%; bottom:10%; z-index:2;"><img src="./frontend/biggggg/image/home_back1_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"></img>')
+        $("#back_block").html(`<div id="back1"></div>
+        <img src="./frontend/biggggg/image/home_back1_land.svg" style="position:absolute; 
+        width:100%; bottom:10%; z-index:2;"><img src="./frontend/biggggg/image/home_back1_cloud.svg" 
+        style="position:absolute; width:100%; top:10%; z-index:1;"></img>`)
         $("#menu_back").css('background-color', '#61913D')
         break;
     case 2:
-        $("#back_block").html('<div id="back2_1"></div><div id="back2_2"></div><img src="./frontend/biggggg/image/home_back2_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"><div id="sun"><img src="./frontend/biggggg/image/home_back2_sun.svg" style="height:100%;"></div><img src="./frontend/biggggg/image/home_back2_sand.svg" style="position:absolute; width:100%; bottom:10%; z-index:3;"><img src="./frontend/biggggg/image/home_back2_unbrella.svg" style="position:absolute; width:50%; right:0%; top:20%; z-index:4"><div id="tree"><img src="./frontend/biggggg/image/home_back2_tree.svg" style="width: 100%;"></div><div id="coconut"><img src="./frontend/biggggg/image/home_back2_coconut.svg" style="width: 100%;"></div>')
+        $("#back_block").html(`<div id="back2_1"></div><div id="back2_2"></div>
+        <img class="desktop_width_100" src="./frontend/biggggg/image/home_back2_cloud.svg" style="position:absolute; 
+        top:10%; z-index:1;"><div id="sun"><img src="./frontend/biggggg/image/home_back2_sun.svg" 
+        style="height:100%;"></div><img class="desktop_width_100" src="./frontend/biggggg/image/home_back2_sand.svg" 
+        style="position:absolute; bottom:10%; z-index:3;"><img class="desktop_width_50" src="./frontend/biggggg/image/home_back2_unbrella.svg" 
+        style="position:absolute; right:calc(var(--var_right_global_displacement) + 0%); top:20%; 
+        z-index:4"><div id="tree"><img src="./frontend/biggggg/image/home_back2_tree.svg" style="width: 100%;"></div>
+        <div id="coconut"><img src="./frontend/biggggg/image/home_back2_coconut.svg" style="width: 100%;"></div>`)
         $("#menu_back").css('background-color', '#004D69')
         break;
     case 3:
-        $("#back_block").html('<div id="back3"></div><img src="./frontend/biggggg/image/home_back3_cloud.svg" style="position:absolute; width:100%; top:10%; z-index:1;"><img src="./frontend/biggggg/image/home_back3_land.svg" style="position:absolute; width:100%; bottom:10%; z-index:2;"></img>')
+        $("#back_block").html(`<div id="back3"></div><img src="./frontend/biggggg/image/home_back3_cloud.svg" 
+        style="position:absolute; width:100%; top:10%; z-index:1;">
+        <img src="./frontend/biggggg/image/home_back3_land.svg" style="position:absolute; 
+        width:100%; bottom:10%; z-index:2;"></img>`)
         $("#menu_back").css('background-color', '#61913D')
         break;
 }
@@ -75,7 +91,7 @@ $("#social").click(function () {
             $("#post_html").show().css('z-index', "10")
             $.mobile.loading().hide(); // hide default "loading"
             var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
-            var width = $(window).width() - $(window).height() * (4 / 100) //calc(100% - 4vh)
+            var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
             $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
                 $("#exit_button").animate({ "opacity": 1 }, 500);
                 document.getElementById('social_page_stat').innerText = 1;
@@ -86,7 +102,7 @@ $("#social").click(function () {
 });
 $("#exit_button").click(function () {
     $("#post_html").css("display", "none")
-    $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "70 %", "height": "70%", "zoom": "70%" })
+    $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" })
     $("#exit_button").css("opacity", 0);
 
 });
@@ -129,14 +145,14 @@ $("#setting").click(function () {
     $("#setting_html").show().css('z-index', "10")
     $.mobile.loading().hide(); // hide default "loading"
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
-    var width = $(window).width() - $(window).height() * 0.04 //calc(100% - 4vh)
+    var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
     $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button_1").animate({ "opacity": 1 }, 500)
     });
     jQuery_3_6_0.get("/app/personal", {
         //empty
     }, (res) => {
-         console.log(res);
+        console.log(res);
         wakeup_h = (res !== -1) ? res.getup_time[0] || 8 : 8;
         wakeup_m = (res !== -1) ? res.getup_time[1] || 30 : 30;
         sleep_h = (res !== -1) ? res.sleep_time[0] || 21 : 21;
@@ -150,7 +166,7 @@ $("#setting").click(function () {
 
 $("#exit_button_1").click(function () {
     $("#setting_html").css("display", "none");
-    $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "70 %", "height": "70%", "zoom": "70%" });
+    $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
     $("#exit_button_1").css("opacity", 0);
 });
 
@@ -162,7 +178,7 @@ $("#wakeup_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_wake_time();
 })
 $("#wakeup_minute").blur(function () {
@@ -172,7 +188,7 @@ $("#wakeup_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_wake_time();
 
 })
@@ -183,7 +199,7 @@ $("#sleep_hour").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_sleep_time();
 
 })
@@ -194,14 +210,14 @@ $("#sleep_minute").blur(function () {
     if ($(this).val() % 1 != 0) {
         $(this).val(Math.floor($(this).val()))
     }
-     console.log($(this).val());
+    console.log($(this).val());
     send_sleep_time();
 
 })
 
 function send_wake_time(params) {
-     console.log($('#wakeup_hour').val());
-     console.log($('#wakeup_minute').val());
+    console.log($('#wakeup_hour').val());
+    console.log($('#wakeup_minute').val());
     jQuery_3_6_0.post("/app/personal/getup", {
         getup_time_0: $('#wakeup_hour').val(),
         getup_time_1: $('#wakeup_minute').val()
@@ -211,8 +227,8 @@ function send_wake_time(params) {
 }
 
 function send_sleep_time(params) {
-     console.log($('#sleep_hour').val());
-     console.log($('#sleep_minute').val());
+    console.log($('#sleep_hour').val());
+    console.log($('#sleep_minute').val());
     jQuery_3_6_0.post("/app/personal/sleep", {
         sleep_time_0: $('#sleep_hour').val(),
         sleep_time_1: $('#sleep_minute').val()

@@ -32,7 +32,7 @@ html
         bl#info
         div(style='display:none')
           bl#snap_shoot_finish
-        b1#info3(style='font-size: 100px')
+        font#info3(face='微軟正黑體' style='font-size: 100px' td='' align='center')
     #map
     // Make sure you put this AFTER Leaflet's CSS
     script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
@@ -99,6 +99,7 @@ html
       console.log(e)
       now_lat = e.latlng.lat;
       now_lng = e.latlng.lng;
+      var current;
       var radius = e.accuracy / 2;
       var popupContent = "You are within " + radius + " meters from this point";
       setTimeout(function () {
@@ -161,7 +162,6 @@ html
       console.log('dis2 '+distance2)
       distance1 += distance2;
       }
-      var current;
       var last;
       var distance1;
       var distance2;
@@ -207,6 +207,9 @@ html
       }
       });
       document.getElementById('info3').innerHTML = '距離' + Math.floor(distance1) + 'm';
+      if(Math.floor(distance1)>999){
+      document.getElementById('info3').innerHTML = '距離' + (Math.floor(distance1)-Math.floor(distance1)%1000)/1000 + 'km';
+      }
       }, 2000);
       function onLocationError(e) {
       alert(e.message);
