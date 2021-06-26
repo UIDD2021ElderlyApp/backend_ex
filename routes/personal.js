@@ -26,8 +26,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             person["animal"] = Personget.animal;
             person["getup_time"] = Personget.getup_time;
             person["sleep_time"] = Personget.sleep_time;
-            res.status(200).send(person);
-            console.log("=====================");
+            res.status(200).send(JSON.stringify(person));
         }
         else {
             res.status(200).send(-1);
