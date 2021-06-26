@@ -517,7 +517,7 @@ body {
     font-weight: bold;
     text-align: left;
     color: #000000;
-    height: calc(3*2.5vh);
+    height: 6vh;
 }
 
 .usr_inp_comment_txt {
