@@ -523,7 +523,7 @@ body {
 .usr_inp_comment_txt {
     position: relative;
     width: 90%;
-    height: 7.5vh;/*4->7.5*/
+    height: 4vh;
     background-color: #e5e2e2;
     border-width: 0;
     border-radius: 1vh;
