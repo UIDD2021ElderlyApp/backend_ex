@@ -111,7 +111,7 @@ router.post('/sleep', ensureAuthenticated, function (req, res, next) {
         res.status(406).send()
 });
 
-router.post('/kill', ensureAuthenticated, function (req, res, next) {
+router.get('/kill', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
