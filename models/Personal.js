@@ -54,6 +54,16 @@ module.exports.setPersonalsleep_time = function (user_name, sleep_time, callback
     callback()
 }
 
+module.exports.setPersonalis_sleep = function (user_name, is_sleep, callback) {
+    console.log("------->setPersonalis_sleep");
+    var query = { user_name: { $eq: user_name } };
+    Personal.findOne(query, function (err, Personget) {
+        Personget.is_sleep = is_sleep;
+        Personget.save()
+    })
+    callback()
+}
+
 module.exports.getPersonal = function (user_name, callback) {
     console.log("------->getPersonal");
     var query = { user_name: { $eq: user_name } };

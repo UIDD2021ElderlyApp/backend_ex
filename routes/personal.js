@@ -113,6 +113,20 @@ router.post('/sleep', ensureAuthenticated, function (req, res, next) {
         res.status(406).send()
 });
 
+router.post('/is_sleep', ensureAuthenticated, function (req, res, next) {
+    if (DEF_DEBUG) {
+        console.log("+++++++++");
+        console.log("glob_user_obj.username :" + glob_user_obj.username);
+    }
+    var user_name = glob_user_obj.username;
+    var is_sleep = req.body.is_sleep;
+    if (DEF_DEBUG) console.log(is_sleep);
+    Person.setPersonalis_sleep(user_name, is_sleep, function (err) {
+        if (err) throw err
+        res.send(200)
+    })
+});
+
 router.get('/kill', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
