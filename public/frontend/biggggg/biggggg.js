@@ -1,4 +1,5 @@
-var window_width = document.getElementById('calc_var_vw').width*100;
+var window_width = document.getElementById('calc_var_vw').getBoundingClientRect().width*100;
+//console.error(window_width);
 
 //////////////////////// home.js ///////////////////
 
@@ -17,9 +18,9 @@ switch (animal) {
         $("#back_block").html(`<div id="back2_1"></div><div id="back2_2"></div>
         <img src="./frontend/biggggg/image/home_back2_cloud.svg" style="position:absolute; 
         width:100%; top:10%; z-index:1;"><div id="sun"><img src="./frontend/biggggg/image/home_back2_sun.svg" 
-        style="height:100%;"></div><img src="./frontend/biggggg/image/home_back2_sand.svg" 
-        style="position:absolute; width:100%; bottom:10%; z-index:3;"><img src="./frontend/biggggg/image/home_back2_unbrella.svg" 
-        style="position:absolute; width:50%; right:calc(var(--var_right_global_displacement) + 0%); top:20%; 
+        style="height:100%;"></div><img class="desktop_width_100" src="./frontend/biggggg/image/home_back2_sand.svg" 
+        style="position:absolute; bottom:10%; z-index:3;"><img class="desktop_width_50" src="./frontend/biggggg/image/home_back2_unbrella.svg" 
+        style="position:absolute; right:calc(var(--var_right_global_displacement) + 0%); top:20%; 
         z-index:4"><div id="tree"><img src="./frontend/biggggg/image/home_back2_tree.svg" style="width: 100%;"></div>
         <div id="coconut"><img src="./frontend/biggggg/image/home_back2_coconut.svg" style="width: 100%;"></div>`)
         $("#menu_back").css('background-color', '#004D69')
@@ -101,7 +102,7 @@ $("#social").click(function () {
 });
 $("#exit_button").click(function () {
     $("#post_html").css("display", "none")
-    $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "70%", "height": "70%", "zoom": "70%" })
+    $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" })
     $("#exit_button").css("opacity", 0);
 
 });
@@ -165,7 +166,7 @@ $("#setting").click(function () {
 
 $("#exit_button_1").click(function () {
     $("#setting_html").css("display", "none");
-    $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "70%", "height": "70%", "zoom": "70%" });
+    $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
     $("#exit_button_1").css("opacity", 0);
 });
 

@@ -2,3 +2,9 @@
     --var_vw: 1vw;
     --var_right_global_displacement: 0vw;
 }
+.desktop_width_50{
+    width:calc(var(--var_vw)*50);
+}
+.desktop_width_100{
+    width:calc(var(--var_vw)*100);
+}
