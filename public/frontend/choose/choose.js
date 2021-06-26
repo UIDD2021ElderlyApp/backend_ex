@@ -13,6 +13,7 @@ jQuery_3_6_0(function () {
 });
 
 function init_choose() {
+    console.log('init_choose() {');
     var swiper = new Swiper(".mySwiper", {
         pagination: {
             el: ".swiper-pagination",
@@ -32,7 +33,7 @@ function init_choose() {
             })
         }, 1500)
     }
-    play();
+    //play();
 
 }
 
