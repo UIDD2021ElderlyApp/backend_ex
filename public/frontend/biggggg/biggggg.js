@@ -9,9 +9,9 @@ var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) 
 switch (animal) {
     case 1:
         $("#back_block").html(`<div id="back1"></div>
-        <img src="./frontend/biggggg/image/home_back1_land.svg" style="position:absolute; 
-        width:100%; bottom:10%; z-index:2;"><img src="./frontend/biggggg/image/home_back1_cloud.svg" 
-        style="position:absolute; width:100%; top:10%; z-index:1;"></img>`)
+        <img class="desktop_width_100" src="./frontend/biggggg/image/home_back1_land.svg" style="position:absolute; 
+        bottom:10%; z-index:2;"><img class="desktop_width_100" src="./frontend/biggggg/image/home_back1_cloud.svg" 
+        style="position:absolute; top:10%; z-index:1;"></img>`)
         $("#menu_back").css('background-color', '#61913D')
         break;
     case 2:
@@ -26,10 +26,10 @@ switch (animal) {
         $("#menu_back").css('background-color', '#004D69')
         break;
     case 3:
-        $("#back_block").html(`<div id="back3"></div><img src="./frontend/biggggg/image/home_back3_cloud.svg" 
-        style="position:absolute; width:100%; top:10%; z-index:1;">
-        <img src="./frontend/biggggg/image/home_back3_land.svg" style="position:absolute; 
-        width:100%; bottom:10%; z-index:2;"></img>`)
+        $("#back_block").html(`<div id="back3"></div><img class="desktop_width_100" src="./frontend/biggggg/image/home_back3_cloud.svg" 
+        style="position:absolute; top:10%; z-index:1;">
+        <img class="desktop_width_100" src="./frontend/biggggg/image/home_back3_land.svg" style="position:absolute; 
+        bottom:10%; z-index:2;"></img>`)
         $("#menu_back").css('background-color', '#61913D')
         break;
 }
