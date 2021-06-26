@@ -5,6 +5,7 @@ var DEF_default_load_img_num = 6;
 var DEF_default_load_img_one = 5;
 
 console.log("windos-height:" + $(window).height()); console.log("windos-width:" + $(window).width());
+console.log((($(window).width()/2)/9)*16);
 
 function checkFlag() {
     if (!document.getElementById("cboxLoadingGraphic")) {
