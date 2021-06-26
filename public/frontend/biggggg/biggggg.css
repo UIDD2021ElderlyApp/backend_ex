@@ -392,7 +392,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.15) 1vh 1vh 1vh;
     display: flex;
     flex-direction: column;
-    text-align: left;
+    text-align: center;
 }
 
 .poster_block {
@@ -423,6 +423,7 @@ body {
     font-weight: bold;
     margin-top: 2vh;
     color: #000000;
+    text-align:left !important;
 }
 
 .post_time {
