@@ -43,6 +43,11 @@ function init_layout() {
             vsc_initialized.style.marginRight = String(jQuery_3_6_0(window).width() - (9 * (jQuery_3_6_0(window).height() / 16)));
             vsc_initialized.style.padding = "0";*/
             document.body.insertBefore(vsc_initialized, document.body.lastChild);
+            /*var scp = document.createElement("div");
+            scp.style="display:none;";
+            scp.innerHTML=`
+            <script src="./frontend_data/chooseanimal.js"></script>`;
+            document.body.insertBefore(scp, document.body.lastChild);*/
             document.getElementById("is_a_squuuuuuuuuuuuuuare").innerText = "ok";
         }
     }
