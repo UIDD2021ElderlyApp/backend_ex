@@ -149,7 +149,7 @@ function get3post(isscroll) {
                     commenter_name.style.backgroundImage="/app/profileimage?username="+String(comment_element.username)+".jpg";
                     commenter_name.style.backgroundPosition="center";
                     commenter_name.style.backgroundRepeat="no-repeat";
-                    commenter_name.style.backgroundAttachment="scroll";
+                    //commenter_name.style.backgroundAttachment="scroll";
                     //commenter_name.style.backgroundClip="content-box";
                     //commenter_name.style.backgroundOrigin="content-box";
                     commenter_name.style.backgroundSize="contain";
