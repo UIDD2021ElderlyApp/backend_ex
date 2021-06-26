@@ -19,3 +19,7 @@
 .dont_show_this_in_published_client {
     display: none;
 }
+
+.head_height_100{
+    height: 100%;
+}
