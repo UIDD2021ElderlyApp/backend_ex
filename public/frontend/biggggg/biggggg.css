@@ -499,7 +499,7 @@ body {
 
 .new_comment_block {
     width: calc(100% - 4vh);
-    height: 6vh;/*4vh->6vh*/
+    height: 7.5vh;/*2.5*3*/
     padding: 2vh;
 }
 
