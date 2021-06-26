@@ -146,7 +146,14 @@ function get3post(isscroll) {
                     } else {
                         commenter_name.innerText = comment_element.user_name;
                     }*/
-                    commenter_name.innerHTML = `<img class="head_height_100" src=\"/app/profileimage?username=${comment_element.username}.jpg\">`;
+                    commenter_name.style.backgroundImage=`/app/profileimage?username=${comment_element.username}.jpg`;
+                    commenter_name.style.backgroundPosition="center";
+                    commenter_name.style.backgroundRepeat="no-repeat";
+                    commenter_name.style.backgroundAttachment="scroll";
+                    commenter_name.style.backgroundClip="content-box";
+                    commenter_name.style.backgroundOrigin="content-box";
+                    commenter_name.style.backgroundSize="contain";
+                    //commenter_name.innerHTML = `<img class="head_height_100" src=\"/app/profileimage?username=${comment_element.username}.jpg\">`;
                     //var comment_time = document.createElement("div");
                     //comment_time.classList.add("comment_time");
                     //convert given date into readable format
