@@ -191,8 +191,9 @@
     top: 5px;
     right: 5px;
     display: block;
-    width: calc(100vw*5*38/980);
+    /*width: calc(100vw*5*38/980);*/
     height: calc(100vh*5*19/1742);
+    width:calc(3vh*3.6);/*font-size*3.6*/
     font-size: 3vh;
     font-weight: bold;
     background-color: #f7E354;
@@ -224,7 +225,8 @@
     top: 5px;
     left: 5px;
     display: block;
-    width: calc(100vw*5*38/980);
+    /*width: calc(100vw*5*38/980);*/
+    width:calc(3vh*3.6);/*font-size*3.6*/
     height: calc(100vh*5*19/1742);
     font-size: 3vh;
     font-weight: bold;
