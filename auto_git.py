@@ -4,7 +4,11 @@ import subprocess
 from pathlib import Path,PurePath
 import urllib.request
 import hashlib
+import requests
+import json
 app = Flask(__name__)
+
+print(json.loads(requests.get("https://api.github.com/repos/UIDD2021ElderlyApp/backend_ex/commits").text)[0].get('sha'))
 
 def ckpsw(var_string):
     # 建立 SHA1 物件
