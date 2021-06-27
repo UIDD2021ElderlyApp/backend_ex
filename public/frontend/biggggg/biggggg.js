@@ -123,6 +123,7 @@ $('#new_post_text').focus(function () {
                 $(this).animate({ 'opacity': 1 }, 100)
             })
             $("#browse_post").on("scrollstart", function () {
+                console.error("??????????????");
                 $("#browse_post").off()
                 $("#browse_post").off("scrollstart") // both OK
 
