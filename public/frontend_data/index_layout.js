@@ -60,8 +60,13 @@ function show_err_msg(params) {
     var simhtml = document.createElement("div");
     var backcolor = document.createElement("div");
     var exit_bton_copy = document.createElement("div");
+    var txt_copy = document.createElement("div");
     var pic1 = document.createElement("img");
     var pic2 = document.createElement("img");
+    txt_copy.id="choose_text_copy";
+    txt_copy.classList.add("show_err_msg_gen");
+    txt_copy.innerText=document.getElementById('error_msg_gui_text').innerText;
+    txt_copy.style.color=document.getElementById('error_msg_gui_word_part_color').innerText;
     exit_bton_copy.id = "exit_button_copy";
     exit_bton_copy.classList.add("show_err_msg_gen");
     pic1.src = "/frontend_data/img/p1.svg";
@@ -80,6 +85,7 @@ function show_err_msg(params) {
     document.getElementById("error_msg_obj").appendChild(pic1);
     document.getElementById("error_msg_obj").appendChild(pic2);
     document.getElementById("error_msg_obj").appendChild(exit_bton_copy);
+    document.getElementById("error_msg_obj").appendChild(txt_copy);
     jQuery_3_6_0("#exit_button_copy").bind('touchstart', function () {
         jQuery_3_6_0(this).animate({ 'opacity': 0.7 }, 100)
     });
