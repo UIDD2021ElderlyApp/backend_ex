@@ -123,20 +123,18 @@ $('#new_post_text').focus(function () {
                 $(this).animate({ 'opacity': 1 }, 100)
             })
             $("#browse_post").on("scrollstart", function () {
-                document.getElementById("GLOBAL_browse_post_on_scroll").click();
                 $("#browse_post").off()
                 $("#browse_post").off("scrollstart") // both OK
-
                 $("#new_post_text").blur();
                 $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function () {
                     $("#new_post_button_block #new_post_button").hide();
                     $("#new_post_button_block #add_photo").hide();
                     $("#new_post").animate({ 'height': '15%' }, 300);
-
-                })
-            })
-        })
-    })
+                    document.getElementById("GLOBAL_browse_post_on_scroll").click();
+                });
+            });
+        });
+    });
 });
 ////////////////////////////// setting.js //////////////////////
 // assign default value (previously stored value)
