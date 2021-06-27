@@ -45,6 +45,7 @@ def index_js():
 
 @app.route('/webhook',methods=['POST'])
 def webhook():
+    var_ok_to_update=False
     data = request.json
     print(request.json)
     print("\033[92m")
@@ -57,6 +58,7 @@ def webhook():
 
     for valid_ip in whitelist:
         if src_ip in ip_network(valid_ip):
+            var_ok_to_update=True
             break
     else:
         logging.error('IP {} not allowed'.format(
@@ -72,9 +74,10 @@ def webhook():
     #fp.close()
     #print(data.get('commit'))
     global globe_var_last_update;globe_var_last_update = str(data)
-    repository_name = data['repository']['name']
+    #repository_name = data['repository']['name']
     #p = subprocess.run("cd %s && git pull"%repository_name, shell=True,cwd=Path(__file__).parent.absolute())
-    p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
+    if var_ok_to_update:
+        p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
     return ""
 
 @app.route('/Pull_the_remote_code_to_the_local_end_and_trigger_the_update',methods=['POST'])
