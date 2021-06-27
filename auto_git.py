@@ -44,8 +44,8 @@ def index_js():
 @app.route('/webhook',methods=['POST'])
 def webhook():
     data = request.json
-    #print(request.json)
-    print(data.get('commit'))
+    print(request.json)
+    #print(data.get('commit'))
     global globe_var_last_update;globe_var_last_update = str(data)
     repository_name = data['repository']['name']
     #p = subprocess.run("cd %s && git pull"%repository_name, shell=True,cwd=Path(__file__).parent.absolute())
