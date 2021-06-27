@@ -7,10 +7,13 @@ import hashlib
 import requests
 import json
 import hmac
+import os
 from ipaddress import ip_address, ip_network
 app = Flask(__name__)
 
-print(json.loads(requests.get("https://api.github.com/repos/UIDD2021ElderlyApp/backend_ex/commits").text)[0].get('sha'))
+#print(json.loads(requests.get("https://api.github.com/repos/UIDD2021ElderlyApp/backend_ex/commits").text)[0].get('sha'))
+#print(os.environ['GITHUB_WEBHOOK_OF_SECRET'])
+#print(os.environ['GITHUB_WEBHOOK_OF_SECRET'])
 
 def ckpsw(var_string):
     # 建立 SHA1 物件
@@ -76,7 +79,7 @@ def webhook():
         abort(501)
 
     # HMAC requires the key to be bytes, but data is string
-    mac = hmac.new(str(secret), msg=request.data, digestmod='sha1')
+    mac = hmac.new(str(os.environ['GITHUB_WEBHOOK_OF_SECRET']), msg=request.data, digestmod='sha1')
 
     # Python prior to 2.7.7 does not have hmac.compare_digest
     if hexversion >= 0x020707F0:
