@@ -24,8 +24,8 @@ GLOBAL_browse_post_on_scroll = true;
 GLOBAL_browse_post_on_scroll_delay_ms = 500;
 
 document.getElementById("GLOBAL_browse_post_on_scroll").addEventListener("click", function () {
-    console.error("!!!!!!!!");
-    GLOBAL_browse_post_on_scroll = true;scrolledToBottom();
+    //console.error("!!!!!!!!");
+    GLOBAL_browse_post_on_scroll = true;//scrolledToBottom();
 });
 
 function usr_inp_comment_fcn(e) {
