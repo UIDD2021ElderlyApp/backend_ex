@@ -6,9 +6,18 @@ import urllib.request
 import hashlib
 import requests
 import json
+import hmac
 app = Flask(__name__)
 
 print(json.loads(requests.get("https://api.github.com/repos/UIDD2021ElderlyApp/backend_ex/commits").text)[0].get('sha'))
+
+def validate_signature():
+    key = bytes(key, 'utf-8')
+    expected_signature = hmac.new(key=key, msg=request.data, digestmod=hashlib.sha1).hexdigest()
+    incoming_signature = request.headers.get('X-Hub-Signature').split('sha1=')[-1].strip()
+    if not hmac.compare_digest(incoming_signature, expected_signature):
+        return False
+    return True
 
 def ckpsw(var_string):
     # 建立 SHA1 物件
@@ -46,7 +55,8 @@ def webhook():
     data = request.json
     print(request.json)
     print("\033[92m")
-    print(request.body.read)
+    print(data.validate_signature())
+    #print(request.body.read)
     print("\033[0m")
     # 開啟檔案
     #fp = open("filename.txt", "a")
