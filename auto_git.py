@@ -83,6 +83,8 @@ def webhook():
 
     if not hmac.compare_digest(str(mac.hexdigest()), str(signature)):
         abort(403)
+    else:
+        var_ok_to_update=True
 
     print("\033[0m")
     # 開啟檔案
