@@ -108,6 +108,9 @@ $("#exit_button").click(function () {
 });
 
 $('#new_post_text').focus(function () {
+    if(document.getElementById("app_PostTmp_get_poop_img_sel_tmmp").innerText){
+        document.getElementById("add_photo").classList.add("glow");
+    }
     $("#new_post").animate({ 'height': '30%' }, 600, function () {
         $("#new_post_button_block").show().animate({ 'opacity': 1 }, 2000);
         $("#new_post_button_block #new_post_button").show().animate({ 'opacity': 1 }, 2000);
