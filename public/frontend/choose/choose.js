@@ -33,7 +33,7 @@ function init_choose() {
             })
         }, 1500)
     }
-    //play();
+    play();
 
 }
 
