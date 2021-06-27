@@ -65,7 +65,7 @@ function show_err_msg(params) {
     var pic2 = document.createElement("img");
     txt_copy.id="choose_text_copy";
     txt_copy.classList.add("show_err_msg_gen");
-    txt_copy.innerText=document.getElementById('error_msg_gui_text').innerText;
+    txt_copy.innerHTML=`${document.getElementById('error_msg_gui_text_1').innerText}<p>${document.getElementById('error_msg_gui_text_2').innerText}`;
     txt_copy.style.color=document.getElementById('error_msg_gui_word_part_color').innerText;
     exit_bton_copy.id = "exit_button_copy";
     exit_bton_copy.classList.add("show_err_msg_gen");
