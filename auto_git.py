@@ -11,14 +11,6 @@ app = Flask(__name__)
 
 print(json.loads(requests.get("https://api.github.com/repos/UIDD2021ElderlyApp/backend_ex/commits").text)[0].get('sha'))
 
-def validate_signature():
-    key = bytes(key, 'utf-8')
-    expected_signature = hmac.new(key=key, msg=request.data, digestmod=hashlib.sha1).hexdigest()
-    incoming_signature = request.headers.get('X-Hub-Signature').split('sha1=')[-1].strip()
-    if not hmac.compare_digest(incoming_signature, expected_signature):
-        return False
-    return True
-
 def ckpsw(var_string):
     # 建立 SHA1 物件
     s = hashlib.sha3_256()
@@ -55,8 +47,21 @@ def webhook():
     data = request.json
     print(request.json)
     print("\033[92m")
-    print(data.validate_signature())
+    #print(request.json.validate_signature())
     #print(request.body.read)
+    src_ip = ip_address(
+            u'{}'.format(request.access_route[0])  # Fix stupid ipaddress issue
+        )
+    whitelist = requests.get('https://api.github.com/meta').json()['hooks']
+
+    for valid_ip in whitelist:
+        if src_ip in ip_network(valid_ip):
+            break
+    else:
+        logging.error('IP {} not allowed'.format(
+            src_ip
+        ))
+        abort(403)
     print("\033[0m")
     # 開啟檔案
     #fp = open("filename.txt", "a")
