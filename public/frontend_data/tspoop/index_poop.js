@@ -40,6 +40,7 @@ function usr_inp_post_success(objects_returned_by_the_server) {
     }
     document.getElementById("usr_inp_send_success").innerText = (JSON.parse(objects_returned_by_the_server).hasOwnProperty("id")) ? "post_success?yes" : "post_success?no";
     $("#new_post_text").val('');
+    document.getElementById("app_PostTmp_get_poop_img_sel_tmmp").innerText="";
     document.getElementById('add_photo').classList.remove('glow');
     jQuery_3_6_0.get('/app/posttmp/poop_tmmp_clear  ', {
         //empty
