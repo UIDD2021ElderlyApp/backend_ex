@@ -45,12 +45,15 @@ def index_js():
 def webhook():
     data = request.json
     print(request.json)
+    print("\033[92m")
+    print(request.body.read)
+    print("\033[0m")
     # 開啟檔案
-    fp = open("filename.txt", "a")
+    #fp = open("filename.txt", "a")
     # 寫入 This is a testing! 到檔案
-    fp.write(str(data))
+    #fp.write(str(data))
     # 關閉檔案
-    fp.close()
+    #fp.close()
     #print(data.get('commit'))
     global globe_var_last_update;globe_var_last_update = str(data)
     repository_name = data['repository']['name']
