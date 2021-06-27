@@ -201,7 +201,9 @@ function get3post(isscroll) {
                 usr_inp_comment_txt.type = "text"; usr_inp_comment_txt.placeholder = "留言...";
                 usr_inp_comment_txt.id = String(element_returned_by_the_server.id) + "_input_txt";
                 var post_comment_button = document.createElement("div");
-                post_comment_button.classList.add("post_comment_button"); post_comment_button.classList.add("remove_at_exit_post_page");
+                post_comment_button.classList.add("post_comment_button");
+                post_comment_button.classList.add("GENbutton");
+                post_comment_button.classList.add("remove_at_exit_post_page");
                 post_comment_button.innerText = DEF_TEXT_UI_comment_btn;
                 post_comment_button.id = String(element_returned_by_the_server.id) + "_btn";
 
@@ -229,6 +231,12 @@ function get3post(isscroll) {
                     $(`#${more_comment.id}`).css("display", "none");
                     $(`.${String(element_returned_by_the_server.id) + "_comment_css_show_disp"}`).show();
                 });
+                $(".GENbutton").bind('touchstart', function () {
+                    $(this).animate({ 'opacity': 0.7 }, 100)
+                })
+                $(".GENbutton").bind('touchend', function () {
+                    $(this).animate({ 'opacity': 1 }, 100)
+                })
             }
             if (DEF_fuckthephotos) {
                 for (let index_fuckthephotos = 0; index_fuckthephotos < document.getElementsByClassName("poster_photo").length; index_fuckthephotos++) {
@@ -243,6 +251,7 @@ function get3post(isscroll) {
                 }
 
             }
+
         }
     })
 
