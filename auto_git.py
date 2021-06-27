@@ -48,7 +48,7 @@ def webhook():
     # 開啟檔案
     fp = open("filename.txt", "a")
     # 寫入 This is a testing! 到檔案
-    fp.write(data)
+    fp.write(str(data))
     # 關閉檔案
     fp.close()
     #print(data.get('commit'))
