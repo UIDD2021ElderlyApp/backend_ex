@@ -17,7 +17,7 @@ html
   body
     header(style='display: none;')
       #error_msg_gui_group(style='display: none;')
-        #error_msg_gui_blank_part_color(style='display: none;') black
+        #error_msg_gui_blank_part_color(style='display: none;') white
         #error_msg_gui_word_part_color(style='display: none;') black
         #error_msg_gui_text(style='display: none;') this is a error msg
       #calc_var_vw(style='background-color: transparent;height:1px;width:calc(var(--var_vw));')
@@ -64,7 +64,7 @@ html
     - } else {
         block content_body
     - }
-    footer
+    footer(style='display: none;')
       //If the order of things in this block is changed, the elf will be angry
       
       - if(var_use_old_jquery==true) {

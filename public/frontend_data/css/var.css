@@ -24,10 +24,36 @@
 }
 
 #show_err_msg_backcolor {
-    background-color: #94DE6E;
+    /*background-color: #94DE6E;*/
     position: absolute;
     width: calc(var(--var_vw)*100);
     z-index: 20000;
-    height: 100vh;
+    height: 100%;
     display: block;
+    background: rgb(151, 218, 204);
+    background: linear-gradient(180deg, rgba(151, 218, 204, 1) 0%, rgba(148, 222, 110, 1) 65%, rgba(254, 254, 254, 1) 100%);
+}
+
+#show_err_msg_simhtml {
+    position: absolute;
+    width: 100vw;
+    /*desktop*/
+    z-index: 19999;
+    height: 100%;
+    display: block;
+}
+
+#show_err_msg_pic2 {
+    position: absolute;
+    bottom: 0;
+    z-index: 20002;
+    width: calc(var(--var_vw)*100);
+}
+
+#show_err_msg_pic1 {
+    position: absolute;
+    top: 0;
+    z-index: 20001;
+    width: calc(var(--var_vw)*100);
+    height: 100%;
 }

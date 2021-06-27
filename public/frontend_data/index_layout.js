@@ -55,10 +55,24 @@ function init_layout() {
 }
 function show_err_msg(params) {
     console.log("function show_err_msg(params) {");
+    var simhtml = document.createElement("div");
     var backcolor = document.createElement("div");
+    var pic1 = document.createElement("img");
+    var pic2 = document.createElement("img");
+    pic1.src="/frontend_data/img/p1.svg";
+    pic2.src="/frontend_data/img/p2.svg";
+    pic2.classList.add("show_err_msg_gen");
+    pic1.classList.add("show_err_msg_gen");
+    pic2.id="show_err_msg_pic2";
+    pic1.id="show_err_msg_pic1";
+    simhtml.classList.add("show_err_msg_gen");
+    simhtml.id="show_err_msg_simhtml";
     backcolor.classList.add("show_err_msg_gen");
-    backcolor.id="show_err_msg_backcolor"
-    //backcolor.style.backgroundColor=
+    backcolor.id="show_err_msg_backcolor";
+    simhtml.style.backgroundColor=document.getElementById("error_msg_gui_blank_part_color").innerText;
+    document.getElementById("error_msg_obj").appendChild(simhtml);
     document.getElementById("error_msg_obj").appendChild(backcolor);
+    document.getElementById("error_msg_obj").appendChild(pic1);
+    document.getElementById("error_msg_obj").appendChild(pic2);
     document.getElementById("error_msg_obj").style.display="block";
 }
