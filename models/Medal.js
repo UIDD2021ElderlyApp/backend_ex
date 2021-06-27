@@ -6,7 +6,7 @@ const dailyEXP = 'exp/daily.json';
 
 var MedalSchema = mongoose.Schema({
     user_id: {
-        type: Number
+        type: String
     },
     exp: {
         type: Number
