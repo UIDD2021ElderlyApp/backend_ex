@@ -23,6 +23,10 @@ GLOBAL_full_url = window.location.href.replace(this_url_path_re, "").split('#')[
 GLOBAL_browse_post_on_scroll = true;
 GLOBAL_browse_post_on_scroll_delay_ms = 500;
 
+document.getElementById("GLOBAL_browse_post_on_scroll").addEventListener("click", function () {
+    GLOBAL_browse_post_on_scroll = true;
+});
+
 function usr_inp_comment_fcn(e) {
     if (SET_ajex_full_json) {
         jQuery_3_6_0.post(/*GLOBAL_full_url + */DEF_comment_path, {
