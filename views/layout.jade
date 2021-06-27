@@ -15,7 +15,11 @@ html
     - }
     
   body
-    header
+    header(style='display: none;')
+      #error_msg_gui_group(style='display: none;')
+        #error_msg_gui_blank_part_color(style='display: none;') black
+        #error_msg_gui_word_part_color(style='display: none;') black
+        #error_msg_gui_text(style='display: none;') this is a error msg
       #calc_var_vw(style='background-color: transparent;height:1px;width:calc(var(--var_vw));')
       #calc_var_right_global_displacement(style='background-color: transparent;height:1px;width:calc(var(--var_right_global_displacement));')
       #jade_user_info(style='display: none;')
@@ -27,6 +31,7 @@ html
       - if(var_jade_user_info_choosedanimal!='-1') {
           block content_header
       - }
+    #error_msg_obj(style='display: none;')
     - if(var_jade_user_info_choosedanimal=='-1') {
         #choose_text 請選擇您夥伴!
         #overall.swiper-container.mySwiper.swiper-container-initialized.swiper-container-horizontal.swiper-container-pointer-events

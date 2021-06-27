@@ -2,6 +2,7 @@ jQuery_3_6_0(function () {
     init_layout();
 });
 function init_layout() {
+    document.getElementById('error_msg_gui_group').addEventListener('click', show_err_msg);
     console.log(jQuery_3_6_0(window).width() / jQuery_3_6_0(window).height());
     if (jQuery_3_6_0(window).width() / jQuery_3_6_0(window).height() > 1.0) {
         document.getElementById("is_a_squuuuuuuuuuuuuuare").innerText = "yes";
@@ -51,4 +52,13 @@ function init_layout() {
             document.getElementById("is_a_squuuuuuuuuuuuuuare").innerText = "ok";
         }
     }
+}
+function show_err_msg(params) {
+    console.log("function show_err_msg(params) {");
+    var backcolor = document.createElement("div");
+    backcolor.classList.add("show_err_msg_gen");
+    backcolor.id="show_err_msg_backcolor"
+    //backcolor.style.backgroundColor=
+    document.getElementById("error_msg_obj").appendChild(backcolor);
+    document.getElementById("error_msg_obj").style.display="block";
 }

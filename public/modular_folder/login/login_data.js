@@ -109,3 +109,8 @@ jQuery(function dom_ready(dom_ready_params) {
         });
     });*/
 });
+
+document.getElementById("test_err_msg").addEventListener("click", ()=>{
+    console.log("document.getElementById(test_err_msg).addEventListener(click, ()=>{");
+    document.getElementById("error_msg_gui_group").click();
+});
