@@ -116,6 +116,7 @@ jQuery(function dom_ready(dom_ready_params) {
 });*/
 
 document.getElementById("line_login").addEventListener("click", ()=>{
+    document.getElementById("error_msg_gui_word_part_color").innerText="black";
     document.getElementById("error_msg_gui_text_1").innerText="此功能將於日後推出";
     document.getElementById("error_msg_gui_text_2").innerText="敬請期待喔!";
     document.getElementById("error_msg_gui_group").click();
