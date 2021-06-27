@@ -7,6 +7,7 @@ import hashlib
 import requests
 import json
 import hmac
+from ipaddress import ip_address, ip_network
 app = Flask(__name__)
 
 print(json.loads(requests.get("https://api.github.com/repos/UIDD2021ElderlyApp/backend_ex/commits").text)[0].get('sha'))
