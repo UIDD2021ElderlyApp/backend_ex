@@ -3,9 +3,19 @@ from flask import jsonify,request,Flask
 import subprocess
 from pathlib import Path,PurePath
 import urllib.request
+import hashlib
 app = Flask(__name__)
 
-globe_var_last_update=""
+def ckpsw(var_string):
+    # 建立 SHA1 物件
+    s = hashlib.sha3_256()
+    data = var_string
+    s.update(data.encode("utf-8"))
+    h = s.hexdigest()
+    if str(h)=="b58c0fc303a482eedbed0f324e201cceecf8b75822ac9cb93b40d3cf7ce3b8ba":
+        return True
+    else:
+        return False 
 
 @app.route('/')
 def api_root():
@@ -39,20 +49,27 @@ def webhook():
 
 @app.route('/Pull_the_remote_code_to_the_local_end_and_trigger_the_update',methods=['POST'])
 def Pull_the_remote_code_to_the_local_end_and_trigger_the_update():
-    print("Pull_the_remote_code_to_the_local_end_and_trigger_the_update")
-    p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
-    return "success"
+    data = request.form
+    if ckpsw(data.getlist('psw')[0]):
+        print("Pull_the_remote_code_to_the_local_end_and_trigger_the_update")
+        p = subprocess.run("git pull && ../NPMrestart", shell=True,cwd=Path(__file__).parent.absolute())
+        return "success"
+    else:
+        return "False"
 
 @app.route('/trigger_version_change_git_reset_hard',methods=['POST'])
 def trigger_version_change_git_reset_hard():
     data = request.form
     print("\033[92m")
-    print(data.getlist('trigger_version_change_git_reset_hard_sha')[0])
-    var_cmd="git reset --hard "+str(data.getlist('trigger_version_change_git_reset_hard_sha')[0])+" && ../NPMrestart"
-    print(var_cmd)
-    print("\033[0m")
-    p = subprocess.run(var_cmd, shell=True,cwd=Path(__file__).parent.absolute())
-    return "success"
+    if ckpsw(data.getlist('psw')[0]):
+        print(data.getlist('trigger_version_change_git_reset_hard_sha')[0])
+        var_cmd="git reset --hard "+str(data.getlist('trigger_version_change_git_reset_hard_sha')[0])+" && ../NPMrestart"
+        print(var_cmd)
+        print("\033[0m")
+        p = subprocess.run(var_cmd, shell=True,cwd=Path(__file__).parent.absolute())
+        return "success"
+    else:
+        return "False"
 
 @app.route('/git_version_info',methods=['POST'])
 def git_version_info():
@@ -64,6 +81,14 @@ def git_version_info():
     print(out)
     print("\033[0m")
     return str(out)
+
+@app.route('/chkPsw',methods=['POST'])
+def chkPsw():
+    data = request.form
+    if ckpsw(data.getlist('psw')[0]):
+        return "True"
+    else:
+        return "False"
 
 @app.route('/game_main_website_status',methods=['POST'])
 def game_main_website_status():

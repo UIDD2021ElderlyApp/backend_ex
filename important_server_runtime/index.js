@@ -1,29 +1,46 @@
 
 $(function () {
-    document.getElementById("get_info").addEventListener("click", function(){
+    document.getElementById('pswtest').addEventListener('click', () => {
+        console.log($('#pswV').val());
+        $.post("/chkPsw", {
+            psw: $('#pswV').val()
+        }, (res) => {
+            document.getElementById('pswtest').classList.remove("btn-primary");
+            document.getElementById('pswtest').classList.remove("btn-success");
+            document.getElementById('pswtest').classList.remove("btn-danger");
+            if (res == "True") {
+                document.getElementById('pswtest').classList.add("btn-success");
+            } else {
+                document.getElementById('pswtest').classList.add("btn-danger");
+            }
+        });
+    });
+
+    document.getElementById("get_info").addEventListener("click", function () {
         $.post("/git_version_info", {
             //empty
         }, (res) => {
-            document.getElementById("get_infoV").innerText=res;
+            document.getElementById("get_infoV").innerText = res;
         });
     });
-    document.getElementById("game_main_website_status").addEventListener("click", function(){
+    document.getElementById("game_main_website_status").addEventListener("click", function () {
         $.post("/game_main_website_status", {
             //empty
         }, (res) => {
-            document.getElementById("game_main_website_statusV").innerText=res;
+            document.getElementById("game_main_website_statusV").innerText = res;
         });
     });
-    document.getElementById("Pull_the_remote_code_to_the_local_end_and_trigger_the_update").addEventListener("click", function(){
+    document.getElementById("Pull_the_remote_code_to_the_local_end_and_trigger_the_update").addEventListener("click", function () {
+        document.getElementById('pswtest').click();
         $.post("/Pull_the_remote_code_to_the_local_end_and_trigger_the_update", {
-            //empty
+            psw: $('#pswV').val()
         }, (res) => {
             if (res == "success") {
                 console.log("success");
             } else {
                 console.error(res);
             }
-            location.reload();
+            fake_reload();
         });
     });
     document.getElementById("all_repo").addEventListener("click", function (e) {
@@ -42,7 +59,7 @@ $(function () {
                 document.getElementById("all_commits").innerHTML = document.getElementById("all_commits").innerHTML + `<tr>
 <th scope="row">${index}</th>
 <th scope="row">
-<button type="button" class="btn btn-primary trigger_version_change" id="${res[index].sha}_trigger_version_change">Use this version and restart the server</button>
+<button type="button" class="btn btn-warning trigger_version_change" id="${res[index].sha}_trigger_version_change">Use this version and restart the server</button>
 </th>
 <th scope="col">${res[index].sha}</th>
 <th scope="col">${res[index].commit.author.name}</th>
@@ -55,26 +72,35 @@ $(function () {
             }
             $('.trigger_version_change').on('click', function (e) {
                 console.log(`trigger_version_change-->${e.target.id}`);
+                document.getElementById('pswtest').click();
                 $.post("/trigger_version_change_git_reset_hard", {
-                    trigger_version_change_git_reset_hard_sha: e.target.id.replace("_trigger_version_change", "")
+                    trigger_version_change_git_reset_hard_sha: e.target.id.replace("_trigger_version_change", ""),
+                    psw: $('#pswV').val()
                 }, (res) => {
                     if (res == "success") {
                         console.log("success");
                     } else {
                         console.error(res);
                     }
-                    location.reload();
+                    fake_reload();
                 });
             });
         });
     });
     init();
 });
-function init(){
-    document.getElementById("style_width_280px").style.width="25vw";
-    document.getElementById("style_RIGHT").style.width="74vw";
-    document.getElementById("width_1_5rem").style.width="1vw";
+function init() {
+    document.getElementById("style_width_280px").style.width = "25vw";
+    document.getElementById("style_RIGHT").style.width = "74vw";
+    document.getElementById("width_1_5rem").style.width = "1vw";
+    fake_reload();
+    /*document.getElementById("get_info").click();
+    document.getElementById("all_repo").click();
+    document.getElementById("game_main_website_status").click();*/
+}
+function fake_reload() {
     document.getElementById("get_info").click();
     document.getElementById("all_repo").click();
     document.getElementById("game_main_website_status").click();
+    //document.getElementById('pswtest').click();
 }
