@@ -7,6 +7,7 @@ var empty = require('is-empty');
 var Isemail = require('isemail');
 var isEqual = require('is-equal');
 var passport = require('passport');
+var sanitizer = require('sanitizer');
 var LocalStrategy = require('passport-local').Strategy;
 var randomstring = require("randomstring");
 
@@ -78,72 +79,77 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
 
   User.getUserByUsername(username, function (err, user) {//檢查是否重複
     if (user) {
-      res.status(406).send("id_error")
+      error_msg_res["id_error"] = "Account name already exists";
     }
-    else {
-      //Form Validator
-      if (empty(name)) {
-        error_msg_res["name"] = "empty";
-      }
-      if (!Isemail.validate(email)) {
-        error_msg_res["email"] = "UNvalidate";
-      }
-      if (empty(username)) {
-        error_msg_res["username"] = "empty";
-      }
-      if (empty(password)) {
-        error_msg_res["password"] = "empty";
-      }
-      if (!isEqual(password, password2)) {
-        error_msg_res["password2"] = "neq";
-      }
 
-      console.log(error_msg_res);
-      if (!empty(error_msg_res)) {
-        res.render('register', {
-          errors: error_msg_res
-        });
-      } else {
-
-        const img = req.file.buffer;
-        const image = sharp(img);
-        image
-          .metadata()
-          .then(metadata => {
-            return image
-              .resize({
-                width: 50,
-                height: 50,
-                fit: sharp.fit.cover,
-              })
-              .toBuffer();
-          })
-          .then(data => {
-            profileimage = "data:image/jpeg;base64," + data.toString('base64');
-
-            var newUser = new User({
-              name: name,
-              email: email,
-              username: username,
-              password: password,
-              profileimage: profileimage
-            });
-
-            User.createUser(newUser, function (err, user) {
-              //track for error
-              if (err) throw err;
-              console.log(user);
-            });
-            //Show success message with flash
-            req.flash('success', 'You are now registered and can login');
-            res.location('/');
-            res.redirect('/');
-
-          })
-          .catch(err => { throw err; });
-
-      }
+    //Form Validator
+    if (empty(name)) {
+      error_msg_res["name"] = "empty";
     }
+    if (!Isemail.validate(email)) {
+      error_msg_res["email"] = "UNvalidate";
+    }
+    if (empty(username)) {
+      error_msg_res["username"] = "empty";
+    }
+    if (empty(password)) {
+      error_msg_res["password"] = "empty";
+    }
+    if (!isEqual(password, password2)) {
+      error_msg_res["password2"] = "neq";
+    }
+    if (!req.file) {
+      error_msg_res["req.file"] = "empty";
+    }
+
+    console.log(error_msg_res);
+    if (!empty(error_msg_res)) {
+      res.render('login', {
+        var_jade_err_msg_show: true,
+        var_jade_error_msg_gui_text_1: "錯誤",
+        var_jade_error_msg_gui_text_2: JSON.stringify(error_msg_res)
+      });
+    } else {
+
+      const img = req.file.buffer;
+      const image = sharp(img);
+      image
+        .metadata()
+        .then(metadata => {
+          return image
+            .resize({
+              width: 50,
+              height: 50,
+              fit: sharp.fit.cover,
+            })
+            .toBuffer();
+        })
+        .then(data => {
+          profileimage = "data:image/jpeg;base64," + data.toString('base64');
+
+          var newUser = new User({
+            name: name,
+            email: email,
+            username: username,
+            password: password,
+            profileimage: profileimage
+          });
+
+          User.createUser(newUser, function (err, user) {
+            //track for error
+            if (err) throw err;
+            console.log(user);
+          });
+          //Show success message with flash
+          req.flash('success', 'You are now registered and can login');
+          res.location('/');
+          res.redirect('/');
+
+        })
+        .catch(err => { throw err; });
+
+    }
+
 
   });
 
