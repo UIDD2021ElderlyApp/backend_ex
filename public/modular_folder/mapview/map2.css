@@ -1,3 +1,6 @@
+body {
+    font-family: "華康中圓體", "微軟正黑體", Arial, Helvetica, sans-serif;
+}
 #hungun{
     background-image: url("./hungun.svg");
     z-index: 10;
