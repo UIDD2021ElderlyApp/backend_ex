@@ -16,6 +16,8 @@ var DEF_consolelogdata = false;
 var DEF_download_screenshot = false;
 var DEF_download_Blob = false;
 
+var DEF_medal_path = "/app/medal/"
+
 document.getElementById("snap_shoot_screen").addEventListener("click", function () {
     document.getElementById("snap_shoot_finish").innerText = "0";
     html2canvas(document.querySelector("body"), { useCORS: true, }).then(canvas => {
@@ -132,4 +134,11 @@ function send_pic_to_backend(img_blob) {
             }
         },
     });
+    $.post(DEF_medal_path, {
+        medal: JSON.stringify({
+            "type": 3,
+            "goal": 1
+        })
+    });
+
 }
