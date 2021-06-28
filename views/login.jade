@@ -11,9 +11,8 @@ block content_body
     #login_page
       // width="71.43%"
       img(src='../modular_folder/login/image/logo.svg' style='position:relative; height:30vh; top: 0%;')
-      div(style='position:relative;top:-1vh; height:2.5vh; font-size:2.5vh; font-weight: bold; color:#ffffff;') 創建帳號
       #gray_block
-        .login_bar
+        .login_bar.disp_for_mod
           img(src='../modular_folder/login/image/login_bar.svg')
           input(type='text' name='user_name' placeholder='名稱' onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'")
         .login_bar
@@ -22,7 +21,7 @@ block content_body
         .login_bar
           img(src='../modular_folder/login/image/login_bar.svg')
           input(type='text' name='password' placeholder='密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'")
-        .login_bar
+        .login_bar.disp_for_mod
           img(src='../modular_folder/login/image/login_bar.svg')
           input(type='text' name='password_confirm' placeholder='再輸入一次密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'")
         .login_bar
@@ -33,7 +32,10 @@ block content_body
         img#fb_login(href="/auth/facebook" src="../modular_folder/login/image/facebook_login.svg" border="0" alt="" height="100%")
         #line_login
           img(src='../modular_folder/login/image/line_login.svg' width='100%' height='100%')
+      #cre_acc_log_fk_bton
+        #cre_acc_log_fk_bton_inner_txt 創建帳號
     #status
+    button#disp_mod(style="display:none;") 0
     //button#test_err_msg test_err_msg
     button#logout log_out
     #picture(style="display:none;")

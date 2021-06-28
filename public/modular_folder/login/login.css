@@ -71,9 +71,7 @@ body {
     border-radius: 1vw;
 }
 
-
 /* gray_block class */
-
 
 /* .hide-scrollbar::-webkit-scrollbar {
     width: 1vw;
@@ -111,7 +109,7 @@ body {
     outline: 0;
 }
 
- ::placeholder {
+::placeholder {
     color: #DBDBDB;
 }
 
@@ -130,6 +128,7 @@ body {
     height: 4vh;
     display: flex;
     justify-content: space-between;
+    margin-bottom: 2.5vh;
 }
 
 #fb_login {
@@ -142,4 +141,20 @@ body {
     position: relative;
     height: 100%;
     width: 40%;
+}
+
+#cre_acc_log_fk_bton {
+    position: relative;
+    top: 3vh;
+    height: 2.5vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+    color: #ffffff;
+    display: block;
+    text-align: center;
+    border-top: 0.5vh solid #ffffff;
+}
+
+#cre_acc_log_fk_bton_inner_txt {
+    margin-top: 1vh;
 }
