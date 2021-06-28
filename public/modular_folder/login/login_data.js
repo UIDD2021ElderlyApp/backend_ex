@@ -4,6 +4,10 @@ var GLOBAL_url = "/users/login";
     paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
 });*/
 
+document.getElementById('upload_img_using_logo').addEventListener('click', function () {
+    console.log('upload via logo');
+});
+
 function login_button_click() {
     var is_this_a_login_Q = true;
     var inputs = document.getElementsByTagName("input");
@@ -211,26 +215,34 @@ if (document.getElementById("add_an_user2")) {
 
 function handleFileSelect() {
     if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
-        alert('The File APIs are not fully supported in this browser.');
+        //alert('The File APIs are not fully supported in this browser.');
+        console.log('The File APIs are not fully supported in this browser.');
+        document.getElementById("add_an_user").click();
         return;
     }
 
     var input = document.getElementById('fileinput');
     if (!input) {
-        alert("Um, couldn't find the fileinput element.");
+        //alert("Um, couldn't find the fileinput element.");
+        console.log("Um, couldn't find the fileinput element.");
+        document.getElementById("add_an_user").click();
     }
     else if (!input.files) {
-        alert("This browser doesn't seem to support the `files` property of file inputs.");
+        //alert("This browser doesn't seem to support the `files` property of file inputs.");
+        console.log("This browser doesn't seem to support the `files` property of file inputs.");
+        document.getElementById("add_an_user").click();
     }
     else if (!input.files[0]) {
-        alert("Please select a file before clicking 'Load'");
+        //alert("Please select a file before clicking 'Load'");
+        console.log("Please select a file before clicking 'Load'");
+        document.getElementById("add_an_user").click();
     }
     else {
         var file = input.files[0];
         var fr = new FileReader();
         fr.onload = function (e) {
-            document.getElementById('editor').innerText=fr.result;
-            document.getElementById('editor_base64_fin').innerText="1";
+            document.getElementById('editor').innerText = fr.result;
+            document.getElementById('editor_base64_fin').innerText = "1";
         };
         //fr.readAsText(file);
         //fr.readAsBinaryString(file); //as bit work with base64 for example upload to server
