@@ -93,10 +93,6 @@ html
       var user_name;
       var check_first_time=1;
       function onLocationFound(e) {
-      if(check_first_time!=0){
-      map.setView([e.latlng.lat, e.latlng.lat], 15);
-      }
-      check_first_time=0;
       //console.log(e)//627
       now_lat = e.latlng.lat;
       now_lng = e.latlng.lng;
@@ -125,7 +121,7 @@ html
       if (animal_id == -1) {
       gpsMarker = L.marker(e.latlng, { icon: customIcon_1 }).addTo(map);
       }
-      gpsMarker.bindPopup(`<b1 style="font-size: 60px" >${user_name}</b1>`).openPopup();
+      gpsMarker.bindPopup(`<font face="微軟正黑體"><b1 style="font-size: 60px" >${user_name}</b1></font>`).openPopup();
       gpsCircleMarker = L.circle(e.latlng, radius).addTo(map);
       }
       if (gpsMarker != null) {
@@ -147,6 +143,7 @@ html
       //console.log(marker._latlng)//627
       if (last != current) {
       last = e.latlng
+      map.setView([e.latlng.lat, e.latlng.lat], 15);
       }
       current = e.latlng;
       distance2 = last.distanceTo(current);
