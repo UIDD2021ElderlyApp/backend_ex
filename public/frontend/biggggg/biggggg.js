@@ -275,7 +275,7 @@ $("#continuous_comment").html('留言累積 ' + conti_comment + ' 則')
 $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 
 /////////////////////////////////// medal.js ///////////////////
-$("#home_medal_block").click(function() {
+$("#medal_button").click(function() {
     $("#medal_html").show().css('z-index', "10")
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
     var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)

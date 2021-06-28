@@ -175,6 +175,7 @@ body {
 }
 
 #medal_button {
+    z-index: 6;
     position: relative;
     height: 5vh;
     width: 100%;
