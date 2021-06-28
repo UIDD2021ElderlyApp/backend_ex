@@ -10,6 +10,7 @@ var DEF_ts = true;//be true
 var DEF_fuckthephotos = false;
 var DEF_path = window.location.href.replace(this_url_path_re, "/app/poop").split('#')[0];//"/app/poop";
 var DEF_comment_path = DEF_path + "/comment";//"/comment";
+var DEF_medal_path = "/app/medal/"
 
 var DEF_TEXT_UI_comment_btn = "發佈";
 var DEF_GUI_TXT_addcomment = "新增留言";
@@ -55,6 +56,12 @@ function usr_inp_comment_fcn(e) {
             }
             document.getElementById(String(e.target.id).replace(/_btn/g, '') + "_input_txt").value = "";
             flush_post_page();
+        });
+        jQuery_3_6_0.post(DEF_medal_path, {
+            medal: JSON.stringify({
+                "type": 7,
+                "goal": 1
+            })
         });
     }
 }

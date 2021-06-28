@@ -51,6 +51,12 @@ function usr_inp_post_success(objects_returned_by_the_server) {
             //only console log
         }
     });
+    jQuery_3_6_0.post(DEF_medal_path, {
+        medal: JSON.stringify({
+            "type": 6,
+            "goal": 1
+        })
+    });
 }
 
 function usr_inp_post_fcn() {
