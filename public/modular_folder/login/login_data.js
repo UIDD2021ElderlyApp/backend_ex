@@ -178,76 +178,7 @@ function add_new_user_test2() {
             }, 5);
         } else {
             target_img = document.getElementById('snap_shoot_canvas_tmp_sub').toDataURL("image/jpeg", 1.0);
-            var blob_tmp = dataURItoBlob_copy(target_img);
-
-            console.log("alert('Ajax request tset');")
-            var form = jQuery_3_6_0('form')[0]; // You need to use standard javascript object here
-            var formData = new FormData(form);
-
-            formData.append('profileimage', blob_tmp);
-            formData.append('name', "name");
-            formData.append('email', "email@email.com");
-            formData.append('username', Date.now().toString());
-            formData.append('password', "psw");
-            formData.append('password2', "psw");
-            /*name: "name",
-                password: pasw,
-                email: "email@email.com",
-                username: Date.now().toString(),
-                password: "psw",
-                password2: "psw"*/
-
-            jQuery_3_6_0.ajax({
-                url: "/users/register",
-                data: formData,
-                type: 'POST',
-                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-                processData: false, // NEEDED, DON'T OMIT THIS
-                accepts: {
-                    text: "text/html"
-                },
-                beforeSend: function (xhr) {
-                    //empty
-                },
-                success: function (xhr) {
-                    //empty
-                },
-                error: function (xhr) {
-                    console.log("alert('Ajax request 發生錯誤');");
-                },
-                complete: function (xhr) {
-                    //console.log("alert('Ajax request complete');");
-                    //console.log(xhr);
-                    var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
-                    console.log(target_new_html);
-                    jQuery_3_6_0.each(target_new_html, function (i, el) {
-                        //console.log(i);
-                        if (el.localName === "header") {
-                            //console.log(el);
-                            jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
-                                //console.log(ii);
-                                if (el1.id === "error_msg_gui_group") {
-                                    console.log(el1.childNodes);
-                                    jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
-                                        //console.log([el2.id,el2.innerText]);
-                                        if (el2.id && document.getElementById(el2.id)) {
-                                            document.getElementById(el2.id).innerText = el2.innerText;
-                                        }
-                                    });
-                                }
-                            });
-                        }
-                    });
-                    jQuery_3_6_0.each(target_new_html, function (i, el) {
-                        if (el.id === "disp_mod") {
-                            if (el.innerText === "-1") {
-                                document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
-                            }
-                        }
-                    });
-                    document.getElementById('error_msg_gui_init_msg_if_yes').click();
-                },
-            });
+            reg_to_backend(target_img);
         }
     }
     checkFlag();
@@ -256,4 +187,126 @@ function add_new_user_test2() {
 if (document.getElementById("add_an_user")) {
     console.log(`if (document.getElementById("add_an_user")) {`);
     document.getElementById("add_an_user").addEventListener("click", add_new_user_test2);
+}
+
+function add_new_user_test3() {
+    document.getElementById('btnLoad').click();
+
+    function checkFlag() {
+        if (document.getElementById('editor_base64_fin').innerText !== '1') {
+            setTimeout(() => {
+                checkFlag();
+            }, 5);
+        } else {
+            reg_to_backend(document.getElementById('editor').innerText);
+        }
+    }
+    checkFlag();
+}
+
+if (document.getElementById("add_an_user2")) {
+    console.log(`if (document.getElementById("add_an_user2")) {`);
+    document.getElementById("add_an_user2").addEventListener("click", add_new_user_test3);
+}
+
+function handleFileSelect() {
+    if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+        alert('The File APIs are not fully supported in this browser.');
+        return;
+    }
+
+    var input = document.getElementById('fileinput');
+    if (!input) {
+        alert("Um, couldn't find the fileinput element.");
+    }
+    else if (!input.files) {
+        alert("This browser doesn't seem to support the `files` property of file inputs.");
+    }
+    else if (!input.files[0]) {
+        alert("Please select a file before clicking 'Load'");
+    }
+    else {
+        var file = input.files[0];
+        var fr = new FileReader();
+        fr.onload = function (e) {
+            document.getElementById('editor').innerText=fr.result;
+            document.getElementById('editor_base64_fin').innerText="1";
+        };
+        //fr.readAsText(file);
+        //fr.readAsBinaryString(file); //as bit work with base64 for example upload to server
+        fr.readAsDataURL(file);
+    }
+}
+
+function reg_to_backend(pic_base64) {
+    var blob_tmp = dataURItoBlob_copy(pic_base64);
+
+    console.log("alert('Ajax request tset');")
+    var form = jQuery_3_6_0('form')[0]; // You need to use standard javascript object here
+    var formData = new FormData(form);
+
+    formData.append('profileimage', blob_tmp);
+    formData.append('name', "name");
+    formData.append('email', "email@email.com");
+    formData.append('username', Date.now().toString());
+    formData.append('password', "psw");
+    formData.append('password2', "psw");
+    /*name: "name",
+        password: pasw,
+        email: "email@email.com",
+        username: Date.now().toString(),
+        password: "psw",
+        password2: "psw"*/
+
+    jQuery_3_6_0.ajax({
+        url: "/users/register",
+        data: formData,
+        type: 'POST',
+        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+        processData: false, // NEEDED, DON'T OMIT THIS
+        accepts: {
+            text: "text/html"
+        },
+        beforeSend: function (xhr) {
+            //empty
+        },
+        success: function (xhr) {
+            //empty
+        },
+        error: function (xhr) {
+            console.log("alert('Ajax request 發生錯誤');");
+        },
+        complete: function (xhr) {
+            //console.log("alert('Ajax request complete');");
+            //console.log(xhr);
+            var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
+            console.log(target_new_html);
+            jQuery_3_6_0.each(target_new_html, function (i, el) {
+                //console.log(i);
+                if (el.localName === "header") {
+                    //console.log(el);
+                    jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
+                        //console.log(ii);
+                        if (el1.id === "error_msg_gui_group") {
+                            console.log(el1.childNodes);
+                            jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
+                                //console.log([el2.id,el2.innerText]);
+                                if (el2.id && document.getElementById(el2.id)) {
+                                    document.getElementById(el2.id).innerText = el2.innerText;
+                                }
+                            });
+                        }
+                    });
+                }
+            });
+            jQuery_3_6_0.each(target_new_html, function (i, el) {
+                if (el.id === "disp_mod") {
+                    if (el.innerText === "-1") {
+                        document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
+                    }
+                }
+            });
+            document.getElementById('error_msg_gui_init_msg_if_yes').click();
+        },
+    });
 }

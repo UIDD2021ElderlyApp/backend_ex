@@ -46,9 +46,11 @@ block content_body
     //input.btn.btn-primary(type='submit', name='submit', value='thisisavaluebutitseemstobeignored')
     a#passworddriventimeoriented(style="display:none;") #{ successes }
     button#add_an_user add_an_user
+    button#add_an_user2 add_an_user2
     input#fileinput(type='file')
     input#btnLoad(type='button' value='Load' onclick='handleFileSelect();')
     #editor
+    #editor_base64_fin -1
     //Repealed
       form(method='post', action='/users/register', enctype='multipart/form-data')
         .form-group
@@ -77,4 +79,4 @@ block content_body
     script(src='https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js')
     script(src='../modular_folder/login/login.js')
     script(src='../modular_folder/login/login_data.js')
-    script(src='../modular_folder/login/file.js')
+    //script(src='../modular_folder/login/file.js')
