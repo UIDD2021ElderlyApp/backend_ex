@@ -97,11 +97,16 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
       if (!isEqual(password, password2)) {
         error_msg_res["password2"] = "neq";
       }
+      if (!req.file) {
+        error_msg_res["req.file"] = "empty";
+      }
 
       console.log(error_msg_res);
       if (!empty(error_msg_res)) {
-        res.render('register', {
-          errors: error_msg_res
+        res.render('login', {
+          var_jade_err_msg_show: true,
+          var_jade_error_msg_gui_text_1: "錯誤",
+          var_jade_error_msg_gui_text_2: JSON.stringify(error_msg_res)
         });
       } else {
 

@@ -68,8 +68,9 @@ function show_err_msg(params) {
     txt_copy.innerText=document.getElementById('error_msg_gui_text_1').innerText;
     var obj_p_txt = document.createElement("p");
     obj_p_txt.innerText=document.getElementById('error_msg_gui_text_2').innerText;
+    obj_p_txt.style.color=document.getElementById('error_msg_gui_word_part_color_2').innerText;
     txt_copy.appendChild(obj_p_txt);
-    txt_copy.style.color=document.getElementById('error_msg_gui_word_part_color').innerText;
+    txt_copy.style.color=document.getElementById('error_msg_gui_word_part_color_1').innerText;
     exit_bton_copy.id = "exit_button_copy";
     exit_bton_copy.classList.add("show_err_msg_gen");
     pic1.src = "/frontend_data/img/p1.svg";
