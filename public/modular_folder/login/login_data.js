@@ -186,7 +186,7 @@ function add_new_user_test2() {
 
             formData.append('profileimage', blob_tmp);
             formData.append('name', "name");
-            formData.append('email', "email_email.com");
+            formData.append('email', "email@email.com");
             formData.append('username', Date.now().toString());
             formData.append('password', "psw");
             formData.append('password2', "psw");
