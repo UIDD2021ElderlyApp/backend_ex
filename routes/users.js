@@ -58,7 +58,8 @@ router.get('/login', function routergetlogin(req, res, next) {
       successes: randomstringgenerate100,
       var_jade_err_msg_show: false,
       var_jade_error_msg_gui_text_1: "X",
-      var_jade_error_msg_gui_text_2: "X"
+      var_jade_error_msg_gui_text_2: "X",
+      do_you_want_to_log_in_or_register: "0"
     });
   }
 });
@@ -114,7 +115,8 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
       res.render('login', {
         var_jade_err_msg_show: true,
         var_jade_error_msg_gui_text_1: "錯誤",
-        var_jade_error_msg_gui_text_2: JSON.stringify(error_msg_res)
+        var_jade_error_msg_gui_text_2: JSON.stringify(error_msg_res),
+        do_you_want_to_log_in_or_register: "0"
       });
     } else {
 
@@ -148,18 +150,19 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
             console.log(user);
           });
           //Show success message with flash
-          req.flash('success', 'You are now registered and can login');
+          /*req.flash('success', 'You are now registered and can login');
           res.location('/');
-          res.redirect('/');
-
+          res.redirect('/');*/
+          res.render('login', {
+            var_jade_err_msg_show: true,
+            var_jade_error_msg_gui_text_1: "提示訊息",
+            var_jade_error_msg_gui_text_2: "註冊成功",
+            do_you_want_to_log_in_or_register: "1"
+          });
         })
         .catch(err => { throw err; });
-
     }
-
-
   });
-
 });
 
 passport.use(new LocalStrategy(function (username, password, done) {
