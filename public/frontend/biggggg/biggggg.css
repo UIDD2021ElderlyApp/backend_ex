@@ -81,9 +81,11 @@ body {
 #animal {
     text-align: center;
     position: absolute;
-    width: calc(var(--var_vw)*60);
+    background-size: 400%;
+    width: calc(var(--var_vw)* 0.38* 209.5);
+    height: calc(var(--var_vw)* 0.38* 193);
     left: calc(var(--var_vw)*25);
-    bottom: calc(var(--var_vw)*32);
+    bottom: calc(var(--var_vw)*27);
     z-index: 7;
 }
 
