@@ -125,6 +125,41 @@ block content_body
           a#logout_btn(href="/users/logout" target="_top" rel="noopener noreferrer") 登出
           p(style="font-size:0.5vh;")
           a#github_btn(href="https://github.com/UIDD2021ElderlyApp/backend_ex/" target="_blank" rel="noopener noreferrer") 聯絡我們
+    // mission
+    #mission_html(style='position:absolute; top:0%; display:none;')
+      // _2 : mission
+      #exit_button_2.button
+      #upper_windows_2
+        #windows_tree_2
+        #mission_block
+          #daily_mission
+            .mission_title 每日任務
+            #daily_wakeup.daily_blocks
+              .mission_number 任務1
+              .mission_name1 起床
+            #daily_sleep.daily_blocks
+              .mission_number 任務2
+              .mission_name1 睡覺
+            #daily_shoot.daily_blocks
+              .mission_number 任務3
+              .mission_name1 拍照
+            #daily_stroll.daily_blocks
+              .mission_number 任務4
+              .mission_name1 散步
+          #continuous_mission
+            .mission_title 持續任務
+            .continuous_blocks
+              .mission_number 任務1
+              #continuous_stroll.mission_name2
+            .continuous_blocks
+              .mission_number 任務2
+              #continuous_post.mission_name2
+            .continuous_blocks
+              .mission_number 任務3
+              #continuous_comment.mission_name2
+            .continuous_blocks
+              .mission_number 任務4
+              #continuous_level.mission_name2
 
 block content_footer
     // home

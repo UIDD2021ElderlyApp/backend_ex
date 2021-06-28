@@ -10,6 +10,8 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var randomstring = require("randomstring");
 
+const sharp = require('sharp');
+
 //import Data Model
 var User = require('../models/user');
 
@@ -57,7 +59,8 @@ router.get('/login', function routergetlogin(req, res, next) {
 router.post('/register', upload.single('profileimage'), function (req, res, next) {
 
   //console.log(req.file.buffer.toString('base64'));
-  var profileimage=req.file.buffer.toString('base64');
+  //var profileimage = req.file.buffer.toString('base64');
+  var profileimage;
   //using multer
   var name = req.body.name;
   var email = req.body.email;
@@ -70,47 +73,79 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
   console.log(username);
   var error_msg_res = {};
 
-  //Form Validator
-  if (empty(name)) {
-    error_msg_res["name"] = "empty";
-  }
-  if (!Isemail.validate(email)) {
-    error_msg_res["email"] = "UNvalidate";
-  }
-  if (empty(username)) {
-    error_msg_res["username"] = "empty";
-  }
-  if (empty(password)) {
-    error_msg_res["password"] = "empty";
-  }
-  if (!isEqual(password, password2)) {
-    error_msg_res["password2"] = "neq";
-  }
+  if (name.length > 8)
+    name = name.substr(0, 8)
 
-  console.log(error_msg_res);
-  if (!empty(error_msg_res)) {
-    res.render('register', {
-      errors: error_msg_res
-    });
-  } else {
-    var newUser = new User({
-      name: name,
-      email: email,
-      username: username,
-      password: password,
-      profileimage: profileimage
-    });
+  User.getUserByUsername(username, function (err, user) {//檢查是否重複
+    if (user) {
+      res.status(406).send("id_error")
+    }
+    else {
+      //Form Validator
+      if (empty(name)) {
+        error_msg_res["name"] = "empty";
+      }
+      if (!Isemail.validate(email)) {
+        error_msg_res["email"] = "UNvalidate";
+      }
+      if (empty(username)) {
+        error_msg_res["username"] = "empty";
+      }
+      if (empty(password)) {
+        error_msg_res["password"] = "empty";
+      }
+      if (!isEqual(password, password2)) {
+        error_msg_res["password2"] = "neq";
+      }
 
-    User.createUser(newUser, function (err, user) {
-      //track for error
-      if (err) throw err;
-      console.log(user);
-    });
-    //Show success message with flash
-    req.flash('success', 'You are now registered and can login');
-    res.location('/');
-    res.redirect('/');
-  }
+      console.log(error_msg_res);
+      if (!empty(error_msg_res)) {
+        res.render('register', {
+          errors: error_msg_res
+        });
+      } else {
+
+        const img = req.file.buffer;
+        const image = sharp(img);
+        image
+          .metadata()
+          .then(metadata => {
+            return image
+              .resize({
+                width: 50,
+                height: 50,
+                fit: sharp.fit.cover,
+              })
+              .toBuffer();
+          })
+          .then(data => {
+            profileimage = "data:image/jpeg;base64," + data.toString('base64');
+
+            var newUser = new User({
+              name: name,
+              email: email,
+              username: username,
+              password: password,
+              profileimage: profileimage
+            });
+
+            User.createUser(newUser, function (err, user) {
+              //track for error
+              if (err) throw err;
+              console.log(user);
+            });
+            //Show success message with flash
+            req.flash('success', 'You are now registered and can login');
+            res.location('/');
+            res.redirect('/');
+
+          })
+          .catch(err => { throw err; });
+
+      }
+    }
+
+  });
 
 });
 

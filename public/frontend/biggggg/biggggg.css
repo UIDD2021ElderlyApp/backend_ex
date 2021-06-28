@@ -200,7 +200,7 @@ body {
 #menu_back {
     position: absolute;
     width: calc(var(--var_vw)*100);
-    height: calc(var(--var_vw)*23  +  3vh);
+    height: calc(var(--var_vw)*23 + 3vh);
     bottom: 0px;
     z-index: 5;
 }
@@ -423,7 +423,7 @@ body {
     font-weight: bold;
     margin-top: 2vh;
     color: #000000;
-    text-align:left !important;
+    text-align: left !important;
 }
 
 .post_time {
@@ -494,7 +494,7 @@ body {
     text-align: left;
     color: #000000;
     word-wrap: break-word;
-    margin:auto;
+    margin: auto;
 }
 
 .new_comment_block {
@@ -532,7 +532,7 @@ body {
     font-size: 2vh;
     color: #494949;
     outline: 0;
-    margin:auto;
+    margin: auto;
 }
 
 .post_comment_button {
@@ -553,8 +553,8 @@ body {
     box-shadow: #636363 0 0 0.6vh;
     background-color: #ffffff;
     z-index: 1;
-    margin:auto;
-    bottom:0.25vh;
+    margin: auto;
+    bottom: 0.25vh;
 }
 
 
@@ -642,7 +642,7 @@ body {
 
 .time_font {
     position: relative;
-    font-size: 2.5vh;
+    font-size: calc(var(--var_vw)*5);
     width: 30%;
     height: 14vh;
     line-height: 14vh;
@@ -651,7 +651,8 @@ body {
 .separate {
     position: relative;
     height: 100%;
-    width: 5%;
+    width: 0%;
+    margin: 0% 5%;
     border-width: 0.1vh;
     border-left-style: solid;
     border-color: #000000;
@@ -684,7 +685,7 @@ body {
 .colon {
     position: relative;
     font-size: 8vh;
-    width: 15%;
+    width: 10%;
     height: 14vh;
     line-height: 12vh;
 }
@@ -697,4 +698,162 @@ body {
     font-size: 2.5vh;
     cursor: pointer;
     text-decoration: underline;
+}
+
+
+/****************** mission ******************/
+
+#exit_button_2 {
+    z-index: 3;
+    position: absolute;
+    width: 6vh;
+    height: 6vh;
+    top: 1vh;
+    left: calc(var(--var_vw)*1);
+    background-color: white;
+    border-width: 0vh;
+    border-radius: 3.5vh;
+    box-shadow: rgb(150 150 150) -1px -1px 3px 2px;
+    padding: 0%;
+    /* init : */
+    opacity: 0;
+    content: url("image/exit_button.svg");
+}
+
+#upper_windows_2 {
+    z-index: 2;
+    position: absolute;
+    margin: 3vh 2vh;
+    border-radius: 3vh;
+    background-color: #fafaeb;
+    text-align: center;
+    /* init : */
+    left: 10%;
+    top: 13%;
+    width: calc(var(--var_vw)*70);
+    height: 70%;
+    zoom: 70%;
+}
+
+#windows_tree_2 {
+    z-index: 3;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 3vh;
+    content: url("image/windows_tree.svg");
+}
+
+#mission_block {
+    position: absolute;
+    margin: 5vh calc(var(--var_vw)*5) 10vh calc(var(--var_vw)*5);
+    width: calc(100% - var(--var_vw)*10);
+    height: calc(100% - 15vh);
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+
+#mission_block::-webkit-scrollbar {
+    width: calc(var(--var_vw)*1);
+    background-color: transparent;
+}
+
+#mission_block::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#mission_block::-webkit-scrollbar-thumb {
+    background-color: #73D0BE92;
+    border-radius: calc(var(--var_vw)*1);
+}
+
+#daily_mission {
+    position: relative;
+    padding: 1vh;
+    margin-right: calc(var(--var_vw)*1);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+#continuous_mission {
+    position: relative;
+    padding: 1vh;
+    margin-right: calc(var(--var_vw)*1);
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.mission_title {
+    position: relative;
+    width: 35%;
+    height: 4vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+    line-height: 4vh;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 1vh;
+    box-shadow: #727272 0.2vh 0.2vh;
+    padding: 0.5vh 0 0 0;
+    margin: 1.5vh 0%;
+}
+
+.daily_blocks {
+    z-index: 4;
+    position: relative;
+    width: calc(100% - 4vh);
+    height: 5vh;
+    padding: 1vh 2vh;
+    margin: 1.5vh 0%;
+    background-color: #D9E483;
+    border-radius: 2vh;
+    box-shadow: #727272 0.5vh 0.5vh;
+    display: flex;
+}
+
+.continuous_blocks {
+    z-index: 4;
+    position: relative;
+    width: calc(100% - 4vh);
+    height: 5vh;
+    padding: 1vh 2vh;
+    margin: 1.5vh 0%;
+    background-color: #A0D9F6;
+    border-radius: 2vh;
+    box-shadow: #727272 0.5vh 0.5vh;
+    display: flex;
+}
+
+.mission_number {
+    position: relative;
+    width: 20%;
+    height: 5vh;
+    font-size: calc(var(--var_vw)*4.5);
+    font-weight: bold;
+    line-height: 5vh;
+    text-align: center;
+}
+
+.mission_name1 {
+    position: relative;
+    width: 60%;
+    height: 5vh;
+    font-size: calc(var(--var_vw)*5.5);
+    font-weight: bold;
+    line-height: 5vh;
+    text-align: center;
+}
+
+.mission_name2 {
+    position: relative;
+    width: 60%;
+    height: 5vh;
+    margin-left: 10%;
+    font-size: calc(var(--var_vw)*5.5);
+    font-weight: bold;
+    line-height: 5vh;
+    text-align: left;
 }
