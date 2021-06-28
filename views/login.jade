@@ -5,25 +5,38 @@ block content_head
     title login
     link(href='../modular_folder/login/login.css' rel='stylesheet' type='text/css')
 
+block content_header
+    #status(style="display:none;")
+    //button#test_err_msg test_err_msg
+    button#logout(style="display:none;") log_out
+    a#passworddriventimeoriented(style="display:none;") #{ successes }
+    button#add_an_user(style="display:none;") add_an_user
+    button#add_an_user2(style="display:none;") add_an_user2
+    input#fileinput(type='file' style="display:none;")
+    input#btnLoad(type='button' value='Load' onclick='handleFileSelect();' style="display:none;")
+    #editor(style="display:none;")
+    #editor_base64_fin(style="display:none;") -1
+    #window_clearInterval_timeoutID
+
 block content_body
     #loading_logo
       img(src='../modular_folder/login/image/loading.svg')
     #login_page
       // width="71.43%"
-      img(src='../modular_folder/login/image/logo.svg' style='position:relative; height:30vh; top: 0%;')
+      img#upload_img_using_logo(src='../modular_folder/login/image/logo.svg' style='position:relative; height:30vh; top: 0%;')
       #gray_block
         .login_bar.disp_for_mod
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='user_name' placeholder='名稱' onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'")
+          input.input_type_text(type='text' name='user_name' placeholder='名稱' onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'")
         .login_bar
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='account' placeholder='帳號' onfocus="this.placeholder = ''" onblur="this.placeholder = '帳號'")
+          input.input_type_text(type='text' name='account' placeholder='帳號' onfocus="this.placeholder = ''" onblur="this.placeholder = '帳號'")
         .login_bar
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='password' placeholder='密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'")
+          input.input_type_text(type='password' name='password' placeholder='密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'")
         .login_bar.disp_for_mod
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='password_confirm' placeholder='再輸入一次密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'")
+          input.input_type_text(type='password' name='password_confirm' placeholder='再輸入一次密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'")
         .login_bar
           // value=""
           button#login_button
@@ -35,17 +48,11 @@ block content_body
           img(src='../modular_folder/login/image/line_login.svg' width='100%' height='100%')
       #cre_acc_log_fk_bton
         #cre_acc_log_fk_bton_inner_txt 帳號登入
-    #status
-    button#disp_mod(style="display:none;") #{ do_you_want_to_log_in_or_register }
-    //button#test_err_msg test_err_msg
-    button#logout log_out
     #picture(style="display:none;")
     #fb-root(style="display:none;")
     //form(method='post', action='/timedoutdoorlock/verifythefirstnumber')
     //,style="display:none;"
     //input.btn.btn-primary(type='submit', name='submit', value='thisisavaluebutitseemstobeignored')
-    a#passworddriventimeoriented(style="display:none;") #{ successes }
-    button#add_an_user add_an_user
     //Repealed
       form(method='post', action='/users/register', enctype='multipart/form-data')
         .form-group
@@ -68,9 +75,14 @@ block content_body
         input.form-control(name='profileimage', type='file')
         .form-group
         input.btn.btn-primary(type='submit', name='submit', value='Register')
+    //Don’t put the lower line in the header, it’s better to put it at the end of the body block
+    button#disp_mod(style="display:none;") #{ do_you_want_to_log_in_or_register }
+
+block content_footer
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
     script(src='https://code.jquery.com/ui/1.12.1/jquery-ui.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js')
     script(src='../modular_folder/login/login.js')
     script(src='../modular_folder/login/login_data.js')
+    //script(src='../modular_folder/login/file.js')

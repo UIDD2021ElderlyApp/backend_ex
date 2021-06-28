@@ -91,7 +91,7 @@ body {
     width: 70%;
 }
 
-.login_bar input[type=text] {
+.input_type_text {
     background-color: transparent;
     float: right;
     /*搜尋欄邊框*/
