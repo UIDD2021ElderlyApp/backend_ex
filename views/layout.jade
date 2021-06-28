@@ -16,15 +16,22 @@ html
     
   body
     header(style='display: none;')
+      - if(var_jade_err_msg_show==true) {
+          #error_msg_gui_group(style='display: none;') yes
+      - } else {
+          #error_msg_gui_group(style='display: none;') no
+      - }
       #error_msg_gui_group(style='display: none;')
         #error_msg_gui_blank_part_color(style='display: none;') white
-        #error_msg_gui_word_part_color_1(style='display: none;') black
-        #error_msg_gui_word_part_color_2(style='display: none;') black
         - if(var_jade_err_msg_show==true) {
             #error_msg_gui_text_1(style='display: none;') #{var_jade_error_msg_gui_text_1}
             //#error_msg_gui_text_1(style='display: none;') 錯誤
             #error_msg_gui_text_2(style='display: none;') #{var_jade_error_msg_gui_text_2}
+            #error_msg_gui_word_part_color_1(style='display: none;') red
+            #error_msg_gui_word_part_color_2(style='display: none;') black
         - } else {
+            #error_msg_gui_word_part_color_1(style='display: none;') black
+            #error_msg_gui_word_part_color_2(style='display: none;') black
             #error_msg_gui_text_1(style='display: none;') this is a error msg_1
             #error_msg_gui_text_2(style='display: none;') this is a error msg_2
         - }
@@ -90,17 +97,6 @@ html
       button#snap_shoot_screen(style='display: none;') snap_shoot_screen
       #snap_shoot_finish(style='display: none;') -1
       script(src='../javascripts/snapshoot_layout.js' type="module")
-      - if(var_jade_err_msg_show==true) {
-          script.
-            document.getElementById("error_msg_gui_word_part_color_1").innerText = "red";
-            document.getElementById("error_msg_gui_word_part_color_2").innerText = "black";
-            //document.getElementById("error_msg_gui_text_1").innerText = "此功能將於日後推出";
-            //document.getElementById("error_msg_gui_text_2").innerText = "敬請期待喔!";
-            document.getElementById("error_msg_gui_group").click();
-      - } else {
-          script.
-            document.getElementById("error_msg_gui_group").innerText = "var_jade_err_msg_show==false";
-      - }
       - if(var_jade_user_info_choosedanimal=='-1') {
           script(src='https://unpkg.com/swiper/swiper-bundle.min.js')
           script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')
