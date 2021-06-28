@@ -40,7 +40,6 @@ function login_button_click() {
                 }
             }
         }
-
     }
 
     if (!usrn) {
@@ -108,6 +107,18 @@ jQuery(function dom_ready(dom_ready_params) {
             console.log(salt);
         });
     });*/
+    document.getElementById("disp_mod").addEventListener("click", () => {
+        for (let index = 0; index < document.getElementsByClassName("disp_for_mod").length; index++) {
+            const element = document.getElementsByClassName("disp_for_mod")[index];
+            element.style.display = "none";
+        }
+        //jQuery_3_6_0("#gray_block").height("18vh");
+        jQuery_3_6_0("#gray_block").show().animate({ 'height': "18vh" }, 1000);
+    });
+    //The code below and the code above must maintain the current sequence
+    if (document.getElementById("disp_mod").innerText === "-1") {
+        document.getElementById("disp_mod").click();
+    }
 });
 
 /*document.getElementById("test_err_msg").addEventListener("click", ()=>{
@@ -123,35 +134,27 @@ document.getElementById("line_login").addEventListener("click", () => {
     document.getElementById("error_msg_gui_group").click();
 });
 
-document.getElementById("disp_mod").addEventListener("click", () => {
-    for (let index = 0; index < document.getElementsByClassName("disp_for_mod").length; index++) {
-        const element = document.getElementsByClassName("disp_for_mod")[index];
-        element.style.display = "none";
-    }
-    //jQuery_3_6_0("#gray_block").height("18vh");
-    jQuery_3_6_0("#gray_block").show().animate({ 'height': "18vh" }, 1000);
-});
-
+//css
 document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {
     console.log(`document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {`);
-    if(document.getElementById("disp_mod").innerText==="0"){
-        document.getElementById("disp_mod").innerText="1";
-        document.getElementById("login_button_txt_fix").innerText="登入";
-        document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText="創建帳號";
+    if (document.getElementById("disp_mod").innerText === "0") {
+        document.getElementById("disp_mod").innerText = "1";
+        document.getElementById("login_button_txt_fix").innerText = "登入";
+        document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建帳號";
         document.getElementById("disp_mod").click();
-    }else if(document.getElementById("disp_mod").innerText==="1"){
+    } else if (document.getElementById("disp_mod").innerText === "1") {
         jQuery_3_6_0("#gray_block").show().animate({ 'height': "30vh" }, 1000);
         setTimeout(() => {
-            document.getElementById("login_button_txt_fix").innerText="註冊";
-            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText="帳號登入";
-            document.getElementById("disp_mod").innerText="0";
+            document.getElementById("login_button_txt_fix").innerText = "註冊";
+            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "帳號登入";
+            document.getElementById("disp_mod").innerText = "0";
             for (let index = 0; index < document.getElementsByClassName("disp_for_mod").length; index++) {
                 const element = document.getElementsByClassName("disp_for_mod")[index];
                 element.style.display = "block";
             }
             //jQuery_3_6_0("#gray_block").height("30vh");
         }, 500);
-    }else{
+    } else {
         console.error("This is a serious error, please contact the software developer!");
     }
 });

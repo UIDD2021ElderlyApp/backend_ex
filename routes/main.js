@@ -8,7 +8,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         if (err) throw err;
         PostTmp.getPostTmp(req.user.username, function (err2, PostTmpget) {
             if (err2) throw err2;
-            console.log("------------------------------------------------>>>>>>>>>>>>>>>"+PostTmpget);
+            console.log("------------------------------------------------>>>>>>>>>>>>>>>" + PostTmpget);
             res.render('main', {
                 title: 'old_friend',
                 var_jade_user_info_name: `${req.user.name}`,
@@ -17,7 +17,10 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 var_jade_user_info_choosedanimal: `${(!Personget) ? '-1' : Personget.animal}`,
                 var_use_old_jquery: true,
                 var_app_PostTmp_get_pooptmmp: `${PostTmpget.post_tmp}`,
-                var_app_PostTmp_get_poop_img_sel_tmmp: `${PostTmpget.post_img_select_tmp}`
+                var_app_PostTmp_get_poop_img_sel_tmmp: `${PostTmpget.post_img_select_tmp}`,
+                var_jade_err_msg_show: false,
+                var_jade_error_msg_gui_text_1: "X",
+                var_jade_error_msg_gui_text_2: "X"
             });
         });
     });
