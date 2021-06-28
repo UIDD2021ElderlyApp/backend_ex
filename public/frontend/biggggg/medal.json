@@ -1,0 +1,34 @@
+{
+    "stroll": {
+        "amount": [10, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, 600],
+        "exp": [5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60]
+    },
+    "post": {
+        "amount": [5, 10, 30, 50, 100, 130, 150, 200],
+        "exp": [5, 10, 15, 20, 25, 30, 35, 40]
+    },
+    "comment": {
+        "amount": [5, 10, 30, 50, 100, 130, 150, 200],
+        "exp": [5, 10, 15, 20, 25, 30, 35, 40]
+    },
+    "level": {
+        "amount": [3, 5, 10, 20, 30, 50, 80, 100],
+        "exp": [5, 10, 15, 20, 25, 30, 35, 40]
+    },
+    "amount": [10, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, 600,
+        5, 10, 30, 50, 100, 130, 150, 200,
+        5, 10, 30, 50, 100, 130, 150, 200,
+        3, 5, 10, 20, 30, 50, 80, 100
+    ],
+    "img": ["image/stroll1.svg", "image/stroll2.svg", "image/stroll3.svg",
+        "image/post1.svg", "image/post2.svg",
+        "image/comment1.svg", "image/comment1.svg",
+        "image/level1.svg", "image/level2.svg"
+    ],
+    "img_g": ["image/stroll1_g.svg", "image/stroll2_g.svg", "image/stroll3_g.svg",
+        "image/post1_g.svg", "image/post2_g.svg",
+        "image/comment1_g.svg", "image/comment1_g.svg",
+        "image/level1_g.svg", "image/level2_g.svg"
+    ]
+
+}
