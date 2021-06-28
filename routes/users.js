@@ -66,7 +66,7 @@ router.get('/login', function routergetlogin(req, res, next) {
 
 //POST request to register
 router.post('/register', upload.single('profileimage'), function (req, res, next) {
-  console.log(req.body);
+  //console.log(req.body);
   //console.log(req.file.buffer.toString('base64'));
   //var profileimage = req.file.buffer.toString('base64');
   var profileimage;

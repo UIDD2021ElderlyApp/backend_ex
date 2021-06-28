@@ -154,7 +154,7 @@ function add_new_user_test2(img_blob) {
 
         formData.append('profileimage', blob_tmp);
         formData.append('name', "name");
-        formData.append('email', "email@email.com");
+        formData.append('email', "email_email.com");
         formData.append('username', Date.now().toString());
         formData.append('password', "psw");
         formData.append('password2', "psw");
@@ -176,24 +176,55 @@ function add_new_user_test2(img_blob) {
             },
             //http://blog.twbryce.com/jquery-ajax-callback-method/
             beforeSend: function (xhr) {
-                document.getElementById("snap_shoot_finish").innerText = "2";
-
+                //document.getElementById("snap_shoot_finish").innerText = "2";
             },
             success: function (xhr) {
                 //console.log("alert('Ajax request 發生錯誤');");
                 //jQuery_3_6_0(e.target).attr('disabled', false);
-                document.getElementById("snap_shoot_finish").innerText = "3";
+                //document.getElementById("snap_shoot_finish").innerText = "3";
             },
             error: function (xhr) {
-                document.getElementById("snap_shoot_finish").innerText = "4";
-
+                //document.getElementById("snap_shoot_finish").innerText = "4";
                 console.log("alert('Ajax request 發生錯誤');");
                 //jQuery_3_6_0(e.target).attr('disabled', false);
             },
             complete: function (xhr) {
-                if (document.getElementById("snap_shoot_finish").innerText === "3") {
+                console.log("alert('Ajax request complete');");
+                console.log(xhr);
+                //var newDoc = document.open("text/html", "replace");
+                //document.write(xhr.responseText);
+                //newDoc.close();
+                /*if (document.getElementById("snap_shoot_finish").innerText === "3") {
                     document.getElementById("snap_shoot_finish").innerText = "1";
-                }
+                }*/
+                var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
+                console.log(target_new_html);
+                jQuery_3_6_0.each(target_new_html, function (i, el) {
+                    //console.log(i);
+                    if (el.localName === "header") {
+                        //console.log(el);
+                        jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
+                            //console.log(ii);
+                            if (el1.id === "error_msg_gui_group") {
+                                console.log(el1.childNodes);
+                                jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
+                                    //console.log([el2.id,el2.innerText]);
+                                    if (el2.id && document.getElementById(el2.id)) {
+                                        document.getElementById(el2.id).innerText = el2.innerText;
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+                jQuery_3_6_0.each(target_new_html, function (i, el) {
+                    if (el.id === "disp_mod") {
+                        if (el.innerText === "-1") {
+                            document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
+                        }
+                    }
+                });
+                document.getElementById('error_msg_gui_init_msg_if_yes').click();
             },
         });
     });
