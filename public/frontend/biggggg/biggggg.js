@@ -288,7 +288,7 @@ $("#exit_button_3").click(function() {
     $('#upper_windows_3').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
     $("#exit_button_3").css("opacity", 0);
 });
-$.getJSON("medal.json", function(json) {
+$.getJSON("./frontend/biggggg/medal.json", function(json) {
     var tb = document.createElement("table")
     $(tb).attr("width", "100%")
     var tbBody = document.createElement("tbody")
