@@ -158,3 +158,8 @@ body {
 #cre_acc_log_fk_bton_inner_txt {
     margin-top: 1vh;
 }
+
+#login_button_txt_fix{
+    font-size:3.9vw;
+    margin-top:-6.8vw;
+}
