@@ -748,6 +748,7 @@ body {
 }
 
 #mission_block {
+    z-index: 4;
     position: absolute;
     margin: 5vh calc(var(--var_vw)*5) 10vh calc(var(--var_vw)*5);
     width: calc(100% - var(--var_vw)*10);
@@ -930,6 +931,7 @@ body {
 }
 
 #medal_table {
+    z-index: 4;
     overflow-y: scroll;
 }
 
