@@ -116,8 +116,32 @@ jQuery(function dom_ready(dom_ready_params) {
         jQuery_3_6_0("#gray_block").show().animate({ 'height': "18vh" }, 1000);
     });
     //The code below and the code above must maintain the current sequence
+    document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {
+        console.log(`document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {`);
+        if (document.getElementById("disp_mod").innerText === "0") {
+            document.getElementById("disp_mod").innerText = "1";
+            document.getElementById("login_button_txt_fix").innerText = "登入";
+            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建帳號";
+            document.getElementById("disp_mod").click();
+        } else if (document.getElementById("disp_mod").innerText === "1") {
+            jQuery_3_6_0("#gray_block").show().animate({ 'height': "30vh" }, 1000);
+            setTimeout(() => {
+                document.getElementById("login_button_txt_fix").innerText = "註冊";
+                document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "帳號登入";
+                document.getElementById("disp_mod").innerText = "0";
+                for (let index = 0; index < document.getElementsByClassName("disp_for_mod").length; index++) {
+                    const element = document.getElementsByClassName("disp_for_mod")[index];
+                    element.style.display = "block";
+                }
+                //jQuery_3_6_0("#gray_block").height("30vh");
+            }, 500);
+        } else {
+            console.error("This is a serious error, please contact the software developer!");
+        }
+    });
+    //The code below and the code above must maintain the current sequence
     if (document.getElementById("disp_mod").innerText === "-1") {
-        document.getElementById("disp_mod").click();
+        document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
     }
 });
 
@@ -132,29 +156,4 @@ document.getElementById("line_login").addEventListener("click", () => {
     document.getElementById("error_msg_gui_text_1").innerText = "此功能將於日後推出";
     document.getElementById("error_msg_gui_text_2").innerText = "敬請期待喔!";
     document.getElementById("error_msg_gui_group").click();
-});
-
-//css
-document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {
-    console.log(`document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {`);
-    if (document.getElementById("disp_mod").innerText === "0") {
-        document.getElementById("disp_mod").innerText = "1";
-        document.getElementById("login_button_txt_fix").innerText = "登入";
-        document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建帳號";
-        document.getElementById("disp_mod").click();
-    } else if (document.getElementById("disp_mod").innerText === "1") {
-        jQuery_3_6_0("#gray_block").show().animate({ 'height': "30vh" }, 1000);
-        setTimeout(() => {
-            document.getElementById("login_button_txt_fix").innerText = "註冊";
-            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "帳號登入";
-            document.getElementById("disp_mod").innerText = "0";
-            for (let index = 0; index < document.getElementsByClassName("disp_for_mod").length; index++) {
-                const element = document.getElementsByClassName("disp_for_mod")[index];
-                element.style.display = "block";
-            }
-            //jQuery_3_6_0("#gray_block").height("30vh");
-        }, 500);
-    } else {
-        console.error("This is a serious error, please contact the software developer!");
-    }
 });
