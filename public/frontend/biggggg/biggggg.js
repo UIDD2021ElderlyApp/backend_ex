@@ -274,6 +274,75 @@ $("#continuous_post").html('發文累積 ' + conti_post + ' 篇')
 $("#continuous_comment").html('留言累積 ' + conti_comment + ' 則')
 $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 
+/////////////////////////////////// medal.js ///////////////////
+$("#medal_button").click(function() {
+    $("#medal_html").show().css('z-index', "10")
+    var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
+    var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
+    $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $("#exit_button_3").animate({ "opacity": 1 }, 500);
+    });
+});
+$("#exit_button_3").click(function() {
+    $("#medal_html").css("display", "none");
+    $('#upper_windows_3').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
+    $("#exit_button_3").css("opacity", 0);
+});
+$.getJSON("./frontend/biggggg/medal.json", function(json) {
+    var tb = document.createElement("table")
+    $(tb).attr("width", "100%")
+    var tbBody = document.createElement("tbody")
+    for (var i = 0; i < 9; i++) {
+        var row = document.createElement("tr")
+        for (var j = 0; j < 4; j++) {
+            var cell = document.createElement("td");
+            var img = document.createElement("div")
+            $(img).addClass("medal_img")
+            var text = document.createElement("div")
+            $(text).addClass("medal_font")
+            if (i < 3) {
+                $(text).html(json.amount[i * 4 + j] + 'km')
+                if (json.amount[i * 4 + j] > conti_stroll) { // 未達成
+                    $(text).css("color", "#c9c9c9")
+                    $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                } else { // 達成
+                    $(img).css('background-image', 'url(' + json.img[i] + ')')
+                }
+            } else if (i < 5) {
+                $(text).html(json.amount[i * 4 + j] + '篇')
+                if (json.amount[i * 4 + j] > conti_post) {
+                    $(text).css("color", "#c9c9c9")
+                    $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                } else {
+                    $(img).css('background-image', 'url(' + json.img[i] + ')')
+                }
+            } else if (i < 7) {
+                $(text).html(json.amount[i * 4 + j] + '則')
+                if (json.amount[i * 4 + j] > conti_comment) {
+                    $(text).css("color", "#c9c9c9")
+                    $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                } else {
+                    $(img).css('background-image', 'url(' + json.img[i] + ')')
+                }
+            } else {
+                $(text).html(json.amount[i * 4 + j] + '等')
+                if (json.amount[i * 4 + j] > conti_level) {
+                    $(text).css("color", "#c9c9c9")
+                    $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                } else {
+                    $(img).css('background-image', 'url(' + json.img[i] + ')')
+                }
+            }
+            cell.append(img)
+            cell.append(text)
+            row.append(cell)
+        }
+        tbBody.append(row)
+    }
+    tb.append(tbBody)
+    $("#medal_table").append(tb)
+});
+
 ///////////////////// 共用 ///////////////////////
 $(".button").bind('touchstart', function() {
     $(this).animate({ 'opacity': 0.7 }, 100)

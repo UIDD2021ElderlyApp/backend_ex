@@ -165,7 +165,7 @@ body {
 
 /*****************************************/
 
-#medal_block {
+#home_medal_block {
     z-index: 5;
     position: absolute;
     width: calc(var(--var_vw)*18);
@@ -175,6 +175,7 @@ body {
 }
 
 #medal_button {
+    z-index: 6;
     position: relative;
     height: 5vh;
     width: 100%;
@@ -858,4 +859,123 @@ body {
     font-weight: bold;
     line-height: 5vh;
     text-align: left;
+}
+
+
+/***************************** medal *************************/
+
+#exit_button_3 {
+    z-index: 3;
+    position: absolute;
+    width: 6vh;
+    height: 6vh;
+    top: 1vh;
+    left: calc(var(--var_vw)*1);
+    background-color: white;
+    border-width: 0vh;
+    border-radius: 3.5vh;
+    box-shadow: rgb(150 150 150) -1px -1px 3px 2px;
+    padding: 0%;
+    /* init : */
+    opacity: 0;
+    content: url("image/exit_button.svg");
+}
+
+#upper_windows_3 {
+    z-index: 2;
+    position: absolute;
+    margin: 3vh 2vh;
+    border-radius: 3vh;
+    background-color: #fafaeb;
+    text-align: center;
+    /* init : */
+    left: 10%;
+    top: 13%;
+    width: calc(var(--var_vw)*70);
+    height: 70%;
+    zoom: 70%;
+}
+
+#windows_tree_3 {
+    z-index: 3;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 3vh;
+    content: url("image/windows_tree.svg");
+}
+
+#medal_block {
+    position: absolute;
+    margin: 5vh calc(var(--var_vw)*5) 10vh calc(var(--var_vw)*5);
+    width: calc(100% - var(--var_vw)*10);
+    height: calc(100% - 20vh);
+    display: flex;
+    flex-direction: column;
+}
+
+#medal_title {
+    position: relative;
+    width: 35%;
+    height: 4vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+    line-height: 4vh;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 1vh;
+    box-shadow: #727272 0.2vh 0.2vh;
+    padding: 0.5vh 0 0 0;
+    margin: 1.5vh 0%;
+}
+
+#medal_table {
+    overflow-y: scroll;
+}
+
+#medal_table::-webkit-scrollbar {
+    width: calc(var(--var_vw)*1);
+    background-color: transparent;
+}
+
+#medal_table::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+#medal_table::-webkit-scrollbar-thumb {
+    background-color: #73D0BE92;
+    border-radius: calc(var(--var_vw)*1);
+}
+
+#medal_table tr {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#medal_table td {
+    position: relative;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.medal_img {
+    z-index: 4;
+    position: relative;
+    width: 100%;
+    height: calc(var(--var_vw)*16);
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.medal_font {
+    z-index: 4;
+    position: relative;
+    width: 100%;
+    height: 4vh;
+    font-size: 2.5vh;
+    font-weight: bold;
+    line-height: 4vh;
+    text-align: center;
 }
