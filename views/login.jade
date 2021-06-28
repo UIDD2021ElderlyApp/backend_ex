@@ -7,7 +7,6 @@ block content_head
 
 block content_header
     #status
-    button#disp_mod(style="display:none;") #{ do_you_want_to_log_in_or_register }
     //button#test_err_msg test_err_msg
     button#logout log_out
     a#passworddriventimeoriented(style="display:none;") #{ successes }
@@ -75,6 +74,8 @@ block content_body
         input.form-control(name='profileimage', type='file')
         .form-group
         input.btn.btn-primary(type='submit', name='submit', value='Register')
+    //Don’t put the lower line in the header, it’s better to put it at the end of the body block
+    button#disp_mod(style="display:none;") #{ do_you_want_to_log_in_or_register }
 
 block content_footer
     script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js')

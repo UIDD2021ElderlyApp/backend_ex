@@ -85,7 +85,7 @@ function login_button_click() {
             });
         }
     } else {
-
+        document.getElementById('add_an_user2').click();
     }
 }
 
@@ -261,12 +261,34 @@ function reg_to_backend(pic_base64) {
     var form = jQuery_3_6_0('form')[0]; // You need to use standard javascript object here
     var formData = new FormData(form);
 
+    ///////////////////////copy/////////////////////////////
+    var inputs = document.getElementsByTagName("input");
+    var usrn = "";
+    var acct = "";
+    var pasw = "";
+    var pasc = "";
+    for (let inputs_index = 0; inputs_index < inputs.length; inputs_index++) {
+        const inputs_element = inputs[inputs_index];
+        if (String(inputs_element.type) === "text") {
+            if (String(inputs_element.name) === "user_name") {
+                usrn = inputs_element.value;
+            } else if (String(inputs_element.name) === "account") {
+                acct = inputs_element.value;
+            } else if (String(inputs_element.name) === "password") {
+                pasw = inputs_element.value;
+            } else if (String(inputs_element.name) === "password_confirm") {
+                pasc = inputs_element.value;
+            }
+        }
+    }
+    ///////////////////////copy/////////////////////////////
+
     formData.append('profileimage', blob_tmp);
-    formData.append('name', "name");
-    formData.append('email', "email@email.com");
-    formData.append('username', Date.now().toString());
-    formData.append('password', "psw");
-    formData.append('password2', "psw");
+    formData.append('name', usrn);
+    formData.append('email', "no_email@email.com");
+    formData.append('username', acct);
+    formData.append('password', pasw);
+    formData.append('password2', pasc);
     /*name: "name",
         password: pasw,
         email: "email@email.com",
