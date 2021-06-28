@@ -110,10 +110,7 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
 
 
     if (!empty(error_msg_res)) {
-
-        res.render('build', {
-            errors: error_msg_res
-        });
+        res.status(406).send(error_msg_res);
     } else {
         var newImg = new Img({
             time: Date.now().toString(),
