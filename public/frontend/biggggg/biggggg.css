@@ -165,7 +165,7 @@ body {
 
 /*****************************************/
 
-#medal_block {
+#home_medal_block {
     z-index: 5;
     position: absolute;
     width: calc(var(--var_vw)*18);
