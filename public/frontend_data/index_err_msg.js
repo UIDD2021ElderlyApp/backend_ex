@@ -2,10 +2,12 @@ jQuery_3_6_0(function () {
     init_err_msg();
 });
 function init_err_msg() {
-    document.getElementById('error_msg_gui_group').addEventListener('click', show_err_msg);
+    console.log("!!!!!!!!!!!!!!!!");
+    document.getElementById('error_msg_gui_start').addEventListener('click', show_err_msg);
     document.getElementById('error_msg_gui_close').addEventListener('click', disp_err_msg);
-    if (document.getElementById('error_msg_gui_group').innerText === "1") {
-        document.getElementById('error_msg_gui_group').click();
+    if (document.getElementById('error_msg_gui_start').innerText === "yes") {
+        console.log("???????????????????");
+        document.getElementById('error_msg_gui_start').click();
     }
 }
 
@@ -19,10 +21,13 @@ function show_err_msg(params) {
     var pic2 = document.createElement("img");
     txt_copy.id = "choose_text_copy";
     txt_copy.classList.add("show_err_msg_gen");
+    txt_copy.classList.add("word_break_break_all");
     txt_copy.innerText = document.getElementById('error_msg_gui_text_1').innerText;
     var obj_p_txt = document.createElement("p");
     obj_p_txt.innerText = document.getElementById('error_msg_gui_text_2').innerText;
     obj_p_txt.style.color = document.getElementById('error_msg_gui_word_part_color_2').innerText;
+    obj_p_txt.classList.add("show_err_msg_gen");
+    obj_p_txt.classList.add("word_break_break_all");
     txt_copy.appendChild(obj_p_txt);
     txt_copy.style.color = document.getElementById('error_msg_gui_word_part_color_1').innerText;
     exit_bton_copy.id = "exit_button_copy";

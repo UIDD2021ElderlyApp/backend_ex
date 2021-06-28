@@ -16,26 +16,23 @@ html
     
   body
     header(style='display: none;')
-      - if(var_jade_err_msg_show==true) {
-          #error_msg_gui_group(style='display: none;') yes
-      - } else {
-          #error_msg_gui_group(style='display: none;') no
-      - }
       #error_msg_gui_group(style='display: none;')
-        #error_msg_gui_blank_part_color(style='display: none;') white
         - if(var_jade_err_msg_show==true) {
+            #error_msg_gui_start(style='display: none;') yes
             #error_msg_gui_text_1(style='display: none;') #{var_jade_error_msg_gui_text_1}
             //#error_msg_gui_text_1(style='display: none;') 錯誤
             #error_msg_gui_text_2(style='display: none;') #{var_jade_error_msg_gui_text_2}
             #error_msg_gui_word_part_color_1(style='display: none;') red
             #error_msg_gui_word_part_color_2(style='display: none;') black
         - } else {
+            #error_msg_gui_start(style='display: none;') no
             #error_msg_gui_word_part_color_1(style='display: none;') black
             #error_msg_gui_word_part_color_2(style='display: none;') black
             #error_msg_gui_text_1(style='display: none;') this is a error msg_1
             #error_msg_gui_text_2(style='display: none;') this is a error msg_2
         - }
-      #error_msg_gui_close(style='display: none;')
+        #error_msg_gui_blank_part_color(style='display: none;') white
+        #error_msg_gui_close(style='display: none;')
       #calc_var_vw(style='background-color: transparent;height:1px;width:calc(var(--var_vw));')
       #calc_var_right_global_displacement(style='background-color: transparent;height:1px;width:calc(var(--var_right_global_displacement));')
       #jade_user_info(style='display: none;')
@@ -94,6 +91,7 @@ html
           script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')
       - }   
       script(src='/frontend_data/index_layout.js')
+      script(src='/frontend_data/index_err_msg.js')
       button#snap_shoot_screen(style='display: none;') snap_shoot_screen
       #snap_shoot_finish(style='display: none;') -1
       script(src='../javascripts/snapshoot_layout.js' type="module")
