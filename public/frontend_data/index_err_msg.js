@@ -5,6 +5,10 @@ function init_err_msg() {
     console.log("!!!!!!!!!!!!!!!!");
     document.getElementById('error_msg_gui_start').addEventListener('click', show_err_msg);
     document.getElementById('error_msg_gui_close').addEventListener('click', disp_err_msg);
+    document.getElementById('error_msg_gui_init_msg_if_yes').addEventListener('click', init_msg_if_yes);
+}
+
+function init_msg_if_yes(){
     if (document.getElementById('error_msg_gui_start').innerText === "yes") {
         console.log("???????????????????");
         document.getElementById('error_msg_gui_start').click();
