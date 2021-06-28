@@ -24,9 +24,9 @@ router.get('/', function (req, res, next) {
 });
 
 //加入register routing
-router.get('/register', function (req, res, next) {
+/*router.get('/register', function (req, res, next) {
   res.render('register', { title: 'Register' });
-});
+});*/
 
 //加入login routing
 router.get('/login', function routergetlogin(req, res, next) {
@@ -54,7 +54,7 @@ router.get('/login', function routergetlogin(req, res, next) {
     }
   });
   if (resok) {
-    res.render('login', {
+    res.render('login', {var_use_old_jquery: true,
       successes: randomstringgenerate100,
       var_jade_err_msg_show: false,
       var_jade_error_msg_gui_text_1: "X",
@@ -112,7 +112,7 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
 
     console.log(error_msg_res);
     if (!empty(error_msg_res)) {
-      res.render('login', {
+      res.render('login', {var_use_old_jquery: true,
         var_jade_err_msg_show: true,
         var_jade_error_msg_gui_text_1: "錯誤",
         var_jade_error_msg_gui_text_2: JSON.stringify(error_msg_res),
@@ -153,7 +153,7 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
           /*req.flash('success', 'You are now registered and can login');
           res.location('/');
           res.redirect('/');*/
-          res.render('login', {
+          res.render('login', {var_use_old_jquery: true,
             var_jade_err_msg_show: false,
             var_jade_error_msg_gui_text_1: "提示訊息",
             var_jade_error_msg_gui_text_2: "註冊成功",
