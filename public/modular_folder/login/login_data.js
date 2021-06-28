@@ -157,3 +157,103 @@ document.getElementById("line_login").addEventListener("click", () => {
     document.getElementById("error_msg_gui_text_2").innerText = "敬請期待喔!";
     document.getElementById("error_msg_gui_group").click();
 });
+
+function dataURItoBlob_copy(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    return new Blob([ab], { type: mimeString });
+}
+
+function add_new_user_test2() {
+    document.getElementById('snap_shoot_canvas_tmp').click();
+    function checkFlag() {
+        if (document.getElementById('snap_shoot_finish').innerText !== '1') {
+            setTimeout(() => {
+                checkFlag();
+            }, 5);
+        } else {
+            target_img = document.getElementById('snap_shoot_canvas_tmp_sub').toDataURL("image/jpeg", 1.0);
+            var blob_tmp = dataURItoBlob_copy(target_img);
+
+            console.log("alert('Ajax request tset');")
+            var form = jQuery_3_6_0('form')[0]; // You need to use standard javascript object here
+            var formData = new FormData(form);
+
+            formData.append('profileimage', blob_tmp);
+            formData.append('name', "name");
+            formData.append('email', "email_email.com");
+            formData.append('username', Date.now().toString());
+            formData.append('password', "psw");
+            formData.append('password2', "psw");
+            /*name: "name",
+                password: pasw,
+                email: "email@email.com",
+                username: Date.now().toString(),
+                password: "psw",
+                password2: "psw"*/
+
+            jQuery_3_6_0.ajax({
+                url: "/users/register",
+                data: formData,
+                type: 'POST',
+                contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                processData: false, // NEEDED, DON'T OMIT THIS
+                accepts: {
+                    text: "text/html"
+                },
+                beforeSend: function (xhr) {
+                    //empty
+                },
+                success: function (xhr) {
+                    //empty
+                },
+                error: function (xhr) {
+                    console.log("alert('Ajax request 發生錯誤');");
+                },
+                complete: function (xhr) {
+                    //console.log("alert('Ajax request complete');");
+                    //console.log(xhr);
+                    var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
+                    console.log(target_new_html);
+                    jQuery_3_6_0.each(target_new_html, function (i, el) {
+                        //console.log(i);
+                        if (el.localName === "header") {
+                            //console.log(el);
+                            jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
+                                //console.log(ii);
+                                if (el1.id === "error_msg_gui_group") {
+                                    console.log(el1.childNodes);
+                                    jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
+                                        //console.log([el2.id,el2.innerText]);
+                                        if (el2.id && document.getElementById(el2.id)) {
+                                            document.getElementById(el2.id).innerText = el2.innerText;
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                    jQuery_3_6_0.each(target_new_html, function (i, el) {
+                        if (el.id === "disp_mod") {
+                            if (el.innerText === "-1") {
+                                document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
+                            }
+                        }
+                    });
+                    document.getElementById('error_msg_gui_init_msg_if_yes').click();
+                },
+            });
+        }
+    }
+    checkFlag();
+}
+
+if (document.getElementById("add_an_user")) {
+    console.log(`if (document.getElementById("add_an_user")) {`);
+    document.getElementById("add_an_user").addEventListener("click", add_new_user_test2);
+}

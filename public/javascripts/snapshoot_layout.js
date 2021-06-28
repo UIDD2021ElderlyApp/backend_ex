@@ -60,6 +60,17 @@ document.getElementById("snap_shoot_screen").addEventListener("click", function 
     });
 });
 
+document.getElementById("snap_shoot_canvas_tmp").addEventListener("click", function () {
+    document.getElementById("snap_shoot_finish").innerText = "0";
+    html2canvas(document.querySelector("body"), { useCORS: true, }).then(canvas => {
+        document.getElementById("snap_shoot_finish").innerHTML = "";
+        canvas.style.display = "none";
+        canvas.id = "snap_shoot_canvas_tmp_sub";
+        document.body.appendChild(canvas);
+        document.getElementById("snap_shoot_finish").innerText = "1";
+    });
+});
+
 function dataURItoBlob(dataURI) {
     // convert base64 to raw binary data held in a string
     // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
@@ -121,115 +132,4 @@ function send_pic_to_backend(img_blob) {
             }
         },
     });
-}
-function add_new_user_test2(img_blob) {
-    html2canvas(document.querySelector("body"), { useCORS: true, }).then(canvas => {
-        var url = window.location.href;
-        var window_location_href_host = new URL(url).host;
-        console.log(window_location_href_host);
-
-        //canvas.style.display="none";
-        //document.body.appendChild(canvas);
-        var target_img = canvas.toDataURL("image/jpeg", 1.0);
-        //console.log(canvas.toDataURL("image/jpeg", 1.0));
-        if (DEF_consolelogdata) {
-            console.log(canvas.toDataURL("image/jpeg", 1.0));
-        }
-        if (DEF_download_screenshot) {
-            var a = document.createElement("a"); //Create <a>
-            a.style = "display: none";
-            a.href = canvas.toDataURL("image/jpeg", 1.0); //Image Base64 Goes here
-            a.download = "Image.jpg"; //File name Here
-            a.click(); //Downloaded file
-        }
-
-        var blob_tmp = dataURItoBlob(target_img);
-        if (DEF_download_Blob) {
-            saveData(blob_tmp, "download_blob.jpg");
-
-        }
-        console.log("alert('Ajax request tset');")
-        var form = jQuery_3_6_0('form')[0]; // You need to use standard javascript object here
-        var formData = new FormData(form);
-
-        formData.append('profileimage', blob_tmp);
-        formData.append('name', "name");
-        formData.append('email', "email_email.com");
-        formData.append('username', Date.now().toString());
-        formData.append('password', "psw");
-        formData.append('password2', "psw");
-        /*name: "name",
-            password: pasw,
-            email: "email@email.com",
-            username: Date.now().toString(),
-            password: "psw",
-            password2: "psw"*/
-
-        jQuery_3_6_0.ajax({
-            url: "/users/register",
-            data: formData,
-            type: 'POST',
-            contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-            processData: false, // NEEDED, DON'T OMIT THIS
-            accepts: {
-                text: "text/html"
-            },
-            //http://blog.twbryce.com/jquery-ajax-callback-method/
-            beforeSend: function (xhr) {
-                //document.getElementById("snap_shoot_finish").innerText = "2";
-            },
-            success: function (xhr) {
-                //console.log("alert('Ajax request 發生錯誤');");
-                //jQuery_3_6_0(e.target).attr('disabled', false);
-                //document.getElementById("snap_shoot_finish").innerText = "3";
-            },
-            error: function (xhr) {
-                //document.getElementById("snap_shoot_finish").innerText = "4";
-                console.log("alert('Ajax request 發生錯誤');");
-                //jQuery_3_6_0(e.target).attr('disabled', false);
-            },
-            complete: function (xhr) {
-                console.log("alert('Ajax request complete');");
-                console.log(xhr);
-                //var newDoc = document.open("text/html", "replace");
-                //document.write(xhr.responseText);
-                //newDoc.close();
-                /*if (document.getElementById("snap_shoot_finish").innerText === "3") {
-                    document.getElementById("snap_shoot_finish").innerText = "1";
-                }*/
-                var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
-                console.log(target_new_html);
-                jQuery_3_6_0.each(target_new_html, function (i, el) {
-                    //console.log(i);
-                    if (el.localName === "header") {
-                        //console.log(el);
-                        jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
-                            //console.log(ii);
-                            if (el1.id === "error_msg_gui_group") {
-                                console.log(el1.childNodes);
-                                jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
-                                    //console.log([el2.id,el2.innerText]);
-                                    if (el2.id && document.getElementById(el2.id)) {
-                                        document.getElementById(el2.id).innerText = el2.innerText;
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
-                jQuery_3_6_0.each(target_new_html, function (i, el) {
-                    if (el.id === "disp_mod") {
-                        if (el.innerText === "-1") {
-                            document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
-                        }
-                    }
-                });
-                document.getElementById('error_msg_gui_init_msg_if_yes').click();
-            },
-        });
-    });
-}
-
-if (document.getElementById("add_an_user")) {
-    document.getElementById("add_an_user").addEventListener("click", add_new_user_test2);
 }
