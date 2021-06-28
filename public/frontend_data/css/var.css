@@ -92,3 +92,8 @@
     top: 25%;
     text-shadow: white calc(var(--var_vw)*1/3) calc(var(--var_vw)*1/3) calc(var(--var_vw)*1*2/3);
 }
+
+.word_break_break_all{
+    word-break: break-all;
+    width: calc(var(--var_vw)*100);
+}
