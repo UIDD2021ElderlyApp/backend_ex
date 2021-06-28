@@ -247,7 +247,10 @@ function get3post(isscroll) {
             if (DEF_fuckthephotos) {
                 for (let index_fuckthephotos = 0; index_fuckthephotos < document.getElementsByClassName("poster_photo").length; index_fuckthephotos++) {
                     const element = document.getElementsByClassName("poster_photo")[index_fuckthephotos];
-                    element.innerHTML = `<img src=\"${document.getElementById('jade_user_info_profileimage').innerText}\">`;
+                    var img_obj_usr_prf=document.createElement("img");
+                    img_obj_usr_prf.src=document.getElementById('jade_user_info_profileimage').innerText;
+                    element.appendChild(img_obj_usr_prf);
+                    //element.innerHTML = `<img src=\"${document.getElementById('jade_user_info_profileimage').innerText}\">`;
                 } for (let index_fuckthephotos = 0; index_fuckthephotos < document.getElementsByClassName("post_photo").length; index_fuckthephotos++) {
                     const element = document.getElementsByClassName("post_photo")[index_fuckthephotos];
                     element.innerHTML = "<img src=\"../modular_folder/tspoop/image/test2.svg\">";
