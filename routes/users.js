@@ -53,7 +53,14 @@ router.get('/login', function routergetlogin(req, res, next) {
       routergetlogin(req, res, next);
     }
   });
-  if (resok) { res.render('login', { successes: randomstringgenerate100 }); }
+  if (resok) {
+    res.render('login', {
+      successes: randomstringgenerate100,
+      var_jade_err_msg_show: false,
+      var_jade_error_msg_gui_text_1: "X",
+      var_jade_error_msg_gui_text_2: "X"
+    });
+  }
 });
 
 //POST request to register
