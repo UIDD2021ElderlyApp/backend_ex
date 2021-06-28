@@ -154,10 +154,10 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
           res.location('/');
           res.redirect('/');*/
           res.render('login', {
-            var_jade_err_msg_show: true,
+            var_jade_err_msg_show: false,
             var_jade_error_msg_gui_text_1: "提示訊息",
             var_jade_error_msg_gui_text_2: "註冊成功",
-            do_you_want_to_log_in_or_register: "1"
+            do_you_want_to_log_in_or_register: "-1"
           });
         })
         .catch(err => { throw err; });
