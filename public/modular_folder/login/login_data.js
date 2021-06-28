@@ -6,9 +6,18 @@ var GLOBAL_url = "/users/login";
 
 document.getElementById('upload_img_using_logo').addEventListener('click', function () {
     console.log('upload via logo');
+    document.getElementById('fileinput').click();
 });
 
 function login_button_click() {
+    function play() {
+        document.getElementById("window_clearInterval_timeoutID").innerText = setInterval(function () {
+            jQuery_3_6_0("#login_button").animate({ 'opacity': 0.5 }, 450, function () {
+                jQuery_3_6_0("#login_button").animate({ 'opacity': 1 }, 450)
+            })
+        }, 450);
+    }
+    play();
     if (document.getElementById('disp_mod').innerText === "1") {//login
         var is_this_a_login_Q = true;
         var inputs = document.getElementsByTagName("input");
@@ -22,7 +31,7 @@ function login_button_click() {
                 console.log(inputs_element.type);
                 console.log(inputs_element.name);
             }
-            if (String(inputs_element.type) === "text") {
+            if (String(inputs_element.type) === "text" || String(inputs_element.type) === "password") {
                 if (String(inputs_element.name) === "user_name") {
                     usrn = inputs_element.value;
                     if (DEF_DEBUG) {
@@ -269,7 +278,7 @@ function reg_to_backend(pic_base64) {
     var pasc = "";
     for (let inputs_index = 0; inputs_index < inputs.length; inputs_index++) {
         const inputs_element = inputs[inputs_index];
-        if (String(inputs_element.type) === "text") {
+        if (String(inputs_element.type) === "text" || String(inputs_element.type) === "password") {
             if (String(inputs_element.name) === "user_name") {
                 usrn = inputs_element.value;
             } else if (String(inputs_element.name) === "account") {
@@ -344,6 +353,9 @@ function reg_to_backend(pic_base64) {
                     }
                 }
             });
+            if(document.getElementById("window_clearInterval_timeoutID").innerText){
+                clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
+            }
             document.getElementById('error_msg_gui_init_msg_if_yes').click();
         },
     });

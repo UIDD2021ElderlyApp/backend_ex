@@ -6,10 +6,17 @@ block content_head
     link(href='../modular_folder/login/login.css' rel='stylesheet' type='text/css')
 
 block content_header
-    #status
+    #status(style="display:none;")
     //button#test_err_msg test_err_msg
-    button#logout log_out
+    button#logout(style="display:none;") log_out
     a#passworddriventimeoriented(style="display:none;") #{ successes }
+    button#add_an_user(style="display:none;") add_an_user
+    button#add_an_user2(style="display:none;") add_an_user2
+    input#fileinput(type='file' style="display:none;")
+    input#btnLoad(type='button' value='Load' onclick='handleFileSelect();' style="display:none;")
+    #editor(style="display:none;")
+    #editor_base64_fin(style="display:none;") -1
+    #window_clearInterval_timeoutID
 
 block content_body
     #loading_logo
@@ -20,16 +27,16 @@ block content_body
       #gray_block
         .login_bar.disp_for_mod
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='user_name' placeholder='名稱' onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'")
+          input.input_type_text(type='text' name='user_name' placeholder='名稱' onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'")
         .login_bar
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='account' placeholder='帳號' onfocus="this.placeholder = ''" onblur="this.placeholder = '帳號'")
+          input.input_type_text(type='text' name='account' placeholder='帳號' onfocus="this.placeholder = ''" onblur="this.placeholder = '帳號'")
         .login_bar
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='password' placeholder='密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'")
+          input.input_type_text(type='password' name='password' placeholder='密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'")
         .login_bar.disp_for_mod
           img(src='../modular_folder/login/image/login_bar.svg')
-          input(type='text' name='password_confirm' placeholder='再輸入一次密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'")
+          input.input_type_text(type='password' name='password_confirm' placeholder='再輸入一次密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'")
         .login_bar
           // value=""
           button#login_button
@@ -46,12 +53,6 @@ block content_body
     //form(method='post', action='/timedoutdoorlock/verifythefirstnumber')
     //,style="display:none;"
     //input.btn.btn-primary(type='submit', name='submit', value='thisisavaluebutitseemstobeignored')
-    button#add_an_user add_an_user
-    button#add_an_user2 add_an_user2
-    input#fileinput(type='file')
-    input#btnLoad(type='button' value='Load' onclick='handleFileSelect();')
-    #editor
-    #editor_base64_fin -1
     //Repealed
       form(method='post', action='/users/register', enctype='multipart/form-data')
         .form-group
