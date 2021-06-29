@@ -51,6 +51,70 @@ passport.use(new FacebookStrategy({
     }
 ));
 
+//line login------------------------------------------------------------------------------------------
+var sharp = require('sharp')
+
+let rawdata_line = fsModule.readFileSync('./Variouskeys/line_Ery-z.json');
+let student_line = JSON.parse(rawdata_line);
+console.log(student_line);
+
+const LineStrategy = require('passport-line-auth').Strategy;
+const jwt = require('jsonwebtoken');
+
+passport.use(new LineStrategy({
+    channelID: student_line.client_id,
+    channelSecret: student_line.secret,
+    callbackURL: "https://luffy.ee.ncku.edu.tw:" + tmp_port_json.port_https + "/auth/line/callback",
+    scope: ['profile', 'openid', 'email'],
+    botPrompt: 'normal'
+},
+    function (accessToken, refreshToken, params, profile, cb) {
+        const { email } = jwt.decode(params.id_token);
+        profile.email = email;
+        console.log(profile);
+        var url_to_download_profileimage = (profile.pictureUrl) ? profile.pictureUrl || "https://luffy.ee.ncku.edu.tw:" + tmp_port_json.port_https + DEF_default_img : "https://luffy.ee.ncku.edu.tw:" + tmp_port_json.port_https + DEF_default_img;
+        request.get(url_to_download_profileimage, function (error, response, body) {
+            if (error) {
+                console.error(error);
+            }
+            if (!error && response.statusCode == 200) {
+
+                const img = Buffer.from(body);
+                const image = sharp(img);
+                image
+                  .metadata()
+                  .then(metadata => {
+                    return image
+                      .resize({
+                        width: 50,
+                        height: 50,
+                        fit: sharp.fit.cover,
+                      })
+                      .toBuffer();
+                  })
+                  .then(data => {
+                    profileimage = "data:image/jpeg;base64," + data.toString('base64');
+
+                    var newUser = new User({
+                        name: profile.displayName || "empty!",
+                        email: (profile.email) ? profile.email || "empty!" : profile.provider || "empty!",
+                        username: profile.id || "empty!",
+                        password: "password" || "empty!",
+                        profileimage: profileimage
+                    });
+                    User.findOrCreate(newUser, function (err, user) {
+                        if (err) { return done(err); }
+                        return cb(null, user);
+                    });
+
+                  })
+                  .catch(err => { throw err; });
+
+            }
+        });
+    })
+);
+
 passport.serializeUser(function (user, cb) {
     cb(null, user);
 });

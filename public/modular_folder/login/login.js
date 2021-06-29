@@ -22,4 +22,9 @@ jQuery(function dom_ready(dom_ready_params) {
         var newstr = window.location.href.replace(re, "/auth/facebook");
         window.location.href = newstr;
     });
+    $("#line_login").click(function() {
+        var re = /\/users\/login/gi;
+        var newstr = window.location.href.replace(re, "/auth/line");
+        window.location.href = newstr;
+    });
 });

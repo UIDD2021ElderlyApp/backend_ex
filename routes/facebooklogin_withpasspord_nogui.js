@@ -13,4 +13,12 @@ router.get('/facebook/callback',
         failureRedirect: '/users/login'
     }));
 
+router.get('/line', passport.authenticate('line'/*, { scope: ['profileUrl', 'emails' ] }*/));
+
+router.get('/line/callback',
+    passport.authenticate('line', {
+        successRedirect: '/main',
+        failureRedirect: '/users/login'
+    }));
+
 module.exports = router;
