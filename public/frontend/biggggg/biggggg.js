@@ -325,47 +325,7 @@ $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 $("#medal_button").click(function () {
     if (window_open == 0) {
         window_open = 1
-        ary_0 = 0;
-        a_count_1 = 0;
-        a_count_2 = 0;
-        a_count_3 = 0;
-        a_count_4 = 0;
-        jQuery_3_6_0.get("/app/medal/getWalk", {
-            //empty
-        }, (res) => {
-            console.log(typeof res);
-            console.log(res);
-            ary_0 = ary_0 + 1;
-            ary_1 = res.progress;
-            console.log(res.progress);
-        });
-        jQuery_3_6_0.get("/app/medal/getPost", {
-            //empty
-        }, (res) => {
-            console.log(typeof res);
-            console.log(res.progress);
-            console.log(res);
-            ary_0 = ary_0 + 1;
-            ary_2 = res.progress;
-        });
-        jQuery_3_6_0.get("/app/medal/getMessage", {
-            //empty
-        }, (res) => {
-            console.log(typeof res);
-            console.log(res.progress);
-            console.log(res);
-            ary_0 = ary_0 + 1;
-            ary_3 = res.progress;
-        });
-        jQuery_3_6_0.get("/app/medal/getLevel", {
-            //empty
-        }, (res) => {
-            console.log(typeof res);
-            console.log(res.progress);
-            console.log(res);
-            ary_0 = ary_0 + 1;
-            ary_4 = res.progress;
-        });
+
         $("#medal_html").show().css('z-index', "10")
         var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
         var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
@@ -373,21 +333,7 @@ $("#medal_button").click(function () {
             $("#exit_button_3").animate({ "opacity": 1 }, 500);
         });
 
-        function checkFlag() {
-            if (ary_0 !== 4) {
-                setTimeout(() => {
-                    checkFlag();
-                }, 5);
-            } else {
-                console.log(ary_1);
-                console.log(ary_2);
-                console.log(ary_3);
-                console.log(ary_4);
-                med_trig(true);
-            }
-        }
-        checkFlag();
-
+        med_trig(true);
     }
 });
 $("#exit_button_3").click(function () {
@@ -399,6 +345,10 @@ $("#exit_button_3").click(function () {
 
 
 function med_trig(cancel_the_preset_logic) {
+    a_count_1 = 0;
+    a_count_2 = 0;
+    a_count_3 = 0;
+    a_count_4 = 0;
     $.getJSON("./frontend/biggggg/medal.json", function (json) {
         document.getElementById('medal_table').innerHTML = "";
         var tb = document.createElement("table")
@@ -422,7 +372,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_1[a_count_1]) { // 未達成
+                        if (!ary_1_tmp[a_count_1]) { // 未達成
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else { // 達成
@@ -440,7 +390,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_2[a_count_2]) {
+                        if (!ary_2_tmp[a_count_2]) {
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else {
@@ -458,7 +408,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_3[a_count_3]) {
+                        if (!ary_3_tmp[a_count_3]) {
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else {
@@ -476,7 +426,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_4[a_count_4]) {
+                        if (!ary_4_tmp[a_count_4]) {
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else {
@@ -617,7 +567,25 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                 if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.picture);
                 if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.stroll);/*exp_data_cur.wake = res.wake; exp_data_cur.sleep = res.sleep;
             exp_data_cur.picture = res.picture; exp_data_cur.stroll = res.stroll;*/
+                // console.log(exp_data_cur);
                 if (DEBUG_DATA_SHOW) console.log(exp_data_cur);
+
+                document.getElementById("obj_data_container").innerText = JSON.stringify({
+                    ary_1_tmp: ary_1,
+                    ary_2_tmp: ary_2,
+                    ary_3_tmp: ary_3,
+                    ary_4_tmp: ary_4,
+                    goal_data_1_tmp: goal_data_1,
+                    goal_data_2_tmp: goal_data_2,
+                    goal_data_3_tmp: goal_data_3,
+                    goal_data_4_tmp: goal_data_4,
+                    mis1_data_tmp_wake: mis1_data_cur.wake,
+                    mis1_data_tmp_sleep: mis1_data_cur.sleep,
+                    mis1_data_tmp_picture: mis1_data_cur.picture,
+                    mis1_data_tmp_stroll: mis1_data_cur.stroll,
+                    exp_data_tmp: exp_data_cur
+                });
+
                 if (ary_1 !== ary_1_tmp || ary_2 !== ary_2_tmp || ary_3 !== ary_3_tmp || ary_4 !== ary_4_tmp ||
                     /*goal_data_1 !== goal_data_1_tmp || goal_data_2 !== goal_data_2_tmp || goal_data_3 !== goal_data_3_tmp || goal_data_4 !== goal_data_4_tmp ||*/
                     mis1_data_cur.wake !== mis1_data_tmp.wake || mis1_data_cur.sleep !== mis1_data_tmp.sleep ||
@@ -707,11 +675,13 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
 }
 
 function always_at_exit_bton_of_miss_page_clicked(callback) {
+    exp_data_tmp=JSON.parse(document.getElementById("obj_data_container").innerText).exp_data_tmp;
     mis1_data_tmp.wake = mis1_data_cur.wake;
     mis1_data_tmp.sleep = mis1_data_cur.sleep;
     mis1_data_tmp.picture = mis1_data_cur.picture;
     mis1_data_tmp.stroll = mis1_data_cur.stroll;
-    exp_data_tmp = exp_data;
+    //exp_data_tmp = exp_data;
+    //console.log(exp_data);
     goal_data_1_tmp = goal_data_1; goal_data_2_tmp = goal_data_2; goal_data_3_tmp = goal_data_3; goal_data_4_tmp = goal_data_4;
     for (let index = 0; index < ary_1.length; index++) {
         ary_1_tmp[index] = ary_1[index];
@@ -722,6 +692,8 @@ function always_at_exit_bton_of_miss_page_clicked(callback) {
     } for (let index = 0; index < ary_4.length; index++) {
         ary_4_tmp[index] = ary_4[index];
     }
+    console.log(String(jQuery_3_6_0("#level_value").width));
+    console.log(exp_data_tmp);
     if (document.getElementById("expbar_if_const_set") === "0") {
         document.getElementById("expbar_if_const_set") = "1";
         document.getElementById("expbar_const") = String(jQuery_3_6_0("#level_value").width);
@@ -729,7 +701,7 @@ function always_at_exit_bton_of_miss_page_clicked(callback) {
     } else {
         jQuery_3_6_0("#level_value").width = parseInt(document.getElementById("expbar_const")) * exp_data_tmp;
     }
-
+    med_trig(true);
 
     //The code below must be placed at the bottom of this function
     // 如果 callback 是個函式就呼叫它
