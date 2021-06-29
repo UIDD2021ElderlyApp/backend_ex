@@ -41,16 +41,16 @@ if ($("#animal_name").width() > window_width * 0.16) {
     }
     $("#animal_name").append('...')
 }
-$("#house").bind('touchstart', function() {
+$("#house").bind('touchstart', function () {
     $(this).css('transform', "scale(1.1)")
 })
-$("#house").bind('touchend', function() {
+$("#house").bind('touchend', function () {
     $(this).css('transform', "scale(1)")
 })
 var sleep = (document.getElementById("onsleep_stat")) ? (document.getElementById("onsleep_stat").innerText === "yes") ? true : false : false;
-$("#house").click(function() {
+$("#house").click(function () {
     if (!sleep) {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             $("#animal").css("display", "none");
             switch (animal) {
                 case 1:
@@ -68,7 +68,7 @@ $("#house").click(function() {
         })
         sleep = true
     } else {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             if (animal == 2) {
                 $("#tree").css("left", "25%")
                 $("#coconut").css("left", "25%")
@@ -87,7 +87,7 @@ $("#house").click(function() {
 
 ////////////////////////////// post.js //////////////////////
 
-$("#social").click(function() {
+$("#social").click(function () {
     function checkFlag() {
         if (document.getElementById('snap_shoot_social_page_clean_html_stat').innerText !== '1') {
             setTimeout(() => {
@@ -100,7 +100,7 @@ $("#social").click(function() {
                 $.mobile.loading().hide(); // hide default "loading"
                 var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
                 var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-                $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+                $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
                     $("#exit_button").animate({ "opacity": 1 }, 500);
                     document.getElementById('social_page_stat').innerText = 1;
                 });
@@ -109,7 +109,7 @@ $("#social").click(function() {
     }
     checkFlag();
 });
-$("#exit_button").click(function() {
+$("#exit_button").click(function () {
     window_open = 0
     $("#post_html").css("display", "none")
     $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" })
@@ -117,26 +117,26 @@ $("#exit_button").click(function() {
 
 });
 
-$('#new_post_text').focus(function() {
+$('#new_post_text').focus(function () {
     if (document.getElementById("app_PostTmp_get_poop_img_sel_tmmp").innerText) {
         document.getElementById("add_photo").classList.add("glow");
     }
-    $("#new_post").animate({ 'height': '30%' }, 600, function() {
+    $("#new_post").animate({ 'height': '30%' }, 600, function () {
         $("#new_post_button_block").show().animate({ 'opacity': 1 }, 2000);
         $("#new_post_button_block #new_post_button").show().animate({ 'opacity': 1 }, 2000);
-        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function() {
+        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function () {
             document.getElementById('new_post_button_on_loaded_stat').innerText = '1';
-            $(".button").bind('touchstart', function() {
+            $(".button").bind('touchstart', function () {
                 $(this).animate({ 'opacity': 0.5 }, 100)
             })
-            $(".button").bind('touchend', function() {
+            $(".button").bind('touchend', function () {
                 $(this).animate({ 'opacity': 1 }, 100)
             })
-            $("#browse_post").on("scrollstart", function() {
+            $("#browse_post").on("scrollstart", function () {
                 $("#browse_post").off()
                 $("#browse_post").off("scrollstart") // both OK
                 $("#new_post_text").blur();
-                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function() {
+                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function () {
                     $("#new_post_button_block #new_post_button").hide();
                     $("#new_post_button_block #add_photo").hide();
                     $("#new_post").animate({ 'height': '15%' }, 300);
@@ -153,14 +153,14 @@ var wakeup_m = 30
 var sleep_h = 21
 var sleep_m = 00
 
-$("#setting").click(function() {
+$("#setting").click(function () {
     if (window_open == 0) {
         window_open = 1
         $("#setting_html").show().css('z-index', "10")
         $.mobile.loading().hide(); // hide default "loading"
         var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
         var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
-        $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
             $("#exit_button_1").animate({ "opacity": 1 }, 500)
         });
         jQuery_3_6_0.get("/app/personal", {
@@ -179,7 +179,7 @@ $("#setting").click(function() {
     }
 });
 
-$("#exit_button_1").click(function() {
+$("#exit_button_1").click(function () {
     window_open = 0
     $("#setting_html").css("display", "none");
     $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
@@ -187,7 +187,7 @@ $("#exit_button_1").click(function() {
 });
 
 // get recent value (input)
-$("#wakeup_hour").blur(function() {
+$("#wakeup_hour").blur(function () {
     if ($(this).val() > 23 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -197,7 +197,7 @@ $("#wakeup_hour").blur(function() {
     console.log($(this).val());
     send_wake_time();
 })
-$("#wakeup_minute").blur(function() {
+$("#wakeup_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -208,7 +208,7 @@ $("#wakeup_minute").blur(function() {
     send_wake_time();
 
 })
-$("#sleep_hour").blur(function() {
+$("#sleep_hour").blur(function () {
     if ($(this).val() > 23 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -219,7 +219,7 @@ $("#sleep_hour").blur(function() {
     send_sleep_time();
 
 })
-$("#sleep_minute").blur(function() {
+$("#sleep_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -259,20 +259,20 @@ function send_sleep_time(params) {
 })*/
 
 /////////////////////////////////// mission.js ///////////////////
-$("#mission").click(function() {
+$("#mission").click(function () {
     always_at_press_all_exit_ot_reload(false);
     if (window_open == 0) {
         window_open = 1
         $("#mission_html").show().css('z-index', "10")
         var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
         var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-        $('#upper_windows_2').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $('#upper_windows_2').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
             $("#exit_button_2").animate({ "opacity": 1 }, 500);
         });
 
     }
 });
-$("#exit_button_2").click(function() {
+$("#exit_button_2").click(function () {
     window_open = 0
     $("#mission_html").css("display", "none");
     $('#upper_windows_2').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
@@ -330,21 +330,21 @@ $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 
 /////////////////////////////////// medal.js ///////////////////
 
-$("#medal_button").click(function() {
+$("#medal_button").click(function () {
     if (window_open == 0) {
         window_open = 1
 
         $("#medal_html").show().css('z-index', "10")
         var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
         var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-        $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
             $("#exit_button_3").animate({ "opacity": 1 }, 500);
         });
 
         med_trig(true);
     }
 });
-$("#exit_button_3").click(function() {
+$("#exit_button_3").click(function () {
     window_open = 0
     $("#medal_html").css("display", "none");
     $('#upper_windows_3').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
@@ -588,34 +588,24 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
 
                 if (DEBUG_DATA_SHOW) console.log(exp_data_cur);
 
-                document.getElementById("obj_data_container").innerText = JSON.stringify({
-                    ary_1_tmp: ary_1,
-                    ary_2_tmp: ary_2,
-                    ary_3_tmp: ary_3,
-                    ary_4_tmp: ary_4,
-                    goal_data_1_tmp: goal_data_1,
-                    goal_data_2_tmp: goal_data_2,
-                    goal_data_3_tmp: goal_data_3,
-                    goal_data_4_tmp: goal_data_4,
-                    mis1_data_tmp_wake: mis1_data_cur.wake,
-                    mis1_data_tmp_sleep: mis1_data_cur.sleep,
-                    mis1_data_tmp_picture: mis1_data_cur.picture,
-                    mis1_data_tmp_stroll: mis1_data_cur.stroll,
-                    exp_data_tmp: exp_data_cur
-                });
-
-                if (ary_1 !== ary_1_tmp || ary_2 !== ary_2_tmp || ary_3 !== ary_3_tmp || ary_4 !== ary_4_tmp ||
+                if (ary_1 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_1_tmp ||
+                    ary_2 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_2_tmp ||
+                    ary_3 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_3_tmp ||
+                    ary_4 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_4_tmp ||
                     /*goal_data_1 !== goal_data_1_tmp || goal_data_2 !== goal_data_2_tmp || goal_data_3 !== goal_data_3_tmp || goal_data_4 !== goal_data_4_tmp ||*/
-                    mis1_data_cur.wake !== mis1_data_tmp.wake || mis1_data_cur.sleep !== mis1_data_tmp.sleep ||
-                    mis1_data_cur.picture !== mis1_data_tmp.picture || mis1_data_cur.stroll !== mis1_data_tmp.stroll ||
-                    exp_data_cur !== exp_data_tmp
+                    mis1_data_cur.wake !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_wake ||
+                    mis1_data_cur.sleep !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_sleep ||
+                    mis1_data_cur.picture !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_picture ||
+                    mis1_data_cur.stroll !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_stroll ||
+                    exp_data_cur !== JSON.parse(document.getElementById("obj_data_container").innerText).exp_data_tmp
                 ) {
                     mission_remind_have_params(true);
                 } else {
                     mission_remind_have_params(false);
                 }
             } else { //always_at_mis_page_clicked
-                $.getJSON("./frontend/biggggg/medal.json", function(json) {
+
+                $.getJSON("./frontend/biggggg/medal.json", function (json) {
                     for (let index = 0; index < json.stroll.exp.length; index++) {
                         if (index + 1 === json.stroll.exp.length) {
                             conti_stroll = json.stroll.amount[index];
@@ -686,6 +676,21 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                     $("#daily_stroll").css('background-color', (mis1_data_cur.stroll) ? "#dfdfdf" : "#D9E483")
                     mission_remind_have_params(false);
                 });
+                document.getElementById("obj_data_container").innerText = JSON.stringify({
+                    ary_1_tmp: ary_1,
+                    ary_2_tmp: ary_2,
+                    ary_3_tmp: ary_3,
+                    ary_4_tmp: ary_4,
+                    goal_data_1_tmp: goal_data_1,
+                    goal_data_2_tmp: goal_data_2,
+                    goal_data_3_tmp: goal_data_3,
+                    goal_data_4_tmp: goal_data_4,
+                    mis1_data_tmp_wake: mis1_data_cur.wake,
+                    mis1_data_tmp_sleep: mis1_data_cur.sleep,
+                    mis1_data_tmp_picture: mis1_data_cur.picture,
+                    mis1_data_tmp_stroll: mis1_data_cur.stroll,
+                    exp_data_tmp: exp_data_cur
+                });
             }
         }
     }
@@ -693,8 +698,8 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
 }
 
 function always_at_exit_bton_of_miss_page_clicked(callback) {
-    exp_data_tmp=JSON.parse(document.getElementById("obj_data_container").innerText).exp_data_tmp;
-    mis1_data_tmp.wake = mis1_data_cur.wake;
+    exp_data_tmp = JSON.parse(document.getElementById("obj_data_container").innerText).exp_data_tmp;
+    /*mis1_data_tmp.wake = mis1_data_cur.wake;
     mis1_data_tmp.sleep = mis1_data_cur.sleep;
     mis1_data_tmp.picture = mis1_data_cur.picture;
     mis1_data_tmp.stroll = mis1_data_cur.stroll;
@@ -709,16 +714,16 @@ function always_at_exit_bton_of_miss_page_clicked(callback) {
         ary_3_tmp[index] = ary_3[index];
     } for (let index = 0; index < ary_4.length; index++) {
         ary_4_tmp[index] = ary_4[index];
-    }
-    console.log(String(jQuery_3_6_0("#level_value").width));
-    console.log(exp_data_tmp);
-    if (document.getElementById("expbar_if_const_set") === "0") {
+    }*/
+    //console.log((jQuery_3_6_0("#level_value").width));
+    //console.log(exp_data_tmp);
+    /*if (document.getElementById("expbar_if_const_set") === "0") {
         document.getElementById("expbar_if_const_set") = "1";
-        document.getElementById("expbar_const") = String(jQuery_3_6_0("#level_value").width);
+        document.getElementById("expbar_const") = String(jQuery_3_6_0("#level_value").width);*/
+    jQuery_3_6_0("#level_value").css("width", `calc(var(--var_vw)*${exp_data_tmp}/25)`);
+    /*} else {
         jQuery_3_6_0("#level_value").width = parseInt(document.getElementById("expbar_const")) * exp_data_tmp;
-    } else {
-        jQuery_3_6_0("#level_value").width = parseInt(document.getElementById("expbar_const")) * exp_data_tmp;
-    }
+    }*/
     med_trig(true);
 
     //The code below must be placed at the bottom of this function
@@ -730,17 +735,17 @@ function always_at_exit_bton_of_miss_page_clicked(callback) {
 
 
 //////////////// map (index_main.js) /////////////////
-$("#stroll").click(function() {
+$("#stroll").click(function () {
     if (window_open == 0) {
         window.location.href = "/ts/mapview";
     }
 });
 
 ///////////////////// 共用 ///////////////////////
-$(".button").bind('touchstart', function() {
+$(".button").bind('touchstart', function () {
     $(this).animate({ 'opacity': 0.7 }, 100)
 })
-$(".button").bind('touchend', function() {
+$(".button").bind('touchend', function () {
     $(this).animate({ 'opacity': 1 }, 100)
 });
 
@@ -754,4 +759,9 @@ function mission_remind_have_params(true_false) {
         $("#remind").css("opacity", "0");
     }
 }
+jQuery_3_6_0.get("/app/mid_data_tmp", {
+    //empty
+}, (res) => {
+    document.getElementById("obj_data_container").innerText = JSON.stringify(res);
+});
 always_at_press_all_exit_ot_reload(true);
