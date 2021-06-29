@@ -71,37 +71,37 @@ router.post('/', ensureAuthenticated, function(req, res){
     res.status(200).send();
 })
 
-router.post('/getdaily', function(req, res){
+router.post('/getdaily', ensureAuthenticated, function(req, res){
     Medal.getDaily(glob_user_obj.username, function(dailyMissionComplete){
         res.status(200).send(dailyMissionComplete);
     })
 })
 
-router.post('/getEXP', function(req, res){
+router.post('/getEXP', ensureAuthenticated, function(req, res){
     Medal.getEXP(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
-router.post('/getWalk', function(req, res){
+router.post('/getWalk', ensureAuthenticated, function(req, res){
     Medal.getWalk(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
-router.post('/getPost', function(req, res){
+router.post('/getPost', ensureAuthenticated, function(req, res){
     Medal.getPost(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
-router.post('/getMessage', function(req, res){
+router.post('/getMessage', ensureAuthenticated, function(req, res){
     Medal.getMessage(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
 })
 
-router.get('/getLevel', function(req, res){
+router.get('/getLevel', ensureAuthenticated, function(req, res){
     Medal.getLevel(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })
