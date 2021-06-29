@@ -610,11 +610,11 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                         if (index + 1 === json.stroll.exp.length) {
                             conti_stroll = json.stroll.amount[index];
                             break;
-                        } else if (index === 0 && json.stroll.exp[index] === 0) {
+                        } else if (index === 0 && ary_1[index] === false) {
                             conti_stroll = json.stroll.amount[index];
                             break;
-                        } else if (json.stroll.exp[index] === 1 && json.stroll.exp[index + 1] === 0) {
-                            conti_stroll = json.stroll.amount[index];
+                        } else if (ary_1[index] === true && ary_1[index + 1] === false) {
+                            conti_stroll = json.stroll.amount[index+1];
                             break;
                         } else {
                             //empty
@@ -624,11 +624,11 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                         if (index + 1 === json.post.exp.length) {
                             conti_post = json.post.amount[index];
                             break;
-                        } else if (index === 0 && json.post.exp[index] === 0) {
+                        } else if (index === 0 && ary_2[index] === false) {
                             conti_post = json.post.amount[index];
                             break;
-                        } else if (json.post.exp[index] === 1 && json.post.exp[index + 1] === 0) {
-                            conti_post = json.post.amount[index];
+                        } else if (ary_2[index] === true && ary_2[index + 1] === false) {
+                            conti_post = json.post.amount[index+1];
                             break;
                         } else {
                             //empty
@@ -638,11 +638,11 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                         if (index + 1 === json.comment.exp.length) {
                             conti_comment = json.comment.amount[index];
                             break;
-                        } else if (index === 0 && json.comment.exp[index] === 0) {
+                        } else if (index === 0 && ary_3[index] === false) {
                             conti_comment = json.comment.amount[index];
                             break;
-                        } else if (json.comment.exp[index] === 1 && json.comment.exp[index + 1] === 0) {
-                            conti_comment = json.comment.amount[index];
+                        } else if (ary_3[index] === true && ary_3[index + 1] === false) {
+                            conti_comment = json.comment.amount[index+1];
                             break;
                         } else {
                             //empty
@@ -652,11 +652,11 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                         if (index + 1 === json.level.exp.length) {
                             conti_level = json.level.amount[index];
                             break;
-                        } else if (index === 0 && json.level.exp[index] === 0) {
+                        } else if (index === 0 && ary_4[index] === false) {
                             conti_level = json.level.amount[index];
                             break;
-                        } else if (json.level.exp[index] === 1 && json.level.exp[index + 1] === 0) {
-                            conti_level = json.level.amount[index];
+                        } else if (ary_4[index] === true && ary_4[index + 1] === false) {
+                            conti_level = json.level.amount[index+1];
                             break;
                         } else {
                             //empty
