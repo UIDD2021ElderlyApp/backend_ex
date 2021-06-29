@@ -1,12 +1,16 @@
 var DEF_DEBUG = true;
 var GLOBAL_url = "/users/login";
-/*require.config({
+require.config({
     paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
-});*/
+});
 
 document.getElementById('upload_img_using_logo').addEventListener('click', function () {
-    console.log('upload via logo');
-    document.getElementById('fileinput').click();
+    if (document.getElementById('disp_mod').innerText === "1") {//login
+        //empty
+    } else {
+        console.log('upload via logo');
+        document.getElementById('fileinput').click();
+    }
 });
 
 function login_button_click() {
@@ -56,43 +60,57 @@ function login_button_click() {
             }
         }
 
-        if (!usrn) {
-            if (DEF_DEBUG) {
-                console.log("!usrn");
-            }
-            is_this_a_login_Q = true;
-        }
-        if (!acct) {
-            if (DEF_DEBUG) {
-                console.log("!acct");
-            }
-            is_this_a_login_Q = false;
-        }
-        if (!pasw) {
-            if (DEF_DEBUG) {
-                console.log("!pasw");
-            }
-            is_this_a_login_Q = false;
-        }
-        if (!pasc) {
-            if (DEF_DEBUG) {
-                console.log("!pasc");
-            }
-            is_this_a_login_Q = true;
-        }
-        if (is_this_a_login_Q) {
-            $.post(GLOBAL_url, {
-                username: acct,
-                password: pasw
-            }, (objects_returned_by_the_server) => {
-                if (DEF_DEBUG) {
-                    console.log(objects_returned_by_the_server);
+        require(["bcrypt"], function (bcrypt) {
+            bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function (err, hash) {
+                if (!usrn) {
+                    if (DEF_DEBUG) {
+                        console.log("!usrn");
+                    }
+                    is_this_a_login_Q = true;
                 }
-                var re = /\/users\/login/gi;
-                var newstr = window.location.href.replace(re, objects_returned_by_the_server);
-                window.location.href = newstr;
+                if (!acct) {
+                    if (DEF_DEBUG) {
+                        console.log("!acct");
+                    }
+                    is_this_a_login_Q = false;
+                }
+                if (!hash) {
+                    if (DEF_DEBUG) {
+                        console.log("!pasw");
+                    }
+                    is_this_a_login_Q = false;
+                }
+                if (!pasc) {
+                    if (DEF_DEBUG) {
+                        console.log("!pasc");
+                    }
+                    is_this_a_login_Q = true;
+                }
+                if (is_this_a_login_Q) {
+                    $.post(GLOBAL_url, {
+                        username: acct,
+                        password: hash
+                    }, (objects_returned_by_the_server) => {
+                        if (DEF_DEBUG) {
+                            console.log(objects_returned_by_the_server);
+                        }
+                        var re = /\/users\/login/gi;
+                        var newstr = window.location.href.replace(re, objects_returned_by_the_server);
+                        try { // statements to try
+                            window.location.href = newstr;
+                        }
+                        catch (e) {
+                            //console.log(e);
+                            document.getElementById("error_msg_gui_word_part_color_1").innerText = "red";
+                            document.getElementById("error_msg_gui_word_part_color_2").innerText = "black";
+                            document.getElementById("error_msg_gui_text_1").innerText = "錯誤";
+                            document.getElementById("error_msg_gui_text_2").innerText = "帳號或密碼錯誤";
+                            document.getElementById("error_msg_gui_start").click();
+                        }
+                    });
+                }
             });
-        }
+        });
     } else {
         document.getElementById('add_an_user2').click();
     }
@@ -160,6 +178,13 @@ jQuery(function dom_ready(dom_ready_params) {
     if (document.getElementById("disp_mod").innerText === "-1") {
         document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
     }
+    /*document.getElementById("test_salt").addEventListener("click", () => {
+        require(["bcrypt"], function (bcrypt) {
+            bcrypt.genSalt(10, function (err, salt) {
+                console.log(JSON.stringify(salt));
+            });
+        });
+    });*/
 });
 
 /*document.getElementById("test_err_msg").addEventListener("click", ()=>{
@@ -290,73 +315,80 @@ function reg_to_backend(pic_base64) {
             }
         }
     }
-    ///////////////////////copy/////////////////////////////
 
-    formData.append('profileimage', blob_tmp);
-    formData.append('name', usrn);
-    formData.append('email', "no_email@email.com");
-    formData.append('username', acct);
-    formData.append('password', pasw);
-    formData.append('password2', pasc);
-    /*name: "name",
-        password: pasw,
-        email: "email@email.com",
-        username: Date.now().toString(),
-        password: "psw",
-        password2: "psw"*/
+    require(["bcrypt"], function (bcrypt) {
+        bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function (err, hash) {
+            bcrypt.hash(pasc, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function (err, hash2) {
+                // Store hash in your password DB.
+                ///////////////////////copy/////////////////////////////
+                formData.append('profileimage', blob_tmp);
+                formData.append('name', usrn);
+                formData.append('email', "no_email@email.com");
+                formData.append('username', acct);
+                formData.append('password', hash);
+                formData.append('password2', hash2);
+                /*name: "name",
+                    password: pasw,
+                    email: "email@email.com",
+                    username: Date.now().toString(),
+                    password: "psw",
+                    password2: "psw"*/
 
-    jQuery_3_6_0.ajax({
-        url: "/users/register",
-        data: formData,
-        type: 'POST',
-        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-        processData: false, // NEEDED, DON'T OMIT THIS
-        accepts: {
-            text: "text/html"
-        },
-        beforeSend: function (xhr) {
-            //empty
-        },
-        success: function (xhr) {
-            //empty
-        },
-        error: function (xhr) {
-            console.log("alert('Ajax request 發生錯誤');");
-        },
-        complete: function (xhr) {
-            //console.log("alert('Ajax request complete');");
-            //console.log(xhr);
-            var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
-            console.log(target_new_html);
-            jQuery_3_6_0.each(target_new_html, function (i, el) {
-                //console.log(i);
-                if (el.localName === "header") {
-                    //console.log(el);
-                    jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
-                        //console.log(ii);
-                        if (el1.id === "error_msg_gui_group") {
-                            console.log(el1.childNodes);
-                            jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
-                                //console.log([el2.id,el2.innerText]);
-                                if (el2.id && document.getElementById(el2.id)) {
-                                    document.getElementById(el2.id).innerText = el2.innerText;
+                jQuery_3_6_0.ajax({
+                    url: "/users/register",
+                    data: formData,
+                    type: 'POST',
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    accepts: {
+                        text: "text/html"
+                    },
+                    beforeSend: function (xhr) {
+                        //empty
+                    },
+                    success: function (xhr) {
+                        //empty
+                    },
+                    error: function (xhr) {
+                        console.log("alert('Ajax request 發生錯誤');");
+                    },
+                    complete: function (xhr) {
+                        //console.log("alert('Ajax request complete');");
+                        //console.log(xhr);
+                        var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
+                        console.log(target_new_html);
+                        jQuery_3_6_0.each(target_new_html, function (i, el) {
+                            //console.log(i);
+                            if (el.localName === "header") {
+                                //console.log(el);
+                                jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
+                                    //console.log(ii);
+                                    if (el1.id === "error_msg_gui_group") {
+                                        console.log(el1.childNodes);
+                                        jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
+                                            //console.log([el2.id,el2.innerText]);
+                                            if (el2.id && document.getElementById(el2.id)) {
+                                                document.getElementById(el2.id).innerText = el2.innerText;
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                        jQuery_3_6_0.each(target_new_html, function (i, el) {
+                            if (el.id === "disp_mod") {
+                                if (el.innerText === "-1") {
+                                    document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
                                 }
-                            });
+                            }
+                        });
+                        if (document.getElementById("window_clearInterval_timeoutID").innerText) {
+                            clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
                         }
-                    });
-                }
+                        document.getElementById('error_msg_gui_init_msg_if_yes').click();
+                    },
+                });
             });
-            jQuery_3_6_0.each(target_new_html, function (i, el) {
-                if (el.id === "disp_mod") {
-                    if (el.innerText === "-1") {
-                        document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
-                    }
-                }
-            });
-            if(document.getElementById("window_clearInterval_timeoutID").innerText){
-                clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
-            }
-            document.getElementById('error_msg_gui_init_msg_if_yes').click();
-        },
+        });
     });
 }

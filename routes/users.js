@@ -54,7 +54,8 @@ router.get('/login', function routergetlogin(req, res, next) {
     }
   });
   if (resok) {
-    res.render('login', {var_use_old_jquery: true,
+    res.render('login', {
+      var_use_old_jquery: true,
       successes: randomstringgenerate100,
       var_jade_err_msg_show: false,
       var_jade_error_msg_gui_text_1: "X",
@@ -79,7 +80,7 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
 
   console.log(name);
   console.log(email);
-  console.log(username);
+  console.log(username); console.log(password); console.log(password2);
   var error_msg_res = {};
 
   if (name.length > 8)
@@ -112,7 +113,8 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
 
     console.log(error_msg_res);
     if (!empty(error_msg_res)) {
-      res.render('login', {var_use_old_jquery: true,
+      res.render('login', {
+        var_use_old_jquery: true,
         var_jade_err_msg_show: true,
         var_jade_error_msg_gui_text_1: "錯誤",
         var_jade_error_msg_gui_text_2: JSON.stringify(error_msg_res),
@@ -153,7 +155,8 @@ router.post('/register', upload.single('profileimage'), function (req, res, next
           /*req.flash('success', 'You are now registered and can login');
           res.location('/');
           res.redirect('/');*/
-          res.render('login', {var_use_old_jquery: true,
+          res.render('login', {
+            var_use_old_jquery: true,
             var_jade_err_msg_show: false,
             var_jade_error_msg_gui_text_1: "提示訊息",
             var_jade_error_msg_gui_text_2: "註冊成功",
@@ -200,10 +203,19 @@ passport.deserializeUser(function (id, done) {
 //加入login的HTTP POST request
 //POST request to login
 router.post('/login',
-  passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: 'Invalid username or password' }),
+  /*passport.authenticate('local', { failureRedirect: '/users/login', failureFlash: 'Invalid username or password' }),
   function (req, res) {
 
     res.status(200).send("/main");
+  }*/function (req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
+      if (err) { return next(err); }
+      if (!user) { return res.redirect('/users/login'); }
+      req.logIn(user, function (err) {
+        if (err) { return next(err); }
+        return res.status(200).send("/main");
+      });
+    })(req, res, next);
   });
 
 router.get('/logout', function (req, res) {
