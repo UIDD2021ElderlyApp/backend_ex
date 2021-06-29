@@ -20,7 +20,7 @@ html
       z-index: 1;
       }
     form#ajax-form
-      button#exit_button(type='button' onclientclick='return false;')
+      button#exit_button.button(type='button' onclientclick='return false;')
         // <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
         //img(src='../modular_folder/mapview/cross.svg')
         // </a>
@@ -33,7 +33,8 @@ html
         div(style='display:none')
           bl#snap_shoot_finish
         #distance2
-          font#info3(face='微軟正黑體' style='font-size: 100px')
+          font#info3(style='font-size: 8vw') 
+          //face='微軟正黑體' 
     #map
     // Make sure you put this AFTER Leaflet's CSS
     script(src='https://unpkg.com/leaflet@1.7.1/dist/leaflet.js' integrity='sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA==' crossorigin='')
@@ -284,6 +285,13 @@ html
       var newstr = window.location.href.replace(re, "/main");
       window.location.href = newstr;
       });
+
+      $(".button").bind('touchstart', function() {
+      $(this).animate({ 'opacity': 0.7 }, 100)
+      })
+      $(".button").bind('touchend', function() {
+          $(this).animate({ 'opacity': 1 }, 100)
+      })
     footer
       script(type='text/javascript').
         var jQuery_3_6_0 = $.noConflict(true);

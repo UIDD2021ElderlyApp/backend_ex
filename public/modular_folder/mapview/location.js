@@ -1,6 +1,7 @@
 var map, marker, lat, lng;
 var info3 = document.querySelector(".info3");
-info3.innerHTML='nobody found';
+info3.innerHTML = 'nobody found';
+
 function initMap() {
     navigator.geolocation.watchPosition((position) => {
         console.log(position.coords);
