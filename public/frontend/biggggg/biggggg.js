@@ -384,21 +384,21 @@ $("#exit_button_3").click(function() {
 
 
 function med_trig(cancel_the_preset_logic) {
-    $.getJSON("./frontend/biggggg/medal.json", function(json) { //
-        document.getElementById('medal_table').innerHTML = ""; //
-        var tb = document.createElement("table") //
-        $(tb).attr("width", "100%") //
-        var tbBody = document.createElement("tbody") //
-        for (var i = 0; i < 9; i++) { //
-            var row = document.createElement("tr") //
-            for (var j = 0; j < 4; j++) { //
-                var cell = document.createElement("td"); //
-                var img = document.createElement("div") //
-                $(img).addClass("medal_img") //
-                var text = document.createElement("div") //
-                $(text).addClass("medal_font") //
-                if (i < 3) { //
-                    $(text).html(json.amount[i * 4 + j] + 'km') //
+    $.getJSON("./frontend/biggggg/medal.json", function (json) {
+        document.getElementById('medal_table').innerHTML = "";
+        var tb = document.createElement("table")
+        $(tb).attr("width", "100%")
+        var tbBody = document.createElement("tbody")
+        for (var i = 0; i < 9; i++) {
+            var row = document.createElement("tr")
+            for (var j = 0; j < 4; j++) {
+                var cell = document.createElement("td");
+                var img = document.createElement("div")
+                $(img).addClass("medal_img")
+                var text = document.createElement("div")
+                $(text).addClass("medal_font")
+                if (i < 3) {
+                    $(text).html(json.amount[i * 4 + j] + 'km')
                     if (!cancel_the_preset_logic) {
                         if (json.amount[i * 4 + j] > conti_stroll) { // 未達成
                             $(text).css("color", "#c9c9c9")
@@ -453,40 +453,33 @@ function med_trig(cancel_the_preset_logic) {
                     a_count_3 = a_count_3 + 1;
                 } else {
                     $(text).html(json.amount[i * 4 + j] + '等')
-                    if (json.amount[i * 4 + j] > conti_level) {
-                        $(text).css("color", "#c9c9c9")
-                        $(img).css('background-image', 'url(' + json.img_g[i] + ')')
-                    } else {
-                        $(text).html(json.amount[i * 4 + j] + '等')
-                        if (!cancel_the_preset_logic) {
-                            if (json.amount[i * 4 + j] > conti_level) {
-                                $(text).css("color", "#c9c9c9")
-                                $(img).css('background-image', 'url(' + json.img_g[i] + ')')
-                            } else {
-                                $(img).css('background-image', 'url(' + json.img[i] + ')')
-                            }
+                    if (!cancel_the_preset_logic) {
+                        if (json.amount[i * 4 + j] > conti_level) {
+                            $(text).css("color", "#c9c9c9")
+                            $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else {
-                            if (!ary_4[a_count_4]) {
-                                $(text).css("color", "#c9c9c9")
-                                $(img).css('background-image', 'url(' + json.img_g[i] + ')')
-                            } else {
-                                $(img).css('background-image', 'url(' + json.img[i] + ')')
-                            }
+                            $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
-                        a_count_4 = a_count_4 + 1;
+                    } else {
+                        if (!ary_4[a_count_4]) {
+                            $(text).css("color", "#c9c9c9")
+                            $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                        } else {
+                            $(img).css('background-image', 'url(' + json.img[i] + ')')
+                        }
                     }
-                    cell.append(img)
-                    cell.append(text)
-                    row.append(cell)
+                    a_count_4 = a_count_4 + 1;
                 }
-                tbBody.append(row)
+                cell.append(img)
+                cell.append(text)
+                row.append(cell)
             }
-            tb.append(tbBody)
-            $("#medal_table").append(tb)
-        };
-    })
+            tbBody.append(row)
+        }
+        tb.append(tbBody)
+        $("#medal_table").append(tb)
+    });
 }
-
 med_trig(false);
 
 //////////////// map (index_main.js) /////////////////
