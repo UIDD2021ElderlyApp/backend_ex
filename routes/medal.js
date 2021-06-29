@@ -101,7 +101,7 @@ router.post('/getMessage', function(req, res){
     })
 })
 
-router.post('/getLevel', function(req, res){
+router.get('/getLevel', function(req, res){
     Medal.getLevel(glob_user_obj.username, function(goal){
         res.status(200).send(goal);
     })

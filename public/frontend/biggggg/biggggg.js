@@ -34,16 +34,16 @@ switch (animal) {
         break;
 }
 
-$("#house").bind('touchstart', function() {
+$("#house").bind('touchstart', function () {
     $(this).css('transform', "scale(1.1)")
 })
-$("#house").bind('touchend', function() {
+$("#house").bind('touchend', function () {
     $(this).css('transform', "scale(1)")
 })
 var sleep = false
-$("#house").click(function() {
+$("#house").click(function () {
     if (!sleep) {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             $("#animal").css("display", "none");
             switch (animal) {
                 case 1:
@@ -61,7 +61,7 @@ $("#house").click(function() {
         })
         sleep = true
     } else {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             if (animal == 2) {
                 $("#tree").css("left", "25%")
                 $("#coconut").css("left", "25%")
@@ -81,7 +81,7 @@ if (mission_complete) {
 
 ////////////////////////////// post.js //////////////////////
 
-$("#social").click(function() {
+$("#social").click(function () {
     function checkFlag() {
         if (document.getElementById('snap_shoot_social_page_clean_html_stat').innerText !== '1') {
             setTimeout(() => {
@@ -92,7 +92,7 @@ $("#social").click(function() {
             $.mobile.loading().hide(); // hide default "loading"
             var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
             var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-            $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+            $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
                 $("#exit_button").animate({ "opacity": 1 }, 500);
                 document.getElementById('social_page_stat').innerText = 1;
             });
@@ -100,33 +100,33 @@ $("#social").click(function() {
     }
     checkFlag();
 });
-$("#exit_button").click(function() {
+$("#exit_button").click(function () {
     $("#post_html").css("display", "none")
     $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" })
     $("#exit_button").css("opacity", 0);
 
 });
 
-$('#new_post_text').focus(function() {
+$('#new_post_text').focus(function () {
     if (document.getElementById("app_PostTmp_get_poop_img_sel_tmmp").innerText) {
         document.getElementById("add_photo").classList.add("glow");
     }
-    $("#new_post").animate({ 'height': '30%' }, 600, function() {
+    $("#new_post").animate({ 'height': '30%' }, 600, function () {
         $("#new_post_button_block").show().animate({ 'opacity': 1 }, 2000);
         $("#new_post_button_block #new_post_button").show().animate({ 'opacity': 1 }, 2000);
-        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function() {
+        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function () {
             document.getElementById('new_post_button_on_loaded_stat').innerText = '1';
-            $(".button").bind('touchstart', function() {
+            $(".button").bind('touchstart', function () {
                 $(this).animate({ 'opacity': 0.5 }, 100)
             })
-            $(".button").bind('touchend', function() {
+            $(".button").bind('touchend', function () {
                 $(this).animate({ 'opacity': 1 }, 100)
             })
-            $("#browse_post").on("scrollstart", function() {
+            $("#browse_post").on("scrollstart", function () {
                 $("#browse_post").off()
                 $("#browse_post").off("scrollstart") // both OK
                 $("#new_post_text").blur();
-                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function() {
+                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function () {
                     $("#new_post_button_block #new_post_button").hide();
                     $("#new_post_button_block #add_photo").hide();
                     $("#new_post").animate({ 'height': '15%' }, 300);
@@ -143,12 +143,12 @@ var wakeup_m = 30
 var sleep_h = 21
 var sleep_m = 00
 
-$("#setting").click(function() {
+$("#setting").click(function () {
     $("#setting_html").show().css('z-index', "10")
     $.mobile.loading().hide(); // hide default "loading"
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
     var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
-    $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+    $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button_1").animate({ "opacity": 1 }, 500)
     });
     jQuery_3_6_0.get("/app/personal", {
@@ -166,14 +166,14 @@ $("#setting").click(function() {
     });
 });
 
-$("#exit_button_1").click(function() {
+$("#exit_button_1").click(function () {
     $("#setting_html").css("display", "none");
     $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
     $("#exit_button_1").css("opacity", 0);
 });
 
 // get recent value (input)
-$("#wakeup_hour").blur(function() {
+$("#wakeup_hour").blur(function () {
     if ($(this).val() > 23 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -183,7 +183,7 @@ $("#wakeup_hour").blur(function() {
     console.log($(this).val());
     send_wake_time();
 })
-$("#wakeup_minute").blur(function() {
+$("#wakeup_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -194,7 +194,7 @@ $("#wakeup_minute").blur(function() {
     send_wake_time();
 
 })
-$("#sleep_hour").blur(function() {
+$("#sleep_hour").blur(function () {
     if ($(this).val() > 23 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -205,7 +205,7 @@ $("#sleep_hour").blur(function() {
     send_sleep_time();
 
 })
-$("#sleep_minute").blur(function() {
+$("#sleep_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -245,15 +245,16 @@ function send_sleep_time(params) {
 })*/
 
 /////////////////////////////////// mission.js ///////////////////
-$("#mission").click(function() {
+$("#mission").click(function () {
+
     $("#mission_html").show().css('z-index', "10")
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
     var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-    $('#upper_windows_2').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+    $('#upper_windows_2').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button_2").animate({ "opacity": 1 }, 500);
     });
 });
-$("#exit_button_2").click(function() {
+$("#exit_button_2").click(function () {
     $("#mission_html").css("display", "none");
     $('#upper_windows_2').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
     $("#exit_button_2").css("opacity", 0);
@@ -277,20 +278,26 @@ $("#continuous_comment").html('留言累積 ' + conti_comment + ' 則')
 $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 
 /////////////////////////////////// medal.js ///////////////////
-$("#medal_button").click(function() {
+$("#medal_button").click(function () {
+    jQuery_3_6_0.get("/app/medal/getLevel", {
+        //empty
+    }, (res) => {
+        console.log(res);
+    });
     $("#medal_html").show().css('z-index', "10")
     var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
     var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-    $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+    $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
         $("#exit_button_3").animate({ "opacity": 1 }, 500);
     });
 });
-$("#exit_button_3").click(function() {
+$("#exit_button_3").click(function () {
     $("#medal_html").css("display", "none");
     $('#upper_windows_3').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
     $("#exit_button_3").css("opacity", 0);
 });
-$.getJSON("./frontend/biggggg/medal.json", function(json) {
+$.getJSON("./frontend/biggggg/medal.json", function (json) {
+    document.getElementById('medal_table').innerHTML = "";
     var tb = document.createElement("table")
     $(tb).attr("width", "100%")
     var tbBody = document.createElement("tbody")
@@ -346,9 +353,9 @@ $.getJSON("./frontend/biggggg/medal.json", function(json) {
 });
 
 ///////////////////// 共用 ///////////////////////
-$(".button").bind('touchstart', function() {
+$(".button").bind('touchstart', function () {
     $(this).animate({ 'opacity': 0.7 }, 100)
 })
-$(".button").bind('touchend', function() {
+$(".button").bind('touchend', function () {
     $(this).animate({ 'opacity': 1 }, 100)
 })
