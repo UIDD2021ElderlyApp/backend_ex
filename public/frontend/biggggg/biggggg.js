@@ -299,7 +299,7 @@ var mis1_data_tmp = {
     picture: false,
     stroll: false
 };
-var exp_data_tmp = null; var exp_data = null;
+var exp_data_tmp = 0; var exp_data = 0;
 var goal_data_1 = 0; var goal_data_2 = 0; var goal_data_3 = 0; var goal_data_4 = 0;
 var goal_data_1_tmp = 0; var goal_data_2_tmp = 0; var goal_data_3_tmp = 0; var goal_data_4_tmp = 0;
 var ary_0 = 0; //finished post data backend trans
@@ -497,8 +497,12 @@ function med_trig(cancel_the_preset_logic) {
 }
 med_trig(false);
 
-$(".exit_button_function_to_return_to_the_main_screen").click(() => {
-    always_at_press_all_exit_ot_reload(true);
+$(".exit_button_function_to_return_to_the_main_screen").click((event) => {
+    if (event.target.id === "exit_button_2") {
+        always_at_exit_bton_of_miss_page_clicked(always_at_press_all_exit_ot_reload(true));
+    } else {
+        always_at_press_all_exit_ot_reload(true);
+    }
 });
 
 
@@ -686,7 +690,7 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                     conti_post=json.post
                     conti_comment=json.comment
                     conti_level=json.level*/
-                    $("#continuous_stroll").html('散步累積 ' + Math.round(goal_data_1/1000) + "/" + conti_stroll + ' km')
+                    $("#continuous_stroll").html('散步累積 ' + Math.round(goal_data_1 / 1000) + "/" + conti_stroll + ' km')
                     $("#continuous_post").html('發文累積 ' + goal_data_2 + "/" + conti_post + ' 篇')
                     $("#continuous_comment").html('留言累積 ' + goal_data_3 + "/" + conti_comment + ' 則')
                     $("#continuous_level").html('等級達到 ' + goal_data_4 + "/" + conti_level + ' 等')
@@ -700,6 +704,38 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
         }
     }
     checkFlag();
+}
+
+function always_at_exit_bton_of_miss_page_clicked(callback) {
+    mis1_data_tmp.wake = mis1_data_cur.wake;
+    mis1_data_tmp.sleep = mis1_data_cur.sleep;
+    mis1_data_tmp.picture = mis1_data_cur.picture;
+    mis1_data_tmp.stroll = mis1_data_cur.stroll;
+    exp_data_tmp = exp_data;
+    goal_data_1_tmp = goal_data_1; goal_data_2_tmp = goal_data_2; goal_data_3_tmp = goal_data_3; goal_data_4_tmp = goal_data_4;
+    for (let index = 0; index < ary_1.length; index++) {
+        ary_1_tmp[index] = ary_1[index];
+    } for (let index = 0; index < ary_2.length; index++) {
+        ary_2_tmp[index] = ary_2[index];
+    } for (let index = 0; index < ary_3.length; index++) {
+        ary_3_tmp[index] = ary_3[index];
+    } for (let index = 0; index < ary_4.length; index++) {
+        ary_4_tmp[index] = ary_4[index];
+    }
+    if (document.getElementById("expbar_if_const_set") === "0") {
+        document.getElementById("expbar_if_const_set") = "1";
+        document.getElementById("expbar_const") = String(jQuery_3_6_0("#level_value").width);
+        jQuery_3_6_0("#level_value").width = parseInt(document.getElementById("expbar_const")) * exp_data_tmp;
+    } else {
+        jQuery_3_6_0("#level_value").width = parseInt(document.getElementById("expbar_const")) * exp_data_tmp;
+    }
+
+
+    //The code below must be placed at the bottom of this function
+    // 如果 callback 是個函式就呼叫它
+    if (typeof callback === 'function') {
+        callback();
+    }
 }
 
 

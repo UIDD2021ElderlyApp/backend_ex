@@ -71,7 +71,7 @@ body {
 
 #level_value {
     position: relative;
-    width: calc(var(--var_vw)*1);
+    width: calc(var(--var_vw)*1/25);
     height: 1vh;
     left: 0px;
     border-radius: 1vh;
