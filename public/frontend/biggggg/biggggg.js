@@ -382,7 +382,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_1_tmp[a_count_1]) { // 未達成
+                        if (!JSON.parse(document.getElementById("obj_data_container").innerText).ary_1_tmp[a_count_1]) { // 未達成
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else { // 達成
@@ -400,7 +400,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_2_tmp[a_count_2]) {
+                        if (!JSON.parse(document.getElementById("obj_data_container").innerText).ary_2_tmp[a_count_2]) {
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else {
@@ -418,7 +418,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_3_tmp[a_count_3]) {
+                        if (!JSON.parse(document.getElementById("obj_data_container").innerText).ary_3_tmp[a_count_3]) {
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else {
@@ -436,7 +436,7 @@ function med_trig(cancel_the_preset_logic) {
                             $(img).css('background-image', 'url(' + json.img[i] + ')')
                         }
                     } else {
-                        if (!ary_4_tmp[a_count_4]) {
+                        if (!JSON.parse(document.getElementById("obj_data_container").innerText).ary_4_tmp[a_count_4]) {
                             $(text).css("color", "#c9c9c9")
                             $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                         } else {
