@@ -4,8 +4,8 @@ require.config({
     paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
 });
 
-document.getElementById('upload_img_using_logo').addEventListener('click', function () {
-    if (document.getElementById('disp_mod').innerText === "1") {//login
+document.getElementById('upload_img_using_logo').addEventListener('click', function() {
+    if (document.getElementById('disp_mod').innerText === "1") { //login
         //empty
     } else {
         console.log('upload via logo');
@@ -15,14 +15,14 @@ document.getElementById('upload_img_using_logo').addEventListener('click', funct
 
 function login_button_click() {
     function play() {
-        document.getElementById("window_clearInterval_timeoutID").innerText = setInterval(function () {
-            jQuery_3_6_0("#login_button").animate({ 'opacity': 0.5 }, 450, function () {
+        document.getElementById("window_clearInterval_timeoutID").innerText = setInterval(function() {
+            jQuery_3_6_0("#login_button").animate({ 'opacity': 0.5 }, 450, function() {
                 jQuery_3_6_0("#login_button").animate({ 'opacity': 1 }, 450)
             })
         }, 450);
     }
     play();
-    if (document.getElementById('disp_mod').innerText === "1") {//login
+    if (document.getElementById('disp_mod').innerText === "1") { //login
         var is_this_a_login_Q = true;
         var inputs = document.getElementsByTagName("input");
         var usrn = "";
@@ -60,8 +60,8 @@ function login_button_click() {
             }
         }
 
-        require(["bcrypt"], function (bcrypt) {
-            bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function (err, hash) {
+        require(["bcrypt"], function(bcrypt) {
+            bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
                 if (!usrn) {
                     if (DEF_DEBUG) {
                         console.log("!usrn");
@@ -98,8 +98,7 @@ function login_button_click() {
                         var newstr = window.location.href.replace(re, objects_returned_by_the_server);
                         try { // statements to try
                             window.location.href = newstr;
-                        }
-                        catch (e) {
+                        } catch (e) {
                             //console.log(e);
                             document.getElementById("error_msg_gui_word_part_color_1").innerText = "red";
                             document.getElementById("error_msg_gui_word_part_color_2").innerText = "black";
@@ -165,14 +164,15 @@ jQuery(function dom_ready(dom_ready_params) {
                 }
                 //jQuery_3_6_0("#gray_block").height("30vh");
             }, 500);
-        } else/* if (document.getElementById("disp_mod").innerText === "0") */ {
+        } else /* if (document.getElementById("disp_mod").innerText === "0") */ {
             document.getElementById("disp_mod").innerText = "1";
             document.getElementById("login_button_txt_fix").innerText = "登入";
-            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建帳號";
+            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建新帳號";
             document.getElementById("disp_mod").click();
-        }/* else {
-            console.error("This is a serious error, please contact the software developer!");
-        }*/
+        }
+        /* else {
+                    console.error("This is a serious error, please contact the software developer!");
+                }*/
     });
     //The code below and the code above must maintain the current sequence
     if (document.getElementById("disp_mod").innerText === "-1") {
@@ -213,6 +213,7 @@ function dataURItoBlob_copy(dataURI) {
 
 function add_new_user_test2() {
     document.getElementById('snap_shoot_canvas_tmp').click();
+
     function checkFlag() {
         if (document.getElementById('snap_shoot_finish').innerText !== '1') {
             setTimeout(() => {
@@ -264,21 +265,18 @@ function handleFileSelect() {
         //alert("Um, couldn't find the fileinput element.");
         console.log("Um, couldn't find the fileinput element.");
         document.getElementById("add_an_user").click();
-    }
-    else if (!input.files) {
+    } else if (!input.files) {
         //alert("This browser doesn't seem to support the `files` property of file inputs.");
         console.log("This browser doesn't seem to support the `files` property of file inputs.");
         document.getElementById("add_an_user").click();
-    }
-    else if (!input.files[0]) {
+    } else if (!input.files[0]) {
         //alert("Please select a file before clicking 'Load'");
         console.log("Please select a file before clicking 'Load'");
         document.getElementById("add_an_user").click();
-    }
-    else {
+    } else {
         var file = input.files[0];
         var fr = new FileReader();
-        fr.onload = function (e) {
+        fr.onload = function(e) {
             document.getElementById('editor').innerText = fr.result;
             document.getElementById('editor_base64_fin').innerText = "1";
         };
@@ -316,9 +314,9 @@ function reg_to_backend(pic_base64) {
         }
     }
 
-    require(["bcrypt"], function (bcrypt) {
-        bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function (err, hash) {
-            bcrypt.hash(pasc, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function (err, hash2) {
+    require(["bcrypt"], function(bcrypt) {
+        bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
+            bcrypt.hash(pasc, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash2) {
                 // Store hash in your password DB.
                 ///////////////////////copy/////////////////////////////
                 formData.append('profileimage', blob_tmp);
@@ -343,29 +341,29 @@ function reg_to_backend(pic_base64) {
                     accepts: {
                         text: "text/html"
                     },
-                    beforeSend: function (xhr) {
+                    beforeSend: function(xhr) {
                         //empty
                     },
-                    success: function (xhr) {
+                    success: function(xhr) {
                         //empty
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         console.log("alert('Ajax request 發生錯誤');");
                     },
-                    complete: function (xhr) {
+                    complete: function(xhr) {
                         //console.log("alert('Ajax request complete');");
                         //console.log(xhr);
                         var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
                         console.log(target_new_html);
-                        jQuery_3_6_0.each(target_new_html, function (i, el) {
+                        jQuery_3_6_0.each(target_new_html, function(i, el) {
                             //console.log(i);
                             if (el.localName === "header") {
                                 //console.log(el);
-                                jQuery_3_6_0.each(el.childNodes, function (ii, el1) {
+                                jQuery_3_6_0.each(el.childNodes, function(ii, el1) {
                                     //console.log(ii);
                                     if (el1.id === "error_msg_gui_group") {
                                         console.log(el1.childNodes);
-                                        jQuery_3_6_0.each(el1.childNodes, function (iii, el2) {
+                                        jQuery_3_6_0.each(el1.childNodes, function(iii, el2) {
                                             //console.log([el2.id,el2.innerText]);
                                             if (el2.id && document.getElementById(el2.id)) {
                                                 document.getElementById(el2.id).innerText = el2.innerText;
@@ -375,7 +373,7 @@ function reg_to_backend(pic_base64) {
                                 });
                             }
                         });
-                        jQuery_3_6_0.each(target_new_html, function (i, el) {
+                        jQuery_3_6_0.each(target_new_html, function(i, el) {
                             if (el.id === "disp_mod") {
                                 if (el.innerText === "-1") {
                                     document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
