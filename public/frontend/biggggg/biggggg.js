@@ -1,7 +1,7 @@
 var window_width = ($(window).width() / $(window).height() > 1.0) ? (9.0 * ($(window).height() / 16.0)) : $(window).width();
 //console.error(window_width);
-
-//////////////////////// home.js ///////////////////
+console.log("biggggg")
+    //////////////////////// home.js ///////////////////
 
 // select animal (1, 2, 3)
 $.mobile.loading().hide();
@@ -749,3 +749,8 @@ function mission_remind_have_params(true_false) {
     }
 }
 always_at_press_all_exit_ot_reload(true);
+
+function codeAddress() {
+    $("#waiting_block").css('display', "none")
+}
+window.onload = codeAddress;

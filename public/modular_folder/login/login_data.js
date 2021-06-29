@@ -1,4 +1,4 @@
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var GLOBAL_url = "/users/login";
 require.config({
     paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
@@ -21,7 +21,7 @@ function login_button_click() {
             })
         }, 450);
     }
-    play();
+    // play();
     if (document.getElementById('disp_mod').innerText === "1") { //login
         var is_this_a_login_Q = true;
         var inputs = document.getElementsByTagName("input");
@@ -100,6 +100,8 @@ function login_button_click() {
                             window.location.href = newstr;
                         } catch (e) {
                             //console.log(e);
+                            console.log("帳號或密碼錯誤")
+                            $("#waiting_block").css('display', "none")
                             document.getElementById("error_msg_gui_word_part_color_1").innerText = "red";
                             document.getElementById("error_msg_gui_word_part_color_2").innerText = "black";
                             document.getElementById("error_msg_gui_text_1").innerText = "錯誤";
@@ -156,6 +158,8 @@ jQuery(function dom_ready(dom_ready_params) {
     document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {
         console.log(`document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {`);
         if (document.getElementById("disp_mod").innerText === "1") {
+            console.log("註冊")
+            $("#waiting_block").css('display', "none")
             jQuery_3_6_0("#gray_block").show().animate({ 'height': "30vh" }, 1000);
             setTimeout(() => {
                 document.getElementById("login_button_txt_fix").innerText = "註冊";
@@ -168,6 +172,8 @@ jQuery(function dom_ready(dom_ready_params) {
                 //jQuery_3_6_0("#gray_block").height("30vh");
             }, 500);
         } else /* if (document.getElementById("disp_mod").innerText === "0") */ {
+            console.log("登入")
+            $("#waiting_block").css('display', "none")
             document.getElementById("disp_mod").innerText = "1";
             document.getElementById("login_button_txt_fix").innerText = "登入";
             document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建新帳號";
@@ -201,6 +207,7 @@ document.getElementById("line_login").addEventListener("click", () => {
     document.getElementById("error_msg_gui_text_1").innerText = "此功能將於日後推出";
     document.getElementById("error_msg_gui_text_2").innerText = "敬請期待喔!";
     document.getElementById("error_msg_gui_group").click();
+    document.getElementById("error_msg_gui_start").click(); // show page
 });
 
 function dataURItoBlob_copy(dataURI) {
@@ -365,6 +372,8 @@ function reg_to_backend(pic_base64) {
                                 jQuery_3_6_0.each(el.childNodes, function(ii, el1) {
                                     //console.log(ii);
                                     if (el1.id === "error_msg_gui_group") {
+                                        console.log("帳號存在/沒打帳號")
+                                        $("#waiting_block").css('display', "none")
                                         console.log(el1.childNodes);
                                         jQuery_3_6_0.each(el1.childNodes, function(iii, el2) {
                                             //console.log([el2.id,el2.innerText]);
@@ -393,3 +402,18 @@ function reg_to_backend(pic_base64) {
         });
     });
 }
+/////
+$("#login_button").click(function() {
+    if ($("#login_button_txt_fix").text() == "註冊") {
+        $("#waiting_block").show().css('z-index', "10")
+
+    }
+})
+jQuery(function dom_ready(dom_ready_params) {
+    $("#fb_login").click(function() {
+        $("#waiting_block").show().css('z-index', "10")
+        var re = /\/users\/login/gi;
+        var newstr = window.location.href.replace(re, "/auth/facebook");
+        window.location.href = newstr;
+    });
+});
