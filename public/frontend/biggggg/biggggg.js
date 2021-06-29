@@ -588,10 +588,10 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
 
                 if (DEBUG_DATA_SHOW) console.log(exp_data_cur);
 
-                if (ary_1 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_1_tmp ||
-                    ary_2 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_2_tmp ||
-                    ary_3 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_3_tmp ||
-                    ary_4 !== JSON.parse(document.getElementById("obj_data_container").innerText).ary_4_tmp ||
+                if (JSON.stringify(ary_1) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_1_tmp) ||
+                    JSON.stringify(ary_2) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_2_tmp) ||
+                    JSON.stringify(ary_3) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_3_tmp) ||
+                    JSON.stringify(ary_4) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_4_tmp) ||
                     /*goal_data_1 !== goal_data_1_tmp || goal_data_2 !== goal_data_2_tmp || goal_data_3 !== goal_data_3_tmp || goal_data_4 !== goal_data_4_tmp ||*/
                     mis1_data_cur.wake !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_wake ||
                     mis1_data_cur.sleep !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_sleep ||
@@ -690,6 +690,23 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                     mis1_data_tmp_picture: mis1_data_cur.picture,
                     mis1_data_tmp_stroll: mis1_data_cur.stroll,
                     exp_data_tmp: exp_data_cur
+                });
+                jQuery_3_6_0.post("/app/mid_data_tmp", {
+                    ary_1_tmp: ary_1,
+                    ary_2_tmp: ary_2,
+                    ary_3_tmp: ary_3,
+                    ary_4_tmp: ary_4,
+                    goal_data_1_tmp: goal_data_1,
+                    goal_data_2_tmp: goal_data_2,
+                    goal_data_3_tmp: goal_data_3,
+                    goal_data_4_tmp: goal_data_4,
+                    mis1_data_tmp_wake: mis1_data_cur.wake,
+                    mis1_data_tmp_sleep: mis1_data_cur.sleep,
+                    mis1_data_tmp_picture: mis1_data_cur.picture,
+                    mis1_data_tmp_stroll: mis1_data_cur.stroll,
+                    exp_data_tmp: exp_data_cur
+                }, (res) => {
+                    //empty
                 });
             }
         }
