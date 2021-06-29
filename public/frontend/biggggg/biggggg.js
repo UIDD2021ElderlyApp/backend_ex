@@ -290,13 +290,16 @@ var conti_stroll = 10 //累積散步量
 var conti_post = 5 //累積發文數 
 var conti_comment = 5 // ...etc
 var conti_level = 5
-//var cancel_the_preset_logic = true;
-var ary_0 = 0;//finished post data backend trans
-var ary_1 = [false, false, false, false, false, false, false, false, false, false, false, false];//real data 散步累積
-var ary_2 = [false, false, false, false, false, false, false, false];//real data 發文累積
-var ary_3 = [false, false, false, false, false, false, false, false];//real data 留言累積
-var ary_4 = [false, false, false, false, false, false, false, false];//real data 等級達到 
-var a_count_1 = 0; var a_count_2 = 0; var a_count_3 = 0; var a_count_4 = 0;//real data countS
+    //var cancel_the_preset_logic = true;
+var ary_0 = 0; //finished post data backend trans
+var ary_1 = [false, false, false, false, false, false, false, false, false, false, false, false]; //real data 散步累積
+var ary_2 = [false, false, false, false, false, false, false, false]; //real data 發文累積
+var ary_3 = [false, false, false, false, false, false, false, false]; //real data 留言累積
+var ary_4 = [false, false, false, false, false, false, false, false]; //real data 等級達到 
+var a_count_1 = 0;
+var a_count_2 = 0;
+var a_count_3 = 0;
+var a_count_4 = 0; //real data countS
 $("#continuous_stroll").html('散步累積 ' + conti_stroll + ' km')
 $("#continuous_post").html('發文累積 ' + conti_post + ' 篇')
 $("#continuous_comment").html('留言累積 ' + conti_comment + ' 則')
@@ -304,67 +307,74 @@ $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 
 /////////////////////////////////// medal.js ///////////////////
 
-$("#medal_button").click(function () {    if (window_open == 0) {
+$("#medal_button").click(function() {
+    if (window_open == 0) {
         window_open = 1
-    ary_0 = 0; a_count_1 = 0; a_count_2 = 0; a_count_3 = 0; a_count_4 = 0;
-    jQuery_3_6_0.get("/app/medal/getWalk", {
-        //empty
-    }, (res) => {
-        console.log(typeof res);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_1 = res.progress;
-        console.log(res.progress);
-    });
-    jQuery_3_6_0.get("/app/medal/getPost", {
-        //empty
-    }, (res) => {
-        console.log(typeof res);
-        console.log(res.progress);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_2 = res.progress;
-    });
-    jQuery_3_6_0.get("/app/medal/getMessage", {
-        //empty
-    }, (res) => {
-        console.log(typeof res);
-        console.log(res.progress);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_3 = res.progress;
-    });
-    jQuery_3_6_0.get("/app/medal/getLevel", {
-        //empty
-    }, (res) => {
-        console.log(typeof res);
-        console.log(res.progress);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_4 = res.progress;
-    });
-    $("#medal_html").show().css('z-index', "10")
-    var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
-    var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-    $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
-        $("#exit_button_3").animate({ "opacity": 1 }, 500);
-    });
-    function checkFlag() {
-        if (ary_0 !== 4) {
-            setTimeout(() => {
-                checkFlag();
-            }, 5);
-        } else {
-            console.log(ary_1);
-            console.log(ary_2);
-            console.log(ary_3);
-            console.log(ary_4);
-            med_trig(true);
-        }
-    }
-    checkFlag();
+        ary_0 = 0;
+        a_count_1 = 0;
+        a_count_2 = 0;
+        a_count_3 = 0;
+        a_count_4 = 0;
+        jQuery_3_6_0.get("/app/medal/getWalk", {
+            //empty
+        }, (res) => {
+            console.log(typeof res);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_1 = res.progress;
+            console.log(res.progress);
+        });
+        jQuery_3_6_0.get("/app/medal/getPost", {
+            //empty
+        }, (res) => {
+            console.log(typeof res);
+            console.log(res.progress);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_2 = res.progress;
+        });
+        jQuery_3_6_0.get("/app/medal/getMessage", {
+            //empty
+        }, (res) => {
+            console.log(typeof res);
+            console.log(res.progress);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_3 = res.progress;
+        });
+        jQuery_3_6_0.get("/app/medal/getLevel", {
+            //empty
+        }, (res) => {
+            console.log(typeof res);
+            console.log(res.progress);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_4 = res.progress;
+        });
+        $("#medal_html").show().css('z-index', "10")
+        var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
+        var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
+        $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+            $("#exit_button_3").animate({ "opacity": 1 }, 500);
+        });
 
-}});
+        function checkFlag() {
+            if (ary_0 !== 4) {
+                setTimeout(() => {
+                    checkFlag();
+                }, 5);
+            } else {
+                console.log(ary_1);
+                console.log(ary_2);
+                console.log(ary_3);
+                console.log(ary_4);
+                med_trig(true);
+            }
+        }
+        checkFlag();
+
+    }
+});
 $("#exit_button_3").click(function() {
     window_open = 0
     $("#medal_html").css("display", "none");
@@ -374,21 +384,21 @@ $("#exit_button_3").click(function() {
 
 
 function med_trig(cancel_the_preset_logic) {
-    $.getJSON("./frontend/biggggg/medal.json", function (json) {//
-        document.getElementById('medal_table').innerHTML = "";//
-        var tb = document.createElement("table")//
-        $(tb).attr("width", "100%")//
-        var tbBody = document.createElement("tbody")//
-        for (var i = 0; i < 9; i++) {//
-            var row = document.createElement("tr")//
-            for (var j = 0; j < 4; j++) {//
-                var cell = document.createElement("td");//
-                var img = document.createElement("div")//
-                $(img).addClass("medal_img")//
-                var text = document.createElement("div")//
-                $(text).addClass("medal_font")//
-                if (i < 3) {//
-                    $(text).html(json.amount[i * 4 + j] + 'km')//
+    $.getJSON("./frontend/biggggg/medal.json", function(json) { //
+        document.getElementById('medal_table').innerHTML = ""; //
+        var tb = document.createElement("table") //
+        $(tb).attr("width", "100%") //
+        var tbBody = document.createElement("tbody") //
+        for (var i = 0; i < 9; i++) { //
+            var row = document.createElement("tr") //
+            for (var j = 0; j < 4; j++) { //
+                var cell = document.createElement("td"); //
+                var img = document.createElement("div") //
+                $(img).addClass("medal_img") //
+                var text = document.createElement("div") //
+                $(text).addClass("medal_font") //
+                if (i < 3) { //
+                    $(text).html(json.amount[i * 4 + j] + 'km') //
                     if (!cancel_the_preset_logic) {
                         if (json.amount[i * 4 + j] > conti_stroll) { // 未達成
                             $(text).css("color", "#c9c9c9")
@@ -441,41 +451,50 @@ function med_trig(cancel_the_preset_logic) {
                         }
                     }
                     a_count_3 = a_count_3 + 1;
-            } else {
-                $(text).html(json.amount[i * 4 + j] + '等')
-                if (json.amount[i * 4 + j] > conti_level) {
-                    $(text).css("color", "#c9c9c9")
-                    $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                 } else {
                     $(text).html(json.amount[i * 4 + j] + '等')
-                    if (!cancel_the_preset_logic) {
-                        if (json.amount[i * 4 + j] > conti_level) {
-                            $(text).css("color", "#c9c9c9")
-                            $(img).css('background-image', 'url(' + json.img_g[i] + ')')
-                        } else {
-                            $(img).css('background-image', 'url(' + json.img[i] + ')')
-                        }
+                    if (json.amount[i * 4 + j] > conti_level) {
+                        $(text).css("color", "#c9c9c9")
+                        $(img).css('background-image', 'url(' + json.img_g[i] + ')')
                     } else {
-                        if (!ary_4[a_count_4]) {
-                            $(text).css("color", "#c9c9c9")
-                            $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                        $(text).html(json.amount[i * 4 + j] + '等')
+                        if (!cancel_the_preset_logic) {
+                            if (json.amount[i * 4 + j] > conti_level) {
+                                $(text).css("color", "#c9c9c9")
+                                $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                            } else {
+                                $(img).css('background-image', 'url(' + json.img[i] + ')')
+                            }
                         } else {
-                            $(img).css('background-image', 'url(' + json.img[i] + ')')
+                            if (!ary_4[a_count_4]) {
+                                $(text).css("color", "#c9c9c9")
+                                $(img).css('background-image', 'url(' + json.img_g[i] + ')')
+                            } else {
+                                $(img).css('background-image', 'url(' + json.img[i] + ')')
+                            }
                         }
+                        a_count_4 = a_count_4 + 1;
                     }
-                    a_count_4 = a_count_4 + 1;
+                    cell.append(img)
+                    cell.append(text)
+                    row.append(cell)
                 }
-                cell.append(img)
-                cell.append(text)
-                row.append(cell)
+                tbBody.append(row)
             }
-            tbBody.append(row)
-        }
-        tb.append(tbBody)
-        $("#medal_table").append(tb)
-    });
+            tb.append(tbBody)
+            $("#medal_table").append(tb)
+        };
+    })
 }
+
 med_trig(false);
+
+//////////////// map (index_main.js) /////////////////
+$("#stroll").click(function() {
+    if (window_open == 0) {
+        window.location.href = "/ts/mapview";
+    }
+})
 
 ///////////////////// 共用 ///////////////////////
 $(".button").bind('touchstart', function() {
