@@ -686,14 +686,14 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                     conti_post=json.post
                     conti_comment=json.comment
                     conti_level=json.level*/
-                    $("#continuous_stroll").html('散步累積 ' + goal_data_1 + "/" + conti_stroll + ' km')
+                    $("#continuous_stroll").html('散步累積 ' + Math.round(goal_data_1/1000) + "/" + conti_stroll + ' km')
                     $("#continuous_post").html('發文累積 ' + goal_data_2 + "/" + conti_post + ' 篇')
                     $("#continuous_comment").html('留言累積 ' + goal_data_3 + "/" + conti_comment + ' 則')
                     $("#continuous_level").html('等級達到 ' + goal_data_4 + "/" + conti_level + ' 等')
                     $("#daily_wakeup").css('background-color', (mis1_data_cur.wake) ? "#dfdfdf" : "#D9E483")
-                    $("#daily_sleep").css('background-color', (mis2_data_cur.wake) ? "#dfdfdf" : "#D9E483")
-                    $("#daily_shoot").css('background-color', (mis3_data_cur.wake) ? "#dfdfdf" : "#D9E483")
-                    $("#daily_stroll").css('background-color', (mis4_data_cur.wake) ? "#dfdfdf" : "#D9E483")
+                    $("#daily_sleep").css('background-color', (mis1_data_cur.sleep) ? "#dfdfdf" : "#D9E483")
+                    $("#daily_shoot").css('background-color', (mis1_data_cur.picture) ? "#dfdfdf" : "#D9E483")
+                    $("#daily_stroll").css('background-color', (mis1_data_cur.stroll) ? "#dfdfdf" : "#D9E483")
                     mission_remind_have_params(false);
                 });
             }
