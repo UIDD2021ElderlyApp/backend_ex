@@ -1,6 +1,7 @@
 body {
     font-family: "華康中圓體", "微軟正黑體", Arial, Helvetica, sans-serif;
     margin: 0;
+    font-weight: bold;
 }
 
 #hungun {
@@ -51,8 +52,8 @@ body {
     position: absolute;
     width: 6vh;
     height: 6vh;
-    top: 2vw;
-    left: 2vw;
+    top: 1vh;
+    left: calc(var(--var_vw)*1);
     background-color: white;
     border-width: 0vh;
     border-radius: 3vh;
