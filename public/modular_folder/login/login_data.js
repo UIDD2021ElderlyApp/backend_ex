@@ -1,8 +1,8 @@
 var DEF_DEBUG = true;
 var GLOBAL_url = "/users/login";
-require.config({
+/*require.config({
     paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
-});
+});*/
 
 document.getElementById('upload_img_using_logo').addEventListener('click', function() {
     if (document.getElementById('disp_mod').innerText === "1") { //login
@@ -60,8 +60,8 @@ function login_button_click() {
             }
         }
 
-        require(["bcrypt"], function(bcrypt) {
-            bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
+        //require(["bcrypt"], function(bcrypt) {
+            //bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
                 if (!usrn) {
                     if (DEF_DEBUG) {
                         console.log("!usrn");
@@ -111,8 +111,8 @@ function login_button_click() {
                         }
                     });
                 }
-            });
-        });
+            //});
+        //});
     } else {
         document.getElementById('add_an_user2').click();
     }
@@ -317,9 +317,9 @@ function reg_to_backend(pic_base64) {
         }
     }
 
-    require(["bcrypt"], function(bcrypt) {
-        bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
-            bcrypt.hash(pasc, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash2) {
+    //require(["bcrypt"], function(bcrypt) {
+        //bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
+            //bcrypt.hash(pasc, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash2) {
                 // Store hash in your password DB.
                 ///////////////////////copy/////////////////////////////
                 formData.append('profileimage', blob_tmp);
@@ -389,7 +389,7 @@ function reg_to_backend(pic_base64) {
                         document.getElementById('error_msg_gui_init_msg_if_yes').click();
                     },
                 });
-            });
-        });
-    });
+            //});
+        //});
+    //});
 }
