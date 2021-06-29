@@ -1,16 +1,17 @@
 var express = require('express');
 var router = express.Router();
 
-var Person = require('../models/Personal'); var PostTmp = require('../models/PostTmp');
+var Person = require('../models/Personal');
+var PostTmp = require('../models/PostTmp');
 
-router.get('/', ensureAuthenticated, function (req, res, next) {
-    Person.getPersonal(req.user.username, function (err, Personget) {
+router.get('/', ensureAuthenticated, function(req, res, next) {
+    Person.getPersonal(req.user.username, function(err, Personget) {
         if (err) throw err;
-        PostTmp.getPostTmp(req.user.username, function (err2, PostTmpget) {
+        PostTmp.getPostTmp(req.user.username, function(err2, PostTmpget) {
             if (err2) throw err2;
             console.log("------------------------------------------------>>>>>>>>>>>>>>>" + PostTmpget);
             res.render('main', {
-                title: 'old_friend',
+                title: 'old_friends',
                 var_jade_user_info_name: `${req.user.name}`,
                 var_jade_user_info_username: `${req.user.username}`,
                 var_jade_user_info_profileimage: `${req.user.profileimage}`,
@@ -21,7 +22,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 var_jade_err_msg_show: false,
                 var_jade_error_msg_gui_text_1: "X",
                 var_jade_error_msg_gui_text_2: "X",
-                var_jade_onsleep_stat:`${(!Personget)?"-1":(Personget.is_sleep)?"yes":"no"}`
+                var_jade_onsleep_stat: `${(!Personget)?"-1":(Personget.is_sleep)?"yes":"no"}`
             });
         });
     });
