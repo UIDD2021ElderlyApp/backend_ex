@@ -110,3 +110,16 @@ html
       - } else {
           block content_footer
       - }
+      script.
+        WebFontConfig = {
+        custom: {
+        families: ['DFYuan-W5-WIN-BF'],
+        urls: ['/stylesheets/fonts.css']
+        }
+        };
+        (function (d) {
+        var wf = d.createElement('script'), s = d.scripts[0];
+        wf.async = true;//非同步方式載入.js
+        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js';
+        s.parentNode.insertBefore(wf, s);
+        })(document);
