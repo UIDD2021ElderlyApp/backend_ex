@@ -34,6 +34,8 @@ body {
     height: 75vh;
     /* background-color: rgb(120, 241, 185); */
     text-align: center;
+    /* init */
+    opacity: 0;
 }
 
 #gray_block {
@@ -71,7 +73,9 @@ body {
     border-radius: 1vw;
 }
 
+
 /* gray_block class */
+
 
 /* .hide-scrollbar::-webkit-scrollbar {
     width: 1vw;
@@ -152,15 +156,15 @@ body {
     color: #ffffff;
     display: block;
     text-align: center;
-    border-top: 0.5vh solid #ffffff;
+    border-top: 0.2vh solid #ffffff;
 }
 
 #cre_acc_log_fk_bton_inner_txt {
     margin-top: 1vh;
 }
 
-#login_button_txt_fix{
-    font-size:3.9vw;
-    margin-top:-6.8vw;
-    font-weight:800;
+#login_button_txt_fix {
+    font-size: 3.9vw;
+    margin-top: -6.8vw;
+    font-weight: 800;
 }

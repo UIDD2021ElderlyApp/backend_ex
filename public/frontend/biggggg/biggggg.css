@@ -328,6 +328,7 @@ body {
 
 #add_photo {
     height: 5vh;
+    line-height: 4.5vh;
     width: 20vh;
     font-size: 3vh;
     font-weight: bold;
@@ -341,6 +342,7 @@ body {
 
 #new_post_button {
     height: 5vh;
+    line-height: 4.5vh;
     width: 20vh;
     font-size: 3vh;
     font-weight: bold;
