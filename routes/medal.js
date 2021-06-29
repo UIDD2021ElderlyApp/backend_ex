@@ -5,11 +5,11 @@ var glob_user_obj;
 
 var Medal = require('../models/Medal');
 
-router.post('/', ensureAuthenticated, function(req, res){
+router.post('/', ensureAuthenticated, function (req, res) {
     console.log("?------------------------------> set Medal")
     console.log(req.body.medal)
     var inputMedal = req.body.medal;
-    Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function(db_type){
+    Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function (db_type) {
         if (db_type === -1) {
             var newMedal = new Medal({
                 user_id: glob_user_obj.username,
@@ -39,31 +39,29 @@ router.post('/', ensureAuthenticated, function(req, res){
                     goal: 0
                 }
             });
-            Medal.createMedal(newMedal, function(err, newMedal){
-                if(err) throw err;
+            Medal.createMedal(newMedal, function (err, newMedal) {
+                if (err) throw err;
                 console.log(newMedal);
-            });  
-            Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function(db_type_2){
+            });
+            Medal.setMedalByUserId(glob_user_obj.username, inputMedal, function (db_type_2) {
                 console.log("**********Reload to put data**********");
-                if(db_type_2 === 1)
-                {
+                if (db_type_2 === 1) {
                     var levelObject = {
                         "type": 8,
                         "goal": 1
                     }
-                    Medal.setMedalByUserId(glob_user_obj.username, JSON.stringify(levelObject), function(db_type_3){
+                    Medal.setMedalByUserId(glob_user_obj.username, JSON.stringify(levelObject), function (db_type_3) {
                         console.log("**********Reload to level up**********");
                     });
                 }
             }); // reset the data  
         }
-        if(db_type === 1)
-        {
+        if (db_type === 1) {
             var levelObject = {
                 "type": 8,
                 "goal": 1
             }
-            Medal.setMedalByUserId(glob_user_obj.username, JSON.stringify(levelObject), function(db_type){
+            Medal.setMedalByUserId(glob_user_obj.username, JSON.stringify(levelObject), function (db_type) {
                 console.log("**********Reload to level up**********");
             });
         }
@@ -73,40 +71,40 @@ router.post('/', ensureAuthenticated, function(req, res){
 
 
 
-router.post('/getdaily', ensureAuthenticated, function(req, res){
+router.get('/getdaily', ensureAuthenticated, function (req, res) {
 
-    Medal.getDaily(glob_user_obj.username, function(dailyMissionComplete){
+    Medal.getDaily(glob_user_obj.username, function (dailyMissionComplete) {
         res.status(200).send(dailyMissionComplete);
     })
 })
 
-router.post('/getEXP', ensureAuthenticated, function(req, res){
-    Medal.getEXP(glob_user_obj.username, function(goal){
+router.get('/getEXP', ensureAuthenticated, function (req, res) {
+    Medal.getEXP(glob_user_obj.username, function (goal) {
         res.status(200).send(goal);
     })
 })
 
-router.post('/getWalk', ensureAuthenticated, function(req, res){
-    Medal.getWalk(glob_user_obj.username, function(goal){
-        res.status(200).send(goal);
+router.get('/getWalk', ensureAuthenticated, function (req, res) {
+    Medal.getWalk(glob_user_obj.username, function (goal) {
+        res.status(200).send(JSON.parse(goal));
     })
 })
 
-router.post('/getPost', ensureAuthenticated, function(req, res){
-    Medal.getPost(glob_user_obj.username, function(goal){
-        res.status(200).send(goal);
+router.get('/getPost', ensureAuthenticated, function (req, res) {
+    Medal.getPost(glob_user_obj.username, function (goal) {
+        res.status(200).send(JSON.parse(goal));
     })
 })
 
-router.post('/getMessage', ensureAuthenticated, function(req, res){
-    Medal.getMessage(glob_user_obj.username, function(goal){
-        res.status(200).send(goal);
+router.get('/getMessage', ensureAuthenticated, function (req, res) {
+    Medal.getMessage(glob_user_obj.username, function (goal) {
+        res.status(200).send(JSON.parse(goal));
     })
 })
 
-router.get('/getLevel', ensureAuthenticated, function(req, res){
-    Medal.getLevel(glob_user_obj.username, function(goal){
-        res.status(200).send(goal);
+router.get('/getLevel', ensureAuthenticated, function (req, res) {
+    Medal.getLevel(glob_user_obj.username, function (goal) {
+        res.status(200).send(JSON.parse(goal));
     })
 })
 
