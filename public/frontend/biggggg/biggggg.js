@@ -254,6 +254,7 @@ function send_sleep_time(params) {
 
 /////////////////////////////////// mission.js ///////////////////
 $("#mission").click(function () {
+    always_at_press_all_exit_ot_reload(false);
     if (window_open == 0) {
         window_open = 1
         $("#mission_html").show().css('z-index', "10")
@@ -497,11 +498,11 @@ function med_trig(cancel_the_preset_logic) {
 med_trig(false);
 
 $(".exit_button_function_to_return_to_the_main_screen").click(() => {
-
+    always_at_press_all_exit_ot_reload(true);
 });
 
 
-function always_at_press_all_exit_ot_reload(params) {
+function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
     //init
     ary_0 = 0;
     exp_data_cur = 0;
@@ -592,40 +593,115 @@ function always_at_press_all_exit_ot_reload(params) {
                 checkFlag();
             }, 5);
         } else {
-            if (DEBUG_DATA_SHOW) console.log(`function checkFlag() {
+            if (not_always_at_mis_page_clicked) {
+                if (DEBUG_DATA_SHOW) console.log(`function checkFlag() {
             if (ary_0 !== 6) {
                 setTimeout(() => {
                     checkFlag();
                 }, 5);
             } else {console.log(`);
-            if (DEBUG_DATA_SHOW) console.log(ary_1);
-            if (DEBUG_DATA_SHOW) console.log(ary_2);
-            if (DEBUG_DATA_SHOW) console.log(ary_3);
-            if (DEBUG_DATA_SHOW) console.log(ary_4);
-            if (DEBUG_DATA_SHOW) console.log(goal_data_1);
-            if (DEBUG_DATA_SHOW) console.log(goal_data_2);
-            if (DEBUG_DATA_SHOW) console.log(goal_data_3);
-            if (DEBUG_DATA_SHOW) console.log(goal_data_4);
-            if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.wake);
-            if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.sleep);
-            if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.picture);
-            if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.stroll);/*exp_data_cur.wake = res.wake; exp_data_cur.sleep = res.sleep;
+                if (DEBUG_DATA_SHOW) console.log(ary_1);
+                if (DEBUG_DATA_SHOW) console.log(ary_2);
+                if (DEBUG_DATA_SHOW) console.log(ary_3);
+                if (DEBUG_DATA_SHOW) console.log(ary_4);
+                if (DEBUG_DATA_SHOW) console.log(goal_data_1);
+                if (DEBUG_DATA_SHOW) console.log(goal_data_2);
+                if (DEBUG_DATA_SHOW) console.log(goal_data_3);
+                if (DEBUG_DATA_SHOW) console.log(goal_data_4);
+                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.wake);
+                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.sleep);
+                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.picture);
+                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.stroll);/*exp_data_cur.wake = res.wake; exp_data_cur.sleep = res.sleep;
             exp_data_cur.picture = res.picture; exp_data_cur.stroll = res.stroll;*/
-            if (DEBUG_DATA_SHOW) console.log(exp_data_cur);
-            if (ary_1 !== ary_1_tmp || ary_2 !== ary_2_tmp || ary_3 !== ary_3_tmp || ary_4 !== ary_4_tmp ||
-                goal_data_1 !== goal_data_1_tmp || goal_data_2 !== goal_data_2_tmp || goal_data_3 !== goal_data_3_tmp || goal_data_4 !== goal_data_4_tmp ||
-                mis1_data_cur.wake !== mis1_data_tmp.wake || mis1_data_cur.sleep !== mis1_data_tmp.sleep ||
-                mis1_data_cur.picture !== mis1_data_tmp.picture || mis1_data_cur.stroll !== mis1_data_tmp.stroll ||
-                exp_data_cur !== exp_data_tmp
-            ) {
-                mission_remind_have_params(true);
-            } else {
-                mission_remind_have_params(false);
+                if (DEBUG_DATA_SHOW) console.log(exp_data_cur);
+                if (ary_1 !== ary_1_tmp || ary_2 !== ary_2_tmp || ary_3 !== ary_3_tmp || ary_4 !== ary_4_tmp ||
+                    /*goal_data_1 !== goal_data_1_tmp || goal_data_2 !== goal_data_2_tmp || goal_data_3 !== goal_data_3_tmp || goal_data_4 !== goal_data_4_tmp ||*/
+                    mis1_data_cur.wake !== mis1_data_tmp.wake || mis1_data_cur.sleep !== mis1_data_tmp.sleep ||
+                    mis1_data_cur.picture !== mis1_data_tmp.picture || mis1_data_cur.stroll !== mis1_data_tmp.stroll ||
+                    exp_data_cur !== exp_data_tmp
+                ) {
+                    mission_remind_have_params(true);
+                } else {
+                    mission_remind_have_params(false);
+                }
+            } else {//always_at_mis_page_clicked
+                $.getJSON("./frontend/biggggg/medal.json", function (json) {
+                    for (let index = 0; index < json.stroll.exp.length; index++) {
+                        if(index+1===json.stroll.exp.length){
+                            conti_stroll=json.stroll.amount[index];
+                            break;
+                        }else if(index===0&&json.stroll.exp[index]===0){
+                            conti_stroll=json.stroll.amount[index];
+                            break;
+                        }else if(json.stroll.exp[index]===1&&json.stroll.exp[index+1]===0){
+                            conti_stroll=json.stroll.amount[index];
+                            break;
+                        }else{
+                            //empty
+                        }
+                    }
+                    for (let index = 0; index < json.post.exp.length; index++) {
+                        if(index+1===json.post.exp.length){
+                            conti_post=json.post.amount[index];
+                            break;
+                        }else if(index===0&&json.post.exp[index]===0){
+                            conti_post=json.post.amount[index];
+                            break;
+                        }else if(json.post.exp[index]===1&&json.post.exp[index+1]===0){
+                            conti_post=json.post.amount[index];
+                            break;
+                        }else{
+                            //empty
+                        }
+                    }
+                    for (let index = 0; index < json.comment.exp.length; index++) {
+                        if(index+1===json.comment.exp.length){
+                            conti_comment=json.comment.amount[index];
+                            break;
+                        }else if(index===0&&json.comment.exp[index]===0){
+                            conti_comment=json.comment.amount[index];
+                            break;
+                        }else if(json.comment.exp[index]===1&&json.comment.exp[index+1]===0){
+                            conti_comment=json.comment.amount[index];
+                            break;
+                        }else{
+                            //empty
+                        }
+                    }
+                    for (let index = 0; index < json.level.exp.length; index++) {
+                        if(index+1===json.level.exp.length){
+                            conti_level=json.level.amount[index];
+                            break;
+                        }else if(index===0&&json.level.exp[index]===0){
+                            conti_level=json.level.amount[index];
+                            break;
+                        }else if(json.level.exp[index]===1&&json.level.exp[index+1]===0){
+                            conti_level=json.level.amount[index];
+                            break;
+                        }else{
+                            //empty
+                        }
+                    }
+                    /*conti_stroll=json.stroll
+                    conti_post=json.post
+                    conti_comment=json.comment
+                    conti_level=json.level*/
+                    $("#continuous_stroll").html('散步累積 ' + goal_data_1 + "/" + conti_stroll + ' km')
+                    $("#continuous_post").html('發文累積 ' + goal_data_2 + "/" + conti_post + ' 篇')
+                    $("#continuous_comment").html('留言累積 ' + goal_data_3 + "/" + conti_comment + ' 則')
+                    $("#continuous_level").html('等級達到 ' + goal_data_4 + "/" + conti_level + ' 等')
+                    $("#daily_wakeup").css('background-color', '#dfdfdf')
+                    $("#daily_wakeup").css('background-color', '#dfdfdf')
+                    $("#daily_wakeup").css('background-color', '#dfdfdf')
+                    $("#daily_wakeup").css('background-color', '#dfdfdf')
+                    mission_remind_have_params(false);
+                });
             }
         }
     }
     checkFlag();
 }
+
 
 //////////////// map (index_main.js) /////////////////
 $("#stroll").click(function () {
@@ -652,4 +728,4 @@ function mission_remind_have_params(true_false) {
         $("#remind").css("opacity", "0");
     }
 }
-always_at_press_all_exit_ot_reload();
+always_at_press_all_exit_ot_reload(true);
