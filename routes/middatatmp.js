@@ -7,7 +7,7 @@ var Middatatmp = require('../models/Middatatmp');
 var DEF_DEBUG = false;
 var glob_user_obj;
 
-router.get('/mid_data_tmp', ensureAuthenticated, function (req, res, next) {
+router.get('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
@@ -25,7 +25,7 @@ router.get('/mid_data_tmp', ensureAuthenticated, function (req, res, next) {
 });
 
 
-router.post('/mid_data_tmp', ensureAuthenticated, function (req, res, next) {
+router.post('/', ensureAuthenticated, function (req, res, next) {
     if (DEF_DEBUG) {
         console.log("+++++++++");
         console.log("glob_user_obj.username :" + glob_user_obj.username);
