@@ -692,19 +692,21 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                     exp_data_tmp: exp_data_cur
                 });
                 jQuery_3_6_0.post("/app/mid_data_tmp", {
-                    ary_1_tmp: ary_1,
-                    ary_2_tmp: ary_2,
-                    ary_3_tmp: ary_3,
-                    ary_4_tmp: ary_4,
-                    goal_data_1_tmp: goal_data_1,
-                    goal_data_2_tmp: goal_data_2,
-                    goal_data_3_tmp: goal_data_3,
-                    goal_data_4_tmp: goal_data_4,
-                    mis1_data_tmp_wake: mis1_data_cur.wake,
-                    mis1_data_tmp_sleep: mis1_data_cur.sleep,
-                    mis1_data_tmp_picture: mis1_data_cur.picture,
-                    mis1_data_tmp_stroll: mis1_data_cur.stroll,
-                    exp_data_tmp: exp_data_cur
+                    tmp: JSON.stringify({
+                        ary_1_tmp: ary_1,
+                        ary_2_tmp: ary_2,
+                        ary_3_tmp: ary_3,
+                        ary_4_tmp: ary_4,
+                        goal_data_1_tmp: goal_data_1,
+                        goal_data_2_tmp: goal_data_2,
+                        goal_data_3_tmp: goal_data_3,
+                        goal_data_4_tmp: goal_data_4,
+                        mis1_data_tmp_wake: mis1_data_cur.wake,
+                        mis1_data_tmp_sleep: mis1_data_cur.sleep,
+                        mis1_data_tmp_picture: mis1_data_cur.picture,
+                        mis1_data_tmp_stroll: mis1_data_cur.stroll,
+                        exp_data_tmp: exp_data_cur
+                    })
                 }, (res) => {
                     //empty
                 });

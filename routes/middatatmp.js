@@ -32,7 +32,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     }
     console.log("req.body is :");
     console.log(req.body);
-    var tmmp = JSON.stringify(req.body);
+    var tmmp = req.body.tmp;
     var user_name = glob_user_obj.username;
 
     if (DEF_DEBUG) {
@@ -41,7 +41,7 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
         console.log(tmmp);
     }
 
-    Middatatmp.setMiddatatmp(ser_name, tmmp, function (newmiddatatmp) {
+    Middatatmp.setMiddatatmp(user_name, tmmp, function (newmiddatatmp) {
         if (!newmiddatatmp) {
             res.status(200).send("success");
         }
