@@ -34,9 +34,9 @@ var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) 
         $("#menu_back").css('background-color', '#61913D')
         break;
 }*/
-if ($("#animal_name").width() > 147) {
+if ($("#animal_name").width() > window_width * 0.16) {
     $("#animal_name").html($("#animal_name").text().substring(0, 6))
-    if ($("#animal_name").width() > 147) {
+    if ($("#animal_name").width() > window_width * 0.16) {
         $("#animal_name").html($("#animal_name").text().substring(0, 3))
     }
     $("#animal_name").append('...')
