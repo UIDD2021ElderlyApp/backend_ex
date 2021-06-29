@@ -53,11 +53,11 @@ body {
     width: 6vh;
     height: 6vh;
     top: 1vh;
-    left: calc(var(--var_vw)*1);
+    left: 1vw;
     background-color: white;
     border-width: 0vh;
     border-radius: 3vh;
-    box-shadow: rgb(150 150 150) -1px -1px 3px 2px;
+    box-shadow: rgb(150 150 150) -2px -2px 5px 3px;
     padding: 0%;
 }
 
