@@ -6,7 +6,7 @@ var window_width = ($(window).width() / $(window).height() > 1.0) ? (9.0 * ($(wi
 // select animal (1, 2, 3)
 $.mobile.loading().hide();
 var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) ? document.getElementById('jade_user_info_choosedanimal').innerText : "0", 10);
-switch (animal) {
+/*switch (animal) {
     case 1:
         $("#back_block").html(`<div id="back1"></div>
         <img class="desktop_width_100" src="./frontend/biggggg/image/home_back1_land.svg" style="position:absolute; 
@@ -32,7 +32,7 @@ switch (animal) {
         bottom:10%; z-index:2;"></img>`)
         $("#menu_back").css('background-color', '#61913D')
         break;
-}
+}*/
 
 $("#house").bind('touchstart', function () {
     $(this).css('transform', "scale(1.1)")
@@ -40,7 +40,7 @@ $("#house").bind('touchstart', function () {
 $("#house").bind('touchend', function () {
     $(this).css('transform', "scale(1)")
 })
-var sleep = false
+var sleep = (document.getElementById("onsleep_stat")) ? (document.getElementById("onsleep_stat").innerText === "yes") ? true : false : false;
 $("#house").click(function () {
     if (!sleep) {
         $(this).animate({}, 300, function () {
@@ -71,7 +71,12 @@ $("#house").click(function () {
         })
         sleep = false
     }
-})
+    jQuery_3_6_0.post("/app/personal/is_sleep", {
+        is_sleep:sleep
+    }, (res) => {
+        //empty
+    });
+});
 
 // mission remind // 0, 1(have "!")
 var mission_complete = 0
@@ -279,7 +284,7 @@ $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 
 /////////////////////////////////// medal.js ///////////////////
 $("#medal_button").click(function () {
-    jQuery_3_6_0.get("/app/medal/getLevel", {
+    jQuery_3_6_0.get("/app/medal/getdaily", {
         //empty
     }, (res) => {
         console.log(res);

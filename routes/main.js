@@ -20,7 +20,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 var_app_PostTmp_get_poop_img_sel_tmmp: `${PostTmpget.post_img_select_tmp}`,
                 var_jade_err_msg_show: false,
                 var_jade_error_msg_gui_text_1: "X",
-                var_jade_error_msg_gui_text_2: "X"
+                var_jade_error_msg_gui_text_2: "X",
+                var_jade_onsleep_stat:`${(Personget.is_sleep)?"yes":"no"}`
             });
         });
     });
