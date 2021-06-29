@@ -71,7 +71,7 @@ router.post('/', ensureAuthenticated, function(req, res){
     res.status(200).send();
 })
 
-router.post('/getdaily', function(req, res){
+router.get('/getdaily', function(req, res){
     Medal.getDaily(glob_user_obj.username, function(dailyMissionComplete){
         res.status(200).send(dailyMissionComplete);
     })

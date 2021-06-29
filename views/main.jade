@@ -6,13 +6,14 @@ block content_head
     link(href='./frontend/biggggg/biggggg.css' rel='stylesheet' type='text/css')
     link(href='./frontend_data/css/glow.css' rel='stylesheet' type='text/css')
 block content_header
+    #onsleep_stat(style='display: none;') #{ var_jade_onsleep_stat }
     #GLOBAL_browse_post_on_scroll(style='display: none;') -1
     #social_page_stat(style='display: none;') -1
     #new_post_button_on_loaded_stat(style='display: none;') -1
     #snap_shoot_social_page_clean_html(style='display: none;')
     #snap_shoot_social_page_clean_html_stat(style='display: none;') -1
-    #app_PostTmp_get_pooptmmp(style='display: none;') #{var_app_PostTmp_get_pooptmmp}
-    #app_PostTmp_get_poop_img_sel_tmmp(style='display: none;') #{var_app_PostTmp_get_poop_img_sel_tmmp}
+    #app_PostTmp_get_pooptmmp(style='display: none;') #{ var_app_PostTmp_get_pooptmmp }
+    #app_PostTmp_get_poop_img_sel_tmmp(style='display: none;') #{ var_app_PostTmp_get_poop_img_sel_tmmp }
     .dont_show_this_in_published_client
         #field_battle_title_see 7.發文(檢視)
         #STAT_no_articles_here_or_stolen_by_aliens no_articles_here_or_stolen_by_aliens?undefine
@@ -32,19 +33,90 @@ block content_body
     // home
     #top_bar
       #user_photo
-        img(src="#{var_jade_user_info_profileimage}")
-      #animal_name #{var_jade_user_info_name}
+        img(src="#{ var_jade_user_info_profileimage }")
+      #animal_name #{ var_jade_user_info_name }
       #level
         div 等級: 
         #level_bar
           #level_value
     #back_block
-    #animal
+      - if( var_jade_user_info_choosedanimal == "1") {
+          #back1
+          img.desktop_width_100(src='./frontend/biggggg/image/home_back1_land.svg' style='position:absolute; bottom:10%; z-index:2;')
+          img.desktop_width_100(src='./frontend/biggggg/image/home_back1_cloud.svg' style='position:absolute; top:10%; z-index:1;')
+      - } else if( var_jade_user_info_choosedanimal == "2") {
+          #back2_1
+          #back2_2
+          img.desktop_width_100(src='./frontend/biggggg/image/home_back2_cloud.svg' style='position:absolute; top:10%; z-index:1;')
+          #sun
+            img(src='./frontend/biggggg/image/home_back2_sun.svg' style='height:100%;')
+          img.desktop_width_100(src='./frontend/biggggg/image/home_back2_sand.svg' style='position:absolute; bottom:10%; z-index:3;')
+          img.desktop_width_50(src='./frontend/biggggg/image/home_back2_unbrella.svg' style='position:absolute; right:calc(var(--var_right_global_displacement) + 0%); top:20%; z-index:4')
+          - if( var_jade_onsleep_stat == "yes") {
+              #tree(style="left:-2%;")
+                img(src='./frontend/biggggg/image/home_back2_tree.svg' style='width: 100%;')
+          - } else {
+              #tree(style="left:25%;")
+                img(src='./frontend/biggggg/image/home_back2_tree.svg' style='width: 100%;')
+          - }
+          //#tree
+          //  img(src='./frontend/biggggg/image/home_back2_tree.svg' style='width: 100%;')
+          //#coconut
+          //  img(src='./frontend/biggggg/image/home_back2_coconut.svg' style='width: 100%;')
+          - if( var_jade_onsleep_stat == "yes") {
+              #coconut(style="left:10%;")
+                img(src='./frontend/biggggg/image/home_back2_coconut.svg' style='width: 100%;')
+          - } else {
+              #coconut(style="left:25%;")
+                img(src='./frontend/biggggg/image/home_back2_coconut.svg' style='width: 100%;')
+          - }
+      - } else if( var_jade_user_info_choosedanimal == "3") {
+          #back3
+          img.desktop_width_100(src='./frontend/biggggg/image/home_back3_cloud.svg' style='position:absolute; top:10%; z-index:1;')
+          img.desktop_width_100(src='./frontend/biggggg/image/home_back3_land.svg' style='position:absolute; bottom:10%; z-index:2;')
+      - } else {
+          script.
+            console.error("This is a serious error, please contact the software vendor");
+      - }
+    //#animal
+    - if( var_jade_onsleep_stat == "yes") {
+        #animal(style='display: none;')
+    - } else {
+        #animal(style='display: block;')
+    - }
     #home_medal_block
       img(src='./frontend/biggggg/image/home_medal.svg' width='80%')
       #medal_button.button 徽章
-    #house
-    #menu_back
+    //#house
+    - if( var_jade_onsleep_stat == "yes") {
+        //#house
+        - if( var_jade_user_info_choosedanimal == "1") {
+            #house
+              img(src='./frontend/biggggg/image/home_sleep1.svg' width='100%')
+        - } else if( var_jade_user_info_choosedanimal == "2") {
+            #house
+              img(src='./frontend/biggggg/image/home_sleep2.svg' width='100%')
+        - } else if( var_jade_user_info_choosedanimal == "3") {
+            #house
+              img(src='./frontend/biggggg/image/home_sleep3.svg' width='100%')
+        - } else {
+            script.
+              console.error("This is a serious error, please contact the software vendor");
+        - }
+    - } else {
+        #house
+    - }
+    //#menu_back
+    - if( var_jade_user_info_choosedanimal == "1") {
+        #menu_back(style="background-color:#61913D;")
+    - } else if( var_jade_user_info_choosedanimal == "2") {
+        #menu_back(style="background-color:#004D69;")
+    - } else if( var_jade_user_info_choosedanimal == "3") {
+        #menu_back(style="background-color:#61913D;")
+    - } else {
+        script.
+          console.error("This is a serious error, please contact the software vendor");
+    - }
       #menu
         #setting.menu_button.button
           img(src='./frontend/biggggg/image/home_button1.svg' height='100%')
@@ -180,7 +252,7 @@ block content_footer
     script(type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js')
     //- script(src='https://cdnjs.cloudflare.com/ajax/libs/phaser/2.6.2/phaser.min.js')
     script(src='./frontend_data/index_main.js')
-    script(src='https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js')
+    //script(src='https://cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js')
     script(src='./frontend/biggggg/biggggg.js')
     script(src='./frontend/biggggg/petAnime.js')
     script(src='./frontend_data/screenshoot_tset.js')

@@ -124,7 +124,7 @@ router.post('/is_sleep', ensureAuthenticated, function (req, res, next) {
     Person.setPersonalis_sleep(user_name, is_sleep, function (err) {
         if (err) throw err
         res.send(200)
-    })
+    });
 });
 
 router.get('/kill', ensureAuthenticated, function (req, res, next) {
