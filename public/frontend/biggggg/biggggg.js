@@ -35,16 +35,16 @@ var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) 
         break;
 }*/
 
-$("#house").bind('touchstart', function() {
+$("#house").bind('touchstart', function () {
     $(this).css('transform', "scale(1.1)")
 })
-$("#house").bind('touchend', function() {
+$("#house").bind('touchend', function () {
     $(this).css('transform', "scale(1)")
 })
 var sleep = (document.getElementById("onsleep_stat")) ? (document.getElementById("onsleep_stat").innerText === "yes") ? true : false : false;
-$("#house").click(function() {
+$("#house").click(function () {
     if (!sleep) {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             $("#animal").css("display", "none");
             switch (animal) {
                 case 1:
@@ -62,7 +62,7 @@ $("#house").click(function() {
         })
         sleep = true
     } else {
-        $(this).animate({}, 300, function() {
+        $(this).animate({}, 300, function () {
             if (animal == 2) {
                 $("#tree").css("left", "25%")
                 $("#coconut").css("left", "25%")
@@ -79,15 +79,9 @@ $("#house").click(function() {
     });
 });
 
-// mission remind // 0, 1(have "!")
-var mission_complete = 0
-if (mission_complete) {
-    $("#remind").css("opacity", "1")
-}
-
 ////////////////////////////// post.js //////////////////////
 
-$("#social").click(function() {
+$("#social").click(function () {
     function checkFlag() {
         if (document.getElementById('snap_shoot_social_page_clean_html_stat').innerText !== '1') {
             setTimeout(() => {
@@ -100,7 +94,7 @@ $("#social").click(function() {
                 $.mobile.loading().hide(); // hide default "loading"
                 var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
                 var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-                $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+                $('#upper_windows').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
                     $("#exit_button").animate({ "opacity": 1 }, 500);
                     document.getElementById('social_page_stat').innerText = 1;
                 });
@@ -109,7 +103,7 @@ $("#social").click(function() {
     }
     checkFlag();
 });
-$("#exit_button").click(function() {
+$("#exit_button").click(function () {
     window_open = 0
     $("#post_html").css("display", "none")
     $('#upper_windows').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" })
@@ -117,26 +111,26 @@ $("#exit_button").click(function() {
 
 });
 
-$('#new_post_text').focus(function() {
+$('#new_post_text').focus(function () {
     if (document.getElementById("app_PostTmp_get_poop_img_sel_tmmp").innerText) {
         document.getElementById("add_photo").classList.add("glow");
     }
-    $("#new_post").animate({ 'height': '30%' }, 600, function() {
+    $("#new_post").animate({ 'height': '30%' }, 600, function () {
         $("#new_post_button_block").show().animate({ 'opacity': 1 }, 2000);
         $("#new_post_button_block #new_post_button").show().animate({ 'opacity': 1 }, 2000);
-        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function() {
+        $("#new_post_button_block #add_photo").show().animate({ 'opacity': 1 }, 2000, function () {
             document.getElementById('new_post_button_on_loaded_stat').innerText = '1';
-            $(".button").bind('touchstart', function() {
+            $(".button").bind('touchstart', function () {
                 $(this).animate({ 'opacity': 0.5 }, 100)
             })
-            $(".button").bind('touchend', function() {
+            $(".button").bind('touchend', function () {
                 $(this).animate({ 'opacity': 1 }, 100)
             })
-            $("#browse_post").on("scrollstart", function() {
+            $("#browse_post").on("scrollstart", function () {
                 $("#browse_post").off()
                 $("#browse_post").off("scrollstart") // both OK
                 $("#new_post_text").blur();
-                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function() {
+                $("#new_post_button_block").animate({ 'opacity': 0 }, 300, function () {
                     $("#new_post_button_block #new_post_button").hide();
                     $("#new_post_button_block #add_photo").hide();
                     $("#new_post").animate({ 'height': '15%' }, 300);
@@ -153,14 +147,14 @@ var wakeup_m = 30
 var sleep_h = 21
 var sleep_m = 00
 
-$("#setting").click(function() {
+$("#setting").click(function () {
     if (window_open == 0) {
         window_open = 1
         $("#setting_html").show().css('z-index', "10")
         $.mobile.loading().hide(); // hide default "loading"
         var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
         var width = window_width - $(window).height() * 0.04 //calc(100% - 4vh)
-        $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $('#upper_windows_1').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
             $("#exit_button_1").animate({ "opacity": 1 }, 500)
         });
         jQuery_3_6_0.get("/app/personal", {
@@ -179,7 +173,7 @@ $("#setting").click(function() {
     }
 });
 
-$("#exit_button_1").click(function() {
+$("#exit_button_1").click(function () {
     window_open = 0
     $("#setting_html").css("display", "none");
     $('#upper_windows_1').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
@@ -187,7 +181,7 @@ $("#exit_button_1").click(function() {
 });
 
 // get recent value (input)
-$("#wakeup_hour").blur(function() {
+$("#wakeup_hour").blur(function () {
     if ($(this).val() > 23 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -197,7 +191,7 @@ $("#wakeup_hour").blur(function() {
     console.log($(this).val());
     send_wake_time();
 })
-$("#wakeup_minute").blur(function() {
+$("#wakeup_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -208,7 +202,7 @@ $("#wakeup_minute").blur(function() {
     send_wake_time();
 
 })
-$("#sleep_hour").blur(function() {
+$("#sleep_hour").blur(function () {
     if ($(this).val() > 23 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -219,7 +213,7 @@ $("#sleep_hour").blur(function() {
     send_sleep_time();
 
 })
-$("#sleep_minute").blur(function() {
+$("#sleep_minute").blur(function () {
     if ($(this).val() > 59 || $(this).val() < 0) {
         $(this).val("0")
     }
@@ -259,19 +253,19 @@ function send_sleep_time(params) {
 })*/
 
 /////////////////////////////////// mission.js ///////////////////
-$("#mission").click(function() {
+$("#mission").click(function () {
     if (window_open == 0) {
         window_open = 1
         $("#mission_html").show().css('z-index', "10")
         var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
         var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-        $('#upper_windows_2').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $('#upper_windows_2').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
             $("#exit_button_2").animate({ "opacity": 1 }, 500);
         });
 
     }
 });
-$("#exit_button_2").click(function() {
+$("#exit_button_2").click(function () {
     window_open = 0
     $("#mission_html").css("display", "none");
     $('#upper_windows_2').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
@@ -290,12 +284,31 @@ var conti_stroll = 10 //累積散步量
 var conti_post = 5 //累積發文數 
 var conti_comment = 5 // ...etc
 var conti_level = 5
-    //var cancel_the_preset_logic = true;
+//var cancel_the_preset_logic = true;
+var exp_data_cur = {
+    wake: false,
+    sleep: false,
+    picture: false,
+    stroll: false
+};
+var exp_data_tmp = {
+    wake: false,
+    sleep: false,
+    picture: false,
+    stroll: false
+};
+var mis1_data_cur = null; var mis1_data_tmp = null;
+var goal_data_1 = 0; var goal_data_2 = 0; var goal_data_3 = 0; var goal_data_4 = 0;
+var goal_data_1_tmp = 0; var goal_data_2_tmp = 0; var goal_data_3_tmp = 0; var goal_data_4_tmp = 0;
 var ary_0 = 0; //finished post data backend trans
 var ary_1 = [false, false, false, false, false, false, false, false, false, false, false, false]; //real data 散步累積
 var ary_2 = [false, false, false, false, false, false, false, false]; //real data 發文累積
 var ary_3 = [false, false, false, false, false, false, false, false]; //real data 留言累積
 var ary_4 = [false, false, false, false, false, false, false, false]; //real data 等級達到 
+var ary_1_tmp = [false, false, false, false, false, false, false, false, false, false, false, false]; //real data 散步累積
+var ary_2_tmp = [false, false, false, false, false, false, false, false]; //real data 發文累積
+var ary_3_tmp = [false, false, false, false, false, false, false, false]; //real data 留言累積
+var ary_4_tmp = [false, false, false, false, false, false, false, false]; //real data 等級達到 
 var a_count_1 = 0;
 var a_count_2 = 0;
 var a_count_3 = 0;
@@ -307,7 +320,7 @@ $("#continuous_level").html('等級達到 ' + conti_level + ' 等')
 
 /////////////////////////////////// medal.js ///////////////////
 
-$("#medal_button").click(function() {
+$("#medal_button").click(function () {
     if (window_open == 0) {
         window_open = 1
         ary_0 = 0;
@@ -354,7 +367,7 @@ $("#medal_button").click(function() {
         $("#medal_html").show().css('z-index', "10")
         var height = $(window).height() * (94 / 100) //calc(100% - 6vh)
         var width = window_width - $(window).height() * (4 / 100) //calc(100% - 4vh)
-        $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function() {
+        $('#upper_windows_3').animate({ "width": width, "height": height, "zoom": "100%", "left": "", "top": "" }, 500, 'easeInOutQuint', function () {
             $("#exit_button_3").animate({ "opacity": 1 }, 500);
         });
 
@@ -375,7 +388,7 @@ $("#medal_button").click(function() {
 
     }
 });
-$("#exit_button_3").click(function() {
+$("#exit_button_3").click(function () {
     window_open = 0
     $("#medal_html").css("display", "none");
     $('#upper_windows_3').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
@@ -482,17 +495,137 @@ function med_trig(cancel_the_preset_logic) {
 }
 med_trig(false);
 
+$(".exit_button_function_to_return_to_the_main_screen").click(() => {
+
+});
+
+
+function always_at_press_all_exit_ot_reload(params) {
+    //init
+    ary_0 = 0;
+    exp_data_cur = 0;
+    mis1_data_cur = {
+        wake: false,
+        sleep: false,
+        picture: false,
+        stroll: false
+    };
+    goal_data_1 = 0; goal_data_2 = 0; goal_data_3 = 0; goal_data_4 = 0;
+    ary_1 = [false, false, false, false, false, false, false, false, false, false, false, false]; //real data 散步累積
+    ary_2 = [false, false, false, false, false, false, false, false]; //real data 發文累積
+    ary_3 = [false, false, false, false, false, false, false, false]; //real data 留言累積
+    ary_4 = [false, false, false, false, false, false, false, false]; //real data 等級達到 
+    jQuery_3_6_0.get("/app/medal/getEXP", {
+        //empty
+    }, (res) => {
+        console.log(typeof res);
+        console.log(res);
+        ary_0 = ary_0 + 1;
+        exp_data_cur = res;
+    });
+    jQuery_3_6_0.get("/app/medal/getdaily", {
+        //empty
+    }, (res) => {
+        console.log(typeof res);
+        console.log(res);
+        ary_0 = ary_0 + 1;
+        mis1_data_cur.wake = res.wake; mis1_data_cur.sleep = res.sleep;
+        mis1_data_cur.picture = res.picture; mis1_data_cur.stroll = res.stroll;
+    });
+    jQuery_3_6_0.get("/app/medal/getWalk", {
+        //empty
+    }, (res) => {
+        console.log(typeof res);
+        console.log(res);
+        ary_0 = ary_0 + 1;
+        ary_1 = res.progress;
+        goal_data_1 = res.goal;
+        console.log(res.progress);
+    });
+    jQuery_3_6_0.get("/app/medal/getPost", {
+        //empty
+    }, (res) => {
+        goal_data_2 = res.goal;
+        console.log(typeof res);
+        console.log(res.progress);
+        console.log(res);
+        ary_0 = ary_0 + 1;
+        ary_2 = res.progress;
+    });
+    jQuery_3_6_0.get("/app/medal/getMessage", {
+        //empty
+    }, (res) => {
+        goal_data_3 = res.goal;
+        console.log(typeof res);
+        console.log(res.progress);
+        console.log(res);
+        ary_0 = ary_0 + 1;
+        ary_3 = res.progress;
+    });
+    jQuery_3_6_0.get("/app/medal/getLevel", {
+        //empty
+    }, (res) => {
+        goal_data_4 = res.goal;
+        console.log(typeof res);
+        console.log(res.progress);
+        console.log(res);
+        ary_0 = ary_0 + 1;
+        ary_4 = res.progress;
+    });
+    function checkFlag() {
+        if (ary_0 !== 6) {
+            setTimeout(() => {
+                checkFlag();
+            }, 5);
+        } else {
+            console.log(`function checkFlag() {
+            if (ary_0 !== 6) {
+                setTimeout(() => {
+                    checkFlag();
+                }, 5);
+            } else {console.log(`);
+            console.log(ary_1);
+            console.log(ary_2);
+            console.log(ary_3);
+            console.log(ary_4);
+            console.log(goal_data_1);
+            console.log(goal_data_2);
+            console.log(goal_data_3);
+            console.log(goal_data_4);
+            console.log(mis1_data_cur.wake);
+            console.log(mis1_data_cur.sleep);
+            console.log(mis1_data_cur.picture);
+            console.log(mis1_data_cur.stroll);/*exp_data_cur.wake = res.wake; exp_data_cur.sleep = res.sleep;
+            exp_data_cur.picture = res.picture; exp_data_cur.stroll = res.stroll;*/
+            console.log(exp_data_cur);
+        }
+    }
+    checkFlag();
+}
+
 //////////////// map (index_main.js) /////////////////
-$("#stroll").click(function() {
+$("#stroll").click(function () {
     if (window_open == 0) {
         window.location.href = "/ts/mapview";
     }
-})
+});
 
 ///////////////////// 共用 ///////////////////////
-$(".button").bind('touchstart', function() {
+$(".button").bind('touchstart', function () {
     $(this).animate({ 'opacity': 0.7 }, 100)
 })
-$(".button").bind('touchend', function() {
+$(".button").bind('touchend', function () {
     $(this).animate({ 'opacity': 1 }, 100)
-})
+});
+
+//The code below must be placed at the end of this file. Random movement logic may be wrong
+function mission_remind_have_params(true_false) {
+    // mission remind // 0, 1(have "!")
+    //var mission_complete = 0
+    if (true_false) {
+        $("#remind").css("opacity", "1");
+    } else {
+        $("#remind").css("opacity", "0");
+    }
+}
+mission_remind_have_params(always_at_press_all_exit_ot_reload());

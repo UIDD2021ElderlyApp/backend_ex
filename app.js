@@ -217,3 +217,11 @@ module.exports = app;
 /*ref
 https://ithelp.ithome.com.tw/articles/10189263
 */
+
+/*todo:
+https://www.google.com/search?q=%E5%BE%8C%E7%AB%AF%E5%82%B3%E9%80%9A%E7%9F%A5%E5%88%B0%E5%89%8D%E7%AB%AF%E6%96%B9%E6%B3%95&rlz=1C1SQJL_zh-TWTW832TW832&oq=%E5%BE%8C%E7%AB%AF%E5%82%B3%E9%80%9A%E7%9F%A5%E5%88%B0%E5%89%8D%E7%AB%AF%E6%96%B9%E6%B3%95&aqs=chrome..69i57.23958j0j7&sourceid=chrome&ie=UTF-8
+https://ithelp.ithome.com.tw/articles/10191681
+https://www.syscom.com.tw/ePaper_New_Content.aspx?id=600&EPID=232&TableName=sgEPArticle
+https://blog.gtwang.org/programming/socket-io-node-js-realtime-app/
+https://www.google.com/search?q=express+socket.io&rlz=1C1SQJL_zh-TWTW832TW832&oq=express+so&aqs=chrome.1.69i57j0l9.10447j0j7&sourceid=chrome&ie=UTF-8
+*/
