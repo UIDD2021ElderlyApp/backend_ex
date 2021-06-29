@@ -1,5 +1,6 @@
 #label {
     height: 5vh;
+    line-height: 5vh;
     width: 38%;
     font-size: 3vh;
     font-weight: bold;
@@ -20,6 +21,7 @@
 
 #quit {
     height: 5vh;
+    line-height: 5vh;
     width: calc(38%*(2/5));
     font-size: 3vh;
     font-weight: bold;
