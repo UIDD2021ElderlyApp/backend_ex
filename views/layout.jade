@@ -16,6 +16,9 @@ html
     
   body
     header(style='display: none;')
+      if errors
+        each error, i in errors
+          .div_alert_alert_danger(style='display: none;') #{error.msg}
       #snap_shoot_html2canvas_group(style='display: none;')
         button#snap_shoot_screen(style='display: none;') snap_shoot_screen
         #snap_shoot_finish(style='display: none;') -1

@@ -9,7 +9,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bcrypt = require('bcryptjs');
-//var flash        = require('req-flash');
 
 //---
 var bodyParser = require('body-parser');
@@ -73,7 +72,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(flash());
+app.use(flash());
 
 //---
 // Handle Sessions
@@ -124,7 +123,7 @@ app.post(
   //https://express-validator.github.io/docs/
 );
 // messages (express-messages / connect-flash)
-app.use(require('connect-flash')());
+//app.use(require('connect-flash')());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();

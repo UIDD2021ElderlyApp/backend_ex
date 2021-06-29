@@ -1,0 +1,16 @@
+extends layout
+
+block content_head
+    meta(charset='utf8')
+    title test
+
+block content_header
+    #abc abc
+block content_body
+    #abc abc
+    #def #{ info }
+    form(method='post', action='/ga/fl', enctype='multipart/form-data')
+        .form-group
+        input.btn.btn-primary(type='submit', name='submit', value='Register')
+block content_footer
+    #abc abc
