@@ -57,6 +57,7 @@ var personalRouter = require('./routes/personal')
 var peopleonmapRouter = require('./routes/PeopleOnMap')
 var profileimageRouter = require('./routes/profileimage')
 var posttmpRouter = require('./routes/posttmp')
+var middatatmpRouter = require('./routes/middatatmp')
     /*----------------------------------------------------*/
 
 var app = express();
@@ -193,6 +194,7 @@ app.use('/app/PeopleOnMap', peopleonmapRouter);
 app.use('/app/profileimage', profileimageRouter);
 app.use('/app/posttmp', posttmpRouter);
 app.use('/app/medal', medalRouter);
+app.use('/app/mid_data_tmp', middatatmpRouter)
 ///////////////////////////////////////////////////////
 
 
