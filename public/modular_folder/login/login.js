@@ -6,11 +6,16 @@ $("#loading_logo").animate({ 'marginTop': '10vh' }, 3000, "easeInOutQuart", func
     $("#login_page").animate({ 'opacity': 1 }, 1000)
 })
 
-$('#login_button img').click(function() { // pc:y mobile:y
-    $(this).animate({ 'opacity': 0.5 }, 10)
-    $(this).delay(100).animate({ 'opacity': 1 }, 10)
+// $('#login_button img').click(function() { // pc:y mobile:y
+//     $(this).animate({ 'opacity': 0.5 }, 10)
+//     $(this).delay(100).animate({ 'opacity': 1 }, 10)
+// })
+$(".button").bind('touchstart', function() {
+    $(this).animate({ 'opacity': 0.7 }, 100)
 })
-
+$(".button").bind('touchend', function() {
+    $(this).animate({ 'opacity': 1 }, 100)
+})
 
 jQuery(function dom_ready(dom_ready_params) {
     $("#fb_login").click(function() {
