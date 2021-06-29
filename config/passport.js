@@ -3,13 +3,15 @@ const fsModule = require('fs');
 var request = require('request').defaults({ encoding: null });
 var DEF_default_img = "/frontend/biggggg/image/test.svg"
 
+var DEF_debug = true;
+
 let rawdata = fsModule.readFileSync('./Variouskeys/facebook_andyxu.json');
 let student = JSON.parse(rawdata);
-console.log(student);
+if (DEF_debug) console.log(student);
 
 let tmp_port = fsModule.readFileSync('./Variouskeys/.tmp_port.json');
 let tmp_port_json = JSON.parse(tmp_port);
-console.log(tmp_port_json.port_https);
+if (DEF_debug) console.log(tmp_port_json.port_https);
 
 //Import password or private key file------------------------------------------------------------------
 var User = require('../models/user');
@@ -25,8 +27,8 @@ passport.use(new FacebookStrategy({
         ['id', 'name', 'displayName', 'gender', 'emails', 'photos', 'hometown', 'profileUrl', 'friends']
 },
     function (accessToken, refreshToken, profile, done) {
-        console.log(profile);
-        console.log(profile._json.picture.data);
+        if (DEF_debug) console.log(profile);
+        if (DEF_debug) console.log(profile._json.picture.data);
         var url_to_download_profileimage = (profile.photos) ? profile.photos[0].value || "https://luffy.ee.ncku.edu.tw:" + tmp_port_json.port_https + DEF_default_img : "https://luffy.ee.ncku.edu.tw:" + tmp_port_json.port_https + DEF_default_img;
         request.get(url_to_download_profileimage, function (error, response, body) {
             if (error) {
@@ -34,7 +36,7 @@ passport.use(new FacebookStrategy({
             }
             if (!error && response.statusCode == 200) {
                 data = "data:" + response.headers["content-type"] + ";base64," + Buffer.from(body).toString('base64');
-                //console.log(data);
+                //if (DEF_debug) console.log(data);
                 var newUser = new User({
                     name: profile.displayName || "empty!",
                     email: (profile.emails) ? profile.emails[0].value || "empty!" : profile.provider || "empty!",
@@ -56,7 +58,7 @@ var sharp = require('sharp')
 
 let rawdata_line = fsModule.readFileSync('./Variouskeys/line_Ery-z.json');
 let student_line = JSON.parse(rawdata_line);
-console.log(student_line);
+if (DEF_debug) console.log(student_line);
 
 const LineStrategy = require('passport-line-auth').Strategy;
 const jwt = require('jsonwebtoken');
@@ -71,7 +73,7 @@ passport.use(new LineStrategy({
     function (accessToken, refreshToken, params, profile, cb) {
         const { email } = jwt.decode(params.id_token);
         profile.email = email;
-        console.log(profile);
+        if (DEF_debug) console.log(profile);
         var url_to_download_profileimage = (profile.pictureUrl) ? profile.pictureUrl || "https://luffy.ee.ncku.edu.tw:" + tmp_port_json.port_https + DEF_default_img : "https://luffy.ee.ncku.edu.tw:" + tmp_port_json.port_https + DEF_default_img;
         request.get(url_to_download_profileimage, function (error, response, body) {
             if (error) {
