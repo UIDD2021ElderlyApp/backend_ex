@@ -2,7 +2,8 @@
     /*-webkit-animation: glow 1s ease-in-out infinite alternate;
     -moz-animation: glow 1s ease-in-out infinite alternate;
     animation: glow 1s ease-in-out infinite alternate;*/
-    text-decoration: underline;
+    /* text-decoration: underline; */
+    color: #999999;
 }
 
 @-webkit-keyframes glow {
