@@ -627,58 +627,58 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             } else {//always_at_mis_page_clicked
                 $.getJSON("./frontend/biggggg/medal.json", function (json) {
                     for (let index = 0; index < json.stroll.exp.length; index++) {
-                        if(index+1===json.stroll.exp.length){
-                            conti_stroll=json.stroll.amount[index];
+                        if (index + 1 === json.stroll.exp.length) {
+                            conti_stroll = json.stroll.amount[index];
                             break;
-                        }else if(index===0&&json.stroll.exp[index]===0){
-                            conti_stroll=json.stroll.amount[index];
+                        } else if (index === 0 && json.stroll.exp[index] === 0) {
+                            conti_stroll = json.stroll.amount[index];
                             break;
-                        }else if(json.stroll.exp[index]===1&&json.stroll.exp[index+1]===0){
-                            conti_stroll=json.stroll.amount[index];
+                        } else if (json.stroll.exp[index] === 1 && json.stroll.exp[index + 1] === 0) {
+                            conti_stroll = json.stroll.amount[index];
                             break;
-                        }else{
+                        } else {
                             //empty
                         }
                     }
                     for (let index = 0; index < json.post.exp.length; index++) {
-                        if(index+1===json.post.exp.length){
-                            conti_post=json.post.amount[index];
+                        if (index + 1 === json.post.exp.length) {
+                            conti_post = json.post.amount[index];
                             break;
-                        }else if(index===0&&json.post.exp[index]===0){
-                            conti_post=json.post.amount[index];
+                        } else if (index === 0 && json.post.exp[index] === 0) {
+                            conti_post = json.post.amount[index];
                             break;
-                        }else if(json.post.exp[index]===1&&json.post.exp[index+1]===0){
-                            conti_post=json.post.amount[index];
+                        } else if (json.post.exp[index] === 1 && json.post.exp[index + 1] === 0) {
+                            conti_post = json.post.amount[index];
                             break;
-                        }else{
+                        } else {
                             //empty
                         }
                     }
                     for (let index = 0; index < json.comment.exp.length; index++) {
-                        if(index+1===json.comment.exp.length){
-                            conti_comment=json.comment.amount[index];
+                        if (index + 1 === json.comment.exp.length) {
+                            conti_comment = json.comment.amount[index];
                             break;
-                        }else if(index===0&&json.comment.exp[index]===0){
-                            conti_comment=json.comment.amount[index];
+                        } else if (index === 0 && json.comment.exp[index] === 0) {
+                            conti_comment = json.comment.amount[index];
                             break;
-                        }else if(json.comment.exp[index]===1&&json.comment.exp[index+1]===0){
-                            conti_comment=json.comment.amount[index];
+                        } else if (json.comment.exp[index] === 1 && json.comment.exp[index + 1] === 0) {
+                            conti_comment = json.comment.amount[index];
                             break;
-                        }else{
+                        } else {
                             //empty
                         }
                     }
                     for (let index = 0; index < json.level.exp.length; index++) {
-                        if(index+1===json.level.exp.length){
-                            conti_level=json.level.amount[index];
+                        if (index + 1 === json.level.exp.length) {
+                            conti_level = json.level.amount[index];
                             break;
-                        }else if(index===0&&json.level.exp[index]===0){
-                            conti_level=json.level.amount[index];
+                        } else if (index === 0 && json.level.exp[index] === 0) {
+                            conti_level = json.level.amount[index];
                             break;
-                        }else if(json.level.exp[index]===1&&json.level.exp[index+1]===0){
-                            conti_level=json.level.amount[index];
+                        } else if (json.level.exp[index] === 1 && json.level.exp[index + 1] === 0) {
+                            conti_level = json.level.amount[index];
                             break;
-                        }else{
+                        } else {
                             //empty
                         }
                     }
@@ -690,10 +690,10 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                     $("#continuous_post").html('發文累積 ' + goal_data_2 + "/" + conti_post + ' 篇')
                     $("#continuous_comment").html('留言累積 ' + goal_data_3 + "/" + conti_comment + ' 則')
                     $("#continuous_level").html('等級達到 ' + goal_data_4 + "/" + conti_level + ' 等')
-                    $("#daily_wakeup").css('background-color', '#dfdfdf')
-                    $("#daily_wakeup").css('background-color', '#dfdfdf')
-                    $("#daily_wakeup").css('background-color', '#dfdfdf')
-                    $("#daily_wakeup").css('background-color', '#dfdfdf')
+                    $("#daily_wakeup").css('background-color', (mis1_data_cur.wake) ? "#dfdfdf" : "#D9E483")
+                    $("#daily_sleep").css('background-color', (mis2_data_cur.wake) ? "#dfdfdf" : "#D9E483")
+                    $("#daily_shoot").css('background-color', (mis3_data_cur.wake) ? "#dfdfdf" : "#D9E483")
+                    $("#daily_stroll").css('background-color', (mis4_data_cur.wake) ? "#dfdfdf" : "#D9E483")
                     mission_remind_have_params(false);
                 });
             }
