@@ -104,6 +104,9 @@ function login_button_click() {
                             document.getElementById("error_msg_gui_word_part_color_2").innerText = "black";
                             document.getElementById("error_msg_gui_text_1").innerText = "錯誤";
                             document.getElementById("error_msg_gui_text_2").innerText = "帳號或密碼錯誤";
+                            if (document.getElementById("window_clearInterval_timeoutID").innerText) {
+                                clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
+                            }
                             document.getElementById("error_msg_gui_start").click();
                         }
                     });
