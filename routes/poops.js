@@ -89,9 +89,11 @@ router.post('/', ensureAuthenticated, function (req, res, next) {
     if (!text) {
         error_msg_res["text"] = "empty";
     }
-    if (!img) {
-        error_msg_res["img"] = "empty";
-    }
+    // if (!img) {
+    //     error_msg_res["img"] = "empty";
+    // }
+    if (!img)
+        img = "-1" 
 
     if (DEF_DEBUG) {
         console.log("+++++++++");
