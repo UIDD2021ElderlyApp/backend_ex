@@ -1,6 +1,7 @@
 var map, marker, lat, lng;
 var info3 = document.querySelector(".info3");
-info3.innerHTML='nobody found';
+info3.innerHTML = 'nobody found';
+
 function initMap() {
     navigator.geolocation.watchPosition((position) => {
         console.log(position.coords);
@@ -24,3 +25,9 @@ $("#exit_button").click(function() {
     var newstr = window.location.href.replace(re, "/ts/home");
     window.location.href = newstr;
 });
+$(".button").bind('touchstart', function() {
+    $(this).animate({ 'opacity': 0.7 }, 100)
+})
+$(".button").bind('touchend', function() {
+    $(this).animate({ 'opacity': 1 }, 100)
+})
