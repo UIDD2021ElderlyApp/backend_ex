@@ -21,27 +21,31 @@ block content_header
     #window_clearInterval_timeoutID
 
 block content_body
+    #waiting_block(style='display:none;')
+      #waiting_gray
+      #waiting_logo
+        img(src='../modular_folder/login/image/loading.svg' height='100%')
     #loading_logo
       img(src='../modular_folder/login/image/loading.svg')
     #login_page
       // width="71.43%"
       img#upload_img_using_logo(src='../modular_folder/login/image/logo.svg' style='position:relative; height:30vh; top: 0%;')
       #gray_block
-        .login_bar.disp_for_mod
+        .login_bar.disp_for_mod.user_input
           img(src='../modular_folder/login/image/login_bar.svg')
           input.input_type_text(type='text' name='user_name' placeholder='名稱' onfocus="this.placeholder = ''" onblur="this.placeholder = '名稱'")
-        .login_bar
+        .login_bar.user_input
           img(src='../modular_folder/login/image/login_bar.svg')
           input.input_type_text(type='text' name='account' placeholder='帳號' onfocus="this.placeholder = ''" onblur="this.placeholder = '帳號'")
-        .login_bar
+        .login_bar.user_input
           img(src='../modular_folder/login/image/login_bar.svg')
           input.input_type_text(type='password' name='password' placeholder='密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '密碼'")
-        .login_bar.disp_for_mod
+        .login_bar.disp_for_mod.user_input
           img(src='../modular_folder/login/image/login_bar.svg')
           input.input_type_text(type='password' name='password_confirm' placeholder='再輸入一次密碼' onfocus="this.placeholder = ''" onblur="this.placeholder = '再輸入一次密碼'")
         .login_bar
           // value=""
-          button#login_button
+          button#login_button.button
             img(src='../modular_folder/login/image/login_button.svg' width='100%' z-index='3')
             #login_button_txt_fix(style='color:#FEFEFE;') 註冊
       #community_login
