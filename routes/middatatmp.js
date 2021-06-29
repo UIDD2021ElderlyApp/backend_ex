@@ -20,7 +20,7 @@ router.get('/mid_data_tmp', ensureAuthenticated, function (req, res, next) {
             console.log("+++++++++-----------");
             console.log(Middatatmpget);
         }
-        res.status(200).send(JSON.Parse(Middatatmpget));
+        res.status(200).send(JSON.parse(Middatatmpget));
     })
 });
 
