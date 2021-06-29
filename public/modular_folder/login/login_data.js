@@ -74,7 +74,7 @@ function login_button_click() {
                     }
                     is_this_a_login_Q = false;
                 }
-                if (!hash) {
+                if (!pasw) {
                     if (DEF_DEBUG) {
                         console.log("!pasw");
                     }
@@ -89,7 +89,7 @@ function login_button_click() {
                 if (is_this_a_login_Q) {
                     $.post(GLOBAL_url, {
                         username: acct,
-                        password: hash
+                        password: pasw
                     }, (objects_returned_by_the_server) => {
                         if (DEF_DEBUG) {
                             console.log(objects_returned_by_the_server);
@@ -326,8 +326,8 @@ function reg_to_backend(pic_base64) {
                 formData.append('name', usrn);
                 formData.append('email', "no_email@email.com");
                 formData.append('username', acct);
-                formData.append('password', hash);
-                formData.append('password2', hash2);
+                formData.append('password', pasw);
+                formData.append('password2', pasc);
                 /*name: "name",
                     password: pasw,
                     email: "email@email.com",
