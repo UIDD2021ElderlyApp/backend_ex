@@ -258,16 +258,18 @@ $("#exit_button_2").click(function() {
     $('#upper_windows_2').css({ "left": "10%", "top": "13%", "width": "calc(var(--var_vw)*70)", "height": "70%", "zoom": "70%" });
     $("#exit_button_2").css("opacity", 0);
 });
+
+// andy 
 // 日常任務完成狀態
 if (1) {
     // 任務未完成 // 底色 : 灰 
     $("#daily_wakeup").css('background-color', '#dfdfdf')
 }
-
+//andy
 // 持續任務目前階段
-var conti_stroll = 10
-var conti_post = 5
-var conti_comment = 5
+var conti_stroll = 10 //累積散步量
+var conti_post = 5 //累積發文數 
+var conti_comment = 5 // ...etc
 var conti_level = 5
 $("#continuous_stroll").html('散步累積 ' + conti_stroll + ' km')
 $("#continuous_post").html('發文累積 ' + conti_post + ' 篇')
