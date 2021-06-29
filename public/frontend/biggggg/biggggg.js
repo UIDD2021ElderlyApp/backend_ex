@@ -518,59 +518,71 @@ function always_at_press_all_exit_ot_reload(params) {
     jQuery_3_6_0.get("/app/medal/getEXP", {
         //empty
     }, (res) => {
-        console.log(typeof res);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        exp_data_cur = res;
+        if (res) {
+            console.log(typeof res);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            exp_data_cur = parseInt(res);
+        }
     });
     jQuery_3_6_0.get("/app/medal/getdaily", {
         //empty
     }, (res) => {
-        console.log(typeof res);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        mis1_data_cur.wake = res.wake; mis1_data_cur.sleep = res.sleep;
-        mis1_data_cur.picture = res.picture; mis1_data_cur.stroll = res.stroll;
+        if (res) {
+            console.log(typeof res);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            mis1_data_cur.wake = res.wake; mis1_data_cur.sleep = res.sleep;
+            mis1_data_cur.picture = res.picture; mis1_data_cur.stroll = res.stroll;
+        }
     });
     jQuery_3_6_0.get("/app/medal/getWalk", {
         //empty
     }, (res) => {
-        console.log(typeof res);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_1 = res.progress;
-        goal_data_1 = res.goal;
-        console.log(res.progress);
+        if (res) {
+            console.log(typeof res);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_1 = res.progress;
+            goal_data_1 = res.goal;
+            console.log(res.progress);
+        }
     });
     jQuery_3_6_0.get("/app/medal/getPost", {
         //empty
     }, (res) => {
-        goal_data_2 = res.goal;
-        console.log(typeof res);
-        console.log(res.progress);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_2 = res.progress;
+        if (res) {
+            goal_data_2 = res.goal;
+            console.log(typeof res);
+            console.log(res.progress);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_2 = res.progress;
+        }
     });
     jQuery_3_6_0.get("/app/medal/getMessage", {
         //empty
     }, (res) => {
-        goal_data_3 = res.goal;
-        console.log(typeof res);
-        console.log(res.progress);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_3 = res.progress;
+        if (res) {
+            goal_data_3 = res.goal;
+            console.log(typeof res);
+            console.log(res.progress);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_3 = res.progress;
+        }
     });
     jQuery_3_6_0.get("/app/medal/getLevel", {
         //empty
     }, (res) => {
-        goal_data_4 = res.goal;
-        console.log(typeof res);
-        console.log(res.progress);
-        console.log(res);
-        ary_0 = ary_0 + 1;
-        ary_4 = res.progress;
+        if (res) {
+            goal_data_4 = res.goal;
+            console.log(typeof res);
+            console.log(res.progress);
+            console.log(res);
+            ary_0 = ary_0 + 1;
+            ary_4 = res.progress;
+        }
     });
     function checkFlag() {
         if (ary_0 !== 6) {

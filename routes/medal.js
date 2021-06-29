@@ -69,16 +69,15 @@ router.post('/', ensureAuthenticated, function (req, res) {
     res.status(200).send();
 })
 
-router.post('/setWake', ensureAuthenticated, function(req, res){
-    Person.getPersonal(glob_user_obj.username, function (err, Personget){
+router.post('/setWake', ensureAuthenticated, function (req, res) {
+    Person.getPersonal(glob_user_obj.username, function (err, Personget) {
         if (err) throw err;
         if (Personget) {
-            Medal.getDaily(glob_user_obj.username, function(dailyMissionComplete){
-                var getup = Personget.getup_time[0]*60 + Personget.getup_time[1];
+            Medal.getDaily(glob_user_obj.username, function (dailyMissionComplete) {
+                var getup = Personget.getup_time[0] * 60 + Personget.getup_time[1];
                 var dt = new Date();
-                var nowtime = dt.getHours()*60 + dt.getMinutes();
-                if(Math.abs(nowtime - getup) <= 10 || Math.abs(nowtime - getup) >=1430 && !dailyMissionComplete.wake)
-                {
+                var nowtime = dt.getHours() * 60 + dt.getMinutes();
+                if (Math.abs(nowtime - getup) <= 10 || Math.abs(nowtime - getup) >= 1430 && !dailyMissionComplete.wake) {
                     var input = {
                         "type": 1,
                         "goal": 1
@@ -150,16 +149,15 @@ router.post('/setWake', ensureAuthenticated, function(req, res){
     res.status(200).send();
 })
 
-router.post('/setSleep', ensureAuthenticated, function(req, res){
-    Person.getPersonal(glob_user_obj.username, function (err, Personget){
+router.post('/setSleep', ensureAuthenticated, function (req, res) {
+    Person.getPersonal(glob_user_obj.username, function (err, Personget) {
         if (err) throw err;
         if (Personget) {
-            Medal.getDaily(glob_user_obj.username, function(dailyMissionComplete){
-                var sleep = Personget.sleep_time[0]*60 + Personget.sleep_time[1];
+            Medal.getDaily(glob_user_obj.username, function (dailyMissionComplete) {
+                var sleep = Personget.sleep_time[0] * 60 + Personget.sleep_time[1];
                 var dt = new Date();
-                var nowtime = dt.getHours()*60 + dt.getMinutes();
-                if(Math.abs(nowtime - sleep) <= 10 || Math.abs(nowtime - sleep) >=1430 && !dailyMissionComplete.sleep)
-                {
+                var nowtime = dt.getHours() * 60 + dt.getMinutes();
+                if (Math.abs(nowtime - sleep) <= 10 || Math.abs(nowtime - sleep) >= 1430 && !dailyMissionComplete.sleep) {
                     var input = {
                         "type": 2,
                         "goal": 1
@@ -234,13 +232,13 @@ router.post('/setSleep', ensureAuthenticated, function(req, res){
 router.get('/getdaily', ensureAuthenticated, function (req, res) {
 
     Medal.getDaily(glob_user_obj.username, function (dailyMissionComplete) {
-        res.status(200).send(dailyMissionComplete);
+        res.status(200).send(JSON.parse(dailyMissionComplete));
     })
 })
 
 router.get('/getEXP', ensureAuthenticated, function (req, res) {
     Medal.getEXP(glob_user_obj.username, function (goal) {
-        res.status(200).send(goal);
+        res.status(200).send(String(goal));
     })
 })
 
