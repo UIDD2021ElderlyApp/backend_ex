@@ -20,7 +20,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
             console.log("+++++++++-----------");
             console.log(Middatatmpget);
         }
-        res.status(200).send(JSON.parse(Middatatmpget));
+        res.status(200).send(JSON.parse(Middatatmpget.tmp_to_set));
     })
 });
 
