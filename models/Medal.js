@@ -306,8 +306,8 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
         if(err||m_set.length === 0) {
             console.log(err);
             var wrongWalk = {
-                "progress": -1,
-                "goal": -1
+                "progress": 0,
+                "goal": 0
             }
             callback(JSON.stringify(wrongWalk));
         }
@@ -335,8 +335,8 @@ module.exports.getPost = function (userId_you_want_to_find, callback) {
         if(err||m_set.length === 0) {
             console.log(err);
             var wrongPost = {
-                "progress": -1,
-                "goal": -1
+                "progress": 0,
+                "goal": 0
             }
             callback(JSON.stringify(wrongPost));
         }
@@ -364,8 +364,8 @@ module.exports.getMessage = function (userId_you_want_to_find, callback) {
         if(err||m_set.length === 0) {
             console.log(err);
             var wrongMessage = {
-                "progress": -1,
-                "goal": -1
+                "progress": 0,
+                "goal": 0
             }
             callback(JSON.stringify(wrongMessage));
         }
@@ -393,8 +393,8 @@ module.exports.getLevel = function (userId_you_want_to_find, callback) {
         if(err||m_set.length === 0) {
             console.log(err);
             var wrongLevel = {
-                "progress": -1,
-                "goal": -1
+                "progress": 0,
+                "goal": 0
             }
             callback(JSON.stringify(wrongLevel));
         }
