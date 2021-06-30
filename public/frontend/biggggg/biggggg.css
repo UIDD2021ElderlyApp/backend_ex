@@ -917,9 +917,9 @@ body {
 
 .mission_name2 {
     position: relative;
-    width: 60%;
+    width: 75%;
     height: 5vh;
-    margin-left: 10%;
+    margin-left: 5%;
     font-size: calc(var(--var_vw)*5.5);
     font-weight: bold;
     line-height: 5vh;
