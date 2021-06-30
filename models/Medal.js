@@ -291,7 +291,7 @@ module.exports.getEXP = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
         if(err||m_set.length === 0) {
             console.log(err);
-            callback(-1);
+            callback(0);
         }
         else
         {
