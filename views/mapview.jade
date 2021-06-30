@@ -210,7 +210,7 @@ block content_body
       }
       }, 2000);
       function onLocationError(e) {
-      alert('找不到定位');
+      alert(e.message);
       }
       map.on('locationerror', onLocationError);
       map.on('locationfound', onLocationFound);
