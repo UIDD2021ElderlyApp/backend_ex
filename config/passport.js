@@ -88,8 +88,8 @@ passport.use(new LineStrategy({
                   .then(metadata => {
                     return image
                       .resize({
-                        width: 50,
-                        height: 50,
+                        width: 200,
+                        height: 200,
                         fit: sharp.fit.cover,
                       })
                       .toBuffer();
