@@ -219,6 +219,7 @@ router.post('/login',
   });
 
 router.get('/logout', function (req, res) {
+  console.error("logout!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   req.logout();
   res.redirect('/users/login');
 });
