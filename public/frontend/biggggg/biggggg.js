@@ -293,7 +293,7 @@ var conti_stroll = 0; //累積散步量
 var conti_post = 0; //累積發文數 
 var conti_comment = 0;// ...etc
 var conti_level = 0;
-var DEBUG_DATA_SHOW = false;
+var DEBUG_DATA_SHOW = true;
 //var cancel_the_preset_logic = true;
 var mis1_data_cur = {
     wake: false,
