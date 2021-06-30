@@ -305,8 +305,9 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
         if(err||m_set.length === 0) {
             console.log(err);
+            var medalBool = [false, false, false, false, false, false, false, false, false, false, false, false];
             var wrongWalk = {
-                "progress": 0,
+                "progress": medalBool,
                 "goal": 0
             }
             callback(JSON.stringify(wrongWalk));
@@ -334,8 +335,9 @@ module.exports.getPost = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
         if(err||m_set.length === 0) {
             console.log(err);
+            var medalBool = [false, false, false, false, false, false, false, false];
             var wrongPost = {
-                "progress": 0,
+                "progress": medalBool,
                 "goal": 0
             }
             callback(JSON.stringify(wrongPost));
@@ -363,8 +365,9 @@ module.exports.getMessage = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
         if(err||m_set.length === 0) {
             console.log(err);
+            var medalBool = [false, false, false, false, false, false, false, false];
             var wrongMessage = {
-                "progress": 0,
+                "progress": medalBool,
                 "goal": 0
             }
             callback(JSON.stringify(wrongMessage));
@@ -392,8 +395,9 @@ module.exports.getLevel = function (userId_you_want_to_find, callback) {
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
         if(err||m_set.length === 0) {
             console.log(err);
+            var medalBool = [false, false, false, false, false, false, false, false];
             var wrongLevel = {
-                "progress": 0,
+                "progress": medalBool,
                 "goal": 0
             }
             callback(JSON.stringify(wrongLevel));
