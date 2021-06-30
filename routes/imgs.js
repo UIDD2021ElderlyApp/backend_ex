@@ -128,16 +128,16 @@ router.post('/', ensureAuthenticated, upload.single('img'), function (req, res, 
     }
 });
 
-function ensureAuthenticated(req, res, next) {
 
+function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         glob_user_obj = req.user;
         return next();
     } else {
-
+        console.error("@routes/imgs.js Authenticated faild")
         res.redirect('/users/login');
     }
-}
+  }
 
 function set_compress_ratio(query_without_jpg) {
     let compressratio;

@@ -54,11 +54,11 @@ router.post('/fl', ensureAuthenticated, function (req, res, next) {
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        console.log("====================================");
-        console.log(req.user);
         return next();
+    } else {
+        console.error("@routes/ga.js Authenticated faild")
+        res.redirect('/users/login');
     }
-    res.redirect('/users/login');
-}
+  }
 
 module.exports = router;

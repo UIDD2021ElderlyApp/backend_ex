@@ -269,12 +269,14 @@ router.get('/getLevel', ensureAuthenticated, function (req, res) {
     })
 })
 
+
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         glob_user_obj = req.user;
         return next();
+    } else {
+        console.error("@routes/medal.js Authenticated faild")
+        res.redirect('/users/login');
     }
-    res.redirect('/users/login');
-}
-
+  }
 module.exports = router;

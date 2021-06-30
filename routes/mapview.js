@@ -8,8 +8,10 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
+    } else {
+        console.error("@mapview.js Authenticated faild")
+        res.redirect('/users/login');
     }
-    res.redirect('/users/login');
 }
 
 module.exports = router;

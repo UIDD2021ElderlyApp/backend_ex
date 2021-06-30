@@ -9,11 +9,11 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        console.log("====================================");
-        console.log(req.user);
         return next();
+    } else {
+        console.error("@selectanimal.js Authenticated faild")
+        res.redirect('/users/login');
     }
-    res.redirect('/users/login');
 }
 
 module.exports = router;
