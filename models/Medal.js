@@ -84,14 +84,8 @@ module.exports.getMedalByUserId = function (userId_you_want_to_find, callback) {
 
 module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal, callback) {
     console.log("--------->setMedal");
-<<<<<<< HEAD
     Medal.find({ "user_id": userId_you_want_to_find }, function(err, m_set){
         if (err||m_set.length === 0) {
-=======
-    Medal.find({ "user_id": userId_you_want_to_find }, function (err, m_set) {
-        console.log(m_set);
-        if (m_set.length === 0) {
->>>>>>> f8d6ee6b351469674e5c0e950ae9bb02e963b1b7
             console.log("------> create a new medal");
             callback(-1);
         }
@@ -286,7 +280,6 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
             var medalBool = [false, false, false, false, false, false, false, false, false, false, false, false];
             console.log("------> get player's walk");
             var currentprogress = m_set[0].walk.progress;
-<<<<<<< HEAD
             if(currentprogress > 12)
             {
                 currentprogress = 12;
@@ -294,10 +287,6 @@ module.exports.getWalk = function (userId_you_want_to_find, callback) {
             }
             for(var i = 0; i<currentprogress;i++)
             {
-=======
-            if (currentprogress > 12) currentprogress = 12;
-            for (var i = 0; i < currentprogress; i++) {
->>>>>>> f8d6ee6b351469674e5c0e950ae9bb02e963b1b7
                 medalBool[i] = true;
             }
             var walkMission = {
@@ -324,7 +313,6 @@ module.exports.getPost = function (userId_you_want_to_find, callback) {
             var medalBool = [false, false, false, false, false, false, false, false];
             console.log("------> get player's post");
             var currentprogress = m_set[0].post.progress;
-<<<<<<< HEAD
             if(currentprogress > 8)
             {
                 currentprogress = 8;
@@ -332,10 +320,6 @@ module.exports.getPost = function (userId_you_want_to_find, callback) {
             }
             for(var i = 0; i<currentprogress;i++)
             {
-=======
-            if (currentprogress > 8) currentprogress = 8;
-            for (var i = 0; i < currentprogress; i++) {
->>>>>>> f8d6ee6b351469674e5c0e950ae9bb02e963b1b7
                 medalBool[i] = true;
             }
             var postMission = {
@@ -362,7 +346,6 @@ module.exports.getMessage = function (userId_you_want_to_find, callback) {
             var medalBool = [false, false, false, false, false, false, false, false];
             console.log("------> get player's message");
             var currentprogress = m_set[0].message.progress;
-<<<<<<< HEAD
             if(currentprogress > 8)
             {
                 currentprogress = 8;
@@ -370,10 +353,6 @@ module.exports.getMessage = function (userId_you_want_to_find, callback) {
             }
             for(var i = 0; i<currentprogress;i++)
             {
-=======
-            if (currentprogress > 8) currentprogress = 8;
-            for (var i = 0; i < currentprogress; i++) {
->>>>>>> f8d6ee6b351469674e5c0e950ae9bb02e963b1b7
                 medalBool[i] = true;
             }
             var messageMission = {
@@ -400,7 +379,6 @@ module.exports.getLevel = function (userId_you_want_to_find, callback) {
             var medalBool = [false, false, false, false, false, false, false, false];
             console.log("------> get player's level");
             var currentprogress = m_set[0].level.progress;
-<<<<<<< HEAD
             if(currentprogress > 8) 
             {
                 currentprogress = 8;
@@ -408,10 +386,6 @@ module.exports.getLevel = function (userId_you_want_to_find, callback) {
             }
             for(var i = 0; i<currentprogress;i++)
             {
-=======
-            if (currentprogress > 8) currentprogress = 8;
-            for (var i = 0; i < currentprogress; i++) {
->>>>>>> f8d6ee6b351469674e5c0e950ae9bb02e963b1b7
                 medalBool[i] = true;
             }
             var levelMission = {
