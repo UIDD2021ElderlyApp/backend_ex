@@ -5,6 +5,10 @@ var router = express.Router();
     res.render('mapview', { title: 'mapview' });
 });*/
 
+var Person = require('../models/Personal');
+var PostTmp = require('../models/PostTmp');
+var Middatatmp = require('../models/Middatatmp');
+
 router.get('/', ensureAuthenticated, function (req, res, next) {
     Person.getPersonal(req.user.username, function (err, Personget) {
         if (err) throw err;
@@ -16,7 +20,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                 //res.status(200).send(String(goal));
                 //console.log("------------------------------------------------>>>>>>>>>>>>>>>" + PostTmpget);
                 res.render('mapview', {
-                    title: 'old_friends',
+                    title: 'mapview',
                     var_jade_user_info_name: `${req.user.name}`,
                     var_jade_user_info_username: `${req.user.username}`,
                     var_jade_user_info_profileimage: `${req.user.profileimage}`,
