@@ -768,11 +768,13 @@ body {
 .setting_logout {
     position: relative;
     top: 5vh;
-    left: calc((var(--var_vw)*100 - 20vh)/2);
-    width: 20vh;
+    width: 100%;
     font-size: 2.5vh;
+    font-family: 'DFYuan-W5-WIN-BF';
     cursor: pointer;
     text-decoration: underline;
+    text-align: center;
+    font-weight: 600;
 }
 
 
