@@ -899,7 +899,7 @@ body {
     position: relative;
     width: 20%;
     height: 5vh;
-    font-size: calc(var(--var_vw)*4.5);
+    font-size: 2.2vh;
     font-weight: bold;
     line-height: 5vh;
     text-align: center;
@@ -909,7 +909,7 @@ body {
     position: relative;
     width: 60%;
     height: 5vh;
-    font-size: calc(var(--var_vw)*5.5);
+    font-size: calc(var(--var_vw)*5);
     font-weight: bold;
     line-height: 5vh;
     text-align: center;
@@ -920,7 +920,7 @@ body {
     width: 75%;
     height: 5vh;
     margin-left: 5%;
-    font-size: calc(var(--var_vw)*5.5);
+    font-size: calc(var(--var_vw)*5);
     font-weight: bold;
     line-height: 5vh;
     text-align: left;
