@@ -41,16 +41,16 @@ if ($("#animal_name").width() > window_width * 0.16) {
     }
     $("#animal_name").append('...')
 }
-$("#house").bind('touchstart', function() {
-    $(this).css('transform', "scale(1.1)")
+$("#touch_house").bind('touchstart', function() {
+    $("#house").css('transform', "scale(1.1)")
 })
-$("#house").bind('touchend', function() {
-    $(this).css('transform', "scale(1)")
+$("#touch_house").bind('touchend', function() {
+    $("#house").css('transform', "scale(1)")
 })
 var sleep = (document.getElementById("onsleep_stat")) ? (document.getElementById("onsleep_stat").innerText === "yes") ? true : false : false;
-$("#house").click(function() {
+$("#touch_house").click(function() {
     if (!sleep) {
-        $(this).animate({}, 300, function() {
+        $("#house").animate({}, 300, function() {
             $("#animal").css("display", "none");
             switch (animal) {
                 case 1:
@@ -68,7 +68,7 @@ $("#house").click(function() {
         })
         sleep = true
     } else {
-        $(this).animate({}, 300, function() {
+        $("#house").animate({}, 300, function() {
             if (animal == 2) {
                 $("#tree").css("left", "25%")
                 $("#coconut").css("left", "25%")
