@@ -154,7 +154,12 @@ block content_body
       map.setView([e.latlng.lat, e.latlng.lat], 15);
       }
       current = e.latlng;
+      try { // statements to try
       distance2 = last.distanceTo(current);
+      }
+      catch (e) {
+      console.log(e);
+      }
       last = current;
       //console.log('dis2 '+distance2)//627
       distance1 += distance2;
@@ -215,7 +220,7 @@ block content_body
       }
       }, 2000);
       function onLocationError(e) {
-      alert('找不到定位');
+      alert(e.message);
       }
       map.on('locationerror', onLocationError);
       map.on('locationfound', onLocationFound);
