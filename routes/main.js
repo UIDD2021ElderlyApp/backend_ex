@@ -29,7 +29,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                     var_jade_error_msg_gui_text_2: "X",
                     var_jade_onsleep_stat: `${(!Personget) ? "-1" : (Personget.is_sleep) ? "yes" : "no"}`,
                     var_jade_user_exp_css: (!Middatatmpget) ? "width: calc(var(--var_vw)*25*0/100);" : (!Middatatmpget.tmp_to_set) ? "width: calc(var(--var_vw)*25*0/100);" : `width: calc(var(--var_vw)*25*${JSON.parse(Middatatmpget.tmp_to_set).exp_data_tmp}/100);`,
-                    var_jade_user_lv_txt: `LV${(!Middatatmpget) ? "0" : (!Middatatmpget.tmp_to_set) ? "0" : JSON.parse(Middatatmpget.tmp_to_set).goal_data_4}`
+                    var_jade_user_lv_txt: `LV${(!Middatatmpget) ? "0" : (!Middatatmpget.tmp_to_set) ? "0" : JSON.parse(Middatatmpget.tmp_to_set).goal_data_4_tmp}`
                 });
             });
         });
