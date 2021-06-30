@@ -764,7 +764,7 @@ function always_at_exit_bton_of_miss_page_clicked(callback) {
     /*if (document.getElementById("expbar_if_const_set") === "0") {
         document.getElementById("expbar_if_const_set") = "1";
         document.getElementById("expbar_const") = String(jQuery_3_6_0("#level_value").width);*/
-    jQuery_3_6_0("#level_value").css("width", `calc(var(--var_vw)*${exp_data_tmp}/25)`);
+    jQuery_3_6_0("#level_value").css("width", `calc(var(--var_vw)*25*${exp_data_tmp}/100)`);
     /*} else {
         jQuery_3_6_0("#level_value").width = parseInt(document.getElementById("expbar_const")) * exp_data_tmp;
     }*/
