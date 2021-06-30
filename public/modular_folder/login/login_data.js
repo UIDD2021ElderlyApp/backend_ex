@@ -1,4 +1,4 @@
-var DEF_DEBUG = true;
+var DEF_DEBUG = false;
 var GLOBAL_url = "/users/login";
 /*require.config({
     paths: { "bcrypt": "../javascripts/bcrypt.js-master/dist/bcrypt" }
@@ -21,7 +21,7 @@ function login_button_click() {
             })
         }, 450);
     }
-    play();
+    //play();
     if (document.getElementById('disp_mod').innerText === "1") { //login
         var is_this_a_login_Q = true;
         var inputs = document.getElementsByTagName("input");
@@ -61,57 +61,58 @@ function login_button_click() {
         }
 
         //require(["bcrypt"], function(bcrypt) {
-            //bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
-                if (!usrn) {
-                    if (DEF_DEBUG) {
-                        console.log("!usrn");
+        //bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
+        if (!usrn) {
+            if (DEF_DEBUG) {
+                console.log("!usrn");
+            }
+            is_this_a_login_Q = true;
+        }
+        if (!acct) {
+            if (DEF_DEBUG) {
+                console.log("!acct");
+            }
+            is_this_a_login_Q = false;
+        }
+        if (!pasw) {
+            if (DEF_DEBUG) {
+                console.log("!pasw");
+            }
+            is_this_a_login_Q = false;
+        }
+        if (!pasc) {
+            if (DEF_DEBUG) {
+                console.log("!pasc");
+            }
+            is_this_a_login_Q = true;
+        }
+        if (is_this_a_login_Q) {
+            $.post(GLOBAL_url, {
+                username: acct,
+                password: pasw
+            }, (objects_returned_by_the_server) => {
+                if (DEF_DEBUG) {
+                    console.log(objects_returned_by_the_server);
+                }
+                var re = /\/users\/login/gi;
+                var newstr = window.location.href.replace(re, objects_returned_by_the_server);
+                try { // statements to try
+                    window.location.href = newstr;
+                } catch (e) {
+                    //console.log(e);
+                    $("#waiting_block").css('display', "none")
+                    document.getElementById("error_msg_gui_word_part_color_1").innerText = "red";
+                    document.getElementById("error_msg_gui_word_part_color_2").innerText = "black";
+                    document.getElementById("error_msg_gui_text_1").innerText = "錯誤";
+                    document.getElementById("error_msg_gui_text_2").innerText = "帳號或密碼錯誤";
+                    if (document.getElementById("window_clearInterval_timeoutID").innerText) {
+                        clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
                     }
-                    is_this_a_login_Q = true;
+                    document.getElementById("error_msg_gui_start").click();
                 }
-                if (!acct) {
-                    if (DEF_DEBUG) {
-                        console.log("!acct");
-                    }
-                    is_this_a_login_Q = false;
-                }
-                if (!pasw) {
-                    if (DEF_DEBUG) {
-                        console.log("!pasw");
-                    }
-                    is_this_a_login_Q = false;
-                }
-                if (!pasc) {
-                    if (DEF_DEBUG) {
-                        console.log("!pasc");
-                    }
-                    is_this_a_login_Q = true;
-                }
-                if (is_this_a_login_Q) {
-                    $.post(GLOBAL_url, {
-                        username: acct,
-                        password: pasw
-                    }, (objects_returned_by_the_server) => {
-                        if (DEF_DEBUG) {
-                            console.log(objects_returned_by_the_server);
-                        }
-                        var re = /\/users\/login/gi;
-                        var newstr = window.location.href.replace(re, objects_returned_by_the_server);
-                        try { // statements to try
-                            window.location.href = newstr;
-                        } catch (e) {
-                            //console.log(e);
-                            document.getElementById("error_msg_gui_word_part_color_1").innerText = "red";
-                            document.getElementById("error_msg_gui_word_part_color_2").innerText = "black";
-                            document.getElementById("error_msg_gui_text_1").innerText = "錯誤";
-                            document.getElementById("error_msg_gui_text_2").innerText = "帳號或密碼錯誤";
-                            if (document.getElementById("window_clearInterval_timeoutID").innerText) {
-                                clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
-                            }
-                            document.getElementById("error_msg_gui_start").click();
-                        }
-                    });
-                }
-            //});
+            });
+        }
+        //});
         //});
     } else {
         document.getElementById('add_an_user2').click();
@@ -156,6 +157,7 @@ jQuery(function dom_ready(dom_ready_params) {
     document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {
         console.log(`document.getElementById("cre_acc_log_fk_bton_inner_txt").addEventListener("click", () => {`);
         if (document.getElementById("disp_mod").innerText === "1") {
+            $("#waiting_block").css('display', "none")
             jQuery_3_6_0("#gray_block").show().animate({ 'height': "30vh" }, 1000);
             setTimeout(() => {
                 document.getElementById("login_button_txt_fix").innerText = "註冊";
@@ -168,6 +170,7 @@ jQuery(function dom_ready(dom_ready_params) {
                 //jQuery_3_6_0("#gray_block").height("30vh");
             }, 500);
         } else /* if (document.getElementById("disp_mod").innerText === "0") */ {
+            $("#waiting_block").css('display', "none")
             document.getElementById("disp_mod").innerText = "1";
             document.getElementById("login_button_txt_fix").innerText = "登入";
             document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建新帳號";
@@ -318,78 +321,98 @@ function reg_to_backend(pic_base64) {
     }
 
     //require(["bcrypt"], function(bcrypt) {
-        //bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
-            //bcrypt.hash(pasc, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash2) {
-                // Store hash in your password DB.
-                ///////////////////////copy/////////////////////////////
-                formData.append('profileimage', blob_tmp);
-                formData.append('name', usrn);
-                formData.append('email', "no_email@email.com");
-                formData.append('username', acct);
-                formData.append('password', pasw);
-                formData.append('password2', pasc);
-                /*name: "name",
-                    password: pasw,
-                    email: "email@email.com",
-                    username: Date.now().toString(),
-                    password: "psw",
-                    password2: "psw"*/
+    //bcrypt.hash(pasw, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash) {
+    //bcrypt.hash(pasc, JSON.parse("\"$2a$10$ebwnNDwkFyRNPa5Zpgc0h.\""), function(err, hash2) {
+    // Store hash in your password DB.
+    ///////////////////////copy/////////////////////////////
+    formData.append('profileimage', blob_tmp);
+    formData.append('name', usrn);
+    formData.append('email', "no_email@email.com");
+    formData.append('username', acct);
+    formData.append('password', pasw);
+    formData.append('password2', pasc);
+    /*name: "name",
+        password: pasw,
+        email: "email@email.com",
+        username: Date.now().toString(),
+        password: "psw",
+        password2: "psw"*/
 
-                jQuery_3_6_0.ajax({
-                    url: "/users/register",
-                    data: formData,
-                    type: 'POST',
-                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-                    processData: false, // NEEDED, DON'T OMIT THIS
-                    accepts: {
-                        text: "text/html"
-                    },
-                    beforeSend: function(xhr) {
-                        //empty
-                    },
-                    success: function(xhr) {
-                        //empty
-                    },
-                    error: function(xhr) {
-                        console.log("alert('Ajax request 發生錯誤');");
-                    },
-                    complete: function(xhr) {
-                        //console.log("alert('Ajax request complete');");
-                        //console.log(xhr);
-                        var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
-                        console.log(target_new_html);
-                        jQuery_3_6_0.each(target_new_html, function(i, el) {
-                            //console.log(i);
-                            if (el.localName === "header") {
-                                //console.log(el);
-                                jQuery_3_6_0.each(el.childNodes, function(ii, el1) {
-                                    //console.log(ii);
-                                    if (el1.id === "error_msg_gui_group") {
-                                        console.log(el1.childNodes);
-                                        jQuery_3_6_0.each(el1.childNodes, function(iii, el2) {
-                                            //console.log([el2.id,el2.innerText]);
-                                            if (el2.id && document.getElementById(el2.id)) {
-                                                document.getElementById(el2.id).innerText = el2.innerText;
-                                            }
-                                        });
-                                    }
-                                });
-                            }
-                        });
-                        jQuery_3_6_0.each(target_new_html, function(i, el) {
-                            if (el.id === "disp_mod") {
-                                if (el.innerText === "-1") {
-                                    document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
+    jQuery_3_6_0.ajax({
+        url: "/users/register",
+        data: formData,
+        type: 'POST',
+        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+        processData: false, // NEEDED, DON'T OMIT THIS
+        accepts: {
+            text: "text/html"
+        },
+        beforeSend: function(xhr) {
+            //empty
+        },
+        success: function(xhr) {
+            //empty
+        },
+        error: function(xhr) {
+            console.log("alert('Ajax request 發生錯誤');");
+        },
+        complete: function(xhr) {
+            //console.log("alert('Ajax request complete');");
+            //console.log(xhr);
+            var target_new_html = jQuery_3_6_0.parseHTML(xhr.responseText);
+            console.log(target_new_html);
+            jQuery_3_6_0.each(target_new_html, function(i, el) {
+                //console.log(i);
+                if (el.localName === "header") {
+                    //console.log(el);
+                    jQuery_3_6_0.each(el.childNodes, function(ii, el1) {
+                        //console.log(ii);
+                        if (el1.id === "error_msg_gui_group") {
+                            $("#waiting_block").css('display', "none")
+                            console.log(el1.childNodes);
+                            jQuery_3_6_0.each(el1.childNodes, function(iii, el2) {
+                                //console.log([el2.id,el2.innerText]);
+                                if (el2.id && document.getElementById(el2.id)) {
+                                    document.getElementById(el2.id).innerText = el2.innerText;
                                 }
-                            }
-                        });
-                        if (document.getElementById("window_clearInterval_timeoutID").innerText) {
-                            clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
+                            });
                         }
-                        document.getElementById('error_msg_gui_init_msg_if_yes').click();
-                    },
-                });
-            //});
-        //});
+                    });
+                }
+            });
+            jQuery_3_6_0.each(target_new_html, function(i, el) {
+                if (el.id === "disp_mod") {
+                    if (el.innerText === "-1") {
+                        document.getElementById("cre_acc_log_fk_bton_inner_txt").click();
+                    }
+                }
+            });
+            if (document.getElementById("window_clearInterval_timeoutID").innerText) {
+                clearInterval(document.getElementById("window_clearInterval_timeoutID").innerText);
+            }
+            document.getElementById('error_msg_gui_init_msg_if_yes').click();
+        },
+    });
+    //});
+    //});
     //});
 }
+$("#login_button").click(function() {
+    if ($("#login_button_txt_fix").text() == "註冊") {
+        $("#waiting_block").show().css('z-index', "10")
+
+    }
+})
+jQuery(function dom_ready(dom_ready_params) {
+    $("#fb_login").click(function() {
+        $("#waiting_block").show().css('z-index', "10")
+        var re = /\/users\/login/gi;
+        var newstr = window.location.href.replace(re, "/auth/facebook");
+        window.location.href = newstr;
+    });
+    $("#line_login").click(function() {
+        var re = /\/users\/login/gi;
+        var newstr = window.location.href.replace(re, "/auth/line");
+        window.location.href = newstr;
+    });
+});

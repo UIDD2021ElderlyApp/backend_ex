@@ -1,4 +1,5 @@
 import html2canvas from '../../snap/html2canvas/dist/html2canvas.esm.js';
+
 function saveData(blob, filename) {
     var a = document.createElement("a");
     document.body.appendChild(a);
@@ -18,7 +19,7 @@ var DEF_download_Blob = false;
 
 var DEF_medal_path = "/app/medal/"
 
-document.getElementById("snap_shoot_screen").addEventListener("click", function () {
+document.getElementById("snap_shoot_screen").addEventListener("click", function() {
     document.getElementById("snap_shoot_finish").innerText = "0";
     html2canvas(document.querySelector("body"), { useCORS: true, }).then(canvas => {
         var url = window.location.href;
@@ -62,7 +63,7 @@ document.getElementById("snap_shoot_screen").addEventListener("click", function 
     });
 });
 
-document.getElementById("snap_shoot_canvas_tmp").addEventListener("click", function () {
+document.getElementById("snap_shoot_canvas_tmp").addEventListener("click", function() {
     document.getElementById("snap_shoot_finish").innerText = "0";
     html2canvas(document.querySelector("body"), { useCORS: true, }).then(canvas => {
         document.getElementById("snap_shoot_finish").innerHTML = "";
@@ -97,6 +98,7 @@ function dataURItoBlob(dataURI) {
     //New Code
     return new Blob([ab], { type: mimeString });
 }
+
 function send_pic_to_backend(img_blob) {
     var form = jQuery_3_6_0('form')[0]; // You need to use standard javascript object here
     var formData = new FormData(form);
@@ -113,22 +115,22 @@ function send_pic_to_backend(img_blob) {
             text: "text/html"
         },
         //http://blog.twbryce.com/jquery-ajax-callback-method/
-        beforeSend: function (xhr) {
+        beforeSend: function(xhr) {
             document.getElementById("snap_shoot_finish").innerText = "2";
 
         },
-        success: function (xhr) {
+        success: function(xhr) {
             //console.log("alert('Ajax request 發生錯誤');");
             //jQuery_3_6_0(e.target).attr('disabled', false);
             document.getElementById("snap_shoot_finish").innerText = "3";
         },
-        error: function (xhr) {
+        error: function(xhr) {
             document.getElementById("snap_shoot_finish").innerText = "4";
 
             console.log("alert('Ajax request 發生錯誤');");
             //jQuery_3_6_0(e.target).attr('disabled', false);
         },
-        complete: function (xhr) {
+        complete: function(xhr) {
             if (document.getElementById("snap_shoot_finish").innerText === "3") {
                 document.getElementById("snap_shoot_finish").innerText = "1";
             }
@@ -142,3 +144,9 @@ function send_pic_to_backend(img_blob) {
     });
 
 }
+
+function codeAddress() {
+    console.log("ok2")
+    $("#waiting_block").css('display', "none")
+}
+window.onload = codeAddress;
