@@ -154,9 +154,7 @@ block content_body
       map.setView([e.latlng.lat, e.latlng.lat], 15);
       }
       current = e.latlng;
-      try { // statements to try
       distance2 = last.distanceTo(current);
-      }
       catch (e) {
       console.log(e);
       }
