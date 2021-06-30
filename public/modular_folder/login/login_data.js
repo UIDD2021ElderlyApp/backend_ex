@@ -161,7 +161,7 @@ jQuery(function dom_ready(dom_ready_params) {
             jQuery_3_6_0("#gray_block").show().animate({ 'height': "30vh" }, 1000);
             setTimeout(() => {
                 document.getElementById("login_button_txt_fix").innerText = "註冊";
-                document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "帳號登入";
+                document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "點我登入";
                 document.getElementById("disp_mod").innerText = "0";
                 for (let index = 0; index < document.getElementsByClassName("disp_for_mod").length; index++) {
                     const element = document.getElementsByClassName("disp_for_mod")[index];
@@ -173,7 +173,7 @@ jQuery(function dom_ready(dom_ready_params) {
             $("#waiting_block").css('display', "none")
             document.getElementById("disp_mod").innerText = "1";
             document.getElementById("login_button_txt_fix").innerText = "登入";
-            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "創建新帳號";
+            document.getElementById("cre_acc_log_fk_bton_inner_txt").innerText = "點我註冊";
             document.getElementById("disp_mod").click();
         }
         /* else {
