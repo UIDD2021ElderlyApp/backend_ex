@@ -9,8 +9,6 @@ block content_head
     link(href='./frontend_data/css/glow.css' rel='stylesheet' type='text/css')
 block content_header
     #obj_data_container
-    #expbar_const
-    #expbar_if_const_set 0
     #onsleep_stat(style='display: none;') #{ var_jade_onsleep_stat }
     #GLOBAL_browse_post_on_scroll(style='display: none;') -1
     #social_page_stat(style='display: none;') -1
@@ -100,13 +98,13 @@ block content_body
     - if( var_jade_onsleep_stat == "yes") {
         //#house
         - if( var_jade_user_info_choosedanimal == "1") {
-            #house
+            #house.exit_button_function_to_return_to_the_main_screen
               img(src='./frontend/biggggg/image/home_sleep1.svg' width='100%')
         - } else if( var_jade_user_info_choosedanimal == "2") {
-            #house
+            #house.exit_button_function_to_return_to_the_main_screen
               img(src='./frontend/biggggg/image/home_sleep2.svg' width='100%')
         - } else if( var_jade_user_info_choosedanimal == "3") {
-            #house
+            #house.exit_button_function_to_return_to_the_main_screen
               img(src='./frontend/biggggg/image/home_sleep3.svg' width='100%')
         - } else {
             script.
