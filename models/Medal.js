@@ -152,15 +152,19 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
             }
             else if (newMedal.type === 5) {
                 console.log("-------> choose medal walk");
+                console.log(m_set[0].walk.progress);
+                console.log(medalReward.post[(m_set[0].walk.progress>=medalReward.post.length)?medalReward.post.length-1:m_set[0].walk.progress]);
                 if (!m_set[0].walk.finished) {
                     m_set[0].walk.goal += newMedal.goal;
-                    if (m_set[0].walk.goal >= medalReward.walk[m_set[0].walk.progress].goal) {
+                    if (m_set[0].walk.goal >= medalReward.walk[(m_set[0].walk.progress>=medalReward.post.length)?medalReward.post.length-1:m_set[0].walk.progress].goal) {
                         if (m_set[0].walk.progress === 12) {
                             m_set[0].walk.finished = true;
                         }
                         m_set[0].walk.progress++;
-                        console.log(medalReward.walk[m_set[0].walk.progress].exp)
-                        m_set[0].exp += medalReward.walk[m_set[0].walk.progress].exp;
+
+                        m_set[0].exp += medalReward.walk[(m_set[0].walk.progress>=medalReward.post.length)?medalReward.post.length-1:m_set[0].walk.progress].exp;
+
+
                         if (m_set[0].exp >= 100) {
                             m_set[0].exp -= 100;
                             levelChange = 1;
@@ -170,6 +174,8 @@ module.exports.setMedalByUserId = function (userId_you_want_to_find, inputMedal,
             }
             else if (newMedal.type === 6) {
                 console.log("-------> choose medal post");
+                console.log(m_set[0].post.progress);
+                console.log(medalReward.post[m_set[0].post.progress]);
                 if (!m_set[0].post.finished) {
                     m_set[0].post.goal += newMedal.goal;
                     if (m_set[0].post.goal >= medalReward.post[m_set[0].post.progress].goal) {
