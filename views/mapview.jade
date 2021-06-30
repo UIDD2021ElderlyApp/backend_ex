@@ -154,7 +154,12 @@ block content_body
       map.setView([e.latlng.lat, e.latlng.lat], 15);
       }
       current = e.latlng;
+      try { // statements to try
       distance2 = last.distanceTo(current);
+      }
+      catch (e) {
+      console.log(e);
+      }
       last = current;
       //console.log('dis2 '+distance2)//627
       distance1 += distance2;
@@ -166,7 +171,12 @@ block content_body
       setTimeout(function () {
       distance1 = 0;
       distance2 = 0;
+      try { // statements to try
       currrent = NaN;
+      }
+      catch (e) {
+      console.log(e);
+      }
       last = NaN;
       }, 0)
       var getgoal;    
