@@ -27,12 +27,12 @@ block content_body
       #waiting_logo
         img(src='../modular_folder/login/image/loading.svg' height='100%')
     form#ajax-form
-      button#exit_button.button(type='button' onclientclick='document.getElementById("snap_shoot_screen").click();')
+      button#exit_button.button(type='button' onclientclick='return false;')
         // <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
         //img(src='../modular_folder/mapview/cross.svg')
         // </a>
     form#ajax-form2
-      button#snap_shoot_screen(type='button' onclientclick='return false;')
+      button#snap_shoot_screen(type='button' onclientclick='document.getElementById("snap_shoot_screen").click();')
         img#camera(src='../modular_folder/mapview/camera.svg')
     #hungun
       #distance
