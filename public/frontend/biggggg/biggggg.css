@@ -32,7 +32,6 @@ body {
     /* ************** */
     transform: translateX(-50%) translateY(-50%);
     animation: load1 2s infinite;
-    opacity: 0.8;
 }
 
 #waiting_logo img {
