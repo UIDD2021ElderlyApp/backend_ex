@@ -77,7 +77,7 @@ app.use(function(req, res, next) {
 });
 
 app.get('*', function(req, res, next) {
-    console.log((!req.user)?"[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[nouser]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]":req.user);
+    console.log((!req.user)?"[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[nouser]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]":req.user);
     res.locals.user = req.user || null;
     next();
 });

@@ -11,7 +11,7 @@ function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         return next();
     } else {
-        console.error("@selectanimal.js Authenticated faild")
+        console.error("@routes/selectanimal.js Authenticated faild")
         res.redirect('/users/login');
     }
 }
