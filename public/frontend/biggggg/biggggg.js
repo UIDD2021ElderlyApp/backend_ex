@@ -67,6 +67,7 @@ $("#touch_house").click(function() {
             }
         })
         sleep = true
+        jQuery_3_6_0.post("/app/medal/setWake",{},{});
     } else {
         $("#house").animate({}, 300, function() {
             if (animal == 2) {
@@ -77,6 +78,7 @@ $("#touch_house").click(function() {
             $("#house").html('')
         })
         sleep = false
+        jQuery_3_6_0.post("/app/medal/setSleep",{},{});
     }
     jQuery_3_6_0.post("/app/personal/is_sleep", {
         is_sleep: sleep

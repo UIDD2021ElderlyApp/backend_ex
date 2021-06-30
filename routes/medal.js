@@ -4,6 +4,7 @@ var router = express.Router();
 var glob_user_obj;
 
 var Medal = require('../models/Medal');
+var Person = require('../models/Personal');
 
 router.post('/', ensureAuthenticated, function (req, res) {
     console.log("?------------------------------> set Medal")
@@ -36,7 +37,7 @@ router.post('/', ensureAuthenticated, function (req, res) {
                 level: {
                     progress: 0,
                     finished: false,
-                    goal: 0
+                    goal: 1
                 }
             });
             Medal.createMedal(newMedal, function (err, newMedal) {
@@ -73,8 +74,9 @@ router.post('/setWake', ensureAuthenticated, function (req, res) {
     Person.getPersonal(glob_user_obj.username, function (err, Personget) {
         if (err) throw err;
         if (Personget) {
+            console.log("------>set wake");
             Medal.getDaily(glob_user_obj.username, function (dailyMissionComplete) {
-                var getup = Personget.getup_time[0] * 60 + Personget.getup_time[1];
+                var getup = parseInt(Personget.getup_time[0]) * 60 + parseInt(Personget.getup_time[1]);
                 var dt = new Date();
                 var nowtime = dt.getHours() * 60 + dt.getMinutes();
                 if (Math.abs(nowtime - getup) <= 10 || Math.abs(nowtime - getup) >= 1430 && !dailyMissionComplete.wake) {
@@ -109,7 +111,7 @@ router.post('/setWake', ensureAuthenticated, function (req, res) {
                                 level: {
                                     progress: 0,
                                     finished: false,
-                                    goal: 0
+                                    goal: 1
                                 }
                             });
                             Medal.createMedal(newMedal, function (err, newMedal) {
@@ -153,8 +155,9 @@ router.post('/setSleep', ensureAuthenticated, function (req, res) {
     Person.getPersonal(glob_user_obj.username, function (err, Personget) {
         if (err) throw err;
         if (Personget) {
+            console.log("------>set sleep");
             Medal.getDaily(glob_user_obj.username, function (dailyMissionComplete) {
-                var sleep = Personget.sleep_time[0] * 60 + Personget.sleep_time[1];
+                var sleep = parseInt(Personget.sleep_time[0]) * 60 + parseInt(Personget.sleep_time[1]);
                 var dt = new Date();
                 var nowtime = dt.getHours() * 60 + dt.getMinutes();
                 if (Math.abs(nowtime - sleep) <= 10 || Math.abs(nowtime - sleep) >= 1430 && !dailyMissionComplete.sleep) {
@@ -189,7 +192,7 @@ router.post('/setSleep', ensureAuthenticated, function (req, res) {
                                 level: {
                                     progress: 0,
                                     finished: false,
-                                    goal: 0
+                                    goal: 1
                                 }
                             });
                             Medal.createMedal(newMedal, function (err, newMedal) {
