@@ -21,6 +21,10 @@ html
       position: relative;
       z-index: 1;
       }
+    #waiting_block
+      #waiting_gray
+      #waiting_logo
+        img(src='../modular_folder/login/image/loading.svg' height='100%')
     form#ajax-form
       button#exit_button.button(type='button' onclientclick='return false;')
         // <a href=https://luffy.ee.ncku.edu.tw:38443/ts/home>
@@ -294,6 +298,10 @@ html
       $(".button").bind('touchend', function() {
           $(this).animate({ 'opacity': 1 }, 100)
       })
+      function codeAddress() {
+          $("#waiting_block").css('display', "none")
+      }
+      window.onload = codeAddress;
     footer
       script(type='text/javascript').
         var jQuery_3_6_0 = $.noConflict(true);
