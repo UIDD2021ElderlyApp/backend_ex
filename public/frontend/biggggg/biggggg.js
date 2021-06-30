@@ -478,6 +478,7 @@ $(".exit_button_function_to_return_to_the_main_screen").click((event) => {
 function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
     //init
     ary_0 = 0;
+    document.getElementById("obj_data_container_ary_0").innerText = "0";
     exp_data_cur = 0;
     exp_data_tmp = 0;
     mis1_data_cur = {
@@ -501,6 +502,7 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             if (DEBUG_DATA_SHOW) console.log(typeof res);
             if (DEBUG_DATA_SHOW) console.log(res);
             ary_0 = ary_0 + 1;
+            document.getElementById("obj_data_container_ary_0").innerText = String(parseInt(document.getElementById("obj_data_container_ary_0").innerText) + 1);
             exp_data_cur = parseInt(res);
         }
     });
@@ -511,6 +513,8 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             if (DEBUG_DATA_SHOW) console.log(typeof res);
             if (DEBUG_DATA_SHOW) console.log(res);
             ary_0 = ary_0 + 1;
+            document.getElementById("obj_data_container_ary_0").innerText = String(parseInt(document.getElementById("obj_data_container_ary_0").innerText) + 1);
+
             mis1_data_cur.wake = res.wake;
             mis1_data_cur.sleep = res.sleep;
             mis1_data_cur.picture = res.picture;
@@ -524,6 +528,8 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             if (DEBUG_DATA_SHOW) console.log(typeof res);
             if (DEBUG_DATA_SHOW) console.log(res);
             ary_0 = ary_0 + 1;
+            document.getElementById("obj_data_container_ary_0").innerText = String(parseInt(document.getElementById("obj_data_container_ary_0").innerText) + 1);
+
             ary_1 = res.progress;
             goal_data_1 = res.goal;
             if (DEBUG_DATA_SHOW) console.log(res.progress);
@@ -538,6 +544,8 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             if (DEBUG_DATA_SHOW) console.log(res.progress);
             if (DEBUG_DATA_SHOW) console.log(res);
             ary_0 = ary_0 + 1;
+            document.getElementById("obj_data_container_ary_0").innerText = String(parseInt(document.getElementById("obj_data_container_ary_0").innerText) + 1);
+
             ary_2 = res.progress;
         }
     });
@@ -550,6 +558,8 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             if (DEBUG_DATA_SHOW) console.log(res.progress);
             if (DEBUG_DATA_SHOW) console.log(res);
             ary_0 = ary_0 + 1;
+            document.getElementById("obj_data_container_ary_0").innerText = String(parseInt(document.getElementById("obj_data_container_ary_0").innerText) + 1);
+
             ary_3 = res.progress;
         }
     });
@@ -562,42 +572,45 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             if (DEBUG_DATA_SHOW) console.log(res.progress);
             if (DEBUG_DATA_SHOW) console.log(res);
             ary_0 = ary_0 + 1;
+            document.getElementById("obj_data_container_ary_0").innerText = String(parseInt(document.getElementById("obj_data_container_ary_0").innerText) + 1);
+
             ary_4 = res.progress;
         }
     });
 
     function checkFlag() {
-        if (ary_0 !== 6) {
+        if (/*ary_0 !== 6*/document.getElementById("obj_data_container_ary_0").innerText !== "6") {
             setTimeout(() => {
                 checkFlag();
             }, 5);
         } else {
             if (not_always_at_mis_page_clicked) {
                 console.log("not_always_at_mis_page_clicked");
+                var debaft = true;
                 if (DEBUG_DATA_SHOW) console.log(`function checkFlag() {
             if (ary_0 !== 6) {
                 setTimeout(() => {
                     checkFlag();
                 }, 5);
             } else {console.log(`);
-                if (DEBUG_DATA_SHOW) console.log(ary_1);
-                if (DEBUG_DATA_SHOW) console.log(ary_2);
-                if (DEBUG_DATA_SHOW) console.log(ary_3);
-                if (DEBUG_DATA_SHOW) console.log(ary_4);
-                if (DEBUG_DATA_SHOW) console.log(goal_data_1);
-                if (DEBUG_DATA_SHOW) console.log(goal_data_2);
-                if (DEBUG_DATA_SHOW) console.log(goal_data_3);
-                if (DEBUG_DATA_SHOW) console.log(goal_data_4);
-                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.wake);
-                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.sleep);
-                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.picture);
+                if (DEBUG_DATA_SHOW || debaft) console.log(ary_1);
+                if (DEBUG_DATA_SHOW || debaft) console.log(ary_2);
+                if (DEBUG_DATA_SHOW || debaft) console.log(ary_3);
+                if (DEBUG_DATA_SHOW || debaft) console.log(ary_4);
+                if (DEBUG_DATA_SHOW || debaft) console.log(goal_data_1);
+                if (DEBUG_DATA_SHOW || debaft) console.log(goal_data_2);
+                if (DEBUG_DATA_SHOW || debaft) console.log(goal_data_3);
+                if (DEBUG_DATA_SHOW || debaft) console.log(goal_data_4);
+                if (DEBUG_DATA_SHOW || debaft) console.log(mis1_data_cur.wake);
+                if (DEBUG_DATA_SHOW || debaft) console.log(mis1_data_cur.sleep);
+                if (DEBUG_DATA_SHOW || debaft) console.log(mis1_data_cur.picture);
 
-                if (DEBUG_DATA_SHOW) console.log(mis1_data_cur.stroll);
+                if (DEBUG_DATA_SHOW || debaft) console.log(mis1_data_cur.stroll);
                 /*exp_data_cur.wake = res.wake; exp_data_cur.sleep = res.sleep;
                             exp_data_cur.picture = res.picture; exp_data_cur.stroll = res.stroll;*/
                 // console.log(exp_data_cur);
 
-                if (DEBUG_DATA_SHOW) console.log(exp_data_cur);
+                if (DEBUG_DATA_SHOW || debaft) console.log(exp_data_cur);
 
                 if (JSON.stringify(ary_1) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_1_tmp) ||
                     JSON.stringify(ary_2) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_2_tmp) ||
@@ -617,6 +630,7 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
             } else { //always_at_mis_page_clicked
 
                 $.getJSON("./frontend/biggggg/medal.json", function (json) {
+                    console.log(ary_1);
                     for (let index = 0; index < json.stroll.exp.length; index++) {
                         if (index + 1 === json.stroll.exp.length) {
                             conti_stroll = json.stroll.amount[index];
