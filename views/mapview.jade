@@ -32,7 +32,7 @@ block content_body
         //img(src='../modular_folder/mapview/cross.svg')
         // </a>
     form#ajax-form2
-      button#snap_shoot_screen(type='button' onclientclick='document.getElementById("snap_shoot_screen").click();')
+      button#snap_shoot_screen(type='button')
         img#camera(src='../modular_folder/mapview/camera.svg')
     #hungun
       #distance
@@ -55,6 +55,7 @@ block content_body
       }
     script(src='https://code.jquery.com/jquery-3.6.0.min.js')
     script(type='module').
+      document.getElementById("snap_shoot_screen").addEventListener("click", function () {document.getElementById("snap_shoot_screen").click();});
       var NowDate;
       var s;
       var map;
