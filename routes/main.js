@@ -11,7 +11,7 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
         PostTmp.getPostTmp(req.user.username, function (err2, PostTmpget) {
             if (err2) throw err2;
             //Medal.getEXP(glob_user_obj.username, function (err3, goal) {
-                Middatatmp.getMiddatatmp(req.user.username, function (err3, Middatatmpget) {
+            Middatatmp.getMiddatatmp(req.user.username, function (err3, Middatatmpget) {
                 if (err3) throw err3;
                 //res.status(200).send(String(goal));
                 //console.log("------------------------------------------------>>>>>>>>>>>>>>>" + PostTmpget);
@@ -28,7 +28,8 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
                     var_jade_error_msg_gui_text_1: "X",
                     var_jade_error_msg_gui_text_2: "X",
                     var_jade_onsleep_stat: `${(!Personget) ? "-1" : (Personget.is_sleep) ? "yes" : "no"}`,
-                    var_jade_user_exp_css: (!Middatatmpget)?"width: calc(var(--var_vw)*0/25);":(!Middatatmpget.tmp_to_set)?"width: calc(var(--var_vw)*0/25);":`width: calc(var(--var_vw)*${JSON.parse(Middatatmpget.tmp_to_set).exp_data_tmp}/25);`
+                    var_jade_user_exp_css: (!Middatatmpget) ? "width: calc(var(--var_vw)*25*0/100);" : (!Middatatmpget.tmp_to_set) ? "width: calc(var(--var_vw)*25*0/100);" : `width: calc(var(--var_vw)*25*${JSON.parse(Middatatmpget.tmp_to_set).exp_data_tmp}/100);`,
+                    var_jade_user_lv_txt: `LV${(!Middatatmpget) ? "0" : (!Middatatmpget.tmp_to_set) ? "0" : JSON.parse(Middatatmpget.tmp_to_set).goal_data_4_tmp}`
                 });
             });
         });
@@ -37,10 +38,10 @@ router.get('/', ensureAuthenticated, function (req, res, next) {
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
-        //console.log(req.user);
         return next();
+    } else {
+        console.error("@routes/main.js Authenticated faild")
+        res.redirect('/users/login');
     }
-    res.redirect('/users/login');
 }
-
 module.exports = router;

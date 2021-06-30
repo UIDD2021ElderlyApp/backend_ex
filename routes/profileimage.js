@@ -47,13 +47,17 @@ router.get('/', ensureAuthenticated, function (req, res, next) {//https://luffy.
     })
 });
 
+
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
         glob_user_obj = req.user;
         return next();
+    } else {
+        console.error("@routes/profileimage.js Authenticated faild")
+        res.redirect('/users/login');
     }
-    res.redirect('/users/login');
-}
+  }
+
 
 function set_compress_ratio(query_without_jpg) {
     let compressratio;

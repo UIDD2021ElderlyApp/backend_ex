@@ -1,10 +1,10 @@
-html
-  head
+extends layout
+block content_head
     meta(charset='utf-8')
     link(rel='shortcut icon' href='../modular_folder/login/image/loading.svg')
     link(rel='apple-touch-icon' href='../modular_folder/login/image/weblogo_sq.png')
     link(href='../modular_folder/mapview/map2.css' rel='stylesheet' type='text/css')
-  body
+block content_header
     link(rel='stylesheet' href='https://unpkg.com/leaflet@1.7.1/dist/leaflet.css' integrity='sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A==' crossorigin='')
     style.
       html,
@@ -21,6 +21,7 @@ html
       position: relative;
       z-index: 1;
       }
+block content_body
     #waiting_block
       #waiting_gray
       #waiting_logo
@@ -302,7 +303,7 @@ html
           $("#waiting_block").css('display', "none")
       }
       window.onload = codeAddress;
-    footer
+block content_footer
       script(type='text/javascript').
         var jQuery_3_6_0 = $.noConflict(true);
       script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')

@@ -44,7 +44,7 @@ block content_body
         img(src="#{ var_jade_user_info_profileimage }")
       #animal_name #{ var_jade_user_info_name }
       #level
-        div 等級: 
+        #level_text #{ var_jade_user_lv_txt } 
         #level_bar
           #level_value(style="#{ var_jade_user_exp_css }")
     #back_block
@@ -99,13 +99,13 @@ block content_body
     - if( var_jade_onsleep_stat == "yes") {
         //#house
         - if( var_jade_user_info_choosedanimal == "1") {
-            #house.exit_button_function_to_return_to_the_main_screen
+            #house
               img(src='./frontend/biggggg/image/home_sleep1.svg' width='100%')
         - } else if( var_jade_user_info_choosedanimal == "2") {
-            #house.exit_button_function_to_return_to_the_main_screen
+            #house
               img(src='./frontend/biggggg/image/home_sleep2.svg' width='100%')
         - } else if( var_jade_user_info_choosedanimal == "3") {
-            #house.exit_button_function_to_return_to_the_main_screen
+            #house
               img(src='./frontend/biggggg/image/home_sleep3.svg' width='100%')
         - } else {
             script.
@@ -114,7 +114,7 @@ block content_body
     - } else {
         #house
     - }
-    #touch_house
+    #touch_house.exit_button_function_to_return_to_the_main_screen
     //#menu_back
     - if( var_jade_user_info_choosedanimal == "1") {
         #menu_back(style="background-color:#61913D;")

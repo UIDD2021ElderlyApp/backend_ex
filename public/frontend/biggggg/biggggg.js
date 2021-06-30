@@ -35,9 +35,9 @@ var animal = parseInt((document.getElementById('jade_user_info_choosedanimal')) 
         break;
 }*/
 if ($("#animal_name").width() > window_width * 0.16) {
-    $("#animal_name").html($("#animal_name").text().substring(0, 6))
+    $("#animal_name").text($("#animal_name").text().substring(0, 6))
     if ($("#animal_name").width() > window_width * 0.16) {
-        $("#animal_name").html($("#animal_name").text().substring(0, 3))
+        $("#animal_name").text($("#animal_name").text().substring(0, 3))
     }
     $("#animal_name").append('...')
 }
@@ -291,7 +291,7 @@ $("#exit_button_2").click(function () {
 // 持續任務目前階段
 var conti_stroll = 0; //累積散步量
 var conti_post = 0; //累積發文數 
-var conti_comment = 0;// ...etc
+var conti_comment = 0; // ...etc
 var conti_level = 0;
 var DEBUG_DATA_SHOW = true;
 //var cancel_the_preset_logic = true;
@@ -579,7 +579,7 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
     });
 
     function checkFlag() {
-        if (/*ary_0 !== 6*/document.getElementById("obj_data_container_ary_0").innerText !== "6") {
+        if ( /*ary_0 !== 6*/ document.getElementById("obj_data_container_ary_0").innerText !== "6") {
             setTimeout(() => {
                 checkFlag();
             }, 5);
@@ -616,6 +616,7 @@ function always_at_press_all_exit_ot_reload(not_always_at_mis_page_clicked) {
                     JSON.stringify(ary_2) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_2_tmp) ||
                     JSON.stringify(ary_3) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_3_tmp) ||
                     JSON.stringify(ary_4) !== JSON.stringify(JSON.parse(document.getElementById("obj_data_container").innerText).ary_4_tmp) ||
+                    goal_data_4 !== JSON.parse(document.getElementById("obj_data_container").innerText).goal_data_4_tmp ||
                     /*goal_data_1 !== goal_data_1_tmp || goal_data_2 !== goal_data_2_tmp || goal_data_3 !== goal_data_3_tmp || goal_data_4 !== goal_data_4_tmp ||*/
                     mis1_data_cur.wake !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_wake ||
                     mis1_data_cur.sleep !== JSON.parse(document.getElementById("obj_data_container").innerText).mis1_data_tmp_sleep ||
@@ -764,7 +765,8 @@ function always_at_exit_bton_of_miss_page_clicked(callback) {
     /*if (document.getElementById("expbar_if_const_set") === "0") {
         document.getElementById("expbar_if_const_set") = "1";
         document.getElementById("expbar_const") = String(jQuery_3_6_0("#level_value").width);*/
-    jQuery_3_6_0("#level_value").css("width", `calc(var(--var_vw)*${exp_data_tmp}/25)`);
+    jQuery_3_6_0("#level_value").css("width", `calc(var(--var_vw)*25*${exp_data_tmp}/100)`);
+    document.getElementById("level_text").innerText = `LV${(!document.getElementById("obj_data_container")) ? "0" : String(JSON.parse(document.getElementById("obj_data_container").innerText).goal_data_4_tmp)}`;
     /*} else {
         jQuery_3_6_0("#level_value").width = parseInt(document.getElementById("expbar_const")) * exp_data_tmp;
     }*/

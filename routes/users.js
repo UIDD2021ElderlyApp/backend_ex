@@ -16,7 +16,7 @@ const sharp = require('sharp');
 //import Data Model
 var User = require('../models/user');
 
-var loginpageloadtimeoutverification = require('../models/loginpageloadtimeoutverification');
+//var loginpageloadtimeoutverification = require('../models/loginpageloadtimeoutverification');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -31,7 +31,7 @@ router.get('/', function (req, res, next) {
 //加入login routing
 router.get('/login', function routergetlogin(req, res, next) {
   var resok = true;
-  var randomstringgenerate100 = randomstring.generate(100);
+  /*var randomstringgenerate100 = randomstring.generate(100);
   var randomstringgenerate100tomongodb = new loginpageloadtimeoutverification({
     time: Date(),
     randomstringgenerate100: randomstringgenerate100
@@ -52,11 +52,11 @@ router.get('/login', function routergetlogin(req, res, next) {
       resok = false;
       routergetlogin(req, res, next);
     }
-  });
+  });*/
   if (resok) {
     res.render('login', {
       var_use_old_jquery: true,
-      successes: randomstringgenerate100,
+      //successes: randomstringgenerate100,
       var_jade_err_msg_show: false,
       var_jade_error_msg_gui_text_1: "X",
       var_jade_error_msg_gui_text_2: "X",
@@ -219,6 +219,7 @@ router.post('/login',
   });
 
 router.get('/logout', function (req, res) {
+  console.error("logout!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
   req.logout();
   res.redirect('/users/login');
 });
