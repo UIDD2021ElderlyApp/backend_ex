@@ -8,6 +8,14 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    /* // For Edge */
+    height: 100%;
+    /* // WebKit-based browsers will ignore this */
+    height: -moz-available;
+    /* // Mozilla-based browsers will ignore this. */
+    height: -webkit-fill-available;
+    /* // For WebKit-based browsers, Edge not support this */
+    height: fill-available;
 }
 
 #waiting_gray {
@@ -32,7 +40,6 @@ body {
     /* ************** */
     transform: translateX(-50%) translateY(-50%);
     animation: load1 2s infinite;
-    opacity: 0.8;
 }
 
 #waiting_logo img {
@@ -133,7 +140,7 @@ body {
 
 #level_value {
     position: relative;
-    width: calc(var(--var_vw)*1);
+    width: calc(var(--var_vw)*1/25);
     height: 1vh;
     left: 0px;
     border-radius: 1vh;
@@ -260,6 +267,15 @@ body {
     background-image: url("image/home_house.svg");
     background-repeat: no-repeat;
     background-size: contain;
+}
+
+#touch_house {
+    position: absolute;
+    width: calc(var(--var_vw)*50);
+    height: calc(var(--var_vw)*38);
+    bottom: calc(var(--var_vw)*40);
+    left: calc(var(--var_vw)*5);
+    z-index: 8;
 }
 
 #menu_back {
@@ -899,7 +915,7 @@ body {
     position: relative;
     width: 20%;
     height: 5vh;
-    font-size: calc(var(--var_vw)*4.5);
+    font-size: 2.2vh;
     font-weight: bold;
     line-height: 5vh;
     text-align: center;
@@ -909,7 +925,7 @@ body {
     position: relative;
     width: 60%;
     height: 5vh;
-    font-size: calc(var(--var_vw)*5.5);
+    font-size: calc(var(--var_vw)*5);
     font-weight: bold;
     line-height: 5vh;
     text-align: center;
@@ -917,10 +933,10 @@ body {
 
 .mission_name2 {
     position: relative;
-    width: 60%;
+    width: 75%;
     height: 5vh;
-    margin-left: 10%;
-    font-size: calc(var(--var_vw)*5.5);
+    margin-left: 5%;
+    font-size: calc(var(--var_vw)*5);
     font-weight: bold;
     line-height: 5vh;
     text-align: left;

@@ -1,3 +1,6 @@
+jQuery('body').bind('focusin focus', function(e) {
+    e.preventDefault();
+})
 var window_width = ($(window).width() / $(window).height() > 1.0) ? (9.0 * ($(window).height() / 16.0)) : $(window).width();
 //console.error(window_width);
 console.log("biggggg")
