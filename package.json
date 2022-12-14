@@ -13,7 +13,7 @@
     "cookie-parser": "~1.4.5",
     "data-uri-to-buffer": "^3.0.1",
     "debug": "~2.6.9",
-    "express": "~4.17.1",
+    "express": "~4.17.3",
     "express-messages": "*",
     "express-rate-limit": "*",
     "express-session": "*",
